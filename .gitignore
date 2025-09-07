@@ -1,9 +1,65 @@
+# =============== #
+# Unity generated #
+# =============== #
+
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild*/
+[Bb]uilds/
+[Ll]ogs/
 [Uu]ser[Ss]ettings/
-Logs/
-MemoryCaptures/
+[Mm]emoryCaptures/
+sysinfo.txt
+
+# ============ #
+# IDE specific #
+# ============ #
+
 *.csproj
+*.unityproj
 *.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# ============ #
+# Cache/backup #
+# ============ #
+
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# ============== #
+# TextMesh Pro   #
+# ============== #
+
+Assets/TextMesh Pro/Fonts/FallbackFontAssets.asset
+Assets/TextMesh Pro/Fonts/FontAssetCreatorSettings.asset
+
+# ================= #
+# Rider / VS Cache  #
+# ================= #
+
+.idea/
+.vscode/
+.vs/
+
+# =========== #
+# Crash logs  #
+# =========== #
+
+*.stackdump
+*.log
+
+# =============== #
+# Mac system file #
+# =============== #
+
+.DS_Store
