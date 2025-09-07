@@ -1,6 +1,8 @@
+// GameManager.cs（以程式撰寫劇情版）
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,50 +13,34 @@ public class GameManager : MonoBehaviour
     public Transform choiceContainer;
     public Button choiceButtonPrefab;
     public Slider healthBar;
-    public TextMeshProUGUI statusText;
-
-    [Header("故事資料")]
-    public StoryNode[] storyNodes;
+    public TextMeshProUGUI statusText;   // 只顯示 HP
 
     [Header("遊戲參數")]
     public int startNode = 0;
     public int defaultHP = 100;
 
-    [Header("目前難度")]
-    public Difficulty difficulty = Difficulty.Normal; // 無 Slider；由按鈕或程式設定
+    [Header("目前難度（內部使用，不顯示）")]
+    public Difficulty difficulty = Difficulty.Normal;
 
     private int currentNode;
     private int hp;
+    private const string Death = "你死了。\n\n結束";
 
     void Awake()
     {
         if (choiceContainer) choiceContainer.gameObject.SetActive(false);
     }
 
-    // === 供 UI 按鈕使用：0..3 對應 Easy..Master ===
+    // ===== 難度設定（UI 按鈕呼叫）=====
     public void SetDifficultyByIndex(int index)
     {
-        index = Mathf.Clamp(index, 0, 3);
-        difficulty = (Difficulty)index;
-        // 若要即時顯示在某處，可在這裡更新 UI
-        // 例如：statusText.text = $"難度：{GetDifficultyName()}";
-    }
-    public string GetDifficultyName()
-    {
-        switch (difficulty)
-        {
-            case Difficulty.Easy:   return "Easy";
-            case Difficulty.Normal: return "Normal";
-            case Difficulty.Hard:   return "Hard";
-            case Difficulty.Master: return "Master";
-            default: return "Normal";
-        }
+        difficulty = (Difficulty)Mathf.Clamp(index, 0, 3);
     }
 
-    // ── 單場景入口 ──
+    // ===== 入口 =====
     public void BeginNewGame()
     {
-        hp = defaultHP;                 // 難度影響事件機率；不限制 HP
+        hp = defaultHP;
         currentNode = startNode;
         UpdateStatus();
         DisplayNode(currentNode);
@@ -66,11 +52,12 @@ public class GameManager : MonoBehaviour
         else BeginNewGame();
     }
 
-    // ── 單存位（沿用） ──
+    // ===== 單存位（PlayerPrefs）=====
     private bool HasSave()
     {
         return PlayerPrefs.HasKey("Save_Node") && PlayerPrefs.HasKey("Save_HP");
     }
+
     private void SaveGame()
     {
         PlayerPrefs.SetInt("Save_Node", currentNode);
@@ -78,6 +65,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Save_Difficulty", (int)difficulty);
         PlayerPrefs.Save();
     }
+
     private void LoadGame()
     {
         currentNode = PlayerPrefs.GetInt("Save_Node", startNode);
@@ -87,7 +75,7 @@ public class GameManager : MonoBehaviour
         DisplayNode(currentNode);
     }
 
-    // ── 多槽 API（Save/Load 菜單用） ──
+    // ===== 多槽 API（Save/Load 菜單使用）=====
     public void SaveToSlot(int slot)
     {
         var data = new SaveData
@@ -99,6 +87,7 @@ public class GameManager : MonoBehaviour
         };
         SaveManager.Save(slot, data);
     }
+
     public void LoadFromSlot(int slot)
     {
         var data = SaveManager.Load(slot);
@@ -107,11 +96,11 @@ public class GameManager : MonoBehaviour
         currentNode = data.node;
         hp = data.hp;
         difficulty = (Difficulty)Mathf.Clamp(data.difficulty, 0, 3);
-
         UpdateStatus();
         DisplayNode(currentNode);
     }
 
+    // ===== 顯示與選項 =====
     private void ClearChoices()
     {
         if (!choiceContainer) return;
@@ -120,77 +109,93 @@ public class GameManager : MonoBehaviour
         choiceContainer.gameObject.SetActive(false);
     }
 
-    private void DisplayNode(int index)
+    private void SpawnChoice(string text, Action action)
     {
-        if (storyNodes == null || storyNodes.Length == 0)
-        {
-            if (storyText) storyText.text = "（沒有故事資料）";
-            ClearChoices();
-            return;
-        }
-        if (index < 0 || index >= storyNodes.Length)
-        {
-            if (storyText) storyText.text = "The End";
-            ClearChoices();
-            SpawnBackToMenuButton();
-            return;
-        }
-
-        ClearChoices();
-        if (storyText) storyText.text = storyNodes[index].text;
-
-        var choices = storyNodes[index].choices;
-        if (choices == null || choices.Length == 0)
-        {
-            SpawnBackToMenuButton();
-            return;
-        }
-
+        if (!choiceButtonPrefab || !choiceContainer) return;
+        Button btn = Instantiate(choiceButtonPrefab, choiceContainer);
+        var label = btn.GetComponentInChildren<TextMeshProUGUI>();
+        if (label) label.text = text;
+        btn.onClick.AddListener(() => action());
         choiceContainer.gameObject.SetActive(true);
-        foreach (var choice in choices)
-        {
-            var c = choice; // 避免閉包
-            var btn = Instantiate(choiceButtonPrefab, choiceContainer);
-            var label = btn.GetComponentInChildren<TextMeshProUGUI>();
-            if (label) label.text = c.choiceText;
-            btn.onClick.AddListener(() => ChooseOption(c));
-        }
     }
 
-    private void ChooseOption(Choice choice)
+    private void DisplayNode(int index)
     {
-        hp += choice.hpChange;
-        currentNode = choice.nextNode;
-        UpdateStatus();
-        SaveGame(); // 如不想自動存可註解
+        ClearChoices();
+
+        switch (index)
+        {
+            // ===== 範例劇情開始 =====
+            case 0:
+                storyText.text = "你好。你站在森林入口。";
+                SpawnChoice("往左走", () => GoTo(1));
+                SpawnChoice("往右走", () => GoTo(2));
+                break;
+
+            case 1:
+                if (hp >= 80)
+                {
+                    storyText.text = "你精神滿滿，嚇跑了野狼（不扣血）。";
+                }
+                else
+                {
+                    storyText.text = "你體力不足被野狼咬傷HP -10。";
+                    hp -= 10; UpdateStatus();
+                }
+                SpawnChoice("繼續前進", () => GoTo(3));
+                break;
+            case 2:
+                storyText.text = "你踩到陷阱HP -20。";
+                hp -= 20; UpdateStatus();
+                // 依 HP 分支
+                if (hp >= 50)
+                    SpawnChoice("強忍疼痛走出去", () => GoTo(3));
+                else
+                    SpawnChoice("爬到樹下休息", () => GoTo(4));
+                break;
+
+            case 3:
+                storyText.text = "你走出了森林。\n\n結束";
+                End(); // 無按鈕 = 結局
+                break;
+
+            case 4:
+                storyText.text = "你暈倒了……\n\n結束";
+                
+                End();
+                break;
+            // ===== 範例劇情結束 =====
+
+            default:
+                storyText.text = Death;
+                End();
+                break;
+        }
+
+        SaveGame();
+    }
+
+    private void GoTo(int node)
+    {
+        currentNode = node;
         DisplayNode(currentNode);
     }
 
-    private void SpawnBackToMenuButton()
+    private void End()
     {
-        if (!choiceContainer) return;
-        choiceContainer.gameObject.SetActive(true);
-
-        var btn = Instantiate(choiceButtonPrefab, choiceContainer);
-        var label = btn.GetComponentInChildren<TextMeshProUGUI>();
-        if (label) label.text = "返回主選單";
-        btn.onClick.AddListener(() =>
-        {
-            if (MenuManager.Instance) MenuManager.Instance.BackToMain();
-        });
+        // 不產生選項即為結局；可視需求加上「回主選單」：
+        // SpawnChoice("回主選單", () => { if (MenuManager.Instance) MenuManager.Instance.BackToMain(); });
     }
 
+    // ===== UI 更新（只顯示 HP）=====
     private void UpdateStatus()
     {
         if (healthBar)
         {
             healthBar.value = hp;
             var hpText = healthBar.GetComponentInChildren<TextMeshProUGUI>();
-            if (hpText) hpText.text = $"Hp: {hp}";
+            if (hpText) hpText.text = $"HP: {hp}";
         }
-        if (statusText)
-        {
-            statusText.text = $"HP: {hp}　難度: {GetDifficultyName()}";
-        }
+        if (statusText) statusText.text = $"HP: {hp}";
     }
 }
