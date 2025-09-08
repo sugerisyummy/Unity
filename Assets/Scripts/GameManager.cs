@@ -1,8 +1,9 @@
-// GameManager.cs（以程式撰寫劇情版）
+// GameManager.cs  （改成資料驅動抽事件 + 多頁執行）
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,25 +14,30 @@ public class GameManager : MonoBehaviour
     public Transform choiceContainer;
     public Button choiceButtonPrefab;
     public Slider healthBar;
-    public TextMeshProUGUI statusText;   // 只顯示 HP
+    public TextMeshProUGUI statusText;
 
-    [Header("遊戲參數")]
-    public int startNode = 0;
+    [Header("資料庫")]
+    public CaseDatabase caseDB;
+
+    [Header("起始設定")]
+    public CaseId startCase = CaseId.ForestEntrance;
     public int defaultHP = 100;
 
-    [Header("目前難度（內部使用，不顯示）")]
+    [Header("內部狀態")]
     public Difficulty difficulty = Difficulty.Normal;
 
-    private int currentNode;
     private int hp;
-    private const string Death = "你死了。\n\n結束";
+    private CaseId currentCase;
+
+    // 事件執行狀態
+    private DolEventAsset runningEvent;
+    private int runningStage = -1;
 
     void Awake()
     {
         if (choiceContainer) choiceContainer.gameObject.SetActive(false);
     }
 
-    // ===== 難度設定（UI 按鈕呼叫）=====
     public void SetDifficultyByIndex(int index)
     {
         difficulty = (Difficulty)Mathf.Clamp(index, 0, 3);
@@ -41,9 +47,7 @@ public class GameManager : MonoBehaviour
     public void BeginNewGame()
     {
         hp = defaultHP;
-        currentNode = startNode;
-        UpdateStatus();
-        DisplayNode(currentNode);
+        EnterCase(startCase);
     }
 
     public void BeginLoadGame()
@@ -52,15 +56,15 @@ public class GameManager : MonoBehaviour
         else BeginNewGame();
     }
 
-    // ===== 單存位（PlayerPrefs）=====
+    // ===== 存讀檔 =====
     private bool HasSave()
     {
-        return PlayerPrefs.HasKey("Save_Node") && PlayerPrefs.HasKey("Save_HP");
+        return PlayerPrefs.HasKey("Save_CurrentCase") && PlayerPrefs.HasKey("Save_HP");
     }
 
     private void SaveGame()
     {
-        PlayerPrefs.SetInt("Save_Node", currentNode);
+        PlayerPrefs.SetString("Save_CurrentCase", currentCase.ToString());
         PlayerPrefs.SetInt("Save_HP", hp);
         PlayerPrefs.SetInt("Save_Difficulty", (int)difficulty);
         PlayerPrefs.Save();
@@ -68,19 +72,21 @@ public class GameManager : MonoBehaviour
 
     private void LoadGame()
     {
-        currentNode = PlayerPrefs.GetInt("Save_Node", startNode);
         hp = PlayerPrefs.GetInt("Save_HP", defaultHP);
         difficulty = (Difficulty)PlayerPrefs.GetInt("Save_Difficulty", (int)Difficulty.Normal);
+
+        string c = PlayerPrefs.GetString("Save_CurrentCase", startCase.ToString());
+        if (!Enum.TryParse<CaseId>(c, out currentCase)) currentCase = startCase;
+
         UpdateStatus();
-        DisplayNode(currentNode);
+        EnterCase(currentCase); // 重新 roll
     }
 
-    // ===== 多槽 API（Save/Load 菜單使用）=====
     public void SaveToSlot(int slot)
     {
         var data = new SaveData
         {
-            node = currentNode,
+            currentCase = currentCase.ToString(),
             hp = hp,
             difficulty = (int)difficulty,
             saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm")
@@ -93,19 +99,31 @@ public class GameManager : MonoBehaviour
         var data = SaveManager.Load(slot);
         if (data == null) return;
 
-        currentNode = data.node;
         hp = data.hp;
         difficulty = (Difficulty)Mathf.Clamp(data.difficulty, 0, 3);
+        if (!Enum.TryParse<CaseId>(data.currentCase, out currentCase))
+            currentCase = startCase;
+
         UpdateStatus();
-        DisplayNode(currentNode);
+        EnterCase(currentCase);
     }
 
-    // ===== 顯示與選項 =====
+    // ===== UI =====
+    private void UpdateStatus()
+    {
+        if (healthBar)
+        {
+            healthBar.value = hp;
+            var hpText = healthBar.GetComponentInChildren<TextMeshProUGUI>();
+            if (hpText) hpText.text = $"HP: {hp}";
+        }
+        if (statusText) statusText.text = $"HP: {hp}";
+    }
+
     private void ClearChoices()
     {
         if (!choiceContainer) return;
-        foreach (Transform child in choiceContainer)
-            Destroy(child.gameObject);
+        foreach (Transform child in choiceContainer) Destroy(child.gameObject);
         choiceContainer.gameObject.SetActive(false);
     }
 
@@ -119,83 +137,127 @@ public class GameManager : MonoBehaviour
         choiceContainer.gameObject.SetActive(true);
     }
 
-    private void DisplayNode(int index)
+    // ===================== 核心流程 =====================
+    public void EnterCase(CaseId id)
     {
-        ClearChoices();
-
-        switch (index)
-        {
-            // ===== 範例劇情開始 =====
-            case 0:
-                storyText.text = "你好。你站在森林入口。";
-                SpawnChoice("往左走", () => GoTo(1));
-                SpawnChoice("往右走", () => GoTo(2));
-                break;
-
-            case 1:
-                if (hp >= 80)
-                {
-                    storyText.text = "你精神滿滿，嚇跑了野狼（不扣血）。";
-                }
-                else
-                {
-                    storyText.text = "你體力不足被野狼咬傷HP -10。";
-                    hp -= 10; UpdateStatus();
-                }
-                SpawnChoice("繼續前進", () => GoTo(3));
-                break;
-            case 2:
-                storyText.text = "你踩到陷阱HP -20。";
-                hp -= 20; UpdateStatus();
-                // 依 HP 分支
-                if (hp >= 50)
-                    SpawnChoice("強忍疼痛走出去", () => GoTo(3));
-                else
-                    SpawnChoice("爬到樹下休息", () => GoTo(4));
-                break;
-
-            case 3:
-                storyText.text = "你走出了森林。\n\n結束";
-                End(); // 無按鈕 = 結局
-                break;
-
-            case 4:
-                storyText.text = "你暈倒了……\n\n結束";
-                
-                End();
-                break;
-            // ===== 範例劇情結束 =====
-
-            default:
-                storyText.text = Death;
-                End();
-                break;
-        }
-
+        currentCase = id;
+        runningEvent = null;
+        runningStage = -1;
+        UpdateStatus();
+        RollAndStartEvent();  // 進入地點即抽事件
         SaveGame();
     }
 
-    private void GoTo(int node)
+    private void RollAndStartEvent()
     {
-        currentNode = node;
-        DisplayNode(currentNode);
-    }
-
-    private void End()
-    {
-        // 不產生選項即為結局；可視需求加上「回主選單」：
-        // SpawnChoice("回主選單", () => { if (MenuManager.Instance) MenuManager.Instance.BackToMain(); });
-    }
-
-    // ===== UI 更新（只顯示 HP）=====
-    private void UpdateStatus()
-    {
-        if (healthBar)
+        ClearChoices();
+        if (!caseDB || !caseDB.TryGetPool(currentCase, out var pool) || pool == null || pool.Count == 0)
         {
-            healthBar.value = hp;
-            var hpText = healthBar.GetComponentInChildren<TextMeshProUGUI>();
-            if (hpText) hpText.text = $"HP: {hp}";
+            storyText.text = "(此地沒有事件)";
+            return;
         }
-        if (statusText) statusText.text = $"HP: {hp}";
+
+        // 過濾條件＋一次性＋冷卻
+        List<(DolEventAsset e, float w)> candidates = new();
+        foreach (var entry in pool)
+        {
+            var e = entry.evt;
+            if (!e) continue;
+
+            // 一次性檢查
+            if (e.oncePerSave && EventFlagStorage.IsOnceConsumed(e.eventId)) continue;
+
+            // 冷卻檢查
+            if (!EventFlagStorage.IsOffCooldown(e.eventId, e.cooldownSeconds)) continue;
+
+            // 條件檢查
+            if (!e.ConditionsMet(hp, EventFlagStorage.GetFlag)) continue;
+
+            float w = entry.weightOverride >= 0f ? entry.weightOverride : e.weight;
+            if (w <= 0f) continue;
+
+            candidates.Add((e, w));
+        }
+
+        if (candidates.Count == 0)
+        {
+            storyText.text = "(目前沒有可觸發的事件)";
+            return;
+        }
+
+        // 加權抽取
+        float total = 0f; foreach (var c in candidates) total += c.w;
+        float r = UnityEngine.Random.value * total, acc = 0f;
+        DolEventAsset chosen = candidates[0].e;
+        foreach (var c in candidates)
+        {
+            acc += c.w;
+            if (r <= acc) { chosen = c.e; break; }
+        }
+
+        StartEvent(chosen);
+    }
+
+    private void StartEvent(DolEventAsset evt)
+    {
+        runningEvent = evt;
+        runningStage = 0;
+        ShowStage();
+        // 觸發時就標記冷卻起始與一次性
+        EventFlagStorage.MarkFired(evt.eventId);
+    }
+
+    private void ShowStage()
+    {
+        ClearChoices();
+        if (runningEvent == null || runningStage < 0 || runningStage >= runningEvent.stages.Count)
+        {
+            storyText.text = "(事件錯誤)";
+            return;
+        }
+
+        var stage = runningEvent.stages[runningStage];
+        storyText.text = stage.text;
+
+        if (stage.choices == null || stage.choices.Count == 0)
+        {
+            // 無選項視為事件結束
+            EndEvent();
+            return;
+        }
+
+        foreach (var ch in stage.choices)
+        {
+            SpawnChoice(ch.text, () =>
+            {
+                // 套用 HP 與旗標
+                if (ch.hpChange != 0) { hp += ch.hpChange; UpdateStatus(); }
+                foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) EventFlagStorage.SetFlag(f, true);
+                foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) EventFlagStorage.SetFlag(f, false);
+
+                // 流程跳轉
+                if (ch.nextStage >= 0) { runningStage = ch.nextStage; ShowStage(); return; }
+
+                if (ch.endEvent)
+                {
+                    var gotoNext = ch.gotoCaseAfterEnd;
+                    var nextCase = ch.gotoCase;
+                    EndEvent();
+                    if (gotoNext) EnterCase(nextCase);
+                    return;
+                }
+
+                // 若沒有任何跳轉，就停留本頁（避免無限）
+                ShowStage();
+            });
+        }
+    }
+
+    private void EndEvent()
+    {
+        runningEvent = null;
+        runningStage = -1;
+        // 結束後可自動再抽下一個事件（若想要連續遭遇）
+        // RollAndStartEvent();
     }
 }

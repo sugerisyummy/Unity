@@ -1,3 +1,4 @@
+// SaveSlotButton.cs  （顯示 Case，不再顯示 Node）
 using UnityEngine;
 using TMPro;
 
@@ -38,7 +39,8 @@ public class SaveSlotButton : MonoBehaviour
         var d = SaveManager.Load(slot);
         if (d == null) { label.text = "空槽"; return; }
 
-        label.text = $"{d.saveTime}\n{DiffName(d.difficulty)} · HP {d.hp} · Node {d.node}";
+        string caseName = string.IsNullOrEmpty(d.currentCase) ? "—" : d.currentCase;
+        label.text = $"{d.saveTime}\n{DiffName(d.difficulty)} · HP {d.hp} · Case {caseName}";
     }
 
     string DiffName(int idx)

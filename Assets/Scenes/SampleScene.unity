@@ -3286,7 +3286,8 @@ MonoBehaviour:
   choiceButtonPrefab: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
   healthBar: {fileID: 1515371617}
   statusText: {fileID: 1681948949}
-  startNode: 0
+  caseDB: {fileID: 0}
+  startCase: 0
   defaultHP: 100
   difficulty: 0
 --- !u!224 &1101757916 stripped
