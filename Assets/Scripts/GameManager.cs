@@ -1,85 +1,75 @@
-// GameManager.cs  （改成資料驅動抽事件 + 多頁執行）
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
-using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     public enum Difficulty { Easy = 0, Normal = 1, Hard = 2, Master = 3 }
 
-    [Header("UI 參考")]
-    public TextMeshProUGUI storyText;
-    public Transform choiceContainer;
-    public Button choiceButtonPrefab;
-    public Slider healthBar;
-    public TextMeshProUGUI statusText;
+    [Header("資料參考")]
+    [SerializeField] private CaseDatabase caseDB;
+    [SerializeField] private EventFlagStorage flagStorage;
 
-    [Header("資料庫")]
-    public CaseDatabase caseDB;
+    [Header("視覺/音效")]
+    [SerializeField] private CaseVisuals caseVisuals;        // 指向 ScriptableObject
+    [SerializeField] private Image backgroundImage;          // Story 背景 Image
+
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI storyText;
+    [SerializeField] private Transform choiceContainer;
+    [SerializeField] private Button choiceButtonPrefab;
+    [SerializeField] private TextMeshProUGUI systemTipText;
 
     [Header("起始設定")]
-    public CaseId startCase = CaseId.ForestEntrance;
-    public int defaultHP = 100;
+    [SerializeField] private CaseId startCase = CaseId.None;
+    [SerializeField] private int defaultHP = 100;
 
-    [Header("內部狀態")]
-    public Difficulty difficulty = Difficulty.Normal;
-
+    private CaseId currentCase = CaseId.None;
     private int hp;
-    private CaseId currentCase;
+    private Difficulty difficulty = Difficulty.Normal;
 
-    // 事件執行狀態
     private DolEventAsset runningEvent;
     private int runningStage = -1;
 
     void Awake()
     {
-        if (choiceContainer) choiceContainer.gameObject.SetActive(false);
+        if (flagStorage == null) flagStorage = new EventFlagStorage();
+        if (!caseDB) Tip("請在 GameManager 指定 CaseDatabase。");
     }
 
-    public void SetDifficultyByIndex(int index)
+    // ★ 新增：提供 UI 綁定的難度設定入口
+    public void SetDifficulty(int idx)
     {
-        difficulty = (Difficulty)Mathf.Clamp(index, 0, 3);
+        idx = Mathf.Clamp(idx, 0, 3);
+        difficulty = (Difficulty)idx;
+        Debug.Log($"[GameManager] Difficulty set to {difficulty} ({idx})");
     }
 
-    // ===== 入口 =====
     public void BeginNewGame()
     {
         hp = defaultHP;
-        EnterCase(startCase);
+        var resolved = ResolveStartCase();
+        if (resolved == CaseId.None) { Tip("目前沒有任何可觸發的事件。請在 CaseDatabase 加入事件。"); return; }
+        EnterCase(resolved);
     }
 
     public void BeginLoadGame()
     {
-        if (HasSave()) LoadGame();
-        else BeginNewGame();
-    }
+        var d = SaveManager.Load(SaveManager.AUTO_SLOT);
+        if (d == null) { BeginNewGame(); return; }
+        hp = d.hp;
+        difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
+        if (!System.Enum.TryParse<CaseId>(d.currentCase, out currentCase)) currentCase = CaseId.None;
 
-    // ===== 存讀檔 =====
-    private bool HasSave()
-    {
-        return PlayerPrefs.HasKey("Save_CurrentCase") && PlayerPrefs.HasKey("Save_HP");
-    }
-
-    private void SaveGame()
-    {
-        PlayerPrefs.SetString("Save_CurrentCase", currentCase.ToString());
-        PlayerPrefs.SetInt("Save_HP", hp);
-        PlayerPrefs.SetInt("Save_Difficulty", (int)difficulty);
-        PlayerPrefs.Save();
-    }
-
-    private void LoadGame()
-    {
-        hp = PlayerPrefs.GetInt("Save_HP", defaultHP);
-        difficulty = (Difficulty)PlayerPrefs.GetInt("Save_Difficulty", (int)Difficulty.Normal);
-
-        string c = PlayerPrefs.GetString("Save_CurrentCase", startCase.ToString());
-        if (!Enum.TryParse<CaseId>(c, out currentCase)) currentCase = startCase;
-
-        UpdateStatus();
-        EnterCase(currentCase); // 重新 roll
+        if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
+        {
+            var resolved = ResolveStartCase();
+            if (resolved == CaseId.None) { Tip("載入後沒有可觸發事件。"); return; }
+            currentCase = resolved;
+        }
+        EnterCase(currentCase);
     }
 
     public void SaveToSlot(int slot)
@@ -92,60 +82,41 @@ public class GameManager : MonoBehaviour
             saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm")
         };
         SaveManager.Save(slot, data);
+        SaveManager.Save(SaveManager.AUTO_SLOT, data);
+        Tip($"已存到槽 {slot}");
     }
 
     public void LoadFromSlot(int slot)
     {
-        var data = SaveManager.Load(slot);
-        if (data == null) return;
+        var d = SaveManager.Load(slot);
+        if (d == null) { Tip($"槽 {slot} 為空。"); return; }
+        hp = d.hp;
+        difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
+        if (!System.Enum.TryParse<CaseId>(d.currentCase, out currentCase)) currentCase = CaseId.None;
 
-        hp = data.hp;
-        difficulty = (Difficulty)Mathf.Clamp(data.difficulty, 0, 3);
-        if (!Enum.TryParse<CaseId>(data.currentCase, out currentCase))
-            currentCase = startCase;
-
-        UpdateStatus();
+        if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
+        {
+            var resolved = ResolveStartCase();
+            if (resolved == CaseId.None) { Tip("載入後沒有可觸發事件。"); return; }
+            currentCase = resolved;
+        }
         EnterCase(currentCase);
     }
 
-    // ===== UI =====
-    private void UpdateStatus()
-    {
-        if (healthBar)
-        {
-            healthBar.value = hp;
-            var hpText = healthBar.GetComponentInChildren<TextMeshProUGUI>();
-            if (hpText) hpText.text = $"HP: {hp}";
-        }
-        if (statusText) statusText.text = $"HP: {hp}";
-    }
-
-    private void ClearChoices()
-    {
-        if (!choiceContainer) return;
-        foreach (Transform child in choiceContainer) Destroy(child.gameObject);
-        choiceContainer.gameObject.SetActive(false);
-    }
-
-    private void SpawnChoice(string text, Action action)
-    {
-        if (!choiceButtonPrefab || !choiceContainer) return;
-        Button btn = Instantiate(choiceButtonPrefab, choiceContainer);
-        var label = btn.GetComponentInChildren<TextMeshProUGUI>();
-        if (label) label.text = text;
-        btn.onClick.AddListener(() => action());
-        choiceContainer.gameObject.SetActive(true);
-    }
-
-    // ===================== 核心流程 =====================
     public void EnterCase(CaseId id)
     {
         currentCase = id;
         runningEvent = null;
         runningStage = -1;
-        UpdateStatus();
-        RollAndStartEvent();  // 進入地點即抽事件
-        SaveGame();
+
+        // 套用該地點的背景與 BGM
+        if (caseVisuals && caseVisuals.TryGet(currentCase, out var entry))
+        {
+            if (backgroundImage) backgroundImage.sprite = entry.background;
+            if (AudioManager.Instance) AudioManager.Instance.PlayBGM(entry.bgm, 1f);
+        }
+
+        RollAndStartEvent();
     }
 
     private void RollAndStartEvent()
@@ -153,48 +124,30 @@ public class GameManager : MonoBehaviour
         ClearChoices();
         if (!caseDB || !caseDB.TryGetPool(currentCase, out var pool) || pool == null || pool.Count == 0)
         {
-            storyText.text = "(此地沒有事件)";
+            Tip($"地點 {currentCase} 沒有任何事件。");
             return;
         }
-
-        // 過濾條件＋一次性＋冷卻
-        List<(DolEventAsset e, float w)> candidates = new();
+        var candidates = new List<(DolEventAsset e, float w)>();
         foreach (var entry in pool)
         {
             var e = entry.evt;
             if (!e) continue;
-
-            // 一次性檢查
-            if (e.oncePerSave && EventFlagStorage.IsOnceConsumed(e.eventId)) continue;
-
-            // 冷卻檢查
-            if (!EventFlagStorage.IsOffCooldown(e.eventId, e.cooldownSeconds)) continue;
-
-            // 條件檢查
-            if (!e.ConditionsMet(hp, EventFlagStorage.GetFlag)) continue;
-
-            float w = entry.weightOverride >= 0f ? entry.weightOverride : e.weight;
+            if (!e.ConditionsMet(hp, flagStorage.HasFlag)) continue;
+            if (e.oncePerSave && flagStorage.IsConsumed(e)) continue;
+            if (flagStorage.IsOnCooldown(e, e.cooldownSeconds)) continue;
+            float w = (entry.weightOverride >= 0f) ? entry.weightOverride : Mathf.Max(0f, e.weight);
             if (w <= 0f) continue;
-
             candidates.Add((e, w));
         }
-
         if (candidates.Count == 0)
         {
-            storyText.text = "(目前沒有可觸發的事件)";
+            Tip($"地點 {currentCase} 目前沒有可觸發事件（可能都在冷卻或條件不符）。");
             return;
         }
-
-        // 加權抽取
         float total = 0f; foreach (var c in candidates) total += c.w;
-        float r = UnityEngine.Random.value * total, acc = 0f;
+        float r = Random.value * total, acc = 0f;
         DolEventAsset chosen = candidates[0].e;
-        foreach (var c in candidates)
-        {
-            acc += c.w;
-            if (r <= acc) { chosen = c.e; break; }
-        }
-
+        foreach (var c in candidates) { acc += c.w; if (r <= acc) { chosen = c.e; break; } }
         StartEvent(chosen);
     }
 
@@ -202,52 +155,46 @@ public class GameManager : MonoBehaviour
     {
         runningEvent = evt;
         runningStage = 0;
+        flagStorage.MarkConsumed(evt);
         ShowStage();
-        // 觸發時就標記冷卻起始與一次性
-        EventFlagStorage.MarkFired(evt.eventId);
     }
 
     private void ShowStage()
     {
         ClearChoices();
-        if (runningEvent == null || runningStage < 0 || runningStage >= runningEvent.stages.Count)
+        if (runningEvent == null || runningEvent.stages == null ||
+            runningStage < 0 || runningStage >= runningEvent.stages.Count)
         {
-            storyText.text = "(事件錯誤)";
-            return;
+            Tip("事件階段錯誤。"); return;
         }
-
         var stage = runningEvent.stages[runningStage];
-        storyText.text = stage.text;
+        if (storyText) storyText.text = stage.text;
 
-        if (stage.choices == null || stage.choices.Count == 0)
-        {
-            // 無選項視為事件結束
-            EndEvent();
-            return;
-        }
+        if (stage.choices == null || stage.choices.Count == 0) { EndEvent(); return; }
 
         foreach (var ch in stage.choices)
         {
             SpawnChoice(ch.text, () =>
             {
-                // 套用 HP 與旗標
-                if (ch.hpChange != 0) { hp += ch.hpChange; UpdateStatus(); }
-                foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) EventFlagStorage.SetFlag(f, true);
-                foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) EventFlagStorage.SetFlag(f, false);
+                if (ch.hpChange != 0) hp += ch.hpChange;
+                foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) flagStorage.SetFlag(f);
+                foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) flagStorage.ClearFlag(f);
 
-                // 流程跳轉
-                if (ch.nextStage >= 0) { runningStage = ch.nextStage; ShowStage(); return; }
-
-                if (ch.endEvent)
+                if (ch.nextStage >= 0)
                 {
-                    var gotoNext = ch.gotoCaseAfterEnd;
-                    var nextCase = ch.gotoCase;
-                    EndEvent();
-                    if (gotoNext) EnterCase(nextCase);
+                    runningStage = ch.nextStage;
+                    ShowStage();
                     return;
                 }
 
-                // 若沒有任何跳轉，就停留本頁（避免無限）
+                if (ch.endEvent)
+                {
+                    var goOther = ch.gotoCaseAfterEnd && ch.gotoCase != CaseId.None;
+                    EndEvent();
+                    if (goOther) EnterCase(ch.gotoCase);
+                    else RollAndStartEvent();
+                    return;
+                }
                 ShowStage();
             });
         }
@@ -257,7 +204,60 @@ public class GameManager : MonoBehaviour
     {
         runningEvent = null;
         runningStage = -1;
-        // 結束後可自動再抽下一個事件（若想要連續遭遇）
-        // RollAndStartEvent();
+    }
+
+    private void SpawnChoice(string text, System.Action action)
+    {
+        if (!choiceButtonPrefab || !choiceContainer) return;
+        var btn = Instantiate(choiceButtonPrefab, choiceContainer);
+        var label = btn.GetComponentInChildren<TextMeshProUGUI>();
+        if (label) label.text = text;
+        btn.onClick.RemoveAllListeners();
+        btn.onClick.AddListener(() => action());
+        choiceContainer.gameObject.SetActive(true);
+    }
+
+    private void ClearChoices()
+    {
+        if (!choiceContainer) return;
+        foreach (Transform child in choiceContainer) Destroy(child.gameObject);
+        choiceContainer.gameObject.SetActive(false);
+    }
+
+    private CaseId ResolveStartCase()
+    {
+        if (startCase != CaseId.None && HasAvailableInCase(startCase)) return startCase;
+        if (caseDB && caseDB.cases != null)
+        {
+            foreach (var c in caseDB.cases)
+            {
+                if (c == null || c.caseId == CaseId.None) continue;
+                if (HasAvailableInCase(c.caseId)) return c.caseId;
+            }
+        }
+        return CaseId.None;
+    }
+
+    private bool HasAvailableInCase(CaseId id)
+    {
+        if (!caseDB || !caseDB.TryGetPool(id, out var pool) || pool == null) return false;
+        foreach (var entry in pool)
+        {
+            var e = entry.evt;
+            if (!e) continue;
+            if (!e.ConditionsMet(hp, flagStorage.HasFlag)) continue;
+            if (e.oncePerSave && flagStorage.IsConsumed(e)) continue;
+            if (flagStorage.IsOnCooldown(e, e.cooldownSeconds)) continue;
+            float w = (entry.weightOverride >= 0f) ? entry.weightOverride : Mathf.Max(0f, e.weight);
+            if (w > 0f) return true;
+        }
+        return false;
+    }
+
+    private void Tip(string msg)
+    {
+        if (storyText) storyText.text = msg;
+        if (systemTipText) systemTipText.text = msg;
+        Debug.LogWarning(msg);
     }
 }

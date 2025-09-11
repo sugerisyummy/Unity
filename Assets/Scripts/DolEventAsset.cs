@@ -1,4 +1,4 @@
-// DolEventAsset.cs
+// DolEventAsset.cs — 修正 List<EventStage>；gotoCase 預設 None；其餘沿用。
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +21,7 @@ public class DolEventAsset : ScriptableObject
     public float cooldownSeconds = 0f;  // 觸發後冷卻
 
     [Header("事件劇本（多頁）")]
-    public List<EventStage> stages = new(); // 0 為起點
+    public List<EventStage> stages = new(); // ★ 修正語法：List<EventStage>
 
     [Serializable]
     public class EventStage
@@ -41,10 +41,10 @@ public class DolEventAsset : ScriptableObject
         public List<string> setFlagsFalse = new();
 
         [Header("跳轉")]
-        public int nextStage = -1;           // -1 = 不跳 stage
-        public bool endEvent = false;        // 結束事件
-        public CaseId gotoCase = CaseId.ForestEntrance; // endEvent 後若要移動地點
-        public bool gotoCaseAfterEnd = false; // true：事件結束時切到 gotoCase
+        public int nextStage = -1;             // -1 = 不跳 stage
+        public bool endEvent = false;          // 結束事件
+        public CaseId gotoCase = CaseId.None;  // ★ 預設改 None（避免刪 enum 後編譯炸裂）
+        public bool gotoCaseAfterEnd = false;  // true：事件結束時切到 gotoCase
     }
 
     public bool ConditionsMet(int hp, Func<string, bool> flagGetter)

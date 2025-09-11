@@ -1,35 +1,46 @@
 // EventFlagStorage.cs
-using System;
+// 說明：管理旗標、一回性紀錄、冷卻時間戳。
+// ★ 你可以換成存檔系統對接（例如 SaveData 內序列化）。
+
+using System.Collections.Generic;
 using UnityEngine;
 
-public static class EventFlagStorage
+[System.Serializable]
+public class EventFlagStorage
 {
-    // 你也可以日後改成存 SaveData；目前先用 PlayerPrefs + slot 前綴
-    static string Slot() => PlayerPrefs.GetString("CURRENT_SAVE_SLOT", "Default");
+    private HashSet<string> flags = new();
+    private HashSet<string> consumed = new();
+    private Dictionary<string, float> lastTriggerTime = new();
 
-    static string K(string kind, string name) => $"DOL_{Slot()}_{kind}_{name}";
+    public bool HasFlag(string key) => !string.IsNullOrEmpty(key) && flags.Contains(key);
 
-    public static bool GetFlag(string name) => PlayerPrefs.GetInt(K("FLAG", name), 0) == 1;
-    public static void SetFlag(string name, bool v)
+    public void SetFlag(string key)
     {
-        PlayerPrefs.SetInt(K("FLAG", name), v ? 1 : 0);
-        PlayerPrefs.Save();
+        if (!string.IsNullOrEmpty(key)) flags.Add(key);
     }
 
-    public static void MarkFired(string eventId)
+    public void ClearFlag(string key)
     {
-        PlayerPrefs.SetInt(K("ONCE", eventId), 1);
-        PlayerPrefs.SetString(K("CD", eventId), DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
-        PlayerPrefs.Save();
+        if (!string.IsNullOrEmpty(key)) flags.Remove(key);
     }
 
-    public static bool IsOnceConsumed(string eventId) => PlayerPrefs.GetInt(K("ONCE", eventId), 0) == 1;
-
-    public static bool IsOffCooldown(string eventId, float cd)
+    public void MarkConsumed(DolEventAsset ev)
     {
-        if (cd <= 0f) return true;
-        long last = long.Parse(PlayerPrefs.GetString(K("CD", eventId), "0"));
-        long now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        return now - last >= cd;
+        if (ev == null) return;
+        consumed.Add(ev.name);
+        lastTriggerTime[ev.name] = Time.unscaledTime;
+    }
+
+    public bool IsConsumed(DolEventAsset ev)
+    {
+        if (ev == null) return false;
+        return consumed.Contains(ev.name);
+    }
+
+    public bool IsOnCooldown(DolEventAsset ev, float cooldownSeconds)
+    {
+        if (ev == null || cooldownSeconds <= 0) return false;
+        if (!lastTriggerTime.TryGetValue(ev.name, out var t)) return false;
+        return (Time.unscaledTime - t) < cooldownSeconds;
     }
 }

@@ -1,4 +1,3 @@
-// MenuManager.cs — 穩定做法（先 DifficultyPanel 後 StoryPanel）
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -7,11 +6,13 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance;
 
     [Header("Panels")]
-    public GameObject mainPanel;     // 進場顯示（請指向 DifficultyPanel）
-    public GameObject storyPanel;    // 故事頁
-    public GameObject loadPanel;     // 讀檔頁（可留空）
-    public GameObject optionsPanel;  // 設定頁（可留空）
-    public List<GameObject> extraPanels = new(); // 其他自訂面板（可留空）
+    public GameObject startMenuPanel;   // 進場顯示（有 Start 按鈕）
+    public GameObject prologuePanel;    // 前導劇情
+    public GameObject difficultyPanel;  // 選難度
+    public GameObject storyPanel;       // 故事頁
+    public GameObject loadPanel;        // 讀檔頁（可留空）
+    public GameObject optionsPanel;     // 設定頁（可留空）
+    public List<GameObject> extraPanels = new();
 
     [Header("Behavior")]
     public bool enableEscBack = true;
@@ -22,14 +23,38 @@ public class MenuManager : MonoBehaviour
     void Awake()
     {
         if (Instance == null) Instance = this; else { Destroy(gameObject); return; }
-        ShowOnly(mainPanel);          // 進場只開 DifficultyPanel
-        current = mainPanel;
+        ShowOnly(startMenuPanel);
+        current = startMenuPanel;
     }
 
     void Update()
     {
         if (!enableEscBack) return;
-        if (Input.GetKeyDown(KeyCode.Escape)) Back(); // ESC 一律返回
+        if (Input.GetKeyDown(KeyCode.Escape)) Back();
+    }
+
+    public void ShowPrologue(GameManager gm)
+    {
+        // Start 按後呼叫：清堆疊 → 進前導
+        ResetToPanel(prologuePanel);
+    }
+
+    public void GoToDifficulty()
+    {
+        ResetToPanel(difficultyPanel);
+    }
+
+    public void StartNewGame(GameManager gm)
+    {
+        // 從「難度面板」開始遊戲（難度選完後的按鈕可呼叫此函式）
+        if (gm) gm.BeginNewGame();
+        ResetToPanel(storyPanel);
+    }
+
+    public void StartLoadGame(GameManager gm)
+    {
+        if (gm) gm.BeginLoadGame();
+        ResetToPanel(storyPanel);
     }
 
     public void ShowPanel(GameObject panel)
@@ -46,14 +71,18 @@ public class MenuManager : MonoBehaviour
 
     public void Back()
     {
-        if (history.Count == 0) { BackToMain(); return; }
+        if (history.Count == 0)
+        {
+            BackToStartMenu();
+            return;
+        }
         if (current) current.SetActive(false);
         var prev = history.Pop();
         if (prev) prev.SetActive(true);
         current = prev;
     }
 
-    public void BackToMain()
+    public void BackToStartMenu()
     {
         if (current) current.SetActive(false);
         while (history.Count > 0)
@@ -61,11 +90,10 @@ public class MenuManager : MonoBehaviour
             var p = history.Pop();
             if (p) p.SetActive(false);
         }
-        ShowOnly(mainPanel);
-        current = mainPanel;
+        ShowOnly(startMenuPanel);
+        current = startMenuPanel;
     }
 
-    // 清空堆疊並切到指定面板（開始/讀檔用）
     private void ResetToPanel(GameObject target)
     {
         if (current) current.SetActive(false);
@@ -80,31 +108,18 @@ public class MenuManager : MonoBehaviour
 
     private void ShowOnly(GameObject target)
     {
-        foreach (var p in CollectAllPanels())
-            if (p) p.SetActive(false);
+        foreach (var p in CollectAllPanels()) if (p) p.SetActive(false);
         if (target) target.SetActive(true);
     }
 
     private IEnumerable<GameObject> CollectAllPanels()
     {
-        if (mainPanel) yield return mainPanel;
+        if (startMenuPanel) yield return startMenuPanel;
+        if (prologuePanel) yield return prologuePanel;
+        if (difficultyPanel) yield return difficultyPanel;
         if (storyPanel) yield return storyPanel;
         if (loadPanel) yield return loadPanel;
         if (optionsPanel) yield return optionsPanel;
-        if (extraPanels != null)
-            foreach (var p in extraPanels) if (p) yield return p;
-    }
-
-    // 開始/讀檔：清堆疊後進入故事頁
-    public void StartNewGame(GameManager gm)
-    {
-        if (gm) gm.BeginNewGame();
-        ResetToPanel(storyPanel);
-    }
-
-    public void StartLoadGame(GameManager gm)
-    {
-        if (gm) gm.BeginLoadGame();
-        ResetToPanel(storyPanel);
+        if (extraPanels != null) foreach (var p in extraPanels) if (p) yield return p;
     }
 }
