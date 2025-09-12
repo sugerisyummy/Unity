@@ -1,4 +1,4 @@
-// SaveSlotButton.cs  （顯示 Case，不再顯示 Node）
+// SaveSlotButton.cs — 顯示核心摘要：Case、HP、Hunger/Hope/Credits
 using UnityEngine;
 using TMPro;
 
@@ -40,7 +40,12 @@ public class SaveSlotButton : MonoBehaviour
         if (d == null) { label.text = "空槽"; return; }
 
         string caseName = string.IsNullOrEmpty(d.currentCase) ? "—" : d.currentCase;
-        label.text = $"{d.saveTime}\n{DiffName(d.difficulty)} · HP {d.hp} · Case {caseName}";
+
+        // 精簡摘要，避免過長：顯示 HP / Hunger / Hope / Credits
+        label.text =
+            $"{d.saveTime}\n" +
+            $"{DiffName(d.difficulty)} · Case {caseName}\n" +
+            $"HP {d.hp} | Hg {d.hunger} | Hope {d.hope} | Cr {d.credits}";
     }
 
     string DiffName(int idx)

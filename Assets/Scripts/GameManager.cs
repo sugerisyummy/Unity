@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -13,8 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EventFlagStorage flagStorage;
 
     [Header("視覺/音效")]
-    [SerializeField] private CaseVisuals caseVisuals;        // 指向 ScriptableObject
-    [SerializeField] private Image backgroundImage;          // Story 背景 Image
+    [SerializeField] private CaseVisuals caseVisuals;
+    [SerializeField] private Image backgroundImage;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI storyText;
@@ -26,10 +25,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CaseId startCase = CaseId.None;
     [SerializeField] private int defaultHP = 100;
 
+    // ====== 狀態 ======
     private CaseId currentCase = CaseId.None;
+
+    // 基礎
     private int hp;
+
+    // 反烏托邦擴充數值
+    private int hunger, thirst, fatigue;
+    private int hope, obedience, reputation;
+    private int techParts, information, credits;
+    private int augmentationLoad, radiation;
+
     private Difficulty difficulty = Difficulty.Normal;
 
+    // 事件執行
     private DolEventAsset runningEvent;
     private int runningStage = -1;
 
@@ -39,17 +49,16 @@ public class GameManager : MonoBehaviour
         if (!caseDB) Tip("請在 GameManager 指定 CaseDatabase。");
     }
 
-    // ★ 新增：提供 UI 綁定的難度設定入口
-    public void SetDifficulty(int idx)
-    {
-        idx = Mathf.Clamp(idx, 0, 3);
-        difficulty = (Difficulty)idx;
-        Debug.Log($"[GameManager] Difficulty set to {difficulty} ({idx})");
-    }
-
     public void BeginNewGame()
     {
+        // 初始化
         hp = defaultHP;
+
+        hunger = 50; thirst = 50; fatigue = 0;      // 0~100 建議
+        hope = 50; obedience = 50; reputation = 0;  // 0~100 建議
+        techParts = 0; information = 0; credits = 0;
+        augmentationLoad = 0; radiation = 0;
+
         var resolved = ResolveStartCase();
         if (resolved == CaseId.None) { Tip("目前沒有任何可觸發的事件。請在 CaseDatabase 加入事件。"); return; }
         EnterCase(resolved);
@@ -59,9 +68,18 @@ public class GameManager : MonoBehaviour
     {
         var d = SaveManager.Load(SaveManager.AUTO_SLOT);
         if (d == null) { BeginNewGame(); return; }
+
+        currentCase = CaseId.None;
+        if (!string.IsNullOrEmpty(d.currentCase)) System.Enum.TryParse(d.currentCase, out currentCase);
+
         hp = d.hp;
+
+        hunger = d.hunger; thirst = d.thirst; fatigue = d.fatigue;
+        hope = d.hope; obedience = d.obedience; reputation = d.reputation;
+        techParts = d.techParts; information = d.information; credits = d.credits;
+        augmentationLoad = d.augmentationLoad; radiation = d.radiation;
+
         difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
-        if (!System.Enum.TryParse<CaseId>(d.currentCase, out currentCase)) currentCase = CaseId.None;
 
         if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
         {
@@ -78,6 +96,12 @@ public class GameManager : MonoBehaviour
         {
             currentCase = currentCase.ToString(),
             hp = hp,
+
+            hunger = hunger, thirst = thirst, fatigue = fatigue,
+            hope = hope, obedience = obedience, reputation = reputation,
+            techParts = techParts, information = information, credits = credits,
+            augmentationLoad = augmentationLoad, radiation = radiation,
+
             difficulty = (int)difficulty,
             saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm")
         };
@@ -90,9 +114,18 @@ public class GameManager : MonoBehaviour
     {
         var d = SaveManager.Load(slot);
         if (d == null) { Tip($"槽 {slot} 為空。"); return; }
+
+        currentCase = CaseId.None;
+        if (!string.IsNullOrEmpty(d.currentCase)) System.Enum.TryParse(d.currentCase, out currentCase);
+
         hp = d.hp;
+
+        hunger = d.hunger; thirst = d.thirst; fatigue = d.fatigue;
+        hope = d.hope; obedience = d.obedience; reputation = d.reputation;
+        techParts = d.techParts; information = d.information; credits = d.credits;
+        augmentationLoad = d.augmentationLoad; radiation = d.radiation;
+
         difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
-        if (!System.Enum.TryParse<CaseId>(d.currentCase, out currentCase)) currentCase = CaseId.None;
 
         if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
         {
@@ -109,7 +142,7 @@ public class GameManager : MonoBehaviour
         runningEvent = null;
         runningStage = -1;
 
-        // 套用該地點的背景與 BGM
+        // 背景 / BGM
         if (caseVisuals && caseVisuals.TryGet(currentCase, out var entry))
         {
             if (backgroundImage) backgroundImage.sprite = entry.background;
@@ -176,10 +209,32 @@ public class GameManager : MonoBehaviour
         {
             SpawnChoice(ch.text, () =>
             {
-                if (ch.hpChange != 0) hp += ch.hpChange;
+                // 1) 依難度取得縮放後變化量
+                ch.GetScaledDelta((int)difficulty, out var d);
+
+                // 2) 套用（含界線保護；需的話自行調整上限/下限）
+                hp = Mathf.Clamp(hp + d.hp, 0, 999999);
+
+                hunger = Mathf.Clamp(hunger + d.hunger, 0, 100);
+                thirst = Mathf.Clamp(thirst + d.thirst, 0, 100);
+                fatigue = Mathf.Clamp(fatigue + d.fatigue, 0, 100);
+
+                hope = Mathf.Clamp(hope + d.hope, 0, 100);
+                obedience = Mathf.Clamp(obedience + d.obedience, 0, 100);
+                reputation = Mathf.Clamp(reputation + d.reputation, -100, 100);
+
+                techParts = Mathf.Clamp(techParts + d.techParts, -999999, 999999);
+                information = Mathf.Clamp(information + d.information, -999999, 999999);
+                credits = Mathf.Clamp(credits + d.credits, -999999, 999999);
+
+                augmentationLoad = Mathf.Clamp(augmentationLoad + d.augmentationLoad, 0, 100);
+                radiation = Mathf.Clamp(radiation + d.radiation, 0, 100);
+
+                // 3) 旗標
                 foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) flagStorage.SetFlag(f);
                 foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) flagStorage.ClearFlag(f);
 
+                // 4) 跳轉/結束
                 if (ch.nextStage >= 0)
                 {
                     runningStage = ch.nextStage;

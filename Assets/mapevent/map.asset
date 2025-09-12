@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2092ba2005261294f93add19243a93fd, type: 3}
   m_Name: map
   m_EditorClassIdentifier: 
-  cases: []
+  cases:
+  - caseId: 1
+    events:
+    - evt: {fileID: 11400000, guid: b1cc10ad8279d7b42a7455189de30cd1, type: 2}
+      weightOverride: 1
