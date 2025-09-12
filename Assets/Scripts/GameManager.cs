@@ -136,22 +136,22 @@ public class GameManager : MonoBehaviour
         EnterCase(currentCase);
     }
 
-    public void EnterCase(CaseId id)
+        public void EnterCase(CaseId id)
     {
         currentCase = id;
         runningEvent = null;
         runningStage = -1;
 
-        // 背景 / BGM
+        // 套用該地點的背景、BGM 與 環境/天氣 SFX（與 BGM 分離）
         if (caseVisuals && caseVisuals.TryGet(currentCase, out var entry))
         {
             if (backgroundImage) backgroundImage.sprite = entry.background;
             if (AudioManager.Instance) AudioManager.Instance.PlayBGM(entry.bgm, 1f);
+            if (SoundEffectManager.Instance) SoundEffectManager.Instance.ApplyCaseAmbience(entry);
         }
 
         RollAndStartEvent();
     }
-
     private void RollAndStartEvent()
     {
         ClearChoices();

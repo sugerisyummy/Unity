@@ -11,6 +11,13 @@ public class CaseVisuals : ScriptableObject
         public CaseId id;
         public Sprite background;
         public AudioClip bgm;
+
+        [Header("Ambience / Weather (SFX loops)")]
+        public AudioClip ambienceLoop;     // 一般環境底噪（室內/街道/森林）
+        public AudioClip birdsLoop;        // 晴天鳥叫
+        public AudioClip rainLoop;         // 雨天
+        public AudioClip windLightLoop;    // 小風
+        public AudioClip windStrongLoop;   // 大風
     }
 
     public List<Entry> items = new();
