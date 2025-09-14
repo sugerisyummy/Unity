@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: music
   m_EditorClassIdentifier: 
   items:
-  - id: 1
+  - id: 0
     background: {fileID: 0}
     bgm: {fileID: 0}
+    ambienceLoop: {fileID: 0}
+    birdsLoop: {fileID: 0}
+    rainLoop: {fileID: 0}
+    windLightLoop: {fileID: 0}
+    windStrongLoop: {fileID: 0}

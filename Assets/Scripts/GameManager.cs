@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CaseVisuals caseVisuals;
     [SerializeField] private Image backgroundImage;
 
-    [Header("UI")]
+    [Header("故事 UI")]
     [SerializeField] private TextMeshProUGUI storyText;
     [SerializeField] private Transform choiceContainer;
     [SerializeField] private Button choiceButtonPrefab;
@@ -25,21 +25,37 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CaseId startCase = CaseId.None;
     [SerializeField] private int defaultHP = 100;
 
-    // ====== 狀態 ======
+    // ====== 遊戲數值 ======
     private CaseId currentCase = CaseId.None;
-
-    // 基礎
-    private int hp;
-
-    // 反烏托邦擴充數值
-    private int hunger, thirst, fatigue;
-    private int hope, obedience, reputation;
-    private int techParts, information, credits;
-    private int augmentationLoad, radiation;
-
     private Difficulty difficulty = Difficulty.Normal;
 
-    // 事件執行
+    // Core
+    private int hp;
+
+    // Dystopia Stats
+    private int money, sanity, hunger, thirst, fatigue, hope, obedience, reputation;
+    private int techParts, information, credits, augmentationLoad, radiation, trust, control;
+
+    // UI 連結（可拖 UI Text）—— 不一定要全部填
+    [Header("UI 連結（可選，拖對應 TMP Text）")]
+    public TextMeshProUGUI hpText;
+    public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI sanityText;
+    public TextMeshProUGUI hungerText;
+    public TextMeshProUGUI thirstText;
+    public TextMeshProUGUI fatigueText;
+    public TextMeshProUGUI hopeText;
+    public TextMeshProUGUI obedienceText;
+    public TextMeshProUGUI reputationText;
+    public TextMeshProUGUI techPartsText;
+    public TextMeshProUGUI informationText;
+    public TextMeshProUGUI creditsText;
+    public TextMeshProUGUI augmentationLoadText;
+    public TextMeshProUGUI radiationText;
+    public TextMeshProUGUI trustText;
+    public TextMeshProUGUI controlText;
+
+    // 事件進行
     private DolEventAsset runningEvent;
     private int runningStage = -1;
 
@@ -49,18 +65,20 @@ public class GameManager : MonoBehaviour
         if (!caseDB) Tip("請在 GameManager 指定 CaseDatabase。");
     }
 
+    // ====== 進入新遊戲 / 載入 ======
     public void BeginNewGame()
     {
-        // 初始化
+        // 預設初始值（可改為 Inspector 參數化）
         hp = defaultHP;
 
-        hunger = 50; thirst = 50; fatigue = 0;      // 0~100 建議
-        hope = 50; obedience = 50; reputation = 0;  // 0~100 建議
+        money = 0; sanity = 100;
+        hunger = 0; thirst = 0; fatigue = 0;
+        hope = 50; obedience = 50; reputation = 0;
         techParts = 0; information = 0; credits = 0;
-        augmentationLoad = 0; radiation = 0;
+        augmentationLoad = 0; radiation = 0; trust = 0; control = 0;
 
         var resolved = ResolveStartCase();
-        if (resolved == CaseId.None) { Tip("目前沒有任何可觸發的事件。請在 CaseDatabase 加入事件。"); return; }
+        if (resolved == CaseId.None) { Tip("目前沒有任何可觸發的事件。請在 CaseDatabase 加入事件。"); UpdateAllStatUI(); return; }
         EnterCase(resolved);
     }
 
@@ -69,45 +87,46 @@ public class GameManager : MonoBehaviour
         var d = SaveManager.Load(SaveManager.AUTO_SLOT);
         if (d == null) { BeginNewGame(); return; }
 
-        currentCase = CaseId.None;
-        if (!string.IsNullOrEmpty(d.currentCase)) System.Enum.TryParse(d.currentCase, out currentCase);
-
+        // 邏輯：若新欄位不存在於舊檔案，皆可採用上面的 BeginNewGame 預設，但為簡化直接安全讀入（C# 預設 0）
         hp = d.hp;
+        difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
+        System.Enum.TryParse(d.currentCase, out currentCase);
 
+        money = d.money; sanity = d.sanity;
         hunger = d.hunger; thirst = d.thirst; fatigue = d.fatigue;
         hope = d.hope; obedience = d.obedience; reputation = d.reputation;
         techParts = d.techParts; information = d.information; credits = d.credits;
-        augmentationLoad = d.augmentationLoad; radiation = d.radiation;
-
-        difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
+        augmentationLoad = d.augmentationLoad; radiation = d.radiation; trust = d.trust; control = d.control;
 
         if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
         {
             var resolved = ResolveStartCase();
-            if (resolved == CaseId.None) { Tip("載入後沒有可觸發事件。"); return; }
+            if (resolved == CaseId.None) { Tip("載入後沒有可觸發事件。"); UpdateAllStatUI(); return; }
             currentCase = resolved;
         }
         EnterCase(currentCase);
     }
 
+    // ====== 存讀檔 ======
     public void SaveToSlot(int slot)
     {
         var data = new SaveData
         {
             currentCase = currentCase.ToString(),
             hp = hp,
+            difficulty = (int)difficulty,
+            saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm"),
 
+            money = money, sanity = sanity,
             hunger = hunger, thirst = thirst, fatigue = fatigue,
             hope = hope, obedience = obedience, reputation = reputation,
             techParts = techParts, information = information, credits = credits,
-            augmentationLoad = augmentationLoad, radiation = radiation,
-
-            difficulty = (int)difficulty,
-            saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm")
+            augmentationLoad = augmentationLoad, radiation = radiation, trust = trust, control = control
         };
         SaveManager.Save(slot, data);
         SaveManager.Save(SaveManager.AUTO_SLOT, data);
         Tip($"已存到槽 {slot}");
+        UpdateAllStatUI();
     }
 
     public void LoadFromSlot(int slot)
@@ -115,51 +134,49 @@ public class GameManager : MonoBehaviour
         var d = SaveManager.Load(slot);
         if (d == null) { Tip($"槽 {slot} 為空。"); return; }
 
-        currentCase = CaseId.None;
-        if (!string.IsNullOrEmpty(d.currentCase)) System.Enum.TryParse(d.currentCase, out currentCase);
-
         hp = d.hp;
+        difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
+        System.Enum.TryParse(d.currentCase, out currentCase);
 
+        money = d.money; sanity = d.sanity;
         hunger = d.hunger; thirst = d.thirst; fatigue = d.fatigue;
         hope = d.hope; obedience = d.obedience; reputation = d.reputation;
         techParts = d.techParts; information = d.information; credits = d.credits;
-        augmentationLoad = d.augmentationLoad; radiation = d.radiation;
-
-        difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
+        augmentationLoad = d.augmentationLoad; radiation = d.radiation; trust = d.trust; control = d.control;
 
         if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
         {
             var resolved = ResolveStartCase();
-            if (resolved == CaseId.None) { Tip("載入後沒有可觸發事件。"); return; }
+            if (resolved == CaseId.None) { Tip("載入後沒有可觸發事件。"); UpdateAllStatUI(); return; }
             currentCase = resolved;
         }
         EnterCase(currentCase);
     }
 
-        public void EnterCase(CaseId id)
+    // ====== 進入地點 & 事件流程 ======
+    public void EnterCase(CaseId id)
     {
         currentCase = id;
-        runningEvent = null;
-        runningStage = -1;
+        runningEvent = null; runningStage = -1;
 
-        // 套用該地點的背景、BGM 與 環境/天氣 SFX（與 BGM 分離）
         if (caseVisuals && caseVisuals.TryGet(currentCase, out var entry))
         {
             if (backgroundImage) backgroundImage.sprite = entry.background;
             if (AudioManager.Instance) AudioManager.Instance.PlayBGM(entry.bgm, 1f);
-            if (SoundEffectManager.Instance) SoundEffectManager.Instance.ApplyCaseAmbience(entry);
         }
 
+        UpdateAllStatUI();
         RollAndStartEvent();
     }
+
     private void RollAndStartEvent()
     {
         ClearChoices();
         if (!caseDB || !caseDB.TryGetPool(currentCase, out var pool) || pool == null || pool.Count == 0)
         {
-            Tip($"地點 {currentCase} 沒有任何事件。");
-            return;
+            Tip($"地點 {currentCase} 沒有任何事件。"); return;
         }
+
         var candidates = new List<(DolEventAsset e, float w)>();
         foreach (var entry in pool)
         {
@@ -172,11 +189,8 @@ public class GameManager : MonoBehaviour
             if (w <= 0f) continue;
             candidates.Add((e, w));
         }
-        if (candidates.Count == 0)
-        {
-            Tip($"地點 {currentCase} 目前沒有可觸發事件（可能都在冷卻或條件不符）。");
-            return;
-        }
+        if (candidates.Count == 0) { Tip($"地點 {currentCase} 目前沒有可觸發事件。"); return; }
+
         float total = 0f; foreach (var c in candidates) total += c.w;
         float r = Random.value * total, acc = 0f;
         DolEventAsset chosen = candidates[0].e;
@@ -197,9 +211,8 @@ public class GameManager : MonoBehaviour
         ClearChoices();
         if (runningEvent == null || runningEvent.stages == null ||
             runningStage < 0 || runningStage >= runningEvent.stages.Count)
-        {
-            Tip("事件階段錯誤。"); return;
-        }
+        { Tip("事件階段錯誤。"); return; }
+
         var stage = runningEvent.stages[runningStage];
         if (storyText) storyText.text = stage.text;
 
@@ -209,32 +222,29 @@ public class GameManager : MonoBehaviour
         {
             SpawnChoice(ch.text, () =>
             {
-                // 1) 依難度取得縮放後變化量
-                ch.GetScaledDelta((int)difficulty, out var d);
+                // 數值套用
+                ApplyDelta(ref hp, ch.hpChange);
+                ApplyDelta(ref money, ch.moneyChange);
+                ApplyDelta(ref sanity, ch.sanityChange);
+                ApplyDelta(ref hunger, ch.hungerChange);
+                ApplyDelta(ref thirst, ch.thirstChange);
+                ApplyDelta(ref fatigue, ch.fatigueChange);
+                ApplyDelta(ref hope, ch.hopeChange);
+                ApplyDelta(ref obedience, ch.obedienceChange);
+                ApplyDelta(ref reputation, ch.reputationChange);
+                ApplyDelta(ref techParts, ch.techPartsChange);
+                ApplyDelta(ref information, ch.informationChange);
+                ApplyDelta(ref credits, ch.creditsChange);
+                ApplyDelta(ref augmentationLoad, ch.augmentationLoadChange);
+                ApplyDelta(ref radiation, ch.radiationChange);
+                ApplyDelta(ref trust, ch.trustChange);
+                ApplyDelta(ref control, ch.controlChange);
 
-                // 2) 套用（含界線保護；需的話自行調整上限/下限）
-                hp = Mathf.Clamp(hp + d.hp, 0, 999999);
-
-                hunger = Mathf.Clamp(hunger + d.hunger, 0, 100);
-                thirst = Mathf.Clamp(thirst + d.thirst, 0, 100);
-                fatigue = Mathf.Clamp(fatigue + d.fatigue, 0, 100);
-
-                hope = Mathf.Clamp(hope + d.hope, 0, 100);
-                obedience = Mathf.Clamp(obedience + d.obedience, 0, 100);
-                reputation = Mathf.Clamp(reputation + d.reputation, -100, 100);
-
-                techParts = Mathf.Clamp(techParts + d.techParts, -999999, 999999);
-                information = Mathf.Clamp(information + d.information, -999999, 999999);
-                credits = Mathf.Clamp(credits + d.credits, -999999, 999999);
-
-                augmentationLoad = Mathf.Clamp(augmentationLoad + d.augmentationLoad, 0, 100);
-                radiation = Mathf.Clamp(radiation + d.radiation, 0, 100);
-
-                // 3) 旗標
                 foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) flagStorage.SetFlag(f);
                 foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) flagStorage.ClearFlag(f);
 
-                // 4) 跳轉/結束
+                UpdateAllStatUI();
+
                 if (ch.nextStage >= 0)
                 {
                     runningStage = ch.nextStage;
@@ -257,10 +267,10 @@ public class GameManager : MonoBehaviour
 
     private void EndEvent()
     {
-        runningEvent = null;
-        runningStage = -1;
+        runningEvent = null; runningStage = -1;
     }
 
+    // ====== UI 生成功能 ======
     private void SpawnChoice(string text, System.Action action)
     {
         if (!choiceButtonPrefab || !choiceContainer) return;
@@ -279,10 +289,17 @@ public class GameManager : MonoBehaviour
         choiceContainer.gameObject.SetActive(false);
     }
 
+    // ====== 工具 ======
+    private void ApplyDelta(ref int stat, int delta)
+    {
+        stat += delta;
+        stat = Mathf.Clamp(stat, -999999, 999999); // 防護：避免溢出，可自行調整
+    }
+
     private CaseId ResolveStartCase()
     {
         if (startCase != CaseId.None && HasAvailableInCase(startCase)) return startCase;
-        if (caseDB && caseDB.cases != null)
+        if (caseDB != null && caseDB.cases != null)
         {
             foreach (var c in caseDB.cases)
             {
@@ -315,4 +332,27 @@ public class GameManager : MonoBehaviour
         if (systemTipText) systemTipText.text = msg;
         Debug.LogWarning(msg);
     }
+
+    // ====== UI 同步 ======
+    public void UpdateAllStatUI()
+    {
+        SetUI(hpText, $"HP {hp}");
+        SetUI(moneyText, $"Money {money}");
+        SetUI(sanityText, $"Sanity {sanity}");
+        SetUI(hungerText, $"Hunger {hunger}");
+        SetUI(thirstText, $"Thirst {thirst}");
+        SetUI(fatigueText, $"Fatigue {fatigue}");
+        SetUI(hopeText, $"Hope {hope}");
+        SetUI(obedienceText, $"Obedience {obedience}");
+        SetUI(reputationText, $"Reputation {reputation}");
+        SetUI(techPartsText, $"TechParts {techParts}");
+        SetUI(informationText, $"Information {information}");
+        SetUI(creditsText, $"Credits {credits}");
+        SetUI(augmentationLoadText, $"AugLoad {augmentationLoad}");
+        SetUI(radiationText, $"Radiation {radiation}");
+        SetUI(trustText, $"Trust {trust}");
+        SetUI(controlText, $"Control {control}");
+    }
+
+    private void SetUI(TextMeshProUGUI t, string v){ if (t) t.text = v; }
 }

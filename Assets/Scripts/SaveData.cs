@@ -1,31 +1,30 @@
-// SaveData.cs
+// SaveData.cs — 擴充多數值，完整序列化存檔
 using System;
 
 [Serializable]
 public class SaveData
 {
-    public string currentCase;  // 例如 "ForestEntrance"
+    public string currentCase;  // 例 "CityGate"
 
-    // 基礎
+    // Core
     public int hp;
+    public int difficulty;      // 0..3
+    public string saveTime;     // yyyy/MM/dd HH:mm
 
-    // 反烏托邦擴充數值
+    // Dystopia Stats
+    public int money;
+    public int sanity;
     public int hunger;
     public int thirst;
     public int fatigue;
-
     public int hope;
     public int obedience;
-    public int reputation;        // 通緝 / 名聲（依你定義）
-
+    public int reputation;         // or notoriety
     public int techParts;
     public int information;
     public int credits;
-
-    public int augmentationLoad;  // 義體負荷
-    public int radiation;         // 或改為 infection 皆可
-
-    // 其他
-    public int difficulty;        // 0:Easy 1:Normal 2:Hard 3:Master
-    public string saveTime;       // yyyy/MM/dd HH:mm
+    public int augmentationLoad;
+    public int radiation;          // or infection
+    public int trust;
+    public int control;            // surveillance
 }

@@ -1,4 +1,4 @@
-// SaveSlotButton.cs — 顯示核心摘要：Case、HP、Hunger/Hope/Credits
+// SaveSlotButton.cs — 顯示重點摘要（HP/Money/Sanity/Case）
 using UnityEngine;
 using TMPro;
 
@@ -8,15 +8,14 @@ public class SaveSlotButton : MonoBehaviour
     public Mode mode = Mode.Load;
 
     [Range(0, 3)] public int slot = 1;    // 0=自動 1..3=手動
-    public GameManager gameManager;       // 拖場景中的 GameManager
-    public TextMeshProUGUI label;         // 顯示資訊的文字
+    public GameManager gameManager;
+    public TextMeshProUGUI label;
 
-    void OnEnable() { RefreshLabel(); }
+    void OnEnable(){ RefreshLabel(); }
 
     public void OnClick()
     {
         if (!gameManager) return;
-
         switch (mode)
         {
             case Mode.Save:   gameManager.SaveToSlot(slot); break;
@@ -40,12 +39,7 @@ public class SaveSlotButton : MonoBehaviour
         if (d == null) { label.text = "空槽"; return; }
 
         string caseName = string.IsNullOrEmpty(d.currentCase) ? "—" : d.currentCase;
-
-        // 精簡摘要，避免過長：顯示 HP / Hunger / Hope / Credits
-        label.text =
-            $"{d.saveTime}\n" +
-            $"{DiffName(d.difficulty)} · Case {caseName}\n" +
-            $"HP {d.hp} | Hg {d.hunger} | Hope {d.hope} | Cr {d.credits}";
+        label.text = $"{d.saveTime}\n{DiffName(d.difficulty)} · HP {d.hp} · $ {d.money} · SAN {d.sanity}\nCase {caseName}";
     }
 
     string DiffName(int idx)
