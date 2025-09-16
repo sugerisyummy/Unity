@@ -1,3 +1,4 @@
+// GameManager.cs（以你的結構為底，改成使用 PlayerStats）
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public enum Difficulty { Easy = 0, Normal = 1, Hard = 2, Master = 3 }
 
-    [Header("資料參考")]
+    [Header("資料庫 / 旗標")]
     [SerializeField] private CaseDatabase caseDB;
     [SerializeField] private EventFlagStorage flagStorage;
 
-    [Header("視覺/音效")]
+    [Header("視覺 / 音效")]
     [SerializeField] private CaseVisuals caseVisuals;
     [SerializeField] private Image backgroundImage;
 
@@ -25,37 +26,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CaseId startCase = CaseId.None;
     [SerializeField] private int defaultHP = 100;
 
-    // ====== 遊戲數值 ======
+    // 狀態
     private CaseId currentCase = CaseId.None;
     private Difficulty difficulty = Difficulty.Normal;
 
-    // Core
-    private int hp;
+    // ★ 改成集中管理數值
+    public PlayerStats stats = new PlayerStats();
 
-    // Dystopia Stats
-    private int money, sanity, hunger, thirst, fatigue, hope, obedience, reputation;
-    private int techParts, information, credits, augmentationLoad, radiation, trust, control;
+    // HUD（可不綁）
+    [Header("HUD（可選）")]
+    public TextMeshProUGUI hpText, moneyText, sanityText;
+    public TextMeshProUGUI hungerText, thirstText, fatigueText, hopeText, obedienceText, reputationText;
+    public TextMeshProUGUI techPartsText, informationText, creditsText;
+    public TextMeshProUGUI augmentationLoadText, radiationText, trustText, controlText;
 
-    // UI 連結（可拖 UI Text）—— 不一定要全部填
-    [Header("UI 連結（可選，拖對應 TMP Text）")]
-    public TextMeshProUGUI hpText;
-    public TextMeshProUGUI moneyText;
-    public TextMeshProUGUI sanityText;
-    public TextMeshProUGUI hungerText;
-    public TextMeshProUGUI thirstText;
-    public TextMeshProUGUI fatigueText;
-    public TextMeshProUGUI hopeText;
-    public TextMeshProUGUI obedienceText;
-    public TextMeshProUGUI reputationText;
-    public TextMeshProUGUI techPartsText;
-    public TextMeshProUGUI informationText;
-    public TextMeshProUGUI creditsText;
-    public TextMeshProUGUI augmentationLoadText;
-    public TextMeshProUGUI radiationText;
-    public TextMeshProUGUI trustText;
-    public TextMeshProUGUI controlText;
-
-    // 事件進行
+    // 事件
     private DolEventAsset runningEvent;
     private int runningStage = -1;
 
@@ -63,22 +48,21 @@ public class GameManager : MonoBehaviour
     {
         if (flagStorage == null) flagStorage = new EventFlagStorage();
         if (!caseDB) Tip("請在 GameManager 指定 CaseDatabase。");
+        stats.OnChanged += UpdateAllStatUI;
     }
 
-    // ====== 進入新遊戲 / 載入 ======
+    // ===== 新遊戲 / 讀檔 =====
     public void BeginNewGame()
     {
-        // 預設初始值（可改為 Inspector 參數化）
-        hp = defaultHP;
-
-        money = 0; sanity = 100;
-        hunger = 0; thirst = 0; fatigue = 0;
-        hope = 50; obedience = 50; reputation = 0;
-        techParts = 0; information = 0; credits = 0;
-        augmentationLoad = 0; radiation = 0; trust = 0; control = 0;
+        // 初始數值
+        stats.hp = defaultHP; stats.money = 0; stats.sanity = 100;
+        stats.hunger = 0; stats.thirst = 0; stats.fatigue = 0;
+        stats.hope = 50; stats.obedience = 50; stats.reputation = 0;
+        stats.techParts = 0; stats.information = 0; stats.credits = 0;
+        stats.augmentationLoad = 0; stats.radiation = 0; stats.trust = 0; stats.control = 0;
 
         var resolved = ResolveStartCase();
-        if (resolved == CaseId.None) { Tip("目前沒有任何可觸發的事件。請在 CaseDatabase 加入事件。"); UpdateAllStatUI(); return; }
+        if (resolved == CaseId.None) { Tip("沒有可觸發的事件。請在 CaseDatabase 加入事件。"); UpdateAllStatUI(); return; }
         EnterCase(resolved);
     }
 
@@ -87,16 +71,10 @@ public class GameManager : MonoBehaviour
         var d = SaveManager.Load(SaveManager.AUTO_SLOT);
         if (d == null) { BeginNewGame(); return; }
 
-        // 邏輯：若新欄位不存在於舊檔案，皆可採用上面的 BeginNewGame 預設，但為簡化直接安全讀入（C# 預設 0）
-        hp = d.hp;
         difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
         System.Enum.TryParse(d.currentCase, out currentCase);
 
-        money = d.money; sanity = d.sanity;
-        hunger = d.hunger; thirst = d.thirst; fatigue = d.fatigue;
-        hope = d.hope; obedience = d.obedience; reputation = d.reputation;
-        techParts = d.techParts; information = d.information; credits = d.credits;
-        augmentationLoad = d.augmentationLoad; radiation = d.radiation; trust = d.trust; control = d.control;
+        stats.ReadFrom(d);
 
         if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
         {
@@ -107,22 +85,16 @@ public class GameManager : MonoBehaviour
         EnterCase(currentCase);
     }
 
-    // ====== 存讀檔 ======
+    // ===== 存讀槽 =====
     public void SaveToSlot(int slot)
     {
         var data = new SaveData
         {
             currentCase = currentCase.ToString(),
-            hp = hp,
             difficulty = (int)difficulty,
-            saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm"),
-
-            money = money, sanity = sanity,
-            hunger = hunger, thirst = thirst, fatigue = fatigue,
-            hope = hope, obedience = obedience, reputation = reputation,
-            techParts = techParts, information = information, credits = credits,
-            augmentationLoad = augmentationLoad, radiation = radiation, trust = trust, control = control
+            saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm")
         };
+        stats.WriteTo(data);
         SaveManager.Save(slot, data);
         SaveManager.Save(SaveManager.AUTO_SLOT, data);
         Tip($"已存到槽 {slot}");
@@ -134,15 +106,10 @@ public class GameManager : MonoBehaviour
         var d = SaveManager.Load(slot);
         if (d == null) { Tip($"槽 {slot} 為空。"); return; }
 
-        hp = d.hp;
         difficulty = (Difficulty)Mathf.Clamp(d.difficulty, 0, 3);
         System.Enum.TryParse(d.currentCase, out currentCase);
 
-        money = d.money; sanity = d.sanity;
-        hunger = d.hunger; thirst = d.thirst; fatigue = d.fatigue;
-        hope = d.hope; obedience = d.obedience; reputation = d.reputation;
-        techParts = d.techParts; information = d.information; credits = d.credits;
-        augmentationLoad = d.augmentationLoad; radiation = d.radiation; trust = d.trust; control = d.control;
+        stats.ReadFrom(d);
 
         if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
         {
@@ -153,7 +120,7 @@ public class GameManager : MonoBehaviour
         EnterCase(currentCase);
     }
 
-    // ====== 進入地點 & 事件流程 ======
+    // ===== 進入地點 → 抽事件 → 播放 =====
     public void EnterCase(CaseId id)
     {
         currentCase = id;
@@ -163,31 +130,30 @@ public class GameManager : MonoBehaviour
         {
             if (backgroundImage) backgroundImage.sprite = entry.background;
             if (AudioManager.Instance) AudioManager.Instance.PlayBGM(entry.bgm, 1f);
+            // 若有環境音：SoundEffectManager.Instance?.ApplyCaseAmbience(entry);
         }
 
         UpdateAllStatUI();
         RollAndStartEvent();
     }
 
-    private void RollAndStartEvent()
+    void RollAndStartEvent()
     {
         ClearChoices();
         if (!caseDB || !caseDB.TryGetPool(currentCase, out var pool) || pool == null || pool.Count == 0)
-        {
-            Tip($"地點 {currentCase} 沒有任何事件。"); return;
-        }
+        { Tip($"地點 {currentCase} 沒事件。"); return; }
 
         var candidates = new List<(DolEventAsset e, float w)>();
-        foreach (var entry in pool)
+        foreach (var e in pool)
         {
-            var e = entry.evt;
-            if (!e) continue;
-            if (!e.ConditionsMet(hp, flagStorage.HasFlag)) continue;
-            if (e.oncePerSave && flagStorage.IsConsumed(e)) continue;
-            if (flagStorage.IsOnCooldown(e, e.cooldownSeconds)) continue;
-            float w = (entry.weightOverride >= 0f) ? entry.weightOverride : Mathf.Max(0f, e.weight);
+            var ev = e.evt;
+            if (!ev) continue;
+            if (!ev.ConditionsMet(stats.hp, flagStorage.HasFlag)) continue;
+            if (ev.oncePerSave && flagStorage.IsConsumed(ev)) continue;
+            if (flagStorage.IsOnCooldown(ev, ev.cooldownSeconds)) continue;
+            float w = (e.weightOverride >= 0f) ? e.weightOverride : Mathf.Max(0f, ev.weight);
             if (w <= 0f) continue;
-            candidates.Add((e, w));
+            candidates.Add((ev, w));
         }
         if (candidates.Count == 0) { Tip($"地點 {currentCase} 目前沒有可觸發事件。"); return; }
 
@@ -198,7 +164,7 @@ public class GameManager : MonoBehaviour
         StartEvent(chosen);
     }
 
-    private void StartEvent(DolEventAsset evt)
+    void StartEvent(DolEventAsset evt)
     {
         runningEvent = evt;
         runningStage = 0;
@@ -206,7 +172,7 @@ public class GameManager : MonoBehaviour
         ShowStage();
     }
 
-    private void ShowStage()
+    void ShowStage()
     {
         ClearChoices();
         if (runningEvent == null || runningEvent.stages == null ||
@@ -222,29 +188,17 @@ public class GameManager : MonoBehaviour
         {
             SpawnChoice(ch.text, () =>
             {
-                // 數值套用
-                ApplyDelta(ref hp, ch.hpChange);
-                ApplyDelta(ref money, ch.moneyChange);
-                ApplyDelta(ref sanity, ch.sanityChange);
-                ApplyDelta(ref hunger, ch.hungerChange);
-                ApplyDelta(ref thirst, ch.thirstChange);
-                ApplyDelta(ref fatigue, ch.fatigueChange);
-                ApplyDelta(ref hope, ch.hopeChange);
-                ApplyDelta(ref obedience, ch.obedienceChange);
-                ApplyDelta(ref reputation, ch.reputationChange);
-                ApplyDelta(ref techParts, ch.techPartsChange);
-                ApplyDelta(ref information, ch.informationChange);
-                ApplyDelta(ref credits, ch.creditsChange);
-                ApplyDelta(ref augmentationLoad, ch.augmentationLoadChange);
-                ApplyDelta(ref radiation, ch.radiationChange);
-                ApplyDelta(ref trust, ch.trustChange);
-                ApplyDelta(ref control, ch.controlChange);
+                // 1) 數值
+                stats.ApplyChoiceDeltas(ch);
 
+                // 2) 旗標
                 foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) flagStorage.SetFlag(f);
                 foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) flagStorage.ClearFlag(f);
 
+                // 3) HUD
                 UpdateAllStatUI();
 
+                // 4) 跳轉
                 if (ch.nextStage >= 0)
                 {
                     runningStage = ch.nextStage;
@@ -265,13 +219,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void EndEvent()
-    {
-        runningEvent = null; runningStage = -1;
-    }
+    void EndEvent(){ runningEvent = null; runningStage = -1; }
 
-    // ====== UI 生成功能 ======
-    private void SpawnChoice(string text, System.Action action)
+    // ===== UI 產生 =====
+    void SpawnChoice(string text, System.Action action)
     {
         if (!choiceButtonPrefab || !choiceContainer) return;
         var btn = Instantiate(choiceButtonPrefab, choiceContainer);
@@ -281,78 +232,60 @@ public class GameManager : MonoBehaviour
         btn.onClick.AddListener(() => action());
         choiceContainer.gameObject.SetActive(true);
     }
-
-    private void ClearChoices()
+    void ClearChoices()
     {
         if (!choiceContainer) return;
         foreach (Transform child in choiceContainer) Destroy(child.gameObject);
         choiceContainer.gameObject.SetActive(false);
     }
 
-    // ====== 工具 ======
-    private void ApplyDelta(ref int stat, int delta)
-    {
-        stat += delta;
-        stat = Mathf.Clamp(stat, -999999, 999999); // 防護：避免溢出，可自行調整
-    }
-
-    private CaseId ResolveStartCase()
+    // ===== 工具 =====
+    CaseId ResolveStartCase()
     {
         if (startCase != CaseId.None && HasAvailableInCase(startCase)) return startCase;
         if (caseDB != null && caseDB.cases != null)
         {
             foreach (var c in caseDB.cases)
-            {
-                if (c == null || c.caseId == CaseId.None) continue;
-                if (HasAvailableInCase(c.caseId)) return c.caseId;
-            }
+                if (c != null && c.caseId != CaseId.None && HasAvailableInCase(c.caseId)) return c.caseId;
         }
         return CaseId.None;
     }
-
-    private bool HasAvailableInCase(CaseId id)
+    bool HasAvailableInCase(CaseId id)
     {
         if (!caseDB || !caseDB.TryGetPool(id, out var pool) || pool == null) return false;
-        foreach (var entry in pool)
+        foreach (var e in pool)
         {
-            var e = entry.evt;
-            if (!e) continue;
-            if (!e.ConditionsMet(hp, flagStorage.HasFlag)) continue;
-            if (e.oncePerSave && flagStorage.IsConsumed(e)) continue;
-            if (flagStorage.IsOnCooldown(e, e.cooldownSeconds)) continue;
-            float w = (entry.weightOverride >= 0f) ? entry.weightOverride : Mathf.Max(0f, e.weight);
+            var ev = e.evt;
+            if (!ev) continue;
+            if (!ev.ConditionsMet(stats.hp, flagStorage.HasFlag)) continue;
+            if (ev.oncePerSave && flagStorage.IsConsumed(ev)) continue;
+            if (flagStorage.IsOnCooldown(ev, ev.cooldownSeconds)) continue;
+            float w = (e.weightOverride >= 0f) ? e.weightOverride : Mathf.Max(0f, ev.weight);
             if (w > 0f) return true;
         }
         return false;
     }
+    void Tip(string msg){ if (storyText) storyText.text = msg; if (systemTipText) systemTipText.text = msg; Debug.LogWarning(msg); }
 
-    private void Tip(string msg)
-    {
-        if (storyText) storyText.text = msg;
-        if (systemTipText) systemTipText.text = msg;
-        Debug.LogWarning(msg);
-    }
-
-    // ====== UI 同步 ======
+    // ===== HUD =====
     public void UpdateAllStatUI()
     {
-        SetUI(hpText, $"HP {hp}");
-        SetUI(moneyText, $"Money {money}");
-        SetUI(sanityText, $"Sanity {sanity}");
-        SetUI(hungerText, $"Hunger {hunger}");
-        SetUI(thirstText, $"Thirst {thirst}");
-        SetUI(fatigueText, $"Fatigue {fatigue}");
-        SetUI(hopeText, $"Hope {hope}");
-        SetUI(obedienceText, $"Obedience {obedience}");
-        SetUI(reputationText, $"Reputation {reputation}");
-        SetUI(techPartsText, $"TechParts {techParts}");
-        SetUI(informationText, $"Information {information}");
-        SetUI(creditsText, $"Credits {credits}");
-        SetUI(augmentationLoadText, $"AugLoad {augmentationLoad}");
-        SetUI(radiationText, $"Radiation {radiation}");
-        SetUI(trustText, $"Trust {trust}");
-        SetUI(controlText, $"Control {control}");
+        Set(hpText, $"HP {stats.hp}");
+        Set(moneyText, $"Money {stats.money}");
+        Set(sanityText, $"Sanity {stats.sanity}");
+        Set(hungerText, $"Hunger {stats.hunger}");
+        Set(thirstText, $"Thirst {stats.thirst}");
+        Set(fatigueText, $"Fatigue {stats.fatigue}");
+        Set(hopeText, $"Hope {stats.hope}");
+        Set(obedienceText, $"Obedience {stats.obedience}");
+        Set(reputationText, $"Reputation {stats.reputation}");
+        Set(techPartsText, $"TechParts {stats.techParts}");
+        Set(informationText, $"Information {stats.information}");
+        Set(creditsText, $"Credits {stats.credits}");
+        Set(augmentationLoadText, $"AugLoad {stats.augmentationLoad}");
+        Set(radiationText, $"Radiation {stats.radiation}");
+        Set(trustText, $"Trust {stats.trust}");
+        Set(controlText, $"Control {stats.control}");
     }
-
-    private void SetUI(TextMeshProUGUI t, string v){ if (t) t.text = v; }
+    void Set(TextMeshProUGUI t, string v){ if (t) t.text = v; }
 }

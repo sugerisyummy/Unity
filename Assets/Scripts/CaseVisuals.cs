@@ -8,23 +8,35 @@ public class CaseVisuals : ScriptableObject
     [System.Serializable]
     public class Entry
     {
-        public CaseId id;
+        public CaseId caseId = CaseId.None;
+
+        [Header("Background")]
         public Sprite background;
+
+        [Header("BGM (Location Default)")]
         public AudioClip bgm;
 
-        [Header("Ambience / Weather (SFX loops)")]
-        public AudioClip ambienceLoop;     // 一般環境底噪（室內/街道/森林）
-        public AudioClip birdsLoop;        // 晴天鳥叫
-        public AudioClip rainLoop;         // 雨天
-        public AudioClip windLightLoop;    // 小風
-        public AudioClip windStrongLoop;   // 大風
+        [Header("Ambience / Weather Loops")]
+        public AudioClip ambienceLoop;   // 城市底噪/室內嗡鳴
+        public AudioClip birdsLoop;      // 晴天鳥叫
+        public AudioClip rainLoop;       // 雨聲
+        public AudioClip windLightLoop;  // 微風
+        public AudioClip windStrongLoop; // 強風
     }
 
-    public List<Entry> items = new();
+    public List<Entry> entries = new();
 
+    /// <summary>依 CaseId 取得視覺/音效設定。</summary>
     public bool TryGet(CaseId id, out Entry e)
     {
-        foreach (var it in items) { if (it != null && it.id.Equals(id)) { e = it; return true; } }
+        for (int i = 0; i < entries.Count; i++)
+        {
+            var it = entries[i];
+            if (it != null && it.caseId == id)
+            {
+                e = it; return true;
+            }
+        }
         e = null; return false;
     }
 }
