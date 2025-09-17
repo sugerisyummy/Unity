@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: Event
   m_EditorClassIdentifier: 
   eventId: 123
-  minHP: -2147483648
-  maxHP: 2147483647
-  requireFlags: []
-  forbidFlags: []
+  title: 
+  description: 
   weight: 1
   oncePerSave: 1
   cooldownSeconds: 0
+  minHP: -2147483648
+  requireFlags: []
+  forbidFlags: []
+  weightByAbility: []
   stages:
   - text: TEST
     choices:
@@ -38,14 +40,16 @@ MonoBehaviour:
       creditsChange: 0
       augmentationLoadChange: 0
       radiationChange: 0
+      infectionChange: 0
       trustChange: 0
       controlChange: 0
-      setFlagsTrue: []
-      setFlagsFalse: []
+      skillChecks: []
       nextStage: 0
       endEvent: 0
-      gotoCase: 1
       gotoCaseAfterEnd: 0
+      gotoCase: 1
+      setFlagsTrue: []
+      setFlagsFalse: []
     - text: TEST2
       hpChange: -30
       moneyChange: 0
@@ -61,14 +65,16 @@ MonoBehaviour:
       creditsChange: 0
       augmentationLoadChange: 0
       radiationChange: 0
+      infectionChange: 0
       trustChange: 0
       controlChange: 0
-      setFlagsTrue: []
-      setFlagsFalse: []
+      skillChecks: []
       nextStage: 1
       endEvent: 0
-      gotoCase: 1
       gotoCaseAfterEnd: 0
+      gotoCase: 1
+      setFlagsTrue: []
+      setFlagsFalse: []
   - text: TEST2
     choices:
     - text: TEST
@@ -86,14 +92,16 @@ MonoBehaviour:
       creditsChange: 0
       augmentationLoadChange: 0
       radiationChange: 0
+      infectionChange: 0
       trustChange: 0
       controlChange: 0
-      setFlagsTrue: []
-      setFlagsFalse: []
+      skillChecks: []
       nextStage: 0
       endEvent: 0
-      gotoCase: 1
       gotoCaseAfterEnd: 0
+      gotoCase: 1
+      setFlagsTrue: []
+      setFlagsFalse: []
     - text: TEST2
       hpChange: -30
       moneyChange: 0
@@ -109,11 +117,13 @@ MonoBehaviour:
       creditsChange: 0
       augmentationLoadChange: 0
       radiationChange: 0
+      infectionChange: 0
       trustChange: 0
       controlChange: 0
-      setFlagsTrue: []
-      setFlagsFalse: []
+      skillChecks: []
       nextStage: 1
       endEvent: 0
-      gotoCase: 1
       gotoCaseAfterEnd: 0
+      gotoCase: 1
+      setFlagsTrue: []
+      setFlagsFalse: []

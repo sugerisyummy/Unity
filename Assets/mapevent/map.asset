@@ -17,3 +17,7 @@ MonoBehaviour:
     events:
     - evt: {fileID: 11400000, guid: b1cc10ad8279d7b42a7455189de30cd1, type: 2}
       weightOverride: 1
+  - caseId: 1
+    events:
+    - evt: {fileID: 11400000, guid: b1cc10ad8279d7b42a7455189de30cd1, type: 2}
+      weightOverride: 1
