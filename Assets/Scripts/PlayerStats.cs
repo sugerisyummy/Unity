@@ -22,10 +22,10 @@ public class PlayerStats
     public int credits = 0;
     public int augmentationLoad = 0; // 0..100
     public int radiation = 0;        // 0..100
+    public int infection = 0;        // 0..100   ← ★ 補上
     public int trust = 0;            // 0..100
     public int control = 0;          // 0..100
 
-    // 變更事件（HUD 綁這個）
     [NonSerialized] public Action OnChanged;
 
     static int Clamp(int v, int min, int max) => Mathf.Clamp(v, min, max);
@@ -35,8 +35,10 @@ public class PlayerStats
         int hungerDelta, int thirstDelta, int fatigueDelta,
         int hopeDelta, int obedienceDelta, int reputationDelta,
         int techPartsDelta, int informationDelta, int creditsDelta,
-        int augmentationLoadDelta, int radiationDelta, int trustDelta, int controlDelta)
+        int augmentationLoadDelta, int radiationDelta, int infectionDelta, // ★ 增參數
+        int trustDelta, int controlDelta)
     {
+        // No-Death 的基礎保護會交給 GameManager 做收尾，但 hp 不要炸到極端負數
         hp       = Clamp(hp + hpDelta,           -999999, 999999);
         money    = Clamp(money + moneyDelta,     -999999, 999999);
         sanity   = Clamp(sanity + sanityDelta,   -999999, 999999);
@@ -54,13 +56,13 @@ public class PlayerStats
 
         augmentationLoad = Clamp(augmentationLoad + augmentationLoadDelta, 0, 100);
         radiation        = Clamp(radiation + radiationDelta,               0, 100);
+        infection        = Clamp(infection + infectionDelta,               0, 100); // ★
         trust            = Clamp(trust + trustDelta,                       0, 100);
         control          = Clamp(control + controlDelta,                   0, 100);
 
         OnChanged?.Invoke();
     }
 
-    // 直接吃選項
     public void ApplyChoiceDeltas(DolEventAsset.EventChoice ch)
     {
         if (ch == null) return;
@@ -69,7 +71,8 @@ public class PlayerStats
             ch.hungerChange, ch.thirstChange, ch.fatigueChange,
             ch.hopeChange, ch.obedienceChange, ch.reputationChange,
             ch.techPartsChange, ch.informationChange, ch.creditsChange,
-            ch.augmentationLoadChange, ch.radiationChange, ch.trustChange, ch.controlChange
+            ch.augmentationLoadChange, ch.radiationChange, ch.infectionChange, // ★
+            ch.trustChange, ch.controlChange
         );
     }
 
@@ -81,6 +84,7 @@ public class PlayerStats
         d.hope = hope; d.obedience = obedience; d.reputation = reputation;
         d.techParts = techParts; d.information = information; d.credits = credits;
         d.augmentationLoad = augmentationLoad; d.radiation = radiation;
+        d.infection = infection; // ★
         d.trust = trust; d.control = control;
     }
     public void ReadFrom(SaveData d)
@@ -90,6 +94,7 @@ public class PlayerStats
         hope = d.hope; obedience = d.obedience; reputation = d.reputation;
         techParts = d.techParts; information = d.information; credits = d.credits;
         augmentationLoad = d.augmentationLoad; radiation = d.radiation;
+        infection = d.infection; // ★
         trust = d.trust; control = d.control;
         OnChanged?.Invoke();
     }

@@ -1,4 +1,4 @@
-// GameManager.cs（以你的結構為底，改成使用 PlayerStats）
+// GameManager.cs（No-Death 軟結局 + 旗標序列化 + infection HUD）
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,11 +26,32 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CaseId startCase = CaseId.None;
     [SerializeField] private int defaultHP = 100;
 
+    // === No-Death / 軟壞結局設定 ===
+    [Header("No-Death（軟結局設定）")]
+    [SerializeField] private bool noDeathMode = true;
+    [Tooltip("HP 低於此值觸發『衰竭』軟結局（<= 0 一定觸發）。")]
+    [SerializeField] private int lowHpThreshold = 1;
+    [Tooltip("理智低於等於此值觸發『崩潰』軟結局。")]
+    [SerializeField] private int lowSanityThreshold = 0;
+
+    [Tooltip("軟結局事件（可留空，留空時顯示簡訊息+直接恢復）。")]
+    [SerializeField] private DolEventAsset softEndLowHP;
+    [SerializeField] private DolEventAsset softEndLowSanity;
+
+    [Tooltip("軟結局後的安全地點（可留空保持原地抽新事件）。")]
+    [SerializeField] private CaseId safeCaseAfterSoftEnd = CaseId.None;
+
+    [Header("恢復數值（軟結局後套用）")]
+    [SerializeField] private int recoverHP = 30;
+    [SerializeField] private int recoverSanity = 30;
+    [SerializeField] private int reduceHunger = -20;
+    [SerializeField] private int reduceThirst = -20;
+    [SerializeField] private int reduceFatigue = -30;
+
     // 狀態
     private CaseId currentCase = CaseId.None;
     private Difficulty difficulty = Difficulty.Normal;
 
-    // ★ 改成集中管理數值
     public PlayerStats stats = new PlayerStats();
 
     // HUD（可不綁）
@@ -38,7 +59,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI hpText, moneyText, sanityText;
     public TextMeshProUGUI hungerText, thirstText, fatigueText, hopeText, obedienceText, reputationText;
     public TextMeshProUGUI techPartsText, informationText, creditsText;
-    public TextMeshProUGUI augmentationLoadText, radiationText, trustText, controlText;
+    public TextMeshProUGUI augmentationLoadText, radiationText, infectionText, trustText, controlText; // ★ infectionText
 
     // 事件
     private DolEventAsset runningEvent;
@@ -54,12 +75,14 @@ public class GameManager : MonoBehaviour
     // ===== 新遊戲 / 讀檔 =====
     public void BeginNewGame()
     {
-        // 初始數值
+        flagStorage = new EventFlagStorage();
+
         stats.hp = defaultHP; stats.money = 0; stats.sanity = 100;
         stats.hunger = 0; stats.thirst = 0; stats.fatigue = 0;
         stats.hope = 50; stats.obedience = 50; stats.reputation = 0;
         stats.techParts = 0; stats.information = 0; stats.credits = 0;
-        stats.augmentationLoad = 0; stats.radiation = 0; stats.trust = 0; stats.control = 0;
+        stats.augmentationLoad = 0; stats.radiation = 0; stats.infection = 0;
+        stats.trust = 0; stats.control = 0;
 
         var resolved = ResolveStartCase();
         if (resolved == CaseId.None) { Tip("沒有可觸發的事件。請在 CaseDatabase 加入事件。"); UpdateAllStatUI(); return; }
@@ -75,6 +98,9 @@ public class GameManager : MonoBehaviour
         System.Enum.TryParse(d.currentCase, out currentCase);
 
         stats.ReadFrom(d);
+
+        if (flagStorage == null) flagStorage = new EventFlagStorage();
+        flagStorage.LoadFromSave(d);
 
         if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
         {
@@ -95,6 +121,8 @@ public class GameManager : MonoBehaviour
             saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm")
         };
         stats.WriteTo(data);
+        flagStorage.WriteToSave(data);
+
         SaveManager.Save(slot, data);
         SaveManager.Save(SaveManager.AUTO_SLOT, data);
         Tip($"已存到槽 {slot}");
@@ -110,6 +138,8 @@ public class GameManager : MonoBehaviour
         System.Enum.TryParse(d.currentCase, out currentCase);
 
         stats.ReadFrom(d);
+        if (flagStorage == null) flagStorage = new EventFlagStorage();
+        flagStorage.LoadFromSave(d);
 
         if (currentCase == CaseId.None || !HasAvailableInCase(currentCase))
         {
@@ -130,7 +160,7 @@ public class GameManager : MonoBehaviour
         {
             if (backgroundImage) backgroundImage.sprite = entry.background;
             if (AudioManager.Instance) AudioManager.Instance.PlayBGM(entry.bgm, 1f);
-            // 若有環境音：SoundEffectManager.Instance?.ApplyCaseAmbience(entry);
+            // SoundEffectManager.Instance?.ApplyCaseAmbience(entry);
         }
 
         UpdateAllStatUI();
@@ -195,10 +225,13 @@ public class GameManager : MonoBehaviour
                 foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) flagStorage.SetFlag(f);
                 foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) flagStorage.ClearFlag(f);
 
-                // 3) HUD
+                // 3) No-Death 檢查（可能轉入軟結局）
+                if (noDeathMode && TrySoftEnding()) return;
+
+                // 4) HUD
                 UpdateAllStatUI();
 
-                // 4) 跳轉
+                // 5) 跳轉
                 if (ch.nextStage >= 0)
                 {
                     runningStage = ch.nextStage;
@@ -220,6 +253,75 @@ public class GameManager : MonoBehaviour
     }
 
     void EndEvent(){ runningEvent = null; runningStage = -1; }
+
+    // ===== No-Death / 軟結局 =====
+    bool TrySoftEnding()
+    {
+        // 低於門檻就觸發；HP ≤ 0 或 Sanity ≤ 0 為強制觸發
+        if (stats.hp <= 0 || stats.hp < lowHpThreshold)
+            return TriggerSoftEnd(softEndLowHP, "你眼前一黑，被拖回了陰影裡……");
+
+        if (stats.sanity <= lowSanityThreshold)
+            return TriggerSoftEnd(softEndLowSanity, "你抱住頭，喃喃自語；世界的邊緣開始溶解。");
+
+        return false;
+    }
+
+    bool TriggerSoftEnd(DolEventAsset softAsset, string fallbackText)
+    {
+        // 1) 若有指定軟結局事件，直接播放該事件
+        if (softAsset != null && softAsset.stages != null && softAsset.stages.Count > 0)
+        {
+            runningEvent = softAsset;
+            runningStage = 0;
+            ShowStage();
+
+            // 在軟結局事件「最後一頁 endEvent」後，做恢復 → 安全地點/抽事件
+            // 做法：在 EndEvent 之後立刻恢復與傳送
+            SpawnChoice("……", () => {}); // 保底：不會顯示；僅確保場景穩定
+        }
+        else
+        {
+            // 2) 沒資產就直接顯示一句話 + 恢復 + 跳轉
+            Tip(fallbackText);
+            ApplySoftRecoveryAndRelocate();
+            return true;
+        }
+
+        // 讓玩家點完軟結局事件後也能恢復與跳轉：
+        // 簡單做法：在下一幀排程
+        DelayedSoftRecoverAndRelocate();
+
+        return true;
+    }
+
+    void ApplySoftRecoveryAndRelocate()
+    {
+        // 恢復
+        stats.hp = Mathf.Max(stats.hp, recoverHP);
+        stats.sanity = Mathf.Max(stats.sanity, recoverSanity);
+        stats.hunger = Mathf.Clamp(stats.hunger + reduceHunger, 0, 100);
+        stats.thirst = Mathf.Clamp(stats.thirst + reduceThirst, 0, 100);
+        stats.fatigue = Mathf.Clamp(stats.fatigue + reduceFatigue, 0, 100);
+
+        // 最低保護（No-Death）
+        if (stats.hp < 1) stats.hp = 1;
+
+        UpdateAllStatUI();
+
+        // 傳送或抽下一個事件
+        if (safeCaseAfterSoftEnd != CaseId.None)
+            EnterCase(safeCaseAfterSoftEnd);
+        else
+            RollAndStartEvent();
+    }
+
+    async void DelayedSoftRecoverAndRelocate()
+    {
+        // 粗暴一點：等 0.1 秒（確保 UI/事件切換完）
+        await System.Threading.Tasks.Task.Delay(100);
+        ApplySoftRecoveryAndRelocate();
+    }
 
     // ===== UI 產生 =====
     void SpawnChoice(string text, System.Action action)
@@ -284,6 +386,7 @@ public class GameManager : MonoBehaviour
         Set(creditsText, $"Credits {stats.credits}");
         Set(augmentationLoadText, $"AugLoad {stats.augmentationLoad}");
         Set(radiationText, $"Radiation {stats.radiation}");
+        Set(infectionText, $"Infection {stats.infection}"); // ★
         Set(trustText, $"Trust {stats.trust}");
         Set(controlText, $"Control {stats.control}");
     }

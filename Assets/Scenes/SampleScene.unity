@@ -1710,10 +1710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 1
-  slot: 0
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2764,7 +2761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &709887367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2806,12 +2803,14 @@ MonoBehaviour:
     \r\n\u98E2\u9913\u4E0D\u518D\u4F86\u81EA\u7F3A\u7CE7\uFF0C\u800C\u662F\u914D\u7D66\u88AB\u5207\u5272\u6210\u66F4\u5C0F\u7684\u4EFD\u91CF\uFF1B 
     \r\n\u53E3\u6E34\u4E0D\u662F\u56E0\u70BA\u4E7E\u65F1\uFF0C\u800C\u662F\u56E0\u70BA\u6C34\u7BA1\u88E1\u7684\u6C34\u88AB\u9396\u4E0A\u5BC6\u78BC\u3002 
     \r\n\u5E0C\u671B\u8B8A\u5F97\u6602\u8CB4\uFF0C\u670D\u5F9E\u5247\u88AB\u5EC9\u50F9\u8CA9\u552E\u3002 
-    \r\n\u6BCF\u4E00\u500B\u4EBA\u90FD\u88AB\u8FEB\u5728\u5B58\u6D3B\u8207\u5C48\u670D\u4E4B\u9593\u8A08\u7B97\u3002 
-    \r\n\u5728\u9019\u88E1\uFF0C\u932F\u8AA4\u7684\u773C\u795E\u53EF\u80FD\u63DB\u4F86\u61F2\u7F70\uFF1B 
+    \r\n\u6BCF\u4E00\u500B\u4EBA\u90FD\u88AB\u8FEB\u5728\u5B58\u6D3B\u8207\u5C48\u670D\u4E4B\u9593\u8A08\u7B97\u3002
+    \u5728\u9019\u88E1\uFF0C\u932F\u8AA4\u7684\u773C\u795E\u53EF\u80FD\u63DB\u4F86\u61F2\u7F70\uFF1B 
     \r\n\u4E00\u53E5\u8A71\uFF0C\u751A\u81F3\u4E00\u500B\u6C89\u9ED8\uFF0C\u90FD\u53EF\u80FD\u88AB\u5B9A\u7FA9\u6210\u7F6A\u3002 
     \r\n\u591C\u665A\u7684\u8857\u9053\u6C92\u6709\u9ED1\u6697\uFF0C\u53EA\u6709\u7121\u6578\u7D05\u8272\u7684\u5149\u9EDE\u5728\u9583\u720D\uFF0C 
     \r\n\u5B83\u5011\u51DD\u8996\u8457\u6BCF\u500B\u9084\u6562\u62AC\u982D\u7684\u4EBA\u3002 
-    \r\r"
+    \n\u800C\u4F60\u2014\u2014  \u5728\u9019\u7247\u7834\u788E\u7684\u5927\u5730\u4E0A\uFF0C 
+    \r\n\u552F\u4E00\u80FD\u63E1\u7DCA\u7684\uFF0C\u4E0D\u662F\u6B66\u5668\uFF0C\u4E0D\u662F\u5E87\u8B77\uFF0C\u800C\u662F\u4F60\u7684\u9078\u64C7\u3002 
+    \r\n\u9078\u64C7\uFF0C\u5C07\u6C7A\u5B9A\u4F60\u662F\u5426\u80FD\u5728\u9019\u5834\u6C89\u9ED8\u7684\u672B\u65E5\u88E1\uFF0C\u7559\u4E0B\u75D5\u8DE1\u3002\r\r"
   textUI: {fileID: 1687410402}
   continueHint: {fileID: 0}
   continueButton: {fileID: 0}
@@ -3060,7 +3059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -35, y: -205}
+  m_AnchoredPosition: {x: 0, y: -212.38}
   m_SizeDelta: {x: 106.5795, y: 25.2379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809789275
@@ -3319,10 +3318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 1
-  slot: 1
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!1 &927385580
 GameObject:
   m_ObjectHideFlags: 0
@@ -3407,10 +3403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
-  slot: 2
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!1 &1003973420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3545,6 +3538,23 @@ MonoBehaviour:
   systemTipText: {fileID: 593765858}
   startCase: 1
   defaultHP: 100
+  stats:
+    hp: 100
+    money: 0
+    sanity: 100
+    hunger: 0
+    thirst: 0
+    fatigue: 0
+    hope: 50
+    obedience: 50
+    reputation: 0
+    techParts: 0
+    information: 0
+    credits: 0
+    augmentationLoad: 0
+    radiation: 0
+    trust: 0
+    control: 0
   hpText: {fileID: 0}
   moneyText: {fileID: 0}
   sanityText: {fileID: 0}
@@ -4729,10 +4739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 2
-  slot: 2
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!1 &1430780637 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
@@ -4755,10 +4762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
-  slot: 1
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!1 &1438574281
 GameObject:
   m_ObjectHideFlags: 0
@@ -5170,10 +5174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 1
-  slot: 2
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!1 &1507641447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
@@ -5196,10 +5197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 2
-  slot: 1
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!1 &1515371615
 GameObject:
   m_ObjectHideFlags: 0
@@ -5329,10 +5327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 1
-  slot: 3
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!1001 &1597181760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6053,8 +6048,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6261,10 +6256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
-  slot: 3
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!224 &1801637130 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
@@ -6314,10 +6306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266158720b9da742ab4e03e4a0eee59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 2
-  slot: 3
-  gameManager: {fileID: 1091465980}
-  label: {fileID: 0}
+  summary: {fileID: 0}
 --- !u!1 &1834385366
 GameObject:
   m_ObjectHideFlags: 0
