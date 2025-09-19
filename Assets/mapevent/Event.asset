@@ -21,7 +21,15 @@ MonoBehaviour:
   minHP: -2147483648
   requireFlags: []
   forbidFlags: []
-  weightByAbility: []
+  weightByAbility:
+  - stat: 0
+    influence:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    scale: 0
   stages:
   - text: TEST
     choices:
