@@ -372,23 +372,23 @@ public class GameManager : MonoBehaviour
     // ===== HUD =====
     public void UpdateAllStatUI()
     {
-        Set(hpText, $"HP:{stats.hp}");
-        Set(moneyText, $"{stats.money}G");
-        Set(sanityText, $"Sanity:{stats.sanity}");
-        Set(hungerText, $"Hunger:{stats.hunger}");
-        Set(thirstText, $"Thirst:{stats.thirst}");
-        Set(fatigueText, $"Fatigue:{stats.fatigue}");
-        Set(hopeText, $"Hope:{stats.hope}");
-        Set(obedienceText, $"Obedience:{stats.obedience}");
-        Set(reputationText, $"Reputation:{stats.reputation}");
-        Set(techPartsText, $"TechParts:{stats.techParts}");
-        Set(informationText, $"Information:{stats.information}");
-        Set(creditsText, $"Credits:{stats.credits}");
-        Set(augmentationLoadText, $"AugLoad:{stats.augmentationLoad}");
-        Set(radiationText, $"Radiation:{stats.radiation}");
-        Set(infectionText, $"Infection:{stats.infection}"); // ★
-        Set(trustText, $"Trust:{stats.trust}");
-        Set(controlText, $"Control:{stats.control}");
+        Set(hpText, $"HP {stats.hp}");
+        Set(moneyText, $"Money {stats.money}");
+        Set(sanityText, $"Sanity {stats.sanity}");
+        Set(hungerText, $"Hunger {stats.hunger}");
+        Set(thirstText, $"Thirst {stats.thirst}");
+        Set(fatigueText, $"Fatigue {stats.fatigue}");
+        Set(hopeText, $"Hope {stats.hope}");
+        Set(obedienceText, $"Obedience {stats.obedience}");
+        Set(reputationText, $"Reputation {stats.reputation}");
+        Set(techPartsText, $"TechParts {stats.techParts}");
+        Set(informationText, $"Information {stats.information}");
+        Set(creditsText, $"Credits {stats.credits}");
+        Set(augmentationLoadText, $"AugLoad {stats.augmentationLoad}");
+        Set(radiationText, $"Radiation {stats.radiation}");
+        Set(infectionText, $"Infection {stats.infection}"); // ★
+        Set(trustText, $"Trust {stats.trust}");
+        Set(controlText, $"Control {stats.control}");
     }
     void Set(TextMeshProUGUI t, string v){ if (t) t.text = v; }
 }

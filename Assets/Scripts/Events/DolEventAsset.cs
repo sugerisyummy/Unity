@@ -24,52 +24,66 @@ public class DolEventAsset : ScriptableObject
     [Header("多頁劇情")]
     public List<EventStage> stages = new(); // 0 為起點
 
-    [Serializable]
-    public class EventStage
-    {
-        [TextArea] public string text;          // ← 與使用端一致（原先 body 會報錯）
-        public List<EventChoice> choices = new();
-    }
+[Serializable]
+public class EventStage
+{
+    [TextArea] public string text;
+    public List<EventChoice> choices = new();
+}
 
-    [Serializable]
-    public class EventChoice
-    {
-        public string text;
+[Serializable]
+public class EventChoice
+{
+    public string text;
 
-        // --- 原有核心數值 ---
-        public int hpChange;
-        public int moneyChange;
-        public int sanityChange;
+    // === 事件→戰鬥 ===
+    [Header("Combat (事件→戰鬥)")]
+    public bool startsCombat = false;
+    public CL.Combat.CombatEncounter combat;
 
-        // --- Dystopia 擴充所有數值（名稱需與 PlayerStats 對齊） ---
-        public int hungerChange;
-        public int thirstChange;
-        public int fatigueChange;
-        public int hopeChange;
-        public int obedienceChange;
-        public int reputationChange;        // ← 與 PlayerStats.reputation 對齊
-        public int techPartsChange;
-        public int informationChange;
-        public int creditsChange;
-        public int augmentationLoadChange;
-        public int radiationChange;
-        public int infectionChange;
-        public int trustChange;
-        public int controlChange;
+    [Header("戰鬥結束後跳頁（-1 = 不指定）")]
+    public int nextStageOnWin = -1;
+    public int nextStageOnLose = -1;
+    public int nextStageOnEscape = -1;
 
-        // --- 技能檢定（可多個；目前 GameManager 未用到） ---
-        public List<SkillCheck> skillChecks = new();
+    [Header("旗標（可選）")]
+    public string onWinFlag;
+    public string onLoseFlag;
 
-        // 跳轉
-        public int  nextStage = -1;                 // 沒有結束時使用
-        public bool endEvent = false;               // ← 使用端會讀取
-        public bool gotoCaseAfterEnd = false;       // ← 使用端會讀取
-        public CaseId gotoCase = CaseId.None;       // ← 使用端會讀取
+    // === 原有核心數值 ===
+    public int hpChange;
+    public int moneyChange;
+    public int sanityChange;
 
-        // 旗標
-        public List<string> setFlagsTrue  = new();
-        public List<string> setFlagsFalse = new();
-    }
+    // === Dystopia 擴充所有數值（名稱需與 PlayerStats 對齊） ===
+    public int hungerChange;
+    public int thirstChange;
+    public int fatigueChange;
+    public int hopeChange;
+    public int obedienceChange;
+    public int reputationChange;
+    public int techPartsChange;
+    public int informationChange;
+    public int creditsChange;
+    public int augmentationLoadChange;
+    public int radiationChange;
+    public int infectionChange;
+    public int trustChange;
+    public int controlChange;
+
+    // 技能檢定（可多個）
+    public List<SkillCheck> skillChecks = new();
+
+    // 跳轉
+    public int  nextStage = -1;
+    public bool endEvent = false;
+    public bool gotoCaseAfterEnd = false;
+    public CaseId gotoCase = CaseId.None;
+
+    // 旗標
+    public List<string> setFlagsTrue  = new();
+    public List<string> setFlagsFalse = new();
+}
 
     [Serializable]
     public class AbilityWeightMod
