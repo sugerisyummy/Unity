@@ -34,6 +34,13 @@ MonoBehaviour:
   - text: TEST
     choices:
     - text: TEST
+      startsCombat: 0
+      combat: {fileID: 11400000, guid: ef45d8c166a48e842a2842456842b262, type: 2}
+      nextStageOnWin: -1
+      nextStageOnLose: -1
+      nextStageOnEscape: -1
+      onWinFlag: 
+      onLoseFlag: 
       hpChange: -30
       moneyChange: 0
       sanityChange: 0
@@ -59,6 +66,13 @@ MonoBehaviour:
       setFlagsTrue: []
       setFlagsFalse: []
     - text: TEST2
+      startsCombat: 0
+      combat: {fileID: 0}
+      nextStageOnWin: -1
+      nextStageOnLose: -1
+      nextStageOnEscape: -1
+      onWinFlag: 
+      onLoseFlag: 
       hpChange: -30
       moneyChange: 0
       sanityChange: 0
@@ -86,6 +100,13 @@ MonoBehaviour:
   - text: TEST2
     choices:
     - text: TEST
+      startsCombat: 0
+      combat: {fileID: 0}
+      nextStageOnWin: -1
+      nextStageOnLose: -1
+      nextStageOnEscape: -1
+      onWinFlag: 
+      onLoseFlag: 
       hpChange: -30
       moneyChange: 0
       sanityChange: 0
@@ -111,6 +132,13 @@ MonoBehaviour:
       setFlagsTrue: []
       setFlagsFalse: []
     - text: TEST2
+      startsCombat: 0
+      combat: {fileID: 0}
+      nextStageOnWin: -1
+      nextStageOnLose: -1
+      nextStageOnEscape: -1
+      onWinFlag: 
+      onLoseFlag: 
       hpChange: -30
       moneyChange: 0
       sanityChange: 0
