@@ -1,213 +1,150 @@
-using System;
-using System.Collections.Generic;
+// Auto-generated replacement by ChatGPT (CombatManager core, with target attack APIs)
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
-namespace CL.Combat
+namespace CyberLife.Combat
 {
-    public class CombatManager : MonoBehaviour
+    public partial class CombatManager : MonoBehaviour
     {
-        public static CombatManager Instance { get; private set; }
-
-        public CombatEncounter currentEncounter;
-
-        // 舊 API 仍保留（以免其他地方呼叫）
-        public int playerMaxHP = 100;
-        public int playerHP = 100;
-        public int playerAttack = 12;
-        public int playerDefense = 3;
-        public int playerSpeed = 6;
-
-        // 進階模型
-        public Combatant player;
+        [Header("Teams")]
+        public List<Combatant> allies = new List<Combatant>();
         public List<Combatant> enemies = new List<Combatant>();
-        public BodyPartId selectedTarget = BodyPartId.Torso;
 
-        public bool InCombat { get; private set; }
-        public bool PlayerTurn { get; private set; }
-        public bool LastWin { get; private set; }
-        public bool LastEscaped { get; private set; }
+        [Header("Runtime")]
+        public CombatOutcome? finalOutcome;
+        public bool isActiveCombat = false;
 
-        public event Action OnCombatStarted;
-        public event Action OnCombatEnded;
-        public event Action<string> OnLog;
-        public event Action OnStateChanged;
+        System.Random rng = new System.Random();
 
-        void Awake()
+        void Start()
         {
-            if (Instance != null && Instance != this) { Destroy(gameObject); return; }
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // Auto-discover if placed under manager in scene
+            if (allies.Count == 0) allies.AddRange(GetComponentsInChildren<Combatant>().Where(c => c.gameObject.tag == "Player"));
+            if (enemies.Count == 0) enemies.AddRange(GetComponentsInChildren<Combatant>().Where(c => c.gameObject.tag == "Enemy"));
         }
 
-        public void Begin(CombatEncounter encounter, int pMaxHP, int pHP, int pAtk, int pDef, int pSpd)
+        void Update()
         {
-            currentEncounter = encounter;
-            // 舊參數仍存，但進階模型為主
-            playerMaxHP = pMaxHP;
-            playerHP = Mathf.Clamp(pHP, 0, pMaxHP);
-            playerAttack = pAtk;
-            playerDefense = pDef;
-            playerSpeed = pSpd;
+            if (!isActiveCombat) return;
+            float dt = Time.deltaTime;
+            foreach (var c in allies) c?.TickEffects(dt);
+            foreach (var c in enemies) c?.TickEffects(dt);
+        }
 
-            // 建玩家/敵人
-            player = new Combatant { displayName = "You", baseSpeed = pSpd, baseDefense = pDef, baseAccuracy = 0 };
-            player.InitDefaultHuman();
-            // default weapon (空手=鈍)
-            player.mainHand = ScriptableObject.CreateInstance<WeaponDef>();
-            player.mainHand.category = WeaponCategory.Blunt;
-            player.mainHand.baseDamage = Math.Max(1, pAtk);
+        public void BeginCombat(IEnumerable<Combatant> allyTeam, IEnumerable<Combatant> enemyTeam)
+        {
+            allies = allyTeam.Where(x=>x!=null).ToList();
+            enemies = enemyTeam.Where(x=>x!=null).ToList();
+            isActiveCombat = true;
+            finalOutcome = null;
+        }
 
-            enemies.Clear();
-            if (encounter != null && encounter.enemies != null)
+        public void EndCombat(CombatOutcome outcome)
+        {
+            isActiveCombat = false;
+            finalOutcome = outcome;
+        }
+
+        public bool CheckEnd()
+        {
+            bool alliesAlive = allies.Any(a => a != null && a.IsAlive);
+            bool enemiesAlive = enemies.Any(e => e != null && e.IsAlive);
+            if (!alliesAlive && !enemiesAlive)
             {
-                foreach (var e in encounter.enemies)
-                {
-                    if (!e) continue;
-                    var c = new Combatant { displayName = e.enemyName, baseSpeed = e.speed, baseDefense = e.defense, baseAccuracy = 0 };
-                    c.InitDefaultHuman(); // 先用人形；之後可依 EnemyDefinition 決定
-                    var claw = ScriptableObject.CreateInstance<WeaponDef>();
-                    claw.category = WeaponCategory.Blunt;
-                    claw.baseDamage = Math.Max(1, e.attack);
-                    c.mainHand = claw;
-                    enemies.Add(c);
-                }
+                EndCombat(CombatOutcome.Lose); // mutual K.O -> treat as lose for now
+                return true;
             }
-
-            InCombat = true;
-            LastWin = false;
-            LastEscaped = false;
-            PlayerTurn = encounter == null ? true : encounter.playerActsFirst;
-            OnCombatStarted?.Invoke();
-            Log("戰鬥開始");
-            OnStateChanged?.Invoke();
-
-            if (!PlayerTurn) EnemyAct();
-        }
-
-        void Log(string s){ OnLog?.Invoke(s); }
-
-        // === Player Actions ===
-        public void SetTarget(BodyPartId id)
-        {
-            selectedTarget = id;
-            Log($"目標：{id}");
-            OnStateChanged?.Invoke();
-        }
-
-        public void PlayerAttackSelected()
-        {
-            if (!InCombat || !PlayerTurn) return;
-            var target = FirstAlive(enemies);
-            if (target == null) { EndCombat(true); return; }
-
-            var part = target.parts.Find(p => p.id == selectedTarget) ?? target.parts.Find(p => p.id == BodyPartId.Torso);
-            int raw = CalcBaseDamage(player, target);
-            int afterArmor = ApplyArmorReduction(raw, target, part);
-            int dmg = Mathf.Max(0, afterArmor);
-            part.hp = Mathf.Max(0, part.hp - dmg);
-
-            // 疼痛/流血簡化版
-            part.pain = Mathf.Clamp(part.pain + Mathf.CeilToInt(dmg * 2f), 0, 100);
-            part.bleedRate += dmg * 0.02f;
-
-            // 斷肢/致命器官檢定（簡化）
-            if (dmg > part.maxHP * 0.6f)
+            if (!enemiesAlive)
             {
-                if (part.id == BodyPartId.LeftArm || part.id == BodyPartId.RightArm ||
-                    part.id == BodyPartId.LeftLeg || part.id == BodyPartId.RightLeg ||
-                    part.id == BodyPartId.LeftHand || part.id == BodyPartId.RightHand ||
-                    part.id == BodyPartId.LeftFoot || part.id == BodyPartId.RightFoot)
-                    part.isSevered = true;
-                if (part.Vital) part.hp = 0;
+                EndCombat(CombatOutcome.Win);
+                return true;
             }
-
-            Log($"你攻擊 {target.displayName} 的 {part.id}，造成 {dmg} 傷害");
-            OnStateChanged?.Invoke();
-
-            if (IsGroupDead(enemies)) { EndCombat(true); return; }
-            PlayerTurn = false;
-            EnemyAct();
-        }
-
-        public void TryEscape()
-        {
-            if (!InCombat || currentEncounter == null || !currentEncounter.allowEscape) return;
-            if (UnityEngine.Random.value < 0.5f) { EndCombat(false, true); }
-            else { PlayerTurn = false; EnemyAct(); }
-        }
-
-        // === Enemy Actions (簡化：第一個活著的攻玩家軀幹) ===
-        void EnemyAct()
-        {
-            if (!InCombat) return;
-            var attacker = FirstAlive(enemies);
-            if (attacker == null) { EndCombat(true); return; }
-
-            var torso = player.parts.Find(p => p.id == BodyPartId.Torso);
-            int raw = CalcBaseDamage(attacker, player);
-            int after = ApplyArmorReduction(raw, player, torso);
-            int dmg = Mathf.Max(0, after);
-            torso.hp = Mathf.Max(0, torso.hp - dmg);
-            torso.pain = Mathf.Clamp(torso.pain + Mathf.CeilToInt(dmg * 2f), 0, 100);
-
-            Log($"{attacker.displayName} 攻擊你的 Torso，造成 {dmg} 傷害");
-            OnStateChanged?.Invoke();
-
-            if (player.IsDead) { EndCombat(false); return; }
-            PlayerTurn = true;
-        }
-
-        // === Calc/Util ===
-        int CalcBaseDamage(Combatant atk, Combatant def)
-        {
-            int baseD = atk.mainHand ? atk.mainHand.baseDamage : 3;
-            int acc = atk.baseAccuracy + (atk.mainHand ? atk.mainHand.accuracy : 0);
-            int defv = def.Defense;
-            int hit = Mathf.Clamp(70 + acc - defv, 5, 95);
-            if (UnityEngine.Random.Range(0,100) > hit) { Log("Miss!"); return 0; }
-            return baseD;
-        }
-
-        int ApplyArmorReduction(int raw, Combatant def, BodyPartState part)
-        {
-            int red = 0;
-            ArmorDef a = ArmorCovering(def, part.id);
-            if (a != null)
+            if (!alliesAlive)
             {
-                // 粗略：以鈍擊視剩餘比重，先用最簡版：固定減傷值取最大
-                red = Math.Max(Math.Max(a.armorSlash, a.armorPierce), Math.Max(Math.Max(a.armorBlunt, a.armorThermal), Math.Max(a.armorChemical, a.armorBallistic)));
+                EndCombat(CombatOutcome.Lose);
+                return true;
             }
-            return raw - red;
+            return false;
         }
 
-        ArmorDef ArmorCovering(Combatant c, BodyPartId part)
+        public void AllyAttack(int allyIndex)
         {
-            if (part == BodyPartId.Head || part == BodyPartId.Brain || part == BodyPartId.LeftEye || part == BodyPartId.RightEye || part == BodyPartId.Jaw)
-                return c.head;
-            if (part == BodyPartId.Torso || part == BodyPartId.Heart || part == BodyPartId.LeftLung || part == BodyPartId.RightLung ||
-                part == BodyPartId.Liver || part == BodyPartId.Stomach || part == BodyPartId.LeftKidney || part == BodyPartId.RightKidney || part == BodyPartId.Neck)
-                return c.torso;
-            if (part.ToString().Contains("Leg") || part.ToString().Contains("Foot"))
-                return c.legs;
-            return null;
+            if (!isActiveCombat) return;
+            var attacker = (allyIndex >= 0 && allyIndex < allies.Count) ? allies[allyIndex] : null;
+            var defender = enemies.FirstOrDefault(e => e != null && e.IsAlive);
+            if (attacker == null || defender == null) return;
+
+            var inv = attacker.inventory;
+            var group = inv != null ? inv.PickGroup() : HitGroup.Torso;
+            var damage = inv != null ? inv.RollAttackDamage() : 5f;
+            var dtype = inv != null ? inv.DamageType : DamageType.Blunt;
+
+            ResolveAttack(attacker, defender, group, dtype, damage);
+            if (CheckEnd()) return;
+
+            // simple enemy retaliation
+            EnemyTurn();
+            CheckEnd();
         }
 
-        Combatant FirstAlive(List<Combatant> list) => list.Find(c => !c.IsDead);
-        bool IsGroupDead(List<Combatant> list)
+        public void ResolveAttack(Combatant attacker, Combatant defender, HitGroup group, DamageType type, float rawDamage)
         {
-            foreach (var c in list) if (!c.IsDead) return false;
-            return true;
+            if (defender == null || attacker == null) return;
+
+            float finalDamage = ResolveDamageWithArmor(defender, group, type, rawDamage);
+            var targetPart = defender.PickRandomPart(group, rng);
+            if (targetPart == null) return;
+
+            targetPart.ApplyDamage(finalDamage);
         }
 
-        void EndCombat(bool win, bool escaped=false)
+        void EnemyTurn()
         {
-            if (!InCombat) return;
-            InCombat = false;
-            LastWin = win;
-            LastEscaped = escaped;
-            OnCombatEnded?.Invoke();
-            OnStateChanged?.Invoke();
-            Log(win ? "勝利" : escaped ? "逃脫" : "戰敗");
+            var attacker = enemies.FirstOrDefault(e => e != null && e.IsAlive);
+            var defender = allies.FirstOrDefault(a => a != null && a.IsAlive);
+            if (attacker == null || defender == null) return;
+            var inv = attacker.inventory;
+            var group = inv != null ? inv.PickGroup() : HitGroup.Torso;
+            var damage = inv != null ? inv.RollAttackDamage() : 5f;
+            var dtype = inv != null ? inv.DamageType : DamageType.Blunt;
+            ResolveAttack(attacker, defender, group, dtype, damage);
+        }
+
+        // === 新增：點選鎖定敵人 → 直接攻擊（自動選群組） ===
+        public void PlayerAttackTarget(Combatant target)
+        {
+            if (!isActiveCombat) return;
+            var attacker = (allies.Count > 0) ? allies[0] : null;
+            if (attacker == null || target == null || !target.IsAlive) return;
+
+            var inv = attacker.inventory;
+            var group  = inv != null ? inv.PickGroup() : HitGroup.Torso;
+            var damage = inv != null ? inv.RollAttackDamage() : 5f;
+            var dtype  = inv != null ? inv.DamageType : DamageType.Blunt;
+
+            ResolveAttack(attacker, target, group, dtype, damage);
+            if (CheckEnd()) return;
+            EnemyTurn();
+            CheckEnd();
+        }
+
+        // === 新增：指定群組（Head/Torso/Arms/Legs/Vital/Misc）攻擊 ===
+        public void PlayerAttackTargetWithGroup(Combatant target, HitGroup group)
+        {
+            if (!isActiveCombat) return;
+            var attacker = (allies.Count > 0) ? allies[0] : null;
+            if (attacker == null || target == null || !target.IsAlive) return;
+
+            var inv = attacker.inventory;
+            var damage = inv != null ? inv.RollAttackDamage() : 5f;
+            var dtype  = inv != null ? inv.DamageType : DamageType.Blunt;
+
+            ResolveAttack(attacker, target, group, dtype, damage);
+            if (CheckEnd()) return;
+            EnemyTurn();
+            CheckEnd();
         }
     }
 }

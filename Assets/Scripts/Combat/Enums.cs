@@ -1,19 +1,55 @@
-using System;
+// Auto-generated replacement by ChatGPT (Combat core enums)
+using UnityEngine;
 
-namespace CL.Combat
+namespace CyberLife.Combat
 {
-    // 傷害型別（含：斬/刺/鈍/熱能/化學/彈道）
-    public enum DamageType { Slash, Pierce, Blunt, Thermal, Chemical, Ballistic }
-
-    // 武器大類（方便 UI/規則）
-    public enum WeaponCategory { Blade, Firearm, Blunt, Thermal, Chemical }
-
-    // 身體部位（含器官，RimWorld 取向）
-    public enum BodyPartId
+    public enum DamageType
     {
-        Head, Brain, LeftEye, RightEye, Jaw, Neck,
-        Torso, Heart, LeftLung, RightLung, Liver, Stomach, LeftKidney, RightKidney,
-        LeftArm, RightArm, LeftHand, RightHand,
-        LeftLeg, RightLeg, LeftFoot, RightFoot
+        Ballistic,
+        Slash,
+        Blunt,
+        Thermal,
+        Chemical,
+        Energy
+    }
+
+    /// <summary>High-level hit groups for Fallout-style targeting (6 groups).</summary>
+    public enum HitGroup
+    {
+        Head,
+        Torso,
+        Arms,
+        Legs,
+        Vital,
+        Misc
+    }
+
+    /// <summary>Fine-grained tag on body parts; maps to one of the HitGroup buckets.</summary>
+    public enum BodyTag
+    {
+        Head,
+        Torso,
+        Arm,
+        Leg,
+        Vital,
+        Misc
+    }
+
+    /// <summary>Combat final outcome for the player side.</summary>
+    public enum CombatOutcome
+    {
+        Win,
+        Lose,
+        Escape
+    }
+
+    /// <summary>Simple status tags that a consumable can cure or apply.</summary>
+    public enum EffectTag
+    {
+        None,
+        Poison,
+        Burn,
+        Bleed,
+        Stun
     }
 }

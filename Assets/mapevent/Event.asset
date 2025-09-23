@@ -34,8 +34,8 @@ MonoBehaviour:
   - text: TEST
     choices:
     - text: TEST
-      startsCombat: 0
-      combat: {fileID: 11400000, guid: ef45d8c166a48e842a2842456842b262, type: 2}
+      startsCombat: 1
+      combat: {fileID: 11400000, guid: 0ea29a888a067ac42a5d58b7a3af1b8f, type: 2}
       nextStageOnWin: -1
       nextStageOnLose: -1
       nextStageOnEscape: -1

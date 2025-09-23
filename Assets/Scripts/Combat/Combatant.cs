@@ -1,84 +1,110 @@
-using System.Collections.Generic;
+// Auto-generated replacement by ChatGPT (Combatant)
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace CL.Combat
+namespace CyberLife.Combat
 {
-    public class Combatant
+    public class Combatant : MonoBehaviour
     {
-        public string displayName;
-        public int baseSpeed = 5;
-        public int baseDefense = 2;
-        public int baseAccuracy = 0;
+        [Header("Identity")]
+        public string displayName = "Unit";
 
-        public WeaponDef mainHand;
-        public ArmorDef head;
-        public ArmorDef torso;
-        public ArmorDef legs;
-        public ItemDef utility;
-
+        [Header("Body Model")]
         public List<BodyPartState> parts = new List<BodyPartState>();
-        public List<StatusEffect> effects = new List<StatusEffect>();
 
-        public int Speed
+        [Header("Systems")]
+        public InventoryManager inventory;
+        public List<EffectInstance> effects = new List<EffectInstance>();
+
+        public bool IsAlive
         {
             get
             {
-                int eff = baseSpeed;
-                foreach (var e in effects) if (e.def) eff += e.def.speedDelta;
-                eff += mainHand ? mainHand.speed : 0;
-                return Mathf.Max(0, eff);
-            }
-        }
-        public int Defense
-        {
-            get
-            {
-                int eff = baseDefense;
-                foreach (var e in effects) if (e.def) eff += e.def.defenseDelta;
-                return Mathf.Max(0, eff);
+                // Alive if any torso HP > 0 and we still have any non-destroyed vital/torso/head
+                bool torsoAlive = parts.Any(p => p.tag == BodyTag.Torso && !p.Destroyed);
+                bool headDestroyed = parts.Where(p => p.tag == BodyTag.Head).All(p => p.Destroyed);
+                return torsoAlive && !headDestroyed;
             }
         }
 
-        public bool IsDead
+        public float TotalHP => parts.Sum(p => p.hp);
+        public float TotalMaxHP => parts.Sum(p => p.maxHP);
+
+        public void EnsureDefaultBody()
         {
-            get
-            {
-                foreach (var p in parts)
-                    if ((p.Vital && p.IsDestroyed) || (p.id == BodyPartId.Torso && p.IsDestroyed))
-                        return true;
-                return false;
-            }
+            if (parts != null && parts.Count > 0) return;
+            // Minimal 22-ish model approximated into buckets
+            parts = new List<BodyPartState>{
+                new BodyPartState("Head", BodyTag.Head, 15),
+                new BodyPartState("Neck", BodyTag.Vital, 8),
+                new BodyPartState("Chest", BodyTag.Torso, 30),
+                new BodyPartState("Abdomen", BodyTag.Torso, 25),
+                new BodyPartState("LeftArm", BodyTag.Arm, 15),
+                new BodyPartState("RightArm", BodyTag.Arm, 15),
+                new BodyPartState("LeftForearm", BodyTag.Arm, 12),
+                new BodyPartState("RightForearm", BodyTag.Arm, 12),
+                new BodyPartState("LeftHand", BodyTag.Arm, 8),
+                new BodyPartState("RightHand", BodyTag.Arm, 8),
+                new BodyPartState("LeftThigh", BodyTag.Leg, 18),
+                new BodyPartState("RightThigh", BodyTag.Leg, 18),
+                new BodyPartState("LeftCalf", BodyTag.Leg, 14),
+                new BodyPartState("RightCalf", BodyTag.Leg, 14),
+                new BodyPartState("LeftFoot", BodyTag.Leg, 8),
+                new BodyPartState("RightFoot", BodyTag.Leg, 8),
+                new BodyPartState("Heart", BodyTag.Vital, 10),
+                new BodyPartState("LungL", BodyTag.Vital, 10),
+                new BodyPartState("LungR", BodyTag.Vital, 10),
+                new BodyPartState("Liver", BodyTag.Vital, 9),
+                new BodyPartState("Stomach", BodyTag.Vital, 9),
+                new BodyPartState("Spine", BodyTag.Vital, 12),
+            };
         }
 
-        public void InitDefaultHuman()
+        public BodyPartState PickRandomPart(HitGroup group, System.Random rng)
         {
-            parts.Clear();
-            Add(BodyPartId.Head, 12);
-            Add(BodyPartId.Brain, 5);
-            Add(BodyPartId.LeftEye, 3);
-            Add(BodyPartId.RightEye, 3);
-            Add(BodyPartId.Jaw, 4);
-            Add(BodyPartId.Neck, 8);
-
-            Add(BodyPartId.Torso, 30);
-            Add(BodyPartId.Heart, 5);
-            Add(BodyPartId.LeftLung, 6);
-            Add(BodyPartId.RightLung, 6);
-            Add(BodyPartId.Liver, 6);
-            Add(BodyPartId.Stomach, 6);
-            Add(BodyPartId.LeftKidney, 4);
-            Add(BodyPartId.RightKidney, 4);
-
-            Add(BodyPartId.LeftArm, 12);
-            Add(BodyPartId.RightArm, 12);
-            Add(BodyPartId.LeftHand, 8);
-            Add(BodyPartId.RightHand, 8);
-
-            Add(BodyPartId.LeftLeg, 16);
-            Add(BodyPartId.RightLeg, 16);
-            Add(BodyPartId.LeftFoot, 8);
-            Add(BodyPartId.RightFoot, 8);
+            var bucket = parts.Where(p => p.ToHitGroup() == group && !p.Destroyed).ToList();
+            if (bucket.Count == 0) bucket = parts.Where(p => !p.Destroyed).ToList();
+            if (bucket.Count == 0) return null;
+            int idx = rng.Next(0, bucket.Count);
+            return bucket[idx];
         }
-        void Add(BodyPartId id, int max) => parts.Add(new BodyPartState{ id=id, maxHP=max, hp=max });
+
+        public void ApplyDirectDamage(HitGroup bucket, DamageType type, float rawDmg)
+        {
+            var rng = new System.Random();
+            var part = PickRandomPart(bucket, rng);
+            if (part == null) return;
+
+            float mitigated = rawDmg;
+            if (inventory != null && inventory.armor != null)
+                mitigated = inventory.armor.Mitigate(bucket, type, rawDmg);
+
+            part.ApplyDamage(mitigated);
+        }
+
+        public void CureByTags(EffectTag[] tags)
+        {
+            if (effects == null || tags == null) return;
+            effects.RemoveAll(e => e != null && e.def != null && System.Array.IndexOf(tags, e.def.tag) >= 0);
+        }
+
+        public void HealAll(float value)
+        {
+            foreach (var p in parts) p.Heal(value);
+        }
+
+        void Awake()
+        {
+            EnsureDefaultBody();
+            if (inventory == null) inventory = GetComponent<InventoryManager>();
+        }
+
+        public void TickEffects(float deltaTime)
+        {
+            if (effects == null) return;
+            foreach (var e in effects) e?.Tick(this, deltaTime);
+            effects.RemoveAll(e => e == null || e.Expired);
+        }
     }
 }

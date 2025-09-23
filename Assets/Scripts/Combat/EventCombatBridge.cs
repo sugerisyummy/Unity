@@ -1,84 +1,41 @@
-using System;
-using System.Reflection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace CL.Combat
+namespace CyberLife.Combat
 {
+    /// <summary>
+    /// 事件→進戰鬥的單一入口。可選加載 Additive 場景，然後叫 CombatManager.BeginCombat。
+    /// </summary>
     public class EventCombatBridge : MonoBehaviour
     {
-        [Header("切場景")]
-        public bool useAdditiveScene = true;
+        [Header("Scene")]
         public string combatSceneName = "CombatScene";
+        public bool loadAdditive = true;
 
-        public void StartCombatFromEventChoice(DolEventAsset.EventChoice choice)
+        [Header("Refs")]
+        public CombatManager manager;           // 若沒拖，會自動 Find
+        public CombatResultRouter resultRouter; // 可選：把結果丟回事件系統
+
+        public void StartCombat(Combatant[] allies, Combatant[] enemies)
         {
-            if (choice == null || !choice.startsCombat || choice.combat == null)
+            // 需要時載入戰鬥場景
+            if (loadAdditive && !string.IsNullOrEmpty(combatSceneName))
             {
-                Debug.LogWarning("[EventCombatBridge] choice 無效或未勾 startsCombat");
+                var sc = SceneManager.GetSceneByName(combatSceneName);
+                if (!sc.isLoaded) SceneManager.LoadScene(combatSceneName, LoadSceneMode.Additive);
+            }
+
+            if (manager == null) manager = FindObjectOfType<CombatManager>(true);
+            if (manager == null)
+            {
+                Debug.LogError("[EventCombatBridge] 找不到 CombatManager。請把它放在戰鬥場景或同場景中。");
                 return;
             }
 
-            var ret = new CombatReturn {
-                nextWin = choice.nextStageOnWin,
-                nextLose = choice.nextStageOnLose,
-                nextEscape = choice.nextStageOnEscape,
-                onWinFlag = choice.onWinFlag,
-                onLoseFlag = choice.onLoseFlag
-            };
+            manager.BeginCombat(allies, enemies);
 
-            if (useAdditiveScene)
-            {
-                CombatSceneLoader.StartCombat(choice.combat, ret, OnReturnToEvent);
-            }
-            else
-            {
-                if (CombatManager.Instance == null)
-                    new GameObject("CombatManager").AddComponent<CombatManager>();
-                CombatManager.Instance.Begin(choice.combat, 100, 100, 12, 3, 6);
-                CombatManager.Instance.OnCombatEnded += () =>
-                {
-                    var r = new CombatReturn { win = CombatManager.Instance.LastWin, escaped = CombatManager.Instance.LastEscaped };
-                    OnReturnToEvent(r);
-                };
-            }
-        }
-
-        void OnReturnToEvent(CombatReturn r)
-        {
-            var gm = GameObject.FindObjectOfType<GameManager>();
-            if (gm == null) return;
-
-            try
-            {
-                var gmType = gm.GetType();
-                // 旗標
-                var flagField = gmType.GetField("flagStorage", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                var flagObj = flagField != null ? flagField.GetValue(gm) : null;
-                var setFlag = flagObj?.GetType().GetMethod("SetFlag", BindingFlags.Instance | BindingFlags.Public);
-
-                if (setFlag != null)
-                {
-                    if (r.win && !string.IsNullOrEmpty(r.onWinFlag)) setFlag.Invoke(flagObj, new object[] { r.onWinFlag });
-                    if (!r.win && !r.escaped && !string.IsNullOrEmpty(r.onLoseFlag)) setFlag.Invoke(flagObj, new object[] { r.onLoseFlag });
-                }
-
-                int next = -1;
-                if (r.win && r.nextWin >= 0) next = r.nextWin;
-                else if (r.escaped && r.nextEscape >= 0) next = r.nextEscape;
-                else if (!r.win && !r.escaped && r.nextLose >= 0) next = r.nextLose;
-
-                if (next >= 0)
-                {
-                    var runStageField = gmType.GetField("runningStage", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                    if (runStageField != null) runStageField.SetValue(gm, next);
-                    var showStage = gmType.GetMethod("ShowStage", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                    if (showStage != null) showStage.Invoke(gm, null);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.LogWarning($"[EventCombatBridge] 回返事件失敗：{ex.Message}");
-            }
+            // 若有 Router，指向同一個 manager
+            if (resultRouter != null) resultRouter.manager = manager;
         }
     }
 }
