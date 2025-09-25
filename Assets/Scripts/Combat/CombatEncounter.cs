@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace CL.Combat
+namespace CyberLife.Combat
 {
-    [CreateAssetMenu(menuName = "CL/Combat/Encounter")]
+    [CreateAssetMenu(menuName = "CyberLife/Combat/Encounter")]
     public class CombatEncounter : ScriptableObject
     {
         public EnemyDefinition[] enemies;

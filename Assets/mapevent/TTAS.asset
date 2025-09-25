@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 11400000, guid: 792fa5e3ac0cfbb4c97d661310b58a2a, type: 2}
+  - {fileID: 11400000, guid: 792fa5e3ac0cfbb4c97d661310b58a2a, type: 2}
+  - {fileID: 11400000, guid: 792fa5e3ac0cfbb4c97d661310b58a2a, type: 2}
   allowEscape: 1
   playerActsFirst: 1

@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using CyberLife.Combat;  // 換成你專案正在用的命名空間
 
 [CreateAssetMenu(menuName = "DOL/Event")]
 public class DolEventAsset : ScriptableObject
 {
+    public CombatEncounter combat;
     [Header("基本")]
     public string eventId;
     [TextArea] public string title;
@@ -24,67 +26,66 @@ public class DolEventAsset : ScriptableObject
     [Header("多頁劇情")]
     public List<EventStage> stages = new(); // 0 為起點
 
-[Serializable]
-public class EventStage
-{
-    [TextArea] public string text;
-    public List<EventChoice> choices = new();
-}
+    [Serializable]
+    public class EventStage
+    {
+        [TextArea] public string text;
+        public List<EventChoice> choices = new();
+    }
 
-[Serializable]
-public class EventChoice
-{
-    public string text;
+    [Serializable]
+    public class EventChoice
+    {
+        public string text;
 
-    // === 事件→戰鬥 ===
-    [Header("Combat (事件→戰鬥)")]
-    public bool startsCombat = false;
-    public CL.Combat.CombatEncounter combat;
+        // === 事件→戰鬥 ===
+        [Header("Combat (事件→戰鬥)")]
+        public bool startsCombat = false;
+        public CombatEncounter combat;   // ← 這裡改成 CyberLife.Combat
 
-    [Header("戰鬥結束後跳頁（-1 = 不指定）")]
-    public int nextStageOnWin = -1;
-    public int nextStageOnLose = -1;
-    public int nextStageOnEscape = -1;
+        [Header("戰鬥結束後跳頁（-1 = 不指定）")]
+        public int nextStageOnWin = -1;
+        public int nextStageOnLose = -1;
+        public int nextStageOnEscape = -1;
 
-    [Header("旗標（可選）")]
-    public string onWinFlag;
-    public string onLoseFlag;
+        [Header("旗標（可選）")]
+        public string onWinFlag;
+        public string onLoseFlag;
 
-    // === 原有核心數值 ===
-    public int hpChange;
-    public int moneyChange;
-    public int sanityChange;
+        // === 原有核心數值 ===
+        public int hpChange;
+        public int moneyChange;
+        public int sanityChange;
 
-    // === Dystopia 擴充所有數值（名稱需與 PlayerStats 對齊） ===
-    public int hungerChange;
-    public int thirstChange;
-    public int fatigueChange;
-    public int hopeChange;
-    public int obedienceChange;
-    public int reputationChange;
-    public int techPartsChange;
-    public int informationChange;
-    public int creditsChange;
-    public int augmentationLoadChange;
-    public int radiationChange;
-    public int infectionChange;
-    public int trustChange;
-    public int controlChange;
+        // === Dystopia 擴充所有數值（名稱需與 PlayerStats 對齊） ===
+        public int hungerChange;
+        public int thirstChange;
+        public int fatigueChange;
+        public int hopeChange;
+        public int obedienceChange;
+        public int reputationChange;
+        public int techPartsChange;
+        public int informationChange;
+        public int creditsChange;
+        public int augmentationLoadChange;
+        public int radiationChange;
+        public int infectionChange;
+        public int trustChange;
+        public int controlChange;
 
-    // 技能檢定（可多個）
-    public List<SkillCheck> skillChecks = new();
+        // 技能檢定（可多個）
+        public List<SkillCheck> skillChecks = new();
 
-    // 跳轉
-    public int  nextStage = -1;
-    public bool endEvent = false;
-    public bool gotoCaseAfterEnd = false;
-    public CaseId gotoCase = CaseId.None;
+        // 跳轉
+        public int  nextStage = -1;
+        public bool endEvent = false;
+        public bool gotoCaseAfterEnd = false;
+        public CaseId gotoCase = CaseId.None;
 
-    // 旗標
-    public List<string> setFlagsTrue  = new();
-    public List<string> setFlagsFalse = new();
-}
-
+        // 旗標
+        public List<string> setFlagsTrue  = new();
+        public List<string> setFlagsFalse = new();
+    }
     [Serializable]
     public class AbilityWeightMod
     {

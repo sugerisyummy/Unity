@@ -1,6 +1,6 @@
 using UnityEngine.SceneManagement;
 
-namespace CL.Combat
+namespace CyberLife.Combat
 {
     public struct CombatReturn
     {
@@ -15,11 +15,11 @@ namespace CL.Combat
         public static CombatReturn pending;
         public static System.Action<CombatReturn> onReturn;
 
-        public static void StartCombat(CombatEncounter enc, CombatReturn ret, System.Action<CombatReturn> cb)
+        public static void Load(CombatEncounter enc, CombatReturn ret, System.Action<CombatReturn> cb)
         {
             encounter = enc;
-            pending = ret;
-            onReturn = cb;
+            pending   = ret;
+            onReturn  = cb;
             SceneManager.LoadSceneAsync("CombatScene", LoadSceneMode.Additive);
         }
 
@@ -28,7 +28,7 @@ namespace CL.Combat
             onReturn?.Invoke(r);
             SceneManager.UnloadSceneAsync("CombatScene");
             encounter = default;
-            onReturn = null;
+            onReturn  = null;
         }
     }
 }

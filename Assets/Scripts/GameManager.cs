@@ -1,7 +1,8 @@
-// GameManager.cs（No-Death 軟結局 + 旗標序列化 + infection HUD）
+// GameManager.cs（事件→戰鬥橋接 + No-Death）
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CyberLife.Combat;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -59,7 +60,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI hpText, moneyText, sanityText;
     public TextMeshProUGUI hungerText, thirstText, fatigueText, hopeText, obedienceText, reputationText;
     public TextMeshProUGUI techPartsText, informationText, creditsText;
-    public TextMeshProUGUI augmentationLoadText, radiationText, infectionText, trustText, controlText; // ★ infectionText
+    public TextMeshProUGUI augmentationLoadText, radiationText, infectionText, trustText, controlText;
+
+    // ===== 戰鬥橋接 =====
+    public CombatPageController combatController;                 // Inspector 拖 ControllerRoot
+    private DolEventAsset.EventChoice _pendingCombatChoice = null; // 暫存「這次要開戰的選項」
 
     // 事件
     private DolEventAsset runningEvent;
@@ -69,6 +74,7 @@ public class GameManager : MonoBehaviour
     {
         if (flagStorage == null) flagStorage = new EventFlagStorage();
         if (!caseDB) Tip("請在 GameManager 指定 CaseDatabase。");
+        if (combatController == null) combatController = FindObjectOfType<CombatPageController>(true);
         stats.OnChanged += UpdateAllStatUI;
     }
 
@@ -215,41 +221,63 @@ public class GameManager : MonoBehaviour
         if (stage.choices == null || stage.choices.Count == 0) { EndEvent(); return; }
 
         foreach (var ch in stage.choices)
+            WireChoice(ch);   // ← 改成走橋接
+    }
+
+    void WireChoice(DolEventAsset.EventChoice ch)
+    {
+        // 建立按鈕
+        if (!choiceButtonPrefab || !choiceContainer) return;
+        var btn = Instantiate(choiceButtonPrefab, choiceContainer);
+        var label = btn.GetComponentInChildren<TextMeshProUGUI>();
+        if (label) label.text = ch.text;
+        btn.onClick.RemoveAllListeners();
+        choiceContainer.gameObject.SetActive(true);
+
+        // 若是開戰選項 → 只開戰（不在當下結算）
+        if (ch.startsCombat && ch.combat != null)
         {
-            SpawnChoice(ch.text, () =>
+            btn.onClick.AddListener(() =>
             {
-                // 1) 數值
-                stats.ApplyChoiceDeltas(ch);
-
-                // 2) 旗標
-                foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) flagStorage.SetFlag(f);
-                foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) flagStorage.ClearFlag(f);
-
-                // 3) No-Death 檢查（可能轉入軟結局）
-                if (noDeathMode && TrySoftEnding()) return;
-
-                // 4) HUD
-                UpdateAllStatUI();
-
-                // 5) 跳轉
-                if (ch.nextStage >= 0)
-                {
-                    runningStage = ch.nextStage;
-                    ShowStage();
-                    return;
-                }
-
-                if (ch.endEvent)
-                {
-                    var goOther = ch.gotoCaseAfterEnd && ch.gotoCase != CaseId.None;
-                    EndEvent();
-                    if (goOther) EnterCase(ch.gotoCase);
-                    else RollAndStartEvent();
-                    return;
-                }
-                ShowStage();
+                _pendingCombatChoice = ch;
+                combatController.StartCombatWithEncounter(ch.combat);
             });
+            return;
         }
+
+        // 一般選項 → 立即結算（維持原本行為）
+        btn.onClick.AddListener(() =>
+        {
+            // 1) 數值
+            stats.ApplyChoiceDeltas(ch);
+
+            // 2) 旗標
+            foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) flagStorage.SetFlag(f);
+            foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) flagStorage.ClearFlag(f);
+
+            // 3) No-Death 檢查（可能轉入軟結局）
+            if (noDeathMode && TrySoftEnding()) return;
+
+            // 4) HUD
+            UpdateAllStatUI();
+
+            // 5) 跳轉
+            if (ch.nextStage >= 0)
+            {
+                runningStage = ch.nextStage;
+                ShowStage();
+                return;
+            }
+            if (ch.endEvent)
+            {
+                var goOther = ch.gotoCaseAfterEnd && ch.gotoCase != CaseId.None;
+                EndEvent();
+                if (goOther) EnterCase(ch.gotoCase);
+                else RollAndStartEvent();
+                return;
+            }
+            ShowStage();
+        });
     }
 
     void EndEvent(){ runningEvent = null; runningStage = -1; }
@@ -257,73 +285,53 @@ public class GameManager : MonoBehaviour
     // ===== No-Death / 軟結局 =====
     bool TrySoftEnding()
     {
-        // 低於門檻就觸發；HP ≤ 0 或 Sanity ≤ 0 為強制觸發
         if (stats.hp <= 0 || stats.hp < lowHpThreshold)
             return TriggerSoftEnd(softEndLowHP, "你眼前一黑，被拖回了陰影裡……");
-
         if (stats.sanity <= lowSanityThreshold)
             return TriggerSoftEnd(softEndLowSanity, "你抱住頭，喃喃自語；世界的邊緣開始溶解。");
-
         return false;
     }
 
     bool TriggerSoftEnd(DolEventAsset softAsset, string fallbackText)
     {
-        // 1) 若有指定軟結局事件，直接播放該事件
         if (softAsset != null && softAsset.stages != null && softAsset.stages.Count > 0)
         {
             runningEvent = softAsset;
             runningStage = 0;
             ShowStage();
-
-            // 在軟結局事件「最後一頁 endEvent」後，做恢復 → 安全地點/抽事件
-            // 做法：在 EndEvent 之後立刻恢復與傳送
-            SpawnChoice("……", () => {}); // 保底：不會顯示；僅確保場景穩定
+            SpawnChoice("……", () => {}); // 保底
         }
         else
         {
-            // 2) 沒資產就直接顯示一句話 + 恢復 + 跳轉
             Tip(fallbackText);
             ApplySoftRecoveryAndRelocate();
             return true;
         }
-
-        // 讓玩家點完軟結局事件後也能恢復與跳轉：
-        // 簡單做法：在下一幀排程
         DelayedSoftRecoverAndRelocate();
-
         return true;
     }
 
     void ApplySoftRecoveryAndRelocate()
     {
-        // 恢復
         stats.hp = Mathf.Max(stats.hp, recoverHP);
         stats.sanity = Mathf.Max(stats.sanity, recoverSanity);
         stats.hunger = Mathf.Clamp(stats.hunger + reduceHunger, 0, 100);
         stats.thirst = Mathf.Clamp(stats.thirst + reduceThirst, 0, 100);
         stats.fatigue = Mathf.Clamp(stats.fatigue + reduceFatigue, 0, 100);
-
-        // 最低保護（No-Death）
         if (stats.hp < 1) stats.hp = 1;
-
         UpdateAllStatUI();
 
-        // 傳送或抽下一個事件
-        if (safeCaseAfterSoftEnd != CaseId.None)
-            EnterCase(safeCaseAfterSoftEnd);
-        else
-            RollAndStartEvent();
+        if (safeCaseAfterSoftEnd != CaseId.None) EnterCase(safeCaseAfterSoftEnd);
+        else RollAndStartEvent();
     }
 
     async void DelayedSoftRecoverAndRelocate()
     {
-        // 粗暴一點：等 0.1 秒（確保 UI/事件切換完）
         await System.Threading.Tasks.Task.Delay(100);
         ApplySoftRecoveryAndRelocate();
     }
 
-    // ===== UI 產生 =====
+    // ===== 舊的 Spawn/Clear（保留給軟結局等簡單用） =====
     void SpawnChoice(string text, System.Action action)
     {
         if (!choiceButtonPrefab || !choiceContainer) return;
@@ -367,6 +375,33 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
+
+    // ===== 戰後回流 =====
+    public void OnCombatWin()    { if (_pendingCombatChoice==null) return; ApplyOutcomeAndGoto(_pendingCombatChoice, CombatOutcome.Win);    _pendingCombatChoice=null; }
+    public void OnCombatLose()   { if (_pendingCombatChoice==null) return; ApplyOutcomeAndGoto(_pendingCombatChoice, CombatOutcome.Lose);   _pendingCombatChoice=null; }
+    public void OnCombatEscape() { if (_pendingCombatChoice==null) return; ApplyOutcomeAndGoto(_pendingCombatChoice, CombatOutcome.Escape); _pendingCombatChoice=null; }
+
+    void ApplyOutcomeAndGoto(DolEventAsset.EventChoice c, CombatOutcome r)
+    {
+        // 1) 數值：只有 Win 才套用這個選項的變更（你也可以照需求改）
+        if (r == CombatOutcome.Win) stats.ApplyChoiceDeltas(c);
+
+        // 2) 旗標
+        if (r==CombatOutcome.Win   && !string.IsNullOrEmpty(c.onWinFlag))  flagStorage.SetFlag(c.onWinFlag);
+        if (r==CombatOutcome.Lose  && !string.IsNullOrEmpty(c.onLoseFlag)) flagStorage.SetFlag(c.onLoseFlag);
+
+        // 3) 回故事面板 + 跳頁
+        combatController?.BackToStory();
+        int next = (r==CombatOutcome.Win) ? c.nextStageOnWin :
+                   (r==CombatOutcome.Lose) ? c.nextStageOnLose : c.nextStageOnEscape;
+
+        if (next >= 0) { runningStage = next; }
+        // HUD/No-Death 檢一次
+        UpdateAllStatUI();
+        if (!(noDeathMode && TrySoftEnding()))
+            ShowStage(); // 重繪目前頁或下一頁
+    }
+
     void Tip(string msg){ if (storyText) storyText.text = msg; if (systemTipText) systemTipText.text = msg; Debug.LogWarning(msg); }
 
     // ===== HUD =====
@@ -386,7 +421,7 @@ public class GameManager : MonoBehaviour
         Set(creditsText, $"Credits {stats.credits}");
         Set(augmentationLoadText, $"AugLoad {stats.augmentationLoad}");
         Set(radiationText, $"Radiation {stats.radiation}");
-        Set(infectionText, $"Infection {stats.infection}"); // ★
+        Set(infectionText, $"Infection {stats.infection}");
         Set(trustText, $"Trust {stats.trust}");
         Set(controlText, $"Control {stats.control}");
     }

@@ -254,5 +254,6 @@ namespace CyberLife.Combat
             if (root != null) foreach (Transform t in root) t.gameObject.SetActive(false);
             panel.SetActive(true);
         }
+        public void BackToStory(){ if (storyPanel) storyPanel.SetActive(true); if (combatPanel) combatPanel.SetActive(false); }
     }
 }

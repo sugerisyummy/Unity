@@ -1,32 +1,65 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using CyberLife.Combat;   // ← 關鍵命名空間
 
-namespace CyberLife.Combat
+public class CombatUIController : MonoBehaviour
 {
-    public class CombatUIController : MonoBehaviour
+    [Header("Refs")]
+    public CombatManager manager;          // 拖到「combat manager」
+    public int allyIndex = 0;
+
+    [Header("Target UI")]
+    public Combatant currentTarget;        // 目前鎖定的敵人
+    public TMP_Text targetLabel;           // 顯示目標名(可留空)
+
+    void Awake()
     {
-        public CombatManager manager;
-        public int allyIndex = 0;              // 先用第0位玩家
-        public Combatant currentTarget;
-        public TMP_Text targetLabel;           // 可選：顯示鎖定對象名字
+        if (manager == null) manager = FindObjectOfType<CombatManager>();
+        RefreshButtons();
+    }
 
-        public void SelectTarget(Combatant target)
-        {
-            currentTarget = target;
-            if (targetLabel) targetLabel.text = target ? target.displayName : "-";
-        }
+    // 舊按鈕相容：點敵人並自動攻擊（無指定部位）
+    public void AttackAuto(Combatant enemy)
+    {
+        SetTarget(enemy);
+        AttackAuto(); // 走無參數版本
+    }
 
-        public void AttackAuto()
-        {
-            if (currentTarget == null || manager == null) return;
-            manager.PlayerAttackTarget(currentTarget); // 用武器權重自選群組
-        }
+    // 舊按鈕相容：以 currentTarget 自動攻擊（無指定部位）
+    public void AttackAuto()
+    {
+        if (manager == null || currentTarget == null) return;
+        manager.PlayerAttackTarget(currentTarget);
+    }
 
-        public void AttackWithGroup(int groupIndex)
-        {
-            if (currentTarget == null || manager == null) return;
-            groupIndex = Mathf.Clamp(groupIndex, 0, 5);
-            manager.PlayerAttackTargetWithGroup(currentTarget, (HitGroup)groupIndex);
-        }
+    // 讓敵人按鈕/點模型時切目標
+    public void SelectTarget(Combatant enemy) => SetTarget(enemy);
+
+    public void SetTarget(Combatant enemy)
+    {
+        currentTarget = enemy;
+        if (targetLabel) targetLabel.text = enemy ? enemy.name : "-";
+        RefreshButtons();
+    }
+
+    // 六顆群組按鈕綁這個（0~5）
+    public void HitGroupButton(int groupIndex)
+    {
+        if (manager == null || currentTarget == null) return;
+
+        HitGroup group = HitGroup.Torso;
+        if (System.Enum.IsDefined(typeof(HitGroup), groupIndex))
+            group = (HitGroup)groupIndex;
+
+        manager.PlayerAttackTargetWithGroup(currentTarget, group);
+    }
+
+    // 沒選目標時鎖住六顆按鈕
+    void RefreshButtons()
+    {
+        bool on = (manager != null && currentTarget != null);
+        foreach (var b in GetComponentsInChildren<Button>(true))
+            if (b.name.StartsWith("ChoiceButton")) b.interactable = on;
     }
 }
