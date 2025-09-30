@@ -50,8 +50,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4107232d8f8584fa07298b7d4039f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: Unit
-  parts: []
+  displayName: BUG
+  parts:
+  - id: 0
+    tag: 0
+    maxHP: 12
+    hp: 12
   inventory: {fileID: 8089755071949413202}
   effects: []
 --- !u!114 &8089755071949413202
@@ -82,3 +86,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui: {fileID: 0}
   enemy: {fileID: 8963068887345489224}
+  bindExistingButton: 1

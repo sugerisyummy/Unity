@@ -1,259 +1,219 @@
-using UnityEngine;
-using UnityEngine.Events;
-using System.Collections.Generic;
+
+// Copyright (c) 2025
+// CombatPageController — No-Prefab version
+// Spawns enemy UI purely from EnemyDefinition (portrait + stats + body preset).
+
+using System;
+using System.Collections;
 using System.Reflection;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace CyberLife.Combat
 {
-    /// 戰鬥＝獨立面板（支援事件決定敵人數量/Prefab/Encounter 資產）
     public class CombatPageController : MonoBehaviour
     {
         [Header("Panels")]
         public GameObject storyPanel;
         public GameObject combatPanel;
-        [Tooltip("同層面板共同父物件（會把兄弟面板全關，只開目標）。可留空。")]
-        public Transform panelsRoot;
 
-        [Header("Combat (固定方)")]
-        public CombatManager manager;     // CombatPanel/Manager
-        public Combatant player;          // CombatPanel/Player
+        [Header("Refs")]
+        public CombatManager manager;
+        public CombatUIController ui;
+        public RectTransform enemiesRoot;
 
-        [Header("Dynamic Enemies")]
-        public Transform enemiesRoot;         // CombatPanel/Enemys（空物件）
-        public GameObject defaultEnemyPrefab; // 需含 Combatant+InventoryManager+EnemyTargetButton，Tag=Enemy
-        public CombatUIController ui;         // CombatUI（給 EnemyTargetButton 指回來）
+        [Header("Optional")]
+        [Tooltip("If set (and defined in Project Settings → Tags), it will be assigned to spawned enemies. Leave empty to skip.")]
+        public string enemyTag = "";
 
-        [Header("Result hooks")]
-        public UnityEvent onWin;
-        public UnityEvent onLose;
-        public UnityEvent onSpecial;          // 之後接 SpecialCondition 再用
+        [Header("Legacy Buttons")]
+        public CombatEncounter defaultEncounterForButtons;
 
-        bool running;
-        readonly List<GameObject> spawned = new();
-
-        // ====== 三個入口（事件可直接呼叫）======
-        public void StartCombatWithCount(int count)
+        // Entry points -----------------------
+        public void StartCombatWithEncounter(CombatEncounter encounterAsset)
         {
-            if (!CheckFixedRefs()) return;
-            ClearSpawned();
-            SpawnByCount(count);
-            BeginWithCurrent();
-        }
+            Debug.Log($"[CPC] StartCombatWithEncounter {encounterAsset}");
+            if (!encounterAsset) { Debug.LogWarning("[CPC] EncounterAsset is null."); return; }
 
-        public void StartCombatWithPrefabs(GameObject[] prefabs)
-        {
-            if (!CheckFixedRefs()) return;
-            ClearSpawned();
-            SpawnByPrefabs(prefabs);
-            BeginWithCurrent();
-        }
+            if (storyPanel) storyPanel.SetActive(false);
+            if (combatPanel) combatPanel.SetActive(true);
 
-        public void StartCombatWithEncounter(ScriptableObject encounterAsset)
-        {
-            if (!CheckFixedRefs()) return;
-            ClearSpawned();
-            SpawnByEncounterAsset(encounterAsset);
-            BeginWithCurrent();
-        }
-
-        // 舊版保留：若你先前已經綁這個
-        public void StartCombat()
-        {
-            if (!CheckFixedRefs()) return;
-            BeginWithCurrent();
-        }
-
-        void BeginWithCurrent()
-        {
-            ShowOnly(combatPanel);
-
-            var allyList  = new List<Combatant> { player };
-            var enemyList = CollectEnemies();
-
-            if (enemyList.Count == 0)
+            // clear previous
+            if (enemiesRoot)
             {
-                Debug.LogError("[CombatPageController] 沒有敵人可打。");
+                for (int i = enemiesRoot.childCount - 1; i >= 0; i--)
+                    Destroy(enemiesRoot.GetChild(i).gameObject);
+            }
+
+            if (ui) ui.SelectTarget(null); // hide groups
+
+            SpawnByEncounterAsset(encounterAsset);
+        }
+
+        public void StartCombat() => StartCombatWithEncounter(defaultEncounterForButtons);
+        public void StartCombatWithCount(int count) => StartCombatWithEncounter(defaultEncounterForButtons);
+
+        public void BackToStory()
+        {
+            if (combatPanel) combatPanel.SetActive(false);
+            if (storyPanel) storyPanel.SetActive(true);
+        }
+
+        // Spawning ---------------------------
+        private void SpawnByEncounterAsset(object enc)
+        {
+            if (enc == null) { Debug.LogWarning("[CPC] Encounter is null"); return; }
+
+            var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+
+            // 1) enemies: EnemyDefinition[] / List<EnemyDefinition>
+            var enemiesField = enc.GetType().GetField("enemies", flags);
+            if (enemiesField != null)
+            {
+                var val = enemiesField.GetValue(enc);
+                if (val is EnemyDefinition[] arr)
+                {
+                    foreach (var def in arr) if (def) SpawnOne(def);
+                    Debug.Log($"[CPC] Spawned {arr.Length} by enemies[]");
+                    return;
+                }
+                if (val is System.Collections.IList list)
+                {
+                    int c = 0;
+                    foreach (var it in list) { if (it is EnemyDefinition d && d) { SpawnOne(d); c++; } }
+                    Debug.Log($"[CPC] Spawned {c} by enemies[List]");
+                    return;
+                }
+            }
+
+            // 2) slots/entries with {def,count}
+            var slotsField = enc.GetType().GetField("slots", flags)
+                           ?? enc.GetType().GetField("entries", flags)
+                           ?? enc.GetType().GetField("list", flags);
+            if (slotsField != null)
+            {
+                int total = 0;
+                if (slotsField.GetValue(enc) is IEnumerable slots)
+                {
+                    foreach (var s in slots)
+                    {
+                        var t = s.GetType();
+                        var defF = t.GetField("def", flags) ?? t.GetField("enemy", flags) ?? t.GetField("definition", flags);
+                        var cntF = t.GetField("count", flags) ?? t.GetField("qty", flags) ?? t.GetField("amount", flags);
+                        var def  = defF?.GetValue(s) as EnemyDefinition;
+                        int count = 1;
+                        if (cntF != null)
+                        {
+                            try { count = Convert.ToInt32(cntF.GetValue(s)); } catch { count = 1; }
+                            if (count < 1) count = 1;
+                        }
+                        for (int i = 0; i < count; i++) if (def) { SpawnOne(def); total++; }
+                    }
+                }
+                Debug.Log($"[CPC] Spawned {total} by slots/entries");
                 return;
             }
 
-            manager.BeginCombat(allyList, enemyList);
-            running = true;
+            Debug.LogWarning("[CPC] Unsupported CombatEncounter layout.");
         }
 
-        void Update()
+        private void ApplyOptionalTag(GameObject go)
         {
-            if (!running || manager == null) return;
-            if (!manager.finalOutcome.HasValue) return;
-
-            var outcome = manager.finalOutcome.Value;
-            switch (outcome)
+            if (!string.IsNullOrEmpty(enemyTag))
             {
-                case CombatOutcome.Win:    onWin?.Invoke();  break;
-                case CombatOutcome.Lose:   onLose?.Invoke(); break;
-                case CombatOutcome.Escape: onLose?.Invoke(); break; // 先歸類 Lose
-            }
-
-            ShowOnly(storyPanel);
-            running = false;
-            manager.finalOutcome = null;
-            manager.isActiveCombat = false;
-        }
-
-        // ---------- 產生器 ----------
-
-        void SpawnByCount(int count)
-        {
-            count = Mathf.Max(1, count);
-            for (int i = 0; i < count; i++)
-                SpawnOne(defaultEnemyPrefab, $"Enemy_{i+1}");
-        }
-
-        void SpawnByPrefabs(GameObject[] prefabs)
-        {
-            if (prefabs == null || prefabs.Length == 0) return;
-            for (int i = 0; i < prefabs.Length; i++)
-            {
-                var p = prefabs[i] ? prefabs[i] : defaultEnemyPrefab;
-                SpawnOne(p, p ? p.name : $"Enemy_{i+1}");
+                try { go.tag = enemyTag; } catch { /* if tag missing, ignore */ }
             }
         }
 
-        /// 嘗試讀取 Encounter（常見欄位：list/slots/enemies；每格含 def/definition/enemy 或 prefab + count）
-        void SpawnByEncounterAsset(ScriptableObject enc)
+        private void SetIntMember(object obj, string[] names, int value)
         {
-            if (enc == null) return;
-
-            var t = enc.GetType();
-            FieldInfo listF = null;
-            foreach (var f in t.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+            foreach (var n in names)
             {
-                if (typeof(System.Collections.IEnumerable).IsAssignableFrom(f.FieldType) && f.FieldType != typeof(string))
-                { listF = f; break; }
-            }
-            if (listF == null) { Debug.LogWarning("[CombatPageController] Encounter 沒有可枚舉欄位。"); return; }
-
-            var listObj = listF.GetValue(enc) as System.Collections.IEnumerable;
-            if (listObj == null) return;
-
-            foreach (var slot in listObj)
-            {
-                if (slot == null) continue;
-                var st = slot.GetType();
-
-                // count
-                int count = 1;
-                var cf = st.GetField("count", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                if (cf != null && cf.FieldType == typeof(int)) count = Mathf.Max(1, (int)cf.GetValue(slot));
-
-                // prefab or def
-                GameObject prefab = null;
-                var pf = st.GetField("prefab", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                if (pf != null && typeof(GameObject).IsAssignableFrom(pf.FieldType))
-                    prefab = (GameObject)pf.GetValue(slot);
-
-                object def = null;
-                if (prefab == null)
-                {
-                    var df = st.GetField("def", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                          ?? st.GetField("definition", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                          ?? st.GetField("enemy", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                    if (df != null) def = df.GetValue(slot);
-                }
-
-                for (int i = 0; i < count; i++)
-                {
-                    var go = SpawnOne(prefab, null);
-                    if (def != null) TryApplyEnemyDefinition(go, def);
-                }
+                var f = obj.GetType().GetField(n, flags);
+                if (f != null && f.FieldType == typeof(int)) { f.SetValue(obj, value); return; }
+                var p = obj.GetType().GetProperty(n, flags);
+                if (p != null && p.CanWrite && p.PropertyType == typeof(int)) { p.SetValue(obj, value, null); return; }
             }
         }
 
-        GameObject SpawnOne(GameObject prefab, string overrideName)
+        private void BindEnemyTargetButton(Component etb, Combatant c)
         {
-            if (enemiesRoot == null) enemiesRoot = combatPanel ? combatPanel.transform : null;
-            if (prefab == null) prefab = defaultEnemyPrefab;
+            if (!etb) return;
+            var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+            var t = etb.GetType();
 
-            var go = Instantiate(prefab, enemiesRoot);
-            if (!string.IsNullOrEmpty(overrideName)) go.name = overrideName;
+            // ui
+            var uiField = t.GetField("ui", flags) ?? t.GetField("controller", flags) ?? t.GetField("combatUI", flags);
+            if (uiField != null) uiField.SetValue(etb, ui);
+            else
+            {
+                var uiProp = t.GetProperty("ui", flags) ?? t.GetProperty("controller", flags) ?? t.GetProperty("combatUI", flags);
+                if (uiProp != null && uiProp.CanWrite) uiProp.SetValue(etb, ui, null);
+            }
+            // owner/target
+            var ownField = t.GetField("enemy", flags) ?? t.GetField("owner", flags) ?? t.GetField("target", flags) ?? t.GetField("combatant", flags);
+            if (ownField != null) ownField.SetValue(etb, c);
+            else
+            {
+                var ownProp = t.GetProperty("enemy", flags) ?? t.GetProperty("owner", flags) ?? t.GetProperty("target", flags) ?? t.GetProperty("combatant", flags);
+                if (ownProp != null && ownProp.CanWrite) ownProp.SetValue(etb, c, null);
+            }
+        }
 
+        private void SpawnOne(EnemyDefinition def)
+        {
+            if (!def || !enemiesRoot) return;
+
+            // Create UI object
+            var go = new GameObject($"Enemy_{(string.IsNullOrEmpty(def.enemyName) ? def.name : def.enemyName)}",
+                                    typeof(RectTransform),
+                                    typeof(CanvasRenderer),
+                                    typeof(Image),
+                                    typeof(Button),
+                                    typeof(Combatant),
+                                    typeof(EnemyTargetButton));
+            var rt = go.GetComponent<RectTransform>();
+            rt.SetParent(enemiesRoot, false);
+
+            // size: follow grid if any, else 128x128
+            var grid = enemiesRoot.GetComponent<GridLayoutGroup>();
+            if (grid) rt.sizeDelta = grid.cellSize;
+            else rt.sizeDelta = new Vector2(128, 128);
+
+            ApplyOptionalTag(go);
+
+            // Portrait
+            var img = go.GetComponent<Image>();
+            img.sprite = def.portrait;
+            img.preserveAspect = true;
+            img.raycastTarget = true;
+
+            // Button
+            var btn = go.GetComponent<Button>();
+            btn.targetGraphic = img;
+
+            // Combatant stats
             var c = go.GetComponent<Combatant>();
-            if (c != null && string.IsNullOrEmpty(c.displayName)) c.displayName = go.name;
-            go.tag = "Enemy";
-
-            var btn = go.GetComponent<EnemyTargetButton>();
-            if (btn != null) { btn.ui = ui; if (btn.enemy == null) btn.enemy = c; }
-
-            spawned.Add(go);
-            return go;
-        }
-
-        void TryApplyEnemyDefinition(GameObject go, object def)
-        {
-            if (go == null || def == null) return;
-            var c = go.GetComponent<Combatant>();
-            var inv = go.GetComponent<InventoryManager>();
-            if (inv == null) return;
-
-            var dt = def.GetType();
-
-            // displayName
-            var nameF = dt.GetField("displayName") ?? dt.GetField("name");
-            if (nameF != null && c != null)
+            if (c)
             {
-                var n = nameF.GetValue(def) as string;
-                if (!string.IsNullOrEmpty(n)) { c.displayName = n; go.name = n; }
+                int m = Mathf.Max(1, def.maxHP);
+                SetIntMember(c, new[] { "maxHP", "MaxHP" }, m);
+                SetIntMember(c, new[] { "hp", "HP", "currentHP" }, m);
+                SetIntMember(c, new[] { "attack", "Attack" }, def.attack);
+                SetIntMember(c, new[] { "defense", "Defense" }, def.defense);
+                SetIntMember(c, new[] { "speed", "Speed" }, def.speed);
+                if (def.bodyPreset) c.ApplyBodyPreset(def.bodyPreset);
             }
 
-            // weapon / armor
-            var wf = dt.GetField("weapon") ?? dt.GetField("weaponDef");
-            if (wf != null && wf.GetValue(def) is WeaponDef w) inv.primaryWeapon = w;
+            // EnemyTargetButton binding
+            var etb = go.GetComponent<EnemyTargetButton>();
+            BindEnemyTargetButton(etb, c);
 
-            var af = dt.GetField("armor") ?? dt.GetField("armorDef");
-            if (af != null && af.GetValue(def) is ArmorDef a) inv.armor = a;
+            // Fallback click → select target
+            if (ui) btn.onClick.AddListener(() => ui.SelectTarget(c));
+
+            Debug.Log($"[CPC] SpawnOne(no-prefab) -> {go.name}");
         }
-
-        List<Combatant> CollectEnemies()
-        {
-            var list = new List<Combatant>();
-            if (enemiesRoot == null) return list;
-            foreach (Transform t in enemiesRoot)
-            {
-                var c = t.GetComponent<Combatant>();
-                if (c != null) list.Add(c);
-            }
-            return list;
-        }
-
-        void ClearSpawned()
-        {
-            foreach (var go in spawned) if (go) Destroy(go);
-            spawned.Clear();
-        }
-
-        bool CheckFixedRefs()
-        {
-            if (combatPanel == null || storyPanel == null)
-            { Debug.LogError("[CombatPageController] storyPanel/combatPanel 未設定"); return false; }
-
-            if (manager == null) manager = combatPanel ? combatPanel.GetComponentInChildren<CombatManager>(true) : null;
-            if (player == null)  player  = combatPanel ? combatPanel.GetComponentInChildren<Combatant>(true) : null;
-
-            if (enemiesRoot == null)
-            { Debug.LogError("[CombatPageController] 請把 enemiesRoot 指到 CombatPanel/Enemys"); return false; }
-
-            if (defaultEnemyPrefab == null)
-            { Debug.LogError("[CombatPageController] 請指定 defaultEnemyPrefab"); return false; }
-
-            return true;
-        }
-
-        void ShowOnly(GameObject panel)
-        {
-            if (panel == null) return;
-            Transform root = panelsRoot != null ? panelsRoot : panel.transform.parent;
-            if (root != null) foreach (Transform t in root) t.gameObject.SetActive(false);
-            panel.SetActive(true);
-        }
-        public void BackToStory(){ if (storyPanel) storyPanel.SetActive(true); if (combatPanel) combatPanel.SetActive(false); }
     }
 }

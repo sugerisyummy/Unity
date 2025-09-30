@@ -1,65 +1,72 @@
+
+// Copyright (c) 2025
+// Patched by ChatGPT — groupsPanel hidden by default, shown on SelectTarget(),
+// and hidden again after an attack. Also keeps simple HitGroupButton API.
+// Now casts int -> HitGroup enum to match manager API signatures.
+
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using CyberLife.Combat;   // ← 關鍵命名空間
 
-public class CombatUIController : MonoBehaviour
+namespace CyberLife.Combat
 {
-    [Header("Refs")]
-    public CombatManager manager;          // 拖到「combat manager」
-    public int allyIndex = 0;
-
-    [Header("Target UI")]
-    public Combatant currentTarget;        // 目前鎖定的敵人
-    public TMP_Text targetLabel;           // 顯示目標名(可留空)
-
-    void Awake()
+    public class CombatUIController : MonoBehaviour
     {
-        if (manager == null) manager = FindObjectOfType<CombatManager>();
-        RefreshButtons();
-    }
+        public CombatManager manager;
+        public GameObject groupsPanel;      // parent of 6 hit-group buttons
+        public Combatant currentTarget;
 
-    // 舊按鈕相容：點敵人並自動攻擊（無指定部位）
-    public void AttackAuto(Combatant enemy)
-    {
-        SetTarget(enemy);
-        AttackAuto(); // 走無參數版本
-    }
+        private void Start()
+        {
+            if (groupsPanel) groupsPanel.SetActive(false); // hide on start
+        }
 
-    // 舊按鈕相容：以 currentTarget 自動攻擊（無指定部位）
-    public void AttackAuto()
-    {
-        if (manager == null || currentTarget == null) return;
-        manager.PlayerAttackTarget(currentTarget);
-    }
+        public void SetTarget(Combatant t) => SelectTarget(t);
 
-    // 讓敵人按鈕/點模型時切目標
-    public void SelectTarget(Combatant enemy) => SetTarget(enemy);
+        public void SelectTarget(Combatant t)
+        {
+            currentTarget = t;
+            if (groupsPanel) groupsPanel.SetActive(t != null);
+            RefreshButtons();
+        }
 
-    public void SetTarget(Combatant enemy)
-    {
-        currentTarget = enemy;
-        if (targetLabel) targetLabel.text = enemy ? enemy.name : "-";
-        RefreshButtons();
-    }
+        public void HitGroupButton(int groupIndex)
+        {
+            if (!currentTarget || manager == null) return;
+            manager.PlayerAttackTargetWithGroup(currentTarget, (HitGroup)groupIndex);
 
-    // 六顆群組按鈕綁這個（0~5）
-    public void HitGroupButton(int groupIndex)
-    {
-        if (manager == null || currentTarget == null) return;
+            // After attack: hide and clear selection
+            currentTarget = null;
+            if (groupsPanel) groupsPanel.SetActive(false);
+            RefreshButtons();
+        }
 
-        HitGroup group = HitGroup.Torso;
-        if (System.Enum.IsDefined(typeof(HitGroup), groupIndex))
-            group = (HitGroup)groupIndex;
+        // For compatibility with some existing calls
+        public void AttackAuto()
+        {
+            if (!currentTarget || manager == null) return;
+            manager.PlayerAttackTarget(currentTarget);
+            currentTarget = null;
+            if (groupsPanel) groupsPanel.SetActive(false);
+            RefreshButtons();
+        }
 
-        manager.PlayerAttackTargetWithGroup(currentTarget, group);
-    }
+        public void AttackAuto(Combatant enemy)
+        {
+            if (enemy == null || manager == null) return;
+            manager.PlayerAttackTarget(enemy);
+            currentTarget = null;
+            if (groupsPanel) groupsPanel.SetActive(false);
+            RefreshButtons();
+        }
 
-    // 沒選目標時鎖住六顆按鈕
-    void RefreshButtons()
-    {
-        bool on = (manager != null && currentTarget != null);
-        foreach (var b in GetComponentsInChildren<Button>(true))
-            if (b.name.StartsWith("ChoiceButton")) b.interactable = on;
+        public void HitGroupOnEnemy(Combatant owner, int groupIndex)
+        {
+            SelectTarget(owner);
+            HitGroupButton(groupIndex);
+        }
+
+        public void RefreshButtons()
+        {
+            // hook for enabling/disabling buttons if needed later
+        }
     }
 }

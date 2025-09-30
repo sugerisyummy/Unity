@@ -1,16 +1,34 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace CyberLife.Combat
 {
-    public class EnemyTargetButton : MonoBehaviour
+    [RequireComponent(typeof(RectTransform))]
+    public class EnemyTargetButton : MonoBehaviour, IPointerClickHandler
     {
         public CombatUIController ui;
         public Combatant enemy;
+        public bool bindExistingButton = true;
 
-        // 給 Button 的 OnClick 用：只鎖定
-        public void Focus() { ui?.SelectTarget(enemy); }
+        void Awake()
+        {
+            if (ui == null) ui = FindObjectOfType<CombatUIController>();
+            if (enemy == null) enemy = GetComponent<Combatant>();
 
-        // 如果你想點一下就直接打：把 Button 綁這個
-        public void FocusAndAttack() { if (ui==null || enemy==null) return; ui.SelectTarget(enemy); ui.AttackAuto(); }
+            if (bindExistingButton)
+            {
+                var btn = GetComponent<Button>();
+                if (btn != null)
+                {
+                    btn.onClick.RemoveListener(OnClickProxy);
+                    btn.onClick.AddListener(OnClickProxy);
+                }
+            }
+        }
+
+        void OnClickProxy() { if (ui && enemy) ui.SelectTarget(enemy); }
+
+        public void OnPointerClick(PointerEventData eventData) => OnClickProxy();
     }
 }

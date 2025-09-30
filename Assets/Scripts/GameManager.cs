@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
             if (!ev.ConditionsMet(stats.hp, flagStorage.HasFlag)) continue;
             if (ev.oncePerSave && flagStorage.IsConsumed(ev)) continue;
             if (flagStorage.IsOnCooldown(ev, ev.cooldownSeconds)) continue;
-            float w = (e.weightOverride >= 0f) ? e.weightOverride : Mathf.Max(0f, ev.weight);
+            float w = (e.weightOverride > 0f) ? e.weightOverride : Mathf.Max(0f, ev.weight);
             if (w <= 0f) continue;
             candidates.Add((ev, w));
         }
@@ -225,60 +225,43 @@ public class GameManager : MonoBehaviour
     }
 
     void WireChoice(DolEventAsset.EventChoice ch)
+{
+    // 建立按鈕
+    if (!choiceButtonPrefab || !choiceContainer) return;
+    var btn = Instantiate(choiceButtonPrefab, choiceContainer);
+    var label = btn.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+    if (label) label.text = ch.text;
+    btn.onClick.RemoveAllListeners();
+    choiceContainer.gameObject.SetActive(true);
+
+    // --- Choice Button wiring（固定版）---
+    if (ch.startsCombat && ch.combat != null)
     {
-        // 建立按鈕
-        if (!choiceButtonPrefab || !choiceContainer) return;
-        var btn = Instantiate(choiceButtonPrefab, choiceContainer);
-        var label = btn.GetComponentInChildren<TextMeshProUGUI>();
-        if (label) label.text = ch.text;
-        btn.onClick.RemoveAllListeners();
-        choiceContainer.gameObject.SetActive(true);
-
-        // 若是開戰選項 → 只開戰（不在當下結算）
-        if (ch.startsCombat && ch.combat != null)
-        {
-            btn.onClick.AddListener(() =>
-            {
-                _pendingCombatChoice = ch;
-                combatController.StartCombatWithEncounter(ch.combat);
-            });
-            return;
-        }
-
-        // 一般選項 → 立即結算（維持原本行為）
+        Debug.Log($"[GM] StartCombat with {ch.combat?.name}");
         btn.onClick.AddListener(() =>
         {
-            // 1) 數值
+            _pendingCombatChoice = ch;
+            combatController.StartCombatWithEncounter(ch.combat);
+        });
+    }
+    else
+    {
+        // 一般選項 → 立即結算
+        btn.onClick.AddListener(() =>
+        {
             stats.ApplyChoiceDeltas(ch);
 
-            // 2) 旗標
-            foreach (var f in ch.setFlagsTrue)  if (!string.IsNullOrEmpty(f)) flagStorage.SetFlag(f);
-            foreach (var f in ch.setFlagsFalse) if (!string.IsNullOrEmpty(f)) flagStorage.ClearFlag(f);
+            // 轉到指定 nextStage，或預設前進一頁
+            if (ch.nextStage >= 0 && runningEvent != null && runningEvent.stages != null)
+                runningStage = Mathf.Clamp(ch.nextStage, 0, runningEvent.stages.Count - 1);
+            else
+                runningStage += 1;
 
-            // 3) No-Death 檢查（可能轉入軟結局）
-            if (noDeathMode && TrySoftEnding()) return;
-
-            // 4) HUD
-            UpdateAllStatUI();
-
-            // 5) 跳轉
-            if (ch.nextStage >= 0)
-            {
-                runningStage = ch.nextStage;
-                ShowStage();
-                return;
-            }
-            if (ch.endEvent)
-            {
-                var goOther = ch.gotoCaseAfterEnd && ch.gotoCase != CaseId.None;
-                EndEvent();
-                if (goOther) EnterCase(ch.gotoCase);
-                else RollAndStartEvent();
-                return;
-            }
             ShowStage();
         });
     }
+    // --- end ---
+}
 
     void EndEvent(){ runningEvent = null; runningStage = -1; }
 
@@ -370,7 +353,7 @@ public class GameManager : MonoBehaviour
             if (!ev.ConditionsMet(stats.hp, flagStorage.HasFlag)) continue;
             if (ev.oncePerSave && flagStorage.IsConsumed(ev)) continue;
             if (flagStorage.IsOnCooldown(ev, ev.cooldownSeconds)) continue;
-            float w = (e.weightOverride >= 0f) ? e.weightOverride : Mathf.Max(0f, ev.weight);
+            float w = (e.weightOverride > 0f) ? e.weightOverride : Mathf.Max(0f, ev.weight);
             if (w > 0f) return true;
         }
         return false;

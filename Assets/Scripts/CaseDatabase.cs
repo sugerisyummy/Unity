@@ -12,12 +12,12 @@ public class CaseDatabase : ScriptableObject
         public List<EventEntry> events = new();
     }
 
-    [System.Serializable]
-    public class EventEntry
-    {
-        public DolEventAsset evt;
-        [Min(0f)] public float weightOverride = -1f; // <0 使用事件內 weight
-    }
+[System.Serializable] public class EventEntry {
+    public DolEventAsset evt;
+    // 改掉 Min(0f)；讓 -1 成為「沿用事件 weight」
+    [Tooltip("-1=沿用事件的 Weight；>0=覆蓋")] 
+    public float weightOverride = -1f;
+}
 
     public List<CaseEntry> cases = new();
 
