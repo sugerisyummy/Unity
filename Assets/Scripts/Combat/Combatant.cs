@@ -1,4 +1,4 @@
-// Auto-generated replacement by ChatGPT (Combatant)
+
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace CyberLife.Combat
         {
             get
             {
-                // Alive if any torso HP > 0 and we still have any non-destroyed vital/torso/head
+                // Alive if any torso HP > 0 and head未全部破壞
                 bool torsoAlive = parts.Any(p => p.tag == BodyTag.Torso && !p.Destroyed);
                 bool headDestroyed = parts.Where(p => p.tag == BodyTag.Head).All(p => p.Destroyed);
                 return torsoAlive && !headDestroyed;
@@ -34,30 +34,35 @@ namespace CyberLife.Combat
         public void EnsureDefaultBody()
         {
             if (parts != null && parts.Count > 0) return;
-            // Minimal 22-ish model approximated into buckets
+
+            // 22 部位粗分到 6 群（Left/Right Arm/Leg、Head、Torso，其餘 vital 歸 Torso）
             parts = new List<BodyPartState>{
                 new BodyPartState("Head", BodyTag.Head, 15),
-                new BodyPartState("Neck", BodyTag.Vital, 8),
+                new BodyPartState("Neck", BodyTag.Torso, 8),
                 new BodyPartState("Chest", BodyTag.Torso, 30),
                 new BodyPartState("Abdomen", BodyTag.Torso, 25),
-                new BodyPartState("LeftArm", BodyTag.Arm, 15),
-                new BodyPartState("RightArm", BodyTag.Arm, 15),
-                new BodyPartState("LeftForearm", BodyTag.Arm, 12),
-                new BodyPartState("RightForearm", BodyTag.Arm, 12),
-                new BodyPartState("LeftHand", BodyTag.Arm, 8),
-                new BodyPartState("RightHand", BodyTag.Arm, 8),
-                new BodyPartState("LeftThigh", BodyTag.Leg, 18),
-                new BodyPartState("RightThigh", BodyTag.Leg, 18),
-                new BodyPartState("LeftCalf", BodyTag.Leg, 14),
-                new BodyPartState("RightCalf", BodyTag.Leg, 14),
-                new BodyPartState("LeftFoot", BodyTag.Leg, 8),
-                new BodyPartState("RightFoot", BodyTag.Leg, 8),
-                new BodyPartState("Heart", BodyTag.Vital, 10),
-                new BodyPartState("LungL", BodyTag.Vital, 10),
-                new BodyPartState("LungR", BodyTag.Vital, 10),
-                new BodyPartState("Liver", BodyTag.Vital, 9),
-                new BodyPartState("Stomach", BodyTag.Vital, 9),
-                new BodyPartState("Spine", BodyTag.Vital, 12),
+
+                new BodyPartState("LeftArm", BodyTag.LeftArm, 15),
+                new BodyPartState("RightArm", BodyTag.RightArm, 15),
+                new BodyPartState("LeftForearm", BodyTag.LeftArm, 12),
+                new BodyPartState("RightForearm", BodyTag.RightArm, 12),
+                new BodyPartState("LeftHand", BodyTag.LeftArm, 8),
+                new BodyPartState("RightHand", BodyTag.RightArm, 8),
+
+                new BodyPartState("LeftThigh", BodyTag.LeftLeg, 18),
+                new BodyPartState("RightThigh", BodyTag.RightLeg, 18),
+                new BodyPartState("LeftCalf", BodyTag.LeftLeg, 14),
+                new BodyPartState("RightCalf", BodyTag.RightLeg, 14),
+                new BodyPartState("LeftFoot", BodyTag.LeftLeg, 8),
+                new BodyPartState("RightFoot", BodyTag.RightLeg, 8),
+
+                // 內臟 → 歸 Torso（命中以 Torso 群處理）
+                new BodyPartState("Heart", BodyTag.Torso, 10),
+                new BodyPartState("LungL", BodyTag.Torso, 10),
+                new BodyPartState("LungR", BodyTag.Torso, 10),
+                new BodyPartState("Liver", BodyTag.Torso, 9),
+                new BodyPartState("Stomach", BodyTag.Torso, 9),
+                new BodyPartState("Spine", BodyTag.Torso, 12),
             };
         }
 

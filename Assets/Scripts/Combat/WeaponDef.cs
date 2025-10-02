@@ -1,4 +1,4 @@
-// Auto-generated replacement by ChatGPT (Weapon definition)
+
 using UnityEngine;
 
 namespace CyberLife.Combat
@@ -14,8 +14,8 @@ namespace CyberLife.Combat
         [Min(1f)] public float critMultiplier = 1.5f;
 
         [Header("Targeting Weights (6 groups, normalized at runtime)")]
-        [Tooltip("Order: Head, Torso, Arms, Legs, Vital, Misc")]
-        public float[] groupWeights = new float[] { 1, 4, 2, 2, 1, 0.5f };
+        [Tooltip("Order: Head, Torso, LeftArm, RightArm, LeftLeg, RightLeg")]
+        public float[] groupWeights = new float[] { 1, 4, 2, 2, 1, 1.2f };
 
         public float RollDamage(System.Random rng)
         {
@@ -28,7 +28,7 @@ namespace CyberLife.Combat
         {
             float[] w = groupWeights != null && groupWeights.Length == 6
                 ? groupWeights
-                : new float[] {1,4,2,2,1,0.5f};
+                : new float[] {1,4,2,2,1,1.2f};
 
             float sum = 0f;
             for (int i=0;i<6;i++) sum += Mathf.Max(0f, w[i]);

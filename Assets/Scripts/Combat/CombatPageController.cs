@@ -29,13 +29,40 @@ namespace CyberLife.Combat
         [Header("Legacy Buttons")]
         public CombatEncounter defaultEncounterForButtons;
 
-        // Entry points -----------------------
+        [Header("Layout")]
+        [Tooltip("Auto-add GridLayoutGroup to enemiesRoot to avoid overlap.")]
+        public bool autoEnsureGrid = true;
+
+        private void EnsureLayout()
+        {
+            if (!enemiesRoot) return;
+            var grid = enemiesRoot.GetComponent<GridLayoutGroup>() ?? enemiesRoot.gameObject.AddComponent<GridLayoutGroup>();
+            // Recommended values for horizontal row of enemies
+            grid.cellSize       = new Vector2(200, 240);
+            grid.spacing        = new Vector2(16, 0);
+            grid.startCorner    = GridLayoutGroup.Corner.UpperLeft;
+            grid.startAxis      = GridLayoutGroup.Axis.Horizontal;
+            grid.childAlignment = TextAnchor.MiddleCenter;
+            grid.constraint     = GridLayoutGroup.Constraint.FixedRowCount;
+            grid.constraintCount= 1;
+        }
+
+
+        
+
+        private void Awake()
+        {
+            if (autoEnsureGrid) EnsureLayout();
+        }
+// Entry points -----------------------
         public void StartCombatWithEncounter(CombatEncounter encounterAsset)
         {
             Debug.Log($"[CPC] StartCombatWithEncounter {encounterAsset}");
             if (!encounterAsset) { Debug.LogWarning("[CPC] EncounterAsset is null."); return; }
 
-            if (storyPanel) storyPanel.SetActive(false);
+            
+            if (autoEnsureGrid) EnsureLayout();
+if (storyPanel) storyPanel.SetActive(false);
             if (combatPanel) combatPanel.SetActive(true);
 
             // clear previous
@@ -172,7 +199,8 @@ namespace CyberLife.Combat
                                     typeof(Image),
                                     typeof(Button),
                                     typeof(Combatant),
-                                    typeof(EnemyTargetButton));
+                                    typeof(EnemyTargetButton),
+                                    typeof(LayoutElement));
             var rt = go.GetComponent<RectTransform>();
             rt.SetParent(enemiesRoot, false);
 
@@ -180,6 +208,12 @@ namespace CyberLife.Combat
             var grid = enemiesRoot.GetComponent<GridLayoutGroup>();
             if (grid) rt.sizeDelta = grid.cellSize;
             else rt.sizeDelta = new Vector2(128, 128);
+
+            // LayoutElement helps Grid measure preferred size
+            var le = go.GetComponent<LayoutElement>();
+            var cs = grid ? grid.cellSize : new Vector2(200,240);
+            le.preferredWidth = cs.x;
+            le.preferredHeight = cs.y;
 
             ApplyOptionalTag(go);
 

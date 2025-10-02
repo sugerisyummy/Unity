@@ -1,4 +1,5 @@
-// Auto-generated replacement by ChatGPT (BodyPartState)
+
+// Patched BodyPartState (aligned with standardized HitGroup/BodyTag)
 using System;
 using UnityEngine;
 
@@ -47,12 +48,13 @@ namespace CyberLife.Combat
         {
             switch (tag)
             {
-                case BodyTag.Head: return HitGroup.Head;
-                case BodyTag.Torso: return HitGroup.Torso;
-                case BodyTag.Arm: return HitGroup.Arms;
-                case BodyTag.Leg: return HitGroup.Legs;
-                case BodyTag.Vital: return HitGroup.Vital;
-                default: return HitGroup.Misc;
+                case BodyTag.Head:     return HitGroup.Head;
+                case BodyTag.Torso:    return HitGroup.Torso;
+                case BodyTag.LeftArm:  return HitGroup.LeftArm;
+                case BodyTag.RightArm: return HitGroup.RightArm;
+                case BodyTag.LeftLeg:  return HitGroup.LeftLeg;
+                case BodyTag.RightLeg: return HitGroup.RightLeg;
+                default:               return HitGroup.Torso; // Misc 預設歸 Torso
             }
         }
     }

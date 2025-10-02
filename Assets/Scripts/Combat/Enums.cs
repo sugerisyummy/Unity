@@ -1,55 +1,78 @@
-// Auto-generated replacement by ChatGPT (Combat core enums)
-using UnityEngine;
+// Enums.cs — unified enums for CyberLife.Combat (with BodyTag aliases)
+// Keep all combat-related enums in one place to avoid "type not found" (CS0246).
 
 namespace CyberLife.Combat
 {
-    public enum DamageType
-    {
-        Ballistic,
-        Slash,
-        Blunt,
-        Thermal,
-        Chemical,
-        Energy
-    }
-
-    /// <summary>High-level hit groups for Fallout-style targeting (6 groups).</summary>
+    /// <summary>Standardized 6-slot targeting groups (index-aligned).</summary>
     public enum HitGroup
     {
-        Head,
-        Torso,
-        Arms,
-        Legs,
-        Vital,
-        Misc
+        Head     = 0,
+        Torso    = 1,
+        LeftArm  = 2,
+        RightArm = 3,
+        LeftLeg  = 4,
+        RightLeg = 5,
+
+        // Aliases for legacy code
+        Body = Torso,
+        Chest = Torso,
+        LArm = LeftArm,
+        RArm = RightArm,
+        LLeg = LeftLeg,
+        RLeg = RightLeg
     }
 
-    /// <summary>Fine-grained tag on body parts; maps to one of the HitGroup buckets.</summary>
+    /// <summary>Bucket tags for body parts; map to HitGroup.</summary>
     public enum BodyTag
     {
         Head,
         Torso,
-        Arm,
-        Leg,
-        Vital,
-        Misc
+        LeftArm,
+        RightArm,
+        LeftLeg,
+        RightLeg,
+        Misc,
+
+        // Backward-compat aliases (kept for old code/data)
+        Arm = LeftArm,
+        Leg = LeftLeg,
+        Vital = Torso
     }
 
-    /// <summary>Combat final outcome for the player side.</summary>
-    public enum CombatOutcome
+    /// <summary>Damage channels referenced by weapons/armor/effects.</summary>
+    public enum DamageType
     {
-        Win,
-        Lose,
-        Escape
+        Blunt = 0,
+        Slash = 1,
+        Pierce = 2,
+        Ballistic = 3,
+        Thermal = 4,
+        Chemical = 5,
+        Electric = 6,
+        Poison = 7
     }
 
-    /// <summary>Simple status tags that a consumable can cure or apply.</summary>
+    /// <summary>Status/effect identifiers used in Effects/Consumables.</summary>
     public enum EffectTag
     {
-        None,
-        Poison,
-        Burn,
+        None = 0,
         Bleed,
-        Stun
+        Burn,
+        Poison,
+        Stun,
+        Slow,
+        Cure,     // for antidotes/medkits to remove negative effects
+        Regen,
+        Shield
+    }
+
+    /// <summary>Final outcome returned by combat controller.</summary>
+    public enum CombatOutcome
+    {
+        None = 0,
+        Win,
+        Lose,
+        Escape,
+        Special
     }
 }
