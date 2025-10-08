@@ -1,24 +1,34 @@
-// Auto-generated replacement by ChatGPT (UI Targeting Panel stub)
+// TargetingPanel.cs — 舊 UI 兼容：把 0..5 的按鈕轉給 CombatUIController
 using UnityEngine;
 
 namespace CyberLife.Combat
 {
-    /// <summary>
-    /// Hook this to six buttons (Head/Torso/Arms/Legs/Vital/Misc).
-    /// In OnClick pass index [0..5].
-    /// </summary>
     public class TargetingPanel : MonoBehaviour
     {
-        public CombatManager manager;
-        public int allyIndex = 0;
+        public CombatUIController ui;
+        public CombatManager manager; // 可留空（新流程基本用不到）
 
+        void Awake()
+        {
+            if (ui == null) ui = FindObjectOfType<CombatUIController>();
+        }
+
+        // UI 六顆按鈕 → OnClick 傳 0..5
         public void OnClickTargetIndex(int i)
         {
+            if (ui != null)
+            {
+                ui.HitGroupButton(i);
+                return;
+            }
+
+            // 沒有 UIController 就直接嘗試走舊式：
             if (manager == null) return;
+            var target = ui ? ui.currentTarget : null;
+            if (target == null) return;
+
             HitGroup group = (HitGroup)Mathf.Clamp(i, 0, 5);
-            // For simplicity we just force an ally attack now;
-            // if you have a more complex input queue, enqueue the chosen group.
-            manager.AllyAttack(allyIndex);
+            manager.PlayerAttackTargetWithGroup(target, group);
         }
     }
 }

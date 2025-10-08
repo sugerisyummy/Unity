@@ -132,11 +132,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3129252799327680862, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_Name
@@ -991,11 +991,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3129252799327680862, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_Name
@@ -1971,11 +1971,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -144
+      value: -129
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 14.999996
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1995,27 +1995,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1394689369}
+      objectReference: {fileID: 1225817564}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HitGroupButton
+      value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUIController, Assembly-CSharp
+      value: CyberLife.Combat.HitGroupButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2028,7 +2028,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1225817564}
   m_SourcePrefab: {fileID: 100100000, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
 --- !u!224 &398417275 stripped
 RectTransform:
@@ -2631,11 +2634,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -125
+      value: 167
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 41
+      value: 108
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2655,7 +2658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -2664,7 +2667,7 @@ PrefabInstance:
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1394689369}
+      objectReference: {fileID: 587312409}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -2679,15 +2682,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HitGroupButton
+      value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUIController, Assembly-CSharp
+      value: CyberLife.Combat.HitGroupButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2700,7 +2703,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 587312409}
   m_SourcePrefab: {fileID: 100100000, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
 --- !u!224 &587312407 stripped
 RectTransform:
@@ -2712,6 +2718,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
   m_PrefabInstance: {fileID: 587312406}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &587312409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587312408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5766767255c1443a077b093b097e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 1394689369}
+  groupIndex: 1
 --- !u!114 &593765858 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6894405147498397287, guid: bc98c91b380fd5e49ac7a99692b303da, type: 3}
@@ -3741,6 +3761,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1078cb47ed8d1544bbe486713e77606b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &726991531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+  m_PrefabInstance: {fileID: 1162422350}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &777016540 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
@@ -3827,11 +3852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 9
+      value: -156
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 71
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3851,23 +3876,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1394689369}
+      objectReference: {fileID: 2002163286}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HitGroupButton
+      value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUIController, Assembly-CSharp
+      value: CyberLife.Combat.HitGroupButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3880,7 +3905,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2002163286}
   m_SourcePrefab: {fileID: 100100000, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
 --- !u!224 &797370977 stripped
 RectTransform:
@@ -4174,7 +4202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &882242003
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4419,6 +4447,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   summary: {fileID: 0}
+--- !u!224 &998412365 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1262363124491192105, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
+  m_PrefabInstance: {fileID: 24299432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1003973420
 GameObject:
   m_ObjectHideFlags: 0
@@ -4558,7 +4591,7 @@ MonoBehaviour:
   lowSanityThreshold: 0
   softEndLowHP: {fileID: 0}
   softEndLowSanity: {fileID: 0}
-  safeCaseAfterSoftEnd: 0
+  safeCaseAfterSoftEnd: 1
   recoverHP: 30
   recoverSanity: 30
   reduceHunger: -20
@@ -4599,7 +4632,7 @@ MonoBehaviour:
   infectionText: {fileID: 0}
   trustText: {fileID: 0}
   controlText: {fileID: 0}
-  combatController: {fileID: 0}
+  combatController: {fileID: 1697323780}
 --- !u!224 &1101757916 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
@@ -4809,11 +4842,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 142
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 35
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4833,27 +4866,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1394689369}
+      objectReference: {fileID: 1162422352}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HitGroupButton
+      value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUIController, Assembly-CSharp
+      value: CyberLife.Combat.HitGroupButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -4866,13 +4899,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1162422352}
   m_SourcePrefab: {fileID: 100100000, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
 --- !u!224 &1162422351 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
   m_PrefabInstance: {fileID: 1162422350}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1162422352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726991531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5766767255c1443a077b093b097e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 1394689369}
+  groupIndex: 4
 --- !u!1 &1165812921
 GameObject:
   m_ObjectHideFlags: 0
@@ -5007,6 +5057,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165812921}
   m_CullTransparentMesh: 1
+--- !u!1 &1225817563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+  m_PrefabInstance: {fileID: 398417274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1225817564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225817563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5766767255c1443a077b093b097e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 1394689369}
+  groupIndex: 2
 --- !u!1 &1225824685
 GameObject:
   m_ObjectHideFlags: 0
@@ -5115,7 +5184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -7, y: 75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1271077098
@@ -5260,6 +5329,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1273787313}
   - component: {fileID: 1273787312}
+  - component: {fileID: 1273787314}
+  - component: {fileID: 1273787315}
   m_Layer: 5
   m_Name: combat manager
   m_TagString: Untagged
@@ -5282,6 +5353,11 @@ MonoBehaviour:
   allies: []
   enemies: []
   isActiveCombat: 0
+  finalOutcome: 0
+  debugVerbose: 1
+  fadeOutDead: 1
+  removeDeadGO: 0
+  removeDelay: 1.2
 --- !u!224 &1273787313
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5301,6 +5377,79 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1273787314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273787311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd4ceb04fe3b8749b2a1a0a0c68145a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1273787312}
+  page: {fileID: 1697323780}
+  router: {fileID: 1273787315}
+--- !u!114 &1273787315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273787311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cda3399864bdbf4790ac5ff1ced27ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1273787312}
+  onWin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1091465980}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnCombatWin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onLose:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1091465980}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnCombatLose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEscape:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1091465980}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnCombatEscape
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1279952147 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4805361514612202697, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
@@ -5749,7 +5898,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -72}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1324975066
@@ -5998,6 +6147,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
   m_PrefabInstance: {fileID: 1375482702}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1377443269 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1262363124491192105, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
+  m_PrefabInstance: {fileID: 135451636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1388328384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6149,6 +6303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1394689370}
   - component: {fileID: 1394689369}
+  - component: {fileID: 1394689371}
   m_Layer: 5
   m_Name: CombatUI
   m_TagString: Untagged
@@ -6169,7 +6324,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1273787312}
-  groupsPanel: {fileID: 0}
+  groupsPanel: {fileID: 1303556539}
+  enemyHpSlider: {fileID: 24299436}
+  enemyHpLabel: {fileID: 998412365}
+  playerHpSlider: {fileID: 135451638}
+  playerHpLabel: {fileID: 1377443269}
+  groupButtonLabels:
+  - "\u5DE6\u624B"
+  - "\u53F3\u624B"
+  - "\u5DE6\u8173"
+  - "\u53F3\u8173"
+  - "\u982D"
+  - "\u8EC0\u5E79"
+  playerHpPrefix: "\u6211\u65B9"
+  enemyHpPrefix: "\u6575\u65B9"
+  useEnemyNameAsPrefix: 1
   currentTarget: {fileID: 33007982}
 --- !u!224 &1394689370
 RectTransform:
@@ -6190,6 +6359,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1394689371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394689368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859a6874148cd1f45bfdf884e6f9812a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 1394689369}
 --- !u!1 &1406650773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
@@ -6556,6 +6738,11 @@ MonoBehaviour:
   fill: {fileID: 0}
   label: {fileID: 0}
   updateRate: 0.1
+--- !u!1 &1491051108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+  m_PrefabInstance: {fileID: 1527640307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1494282113
 GameObject:
   m_ObjectHideFlags: 0
@@ -6845,11 +7032,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.0000038147
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6869,27 +7056,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1394689369}
+      objectReference: {fileID: 1527640309}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HitGroupButton
+      value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUIController, Assembly-CSharp
+      value: CyberLife.Combat.HitGroupButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -6902,13 +7089,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1527640309}
   m_SourcePrefab: {fileID: 100100000, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
 --- !u!224 &1527640308 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
   m_PrefabInstance: {fileID: 1527640307}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1527640309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491051108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5766767255c1443a077b093b097e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 1394689369}
+  groupIndex: 5
 --- !u!224 &1567397911 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 468990576551881143, guid: bc98c91b380fd5e49ac7a99692b303da, type: 3}
@@ -7364,6 +7568,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1795477340}
   m_SourcePrefab: {fileID: 100100000, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+--- !u!1 &1677626712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+  m_PrefabInstance: {fileID: 1703434091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1687410400
 GameObject:
   m_ObjectHideFlags: 0
@@ -7507,7 +7716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1697323779}
-  - component: {fileID: 1697323778}
+  - component: {fileID: 1697323780}
   m_Layer: 0
   m_Name: ControllerRoot
   m_TagString: Untagged
@@ -7515,25 +7724,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1697323778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697323777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f498e3a4f2f5c4486cf7b363e999dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storyPanel: {fileID: 167970829}
-  combatPanel: {fileID: 882242002}
-  manager: {fileID: 1273787312}
-  ui: {fileID: 1394689369}
-  enemiesRoot: {fileID: 1262385181}
-  enemyTag: 
-  defaultEncounterForButtons: {fileID: 0}
 --- !u!4 &1697323779
 Transform:
   m_ObjectHideFlags: 0
@@ -7549,6 +7739,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697323780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697323777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f498e3a4f2f5c4486cf7b363e999dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1273787312}
+  enemiesRoot: {fileID: 1262385181}
+  ui: {fileID: 1394689369}
+  storyPanel: {fileID: 167970829}
+  combatPanel: {fileID: 882242002}
+  player: {fileID: 33007982}
+  playerSlot: {fileID: 33007984}
+  defaultPlayerHP: 60
+  defaultEncounterForButtons: {fileID: 11400000, guid: 23505cf6326f49a4bbca97d72bbe6e98, type: 2}
 --- !u!1001 &1703434091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7619,11 +7830,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 110
+      value: 137
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -45
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7643,27 +7854,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1394689369}
+      objectReference: {fileID: 1703434093}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HitGroupButton
+      value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUIController, Assembly-CSharp
+      value: CyberLife.Combat.HitGroupButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5712327791156182926, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -7676,13 +7887,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1703434093}
   m_SourcePrefab: {fileID: 100100000, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
 --- !u!224 &1703434092 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4330324166792676024, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
   m_PrefabInstance: {fileID: 1703434091}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1703434093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677626712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5766767255c1443a077b093b097e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 1394689369}
+  groupIndex: 3
 --- !u!1001 &1777631312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8786,6 +9014,25 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1830079996}
   m_SourcePrefab: {fileID: 100100000, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+--- !u!1 &2002163285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8472998045103812435, guid: 82ae1f1709942f847bf2f961e72a986f, type: 3}
+  m_PrefabInstance: {fileID: 797370976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2002163286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002163285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5766767255c1443a077b093b097e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 1394689369}
+  groupIndex: 0
 --- !u!1 &2042735069
 GameObject:
   m_ObjectHideFlags: 0

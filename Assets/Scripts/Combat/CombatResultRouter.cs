@@ -3,32 +3,29 @@ using UnityEngine.Events;
 
 namespace CyberLife.Combat
 {
-    /// <summary>
-    /// 輕量輪詢：看到 CombatManager.finalOutcome 有值就丟出 UnityEvent。
-    /// 不改你現在的 CombatManager。
-    /// </summary>
     public class CombatResultRouter : MonoBehaviour
     {
         public CombatManager manager;
+        public UnityEvent onWin, onLose, onEscape;
 
-        [Header("Events")]
-        public UnityEvent onWin;
-        public UnityEvent onLose;
-        public UnityEvent onEscape;
+        // 給 Bridge 呼叫
+        public void Route(CombatOutcome outcome)
+        {
+            switch (outcome)
+            {
+                case CombatOutcome.Win:    onWin?.Invoke(); break;
+                case CombatOutcome.Lose:   onLose?.Invoke(); break;
+                case CombatOutcome.Escape: onEscape?.Invoke(); break;
+            }
+            enabled = false; // 觸發一次就關掉
+        }
 
+        // 可選：沒有 Bridge 時用輪詢
         void Update()
         {
-            if (manager == null || !manager.finalOutcome.HasValue) return;
-
-            switch (manager.finalOutcome.Value)
-            {
-                case CombatOutcome.Win:   onWin?.Invoke();   break;
-                case CombatOutcome.Lose:  onLose?.Invoke();  break;
-                case CombatOutcome.Escape:onEscape?.Invoke();break;
-            }
-
-            // 觸發一次就收
-            enabled = false;
+            if (!enabled || manager == null) return;
+            if (manager.finalOutcome == CombatOutcome.None) return;
+            Route(manager.finalOutcome); // 注意：這裡用 enum，不是 HasValue/Value
         }
     }
 }

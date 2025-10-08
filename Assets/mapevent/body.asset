@@ -16,3 +16,18 @@ MonoBehaviour:
   - id: 0
     tag: 0
     maxHP: 10
+  - id: 1
+    tag: 1
+    maxHP: 10
+  - id: 2
+    tag: 2
+    maxHP: 10
+  - id: 3
+    tag: 3
+    maxHP: 10
+  - id: 4
+    tag: 5
+    maxHP: 10
+  - id: 5
+    tag: 4
+    maxHP: 10

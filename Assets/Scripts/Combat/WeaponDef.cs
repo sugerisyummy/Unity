@@ -15,7 +15,7 @@ namespace CyberLife.Combat
 
         [Header("Targeting Weights (6 groups, normalized at runtime)")]
         [Tooltip("Order: Head, Torso, LeftArm, RightArm, LeftLeg, RightLeg")]
-        public float[] groupWeights = new float[] { 1, 4, 2, 2, 1, 1.2f };
+        public float[] groupWeights = new float[] { 1.5f, 1.5f, 1.2f, 1.2f, 1.0f, 2.0f };
 
         public float RollDamage(System.Random rng)
         {

@@ -1,150 +1,206 @@
-// Auto-generated replacement by ChatGPT (CombatManager core, with target attack APIs)
+// CombatManager.cs — 開戰前補上 BasicHealth，避免秒結束
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System;
 
 namespace CyberLife.Combat
 {
     public partial class CombatManager : MonoBehaviour
     {
-        [Header("Teams")]
-        public List<Combatant> allies = new List<Combatant>();
-        public List<Combatant> enemies = new List<Combatant>();
+        [Header("Teams")]   public List<Combatant> allies = new(); public List<Combatant> enemies = new();
+        [Header("Runtime")] public bool isActiveCombat = false; public CombatOutcome finalOutcome = CombatOutcome.None;
+        [Header("Debug")]   public bool debugVerbose = true;
+        [Header("Death Visuals")] public bool fadeOutDead = true; public bool removeDeadGO = false; public float removeDelay = 1.2f;
 
-        [Header("Runtime")]
-        public CombatOutcome? finalOutcome;
-        public bool isActiveCombat = false;
-
-        System.Random rng = new System.Random();
-
-        void Start()
-        {
-            // Auto-discover if placed under manager in scene
-            if (allies.Count == 0) allies.AddRange(GetComponentsInChildren<Combatant>().Where(c => c.gameObject.tag == "Player"));
-            if (enemies.Count == 0) enemies.AddRange(GetComponentsInChildren<Combatant>().Where(c => c.gameObject.tag == "Enemy"));
-        }
-
-        void Update()
-        {
-            if (!isActiveCombat) return;
-            float dt = Time.deltaTime;
-            foreach (var c in allies) c?.TickEffects(dt);
-            foreach (var c in enemies) c?.TickEffects(dt);
-        }
+        public event System.Action<CombatOutcome> OnCombatEnd;
 
         public void BeginCombat(IEnumerable<Combatant> allyTeam, IEnumerable<Combatant> enemyTeam)
         {
-            allies = allyTeam.Where(x=>x!=null).ToList();
-            enemies = enemyTeam.Where(x=>x!=null).ToList();
-            isActiveCombat = true;
-            finalOutcome = null;
+            allies = allyTeam?.Where(x=>x).ToList() ?? new();
+            enemies = enemyTeam?.Where(x=>x).ToList() ?? new();
+
+            // 開戰前：雙方都確保有 BasicHealth，從既有 HP/MaxHP 鏡像
+            EnsureTeamHealth(allies, 80f);
+            EnsureTeamHealth(enemies, 20f);
+
+            isActiveCombat = true; finalOutcome = CombatOutcome.None;
+            if (debugVerbose) Debug.Log($"[Combat] BeginCombat allies:{allies.Count} enemies:{enemies.Count}");
+        }
+
+        void EnsureTeamHealth(List<Combatant> team, float defaultHP)
+        {
+            foreach (var c in team)
+            {
+                if (!c) continue;
+                var bh = c.GetComponent<BasicHealth>();
+                if (bh) continue;
+
+                float hp = TryReadFloat(c, "HP", defaultHP);
+                float max = TryReadFloat(c, "MaxHP", Mathf.Max(hp, defaultHP));
+                if (max < hp) max = hp;
+
+                bh = c.gameObject.AddComponent<BasicHealth>();
+                bh.MaxHP = max <= 0f ? defaultHP : max;
+                bh.HP = hp <= 0f ? bh.MaxHP : hp;
+                if (debugVerbose) Debug.Log($"[Combat] Auto-attach BasicHealth to {c.name} (HP {bh.HP}/{bh.MaxHP})");
+            }
+        }
+        float TryReadFloat(object obj, string propName, float fallback)
+        {
+            if (obj == null) return fallback;
+            var flags = BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;
+            var p = obj.GetType().GetProperty(propName, flags);
+            if (p != null && p.CanRead)
+            {
+                try { return Convert.ToSingle(p.GetValue(obj)); }
+                catch {}
+            }
+            return fallback;
         }
 
         public void EndCombat(CombatOutcome outcome)
         {
-            isActiveCombat = false;
-            finalOutcome = outcome;
+            isActiveCombat = false; finalOutcome = outcome;
+            if (debugVerbose) Debug.Log($"[Combat] EndCombat → {outcome}");
+            OnCombatEnd?.Invoke(outcome);
         }
 
-        public bool CheckEnd()
+        public void PlayerAttackTarget(Combatant target)
         {
-            bool alliesAlive = allies.Any(a => a != null && a.IsAlive);
-            bool enemiesAlive = enemies.Any(e => e != null && e.IsAlive);
-            if (!alliesAlive && !enemiesAlive)
+            var attacker = FirstAlive(allies);
+            if (!attacker || !target) { if (debugVerbose) Debug.Log("[Combat] PlayerAttackTarget skipped"); return; }
+            var inv = attacker.inventory;
+            var group  = inv ? inv.PickGroup()     : HitGroup.Torso;
+            var dtype  = inv ? inv.DamageType      : DamageType.Blunt;
+            var damage = inv ? inv.RollAttackDamage(): 5f;
+
+            if (debugVerbose) Debug.Log($"[Combat] PlayerAttackTarget → {target.name} @{group} {dtype} {damage}");
+            ResolveAttack(attacker, target, group, dtype, damage);
+            if (CheckEnd()) return;
+            EnemyTurn(); CheckEnd();
+        }
+
+        public void PlayerAttackTargetWithGroup(Combatant target, HitGroup group)
+        {
+            var attacker = FirstAlive(allies);
+            if (!attacker || !target) { if (debugVerbose) Debug.Log("[Combat] PlayerAttackTargetWithGroup skipped"); return; }
+            var inv = attacker.inventory;
+            var dtype  = inv ? inv.DamageType      : DamageType.Blunt;
+            var damage = inv ? inv.RollAttackDamage(): 5f;
+
+            if (debugVerbose) Debug.Log($"[Combat] PlayerAttackTargetWithGroup → {target.name} @{group} {dtype} {damage}");
+            ResolveAttack(attacker, target, group, dtype, damage);
+            if (CheckEnd()) return;
+            EnemyTurn(); CheckEnd();
+        }
+
+        public Combatant GetFirstAliveEnemy() => FirstAlive(enemies);
+        public Combatant GetFirstAliveAlly()  => FirstAlive(allies);
+
+        void ResolveAttack(Combatant attacker, Combatant target, HitGroup group, DamageType dtype, float damage)
+        {
+            if (!target) return;
+            float before = ReadHP(target); bool applied = false;
+
+            var bh = target.GetComponent<BasicHealth>();
+            if (bh) { bh.ApplyDamage(group, dtype, damage); applied = true; }
+            else
             {
-                EndCombat(CombatOutcome.Lose); // mutual K.O -> treat as lose for now
-                return true;
+                var t = target.GetType();
+                var flags = BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;
+                var m1 = t.GetMethod("ApplyDamage", flags, null, new Type[]{ typeof(HitGroup), typeof(DamageType), typeof(float)}, null);
+                if (m1!=null) { m1.Invoke(target,new object[]{group,dtype,damage}); applied=true; }
+                else {
+                    var m2 = t.GetMethod("TakeDamage", flags, null, new Type[]{ typeof(float)}, null);
+                    if (m2!=null) { m2.Invoke(target,new object[]{damage}); applied=true; }
+                    else {
+                        var hpProp = t.GetProperty("HP", flags);
+                        if (hpProp!=null && hpProp.CanRead && hpProp.CanWrite)
+                        { float hp = Convert.ToSingle(hpProp.GetValue(target)); hp = Mathf.Max(0f, hp - damage); hpProp.SetValue(target, hp); applied=true; }
+                    }
+                }
             }
-            if (!enemiesAlive)
+
+            if (!applied)
             {
-                EndCombat(CombatOutcome.Win);
-                return true;
+                float cur = before;
+                float max = Mathf.Max(cur, 1f);
+                var flags = BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;
+                var t2 = target.GetType();
+                var maxP = t2.GetProperty("MaxHP", flags);
+                if (maxP != null && maxP.CanRead)
+                { try { max = Mathf.Max(Convert.ToSingle(maxP.GetValue(target)), max); } catch {} }
+                var newBH = target.gameObject.AddComponent<BasicHealth>();
+                newBH.MaxHP = max;
+                newBH.HP = cur;
+                newBH.ApplyDamage(group, dtype, damage);
+                applied = true;
             }
-            if (!alliesAlive)
+
+            float after = ReadHP(target);
+            if (debugVerbose) Debug.Log($"[Combat] {attacker?.name} → {target?.name} @{group} {dtype} {damage} | HP {before:F1}->{after:F1} | applied:{applied}");
+            if (!applied) Debug.LogWarning("[Combat] 無法對目標套用傷害（未找到 BasicHealth/ApplyDamage/TakeDamage/HP）。");
+
+            if (!IsAlive(target))
             {
-                EndCombat(CombatOutcome.Lose);
-                return true;
+                HandleDeath(target);
+                allies.RemoveAll(x => !IsAlive(x));
+                enemies.RemoveAll(x => !IsAlive(x));
+                var ui = FindObjectOfType<CombatUIController>();
+                if (ui && ui.currentTarget == target) ui.ClearSelection();
             }
+        }
+
+        void HandleDeath(Combatant target){
+            var go = target.gameObject;
+            var cg = go.GetComponent<CanvasGroup>(); if (!cg) cg = go.AddComponent<CanvasGroup>();
+            cg.alpha = 0.35f;
+            var btn = go.GetComponent<UnityEngine.UI.Button>(); if (btn) btn.interactable = false;
+            foreach (var g in go.GetComponentsInChildren<UnityEngine.UI.Graphic>()) g.raycastTarget = false;
+        }
+        void EnemyTurn()
+        {
+            var a = FirstAlive(enemies); var t = FirstAlive(allies);
+            if (!a || !t) { if (debugVerbose) Debug.Log("[Combat] EnemyTurn skipped"); return; }
+            var inv = a.inventory;
+            var g = inv ? inv.PickGroup() : HitGroup.Torso;
+            var dt= inv ? inv.DamageType  : DamageType.Blunt;
+            var dm= inv ? inv.RollAttackDamage() : 4f;
+
+            if (debugVerbose) Debug.Log($"[Combat] EnemyTurn {a.name} → {t.name} @{g} {dt} {dm}");
+            ResolveAttack(a, t, g, dt, dm);
+        }
+
+        bool CheckEnd()
+        {
+            bool alliesAlive  = allies.Any(IsAlive);
+            bool enemiesAlive = enemies.Any(IsAlive);
+            if (!enemiesAlive) { EndCombat(CombatOutcome.Win);  return true; }
+            if (!alliesAlive)  { EndCombat(CombatOutcome.Lose); return true; }
             return false;
         }
 
-        public void AllyAttack(int allyIndex)
+        bool IsAlive(Combatant c)
         {
-            if (!isActiveCombat) return;
-            var attacker = (allyIndex >= 0 && allyIndex < allies.Count) ? allies[allyIndex] : null;
-            var defender = enemies.FirstOrDefault(e => e != null && e.IsAlive);
-            if (attacker == null || defender == null) return;
-
-            var inv = attacker.inventory;
-            var group = inv != null ? inv.PickGroup() : HitGroup.Torso;
-            var damage = inv != null ? inv.RollAttackDamage() : 5f;
-            var dtype = inv != null ? inv.DamageType : DamageType.Blunt;
-
-            ResolveAttack(attacker, defender, group, dtype, damage);
-            if (CheckEnd()) return;
-
-            // simple enemy retaliation
-            EnemyTurn();
-            CheckEnd();
+            if (!c) return false;
+            var bh = c.GetComponent<BasicHealth>(); if (bh) return bh.IsAlive;
+            var t = c.GetType(); var flags = BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;
+            var pi = t.GetProperty("IsAlive", flags); if (pi!=null && pi.CanRead) { try { return (bool)pi.GetValue(c);}catch{} }
+            var mi = t.GetMethod("IsAlive", flags, null, Type.EmptyTypes, null); if (mi!=null){ try { return (bool)mi.Invoke(c,null);}catch{} }
+            return ReadHP(c) > 0f;
         }
-
-        public void ResolveAttack(Combatant attacker, Combatant defender, HitGroup group, DamageType type, float rawDamage)
+        float ReadHP(Combatant c)
         {
-            if (defender == null || attacker == null) return;
-
-            float finalDamage = ResolveDamageWithArmor(defender, group, type, rawDamage);
-            var targetPart = defender.PickRandomPart(group, rng);
-            if (targetPart == null) return;
-
-            targetPart.ApplyDamage(finalDamage);
+            if (!c) return 0f;
+            var bh = c.GetComponent<BasicHealth>(); if (bh) return bh.HP;
+            var t = c.GetType(); var flags = BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;
+            var hpProp = t.GetProperty("HP", flags);
+            if (hpProp!=null && hpProp.CanRead) { try { return Convert.ToSingle(hpProp.GetValue(c)); } catch {} }
+            return 0f;
         }
-
-        void EnemyTurn()
-        {
-            var attacker = enemies.FirstOrDefault(e => e != null && e.IsAlive);
-            var defender = allies.FirstOrDefault(a => a != null && a.IsAlive);
-            if (attacker == null || defender == null) return;
-            var inv = attacker.inventory;
-            var group = inv != null ? inv.PickGroup() : HitGroup.Torso;
-            var damage = inv != null ? inv.RollAttackDamage() : 5f;
-            var dtype = inv != null ? inv.DamageType : DamageType.Blunt;
-            ResolveAttack(attacker, defender, group, dtype, damage);
-        }
-
-        // === 新增：點選鎖定敵人 → 直接攻擊（自動選群組） ===
-        public void PlayerAttackTarget(Combatant target)
-        {
-            if (!isActiveCombat) return;
-            var attacker = (allies.Count > 0) ? allies[0] : null;
-            if (attacker == null || target == null || !target.IsAlive) return;
-
-            var inv = attacker.inventory;
-            var group  = inv != null ? inv.PickGroup() : HitGroup.Torso;
-            var damage = inv != null ? inv.RollAttackDamage() : 5f;
-            var dtype  = inv != null ? inv.DamageType : DamageType.Blunt;
-
-            ResolveAttack(attacker, target, group, dtype, damage);
-            if (CheckEnd()) return;
-            EnemyTurn();
-            CheckEnd();
-        }
-
-        // === 新增：指定群組（Head/Torso/Arms/Legs/Vital/Misc）攻擊 ===
-        public void PlayerAttackTargetWithGroup(Combatant target, HitGroup group)
-        {
-            if (!isActiveCombat) return;
-            var attacker = (allies.Count > 0) ? allies[0] : null;
-            if (attacker == null || target == null || !target.IsAlive) return;
-
-            var inv = attacker.inventory;
-            var damage = inv != null ? inv.RollAttackDamage() : 5f;
-            var dtype  = inv != null ? inv.DamageType : DamageType.Blunt;
-
-            ResolveAttack(attacker, target, group, dtype, damage);
-            if (CheckEnd()) return;
-            EnemyTurn();
-            CheckEnd();
-        }
+        Combatant FirstAlive(List<Combatant> list){ for(int i=0;i<list.Count;i++) if(IsAlive(list[i])) return list[i]; return null; }
     }
 }

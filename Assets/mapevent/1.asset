@@ -29,9 +29,9 @@ MonoBehaviour:
     - text: 123
       startsCombat: 1
       combat: {fileID: 11400000, guid: 23505cf6326f49a4bbca97d72bbe6e98, type: 2}
-      nextStageOnWin: 0
-      nextStageOnLose: 0
-      nextStageOnEscape: 0
+      nextStageOnWin: 1
+      nextStageOnLose: 1
+      nextStageOnEscape: 1
       onWinFlag: 
       onLoseFlag: 
       hpChange: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
   - text: tesr
     choices:
     - text: e
-      startsCombat: 1
+      startsCombat: 0
       combat: {fileID: 0}
       nextStageOnWin: 0
       nextStageOnLose: 0

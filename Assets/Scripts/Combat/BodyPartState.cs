@@ -45,17 +45,18 @@ namespace CyberLife.Combat
         }
 
         public HitGroup ToHitGroup()
-        {
-            switch (tag)
-            {
-                case BodyTag.Head:     return HitGroup.Head;
-                case BodyTag.Torso:    return HitGroup.Torso;
-                case BodyTag.LeftArm:  return HitGroup.LeftArm;
-                case BodyTag.RightArm: return HitGroup.RightArm;
-                case BodyTag.LeftLeg:  return HitGroup.LeftLeg;
-                case BodyTag.RightLeg: return HitGroup.RightLeg;
-                default:               return HitGroup.Torso; // Misc 預設歸 Torso
-            }
+{
+    switch (tag)
+    {
+        case BodyTag.LeftArm:  return HitGroup.LeftArm;
+        case BodyTag.RightArm: return HitGroup.RightArm;
+        case BodyTag.LeftLeg:  return HitGroup.LeftLeg;
+        case BodyTag.RightLeg: return HitGroup.RightLeg;
+        case BodyTag.Head:     return HitGroup.Head;
+        case BodyTag.Torso:    return HitGroup.Torso;
+        default:               return HitGroup.Torso;
+    }
+
         }
     }
 }

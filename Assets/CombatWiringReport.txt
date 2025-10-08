@@ -1,0 +1,47 @@
+﻿# Combat Wiring Report
+Time: 2025-10-07 05:13:11
+
+## CombatManager @ Canvas/CombatPanel/combat manager
+  - CombatManager (self): CombatManager@Canvas/CombatPanel/combat manager
+  - CombatEventBridge: CombatEventBridge@Canvas/CombatPanel/combat manager
+  - CombatResultRouter: CombatResultRouter@Canvas/CombatPanel/combat manager
+### Bridge refs
+  - manager: CombatManager@Canvas/CombatPanel/combat manager
+  - page: CombatPageController@ControllerRoot
+  - router: CombatResultRouter@Canvas/CombatPanel/combat manager
+### Router refs
+  - manager: CombatManager@Canvas/CombatPanel/combat manager
+  - onWin: 1 listeners
+      [0] GameManager@GameManager :: OnCombatWin
+  - onLose: 1 listeners
+      [0] GameManager@GameManager :: OnCombatLose
+  - onEscape: 1 listeners
+      [0] GameManager@GameManager :: OnCombatEscape
+
+## CombatPageController @ ControllerRoot
+  - manager: CombatManager@Canvas/CombatPanel/combat manager
+  - enemiesRoot: RectTransform@Canvas/CombatPanel/Enemys
+  - ui: CombatUIController@Canvas/CombatPanel/UI/CombatUI
+  - storyPanel: GameObject@Canvas/StoryPanel
+  - combatPanel: GameObject@Canvas/CombatPanel
+  - playerSlot: RectTransform@Canvas/CombatPanel/player
+  - player (auto): Combatant@Canvas/CombatPanel/player
+
+## CombatUIController @ Canvas/CombatPanel/UI/CombatUI
+  - manager: CombatManager@Canvas/CombatPanel/combat manager
+  - groupsPanel: GameObject@Canvas/CombatPanel/UI/TargetButtons
+  - enemyHpSlider: Slider@Canvas/CombatPanel/UI/Hp_Enemys/Bar
+  - enemyHpLabel: RectTransform@Canvas/CombatPanel/UI/Hp_Enemys/Bar/Text (TMP)
+  - playerHpSlider: Slider@Canvas/CombatPanel/UI/Hp_player/Bar
+  - playerHpLabel: RectTransform@Canvas/CombatPanel/UI/Hp_player/Bar/Text (TMP)
+### TargetButtons not found under this UI controller.
+
+## GameManager @ GameManager
+  - combatController: CombatPageController@ControllerRoot
+
+## Checks
+- CombatManager: OK
+- CombatPageController: OK
+- CombatUIController: OK
+- Bridge wired on Canvas/CombatPanel/combat manager: OK
+- Router wired manager on Canvas/CombatPanel/combat manager: OK

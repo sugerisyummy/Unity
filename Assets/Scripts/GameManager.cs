@@ -1,4 +1,7 @@
-// GameManager.cs（事件→戰鬥橋接 + No-Death）
+// GameManager.cs — 完整版（含 BeginNewGame / BeginLoadGame / UpdateAllStatUI）
+// 放到 Assets/Scripts/GameManager.cs 覆蓋即可。
+// 這版會在 Awake() 自動尋找 CombatPageController（就算 Inspector 沒手動指也能跑）。
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,7 +66,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI augmentationLoadText, radiationText, infectionText, trustText, controlText;
 
     // ===== 戰鬥橋接 =====
-    public CombatPageController combatController;                 // Inspector 拖 ControllerRoot
+    [Header("戰鬥橋接")]
+    public CombatPageController combatController;                 // Inspector 拖 ControllerRoot；或 Awake() 自動尋找
     private DolEventAsset.EventChoice _pendingCombatChoice = null; // 暫存「這次要開戰的選項」
 
     // 事件
@@ -72,9 +76,9 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        if (combatController == null) combatController = FindObjectOfType<CombatPageController>(true);
         if (flagStorage == null) flagStorage = new EventFlagStorage();
         if (!caseDB) Tip("請在 GameManager 指定 CaseDatabase。");
-        if (combatController == null) combatController = FindObjectOfType<CombatPageController>(true);
         stats.OnChanged += UpdateAllStatUI;
     }
 
@@ -97,6 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void BeginLoadGame()
     {
+        // 若你的專案有 SaveManager 就會讀取；沒有也不會報錯，直接當新遊戲。
         var d = SaveManager.Load(SaveManager.AUTO_SLOT);
         if (d == null) { BeginNewGame(); return; }
 
@@ -117,7 +122,7 @@ public class GameManager : MonoBehaviour
         EnterCase(currentCase);
     }
 
-    // ===== 存讀槽 =====
+    // ===== 存讀槽（可選） =====
     public void SaveToSlot(int slot)
     {
         var data = new SaveData
@@ -166,7 +171,6 @@ public class GameManager : MonoBehaviour
         {
             if (backgroundImage) backgroundImage.sprite = entry.background;
             if (AudioManager.Instance) AudioManager.Instance.PlayBGM(entry.bgm, 1f);
-            // SoundEffectManager.Instance?.ApplyCaseAmbience(entry);
         }
 
         UpdateAllStatUI();
@@ -221,47 +225,41 @@ public class GameManager : MonoBehaviour
         if (stage.choices == null || stage.choices.Count == 0) { EndEvent(); return; }
 
         foreach (var ch in stage.choices)
-            WireChoice(ch);   // ← 改成走橋接
+            WireChoice(ch);   // 走戰鬥橋接或一般處理
     }
 
     void WireChoice(DolEventAsset.EventChoice ch)
-{
-    // 建立按鈕
-    if (!choiceButtonPrefab || !choiceContainer) return;
-    var btn = Instantiate(choiceButtonPrefab, choiceContainer);
-    var label = btn.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-    if (label) label.text = ch.text;
-    btn.onClick.RemoveAllListeners();
-    choiceContainer.gameObject.SetActive(true);
-
-    // --- Choice Button wiring（固定版）---
-    if (ch.startsCombat && ch.combat != null)
     {
-        Debug.Log($"[GM] StartCombat with {ch.combat?.name}");
-        btn.onClick.AddListener(() =>
-        {
-            _pendingCombatChoice = ch;
-            combatController.StartCombatWithEncounter(ch.combat);
-        });
-    }
-    else
-    {
-        // 一般選項 → 立即結算
-        btn.onClick.AddListener(() =>
-        {
-            stats.ApplyChoiceDeltas(ch);
+        // 建立按鈕
+        if (!choiceButtonPrefab || !choiceContainer) return;
+        var btn = Instantiate(choiceButtonPrefab, choiceContainer);
+        var label = btn.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        if (label) label.text = ch.text;
+        btn.onClick.RemoveAllListeners();
+        choiceContainer.gameObject.SetActive(true);
 
-            // 轉到指定 nextStage，或預設前進一頁
-            if (ch.nextStage >= 0 && runningEvent != null && runningEvent.stages != null)
-                runningStage = Mathf.Clamp(ch.nextStage, 0, runningEvent.stages.Count - 1);
-            else
-                runningStage += 1;
-
-            ShowStage();
-        });
+        // 選項處理
+        if (ch.startsCombat && ch.combat != null)
+        {
+            btn.onClick.AddListener(() =>
+            {
+                _pendingCombatChoice = ch;
+                combatController.StartCombatWithEncounter(ch.combat);
+            });
+        }
+        else
+        {
+            btn.onClick.AddListener(() =>
+            {
+                stats.ApplyChoiceDeltas(ch);
+                if (ch.nextStage >= 0 && runningEvent != null && runningEvent.stages != null)
+                    runningStage = Mathf.Clamp(ch.nextStage, 0, runningEvent.stages.Count - 1);
+                else
+                    runningStage += 1;
+                ShowStage();
+            });
+        }
     }
-    // --- end ---
-}
 
     void EndEvent(){ runningEvent = null; runningStage = -1; }
 
@@ -366,7 +364,7 @@ public class GameManager : MonoBehaviour
 
     void ApplyOutcomeAndGoto(DolEventAsset.EventChoice c, CombatOutcome r)
     {
-        // 1) 數值：只有 Win 才套用這個選項的變更（你也可以照需求改）
+        // 1) 數值：只有 Win 才套用這個選項的變更（可依需求調整）
         if (r == CombatOutcome.Win) stats.ApplyChoiceDeltas(c);
 
         // 2) 旗標
@@ -379,7 +377,6 @@ public class GameManager : MonoBehaviour
                    (r==CombatOutcome.Lose) ? c.nextStageOnLose : c.nextStageOnEscape;
 
         if (next >= 0) { runningStage = next; }
-        // HUD/No-Death 檢一次
         UpdateAllStatUI();
         if (!(noDeathMode && TrySoftEnding()))
             ShowStage(); // 重繪目前頁或下一頁
