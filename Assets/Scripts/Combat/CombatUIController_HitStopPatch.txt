@@ -1,0 +1,5 @@
+// 將這段加入你的 CombatUIController 命中處（ShowHitFx 或 Attack/HitGroup 按鈕觸發後）：
+// 抽幀 0.06 秒（可依喜好調整），不會影響使用 UnscaledDeltaTime 的特效與文字。
+/*
+if (HitStop.Instance) HitStop.Instance.Stop(0.06f, 0.04f);
+*/

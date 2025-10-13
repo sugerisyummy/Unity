@@ -1,47 +1,48 @@
 ﻿# Combat Wiring Report
-Time: 2025-10-07 05:13:11
+Time: 2025-10-13 04:51:18 | Unity: 2022.3.62f1
 
-## CombatManager @ Canvas/CombatPanel/combat manager
-  - CombatManager (self): CombatManager@Canvas/CombatPanel/combat manager
-  - CombatEventBridge: CombatEventBridge@Canvas/CombatPanel/combat manager
-  - CombatResultRouter: CombatResultRouter@Canvas/CombatPanel/combat manager
-### Bridge refs
-  - manager: CombatManager@Canvas/CombatPanel/combat manager
-  - page: CombatPageController@ControllerRoot
-  - router: CombatResultRouter@Canvas/CombatPanel/combat manager
-### Router refs
-  - manager: CombatManager@Canvas/CombatPanel/combat manager
-  - onWin: 1 listeners
-      [0] GameManager@GameManager :: OnCombatWin
-  - onLose: 1 listeners
-      [0] GameManager@GameManager :: OnCombatLose
-  - onEscape: 1 listeners
-      [0] GameManager@GameManager :: OnCombatEscape
+== CombatEventBridge (1) ==
+- Canvas/CombatPanel/combat manager
+    manager → combat manager @ Canvas/CombatPanel/combat manager
+    page → ControllerRoot @ ControllerRoot
+    router → combat manager @ Canvas/CombatPanel/combat manager
 
-## CombatPageController @ ControllerRoot
-  - manager: CombatManager@Canvas/CombatPanel/combat manager
-  - enemiesRoot: RectTransform@Canvas/CombatPanel/Enemys
-  - ui: CombatUIController@Canvas/CombatPanel/UI/CombatUI
-  - storyPanel: GameObject@Canvas/StoryPanel
-  - combatPanel: GameObject@Canvas/CombatPanel
-  - playerSlot: RectTransform@Canvas/CombatPanel/player
-  - player (auto): Combatant@Canvas/CombatPanel/player
 
-## CombatUIController @ Canvas/CombatPanel/UI/CombatUI
-  - manager: CombatManager@Canvas/CombatPanel/combat manager
-  - groupsPanel: GameObject@Canvas/CombatPanel/UI/TargetButtons
-  - enemyHpSlider: Slider@Canvas/CombatPanel/UI/Hp_Enemys/Bar
-  - enemyHpLabel: RectTransform@Canvas/CombatPanel/UI/Hp_Enemys/Bar/Text (TMP)
-  - playerHpSlider: Slider@Canvas/CombatPanel/UI/Hp_player/Bar
-  - playerHpLabel: RectTransform@Canvas/CombatPanel/UI/Hp_player/Bar/Text (TMP)
-### TargetButtons not found under this UI controller.
+== CombatManager (1) ==
+- Canvas/CombatPanel/combat manager
 
-## GameManager @ GameManager
-  - combatController: CombatPageController@ControllerRoot
 
-## Checks
-- CombatManager: OK
-- CombatPageController: OK
-- CombatUIController: OK
-- Bridge wired on Canvas/CombatPanel/combat manager: OK
-- Router wired manager on Canvas/CombatPanel/combat manager: OK
+== CombatPageController (1) ==
+- ControllerRoot
+    manager → combat manager @ Canvas/CombatPanel/combat manager
+    enemiesRoot → Enemys @ Canvas/CombatPanel/Enemys
+    ui → CombatUI @ Canvas/CombatPanel/UI/CombatUI
+    storyPanel → StoryPanel @ Canvas/StoryPanel
+    combatPanel → CombatPanel @ Canvas/CombatPanel
+    player → player @ Canvas/CombatPanel/player
+    playerSlot → player @ Canvas/CombatPanel/player
+    defaultEncounterForButtons → test1 @ (asset)
+
+
+== CombatResultRouter (1) ==
+- Canvas/CombatPanel/combat manager
+    manager → combat manager @ Canvas/CombatPanel/combat manager
+    onWin (UnityEvent) targets:
+      [0] GameManager :: OnCombatWin
+    onLose (UnityEvent) targets:
+      [0] GameManager :: OnCombatLose
+    onEscape (UnityEvent) targets:
+      [0] GameManager :: OnCombatEscape
+
+
+== CombatUIController (1) ==
+- Canvas/CombatPanel/UI/CombatUI
+    manager → combat manager @ Canvas/CombatPanel/combat manager
+    groupsPanel → TargetButtons @ Canvas/CombatPanel/UI/TargetButtons
+    enemyHpSlider → Bar @ Canvas/CombatPanel/UI/Hp_Enemys/Bar
+    enemyHpLabel → Text (TMP) @ Canvas/CombatPanel/UI/Hp_Enemys/Bar/Text (TMP)
+    playerHpSlider → Bar @ Canvas/CombatPanel/UI/Hp_player/Bar
+    playerHpLabel → Text (TMP) @ Canvas/CombatPanel/UI/Hp_player/Bar/Text (TMP)
+    currentTarget → player @ Canvas/CombatPanel/player
+
+

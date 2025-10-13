@@ -1,0 +1,3203 @@
+﻿{
+    "time": "2025-10-13 04:51:04",
+    "unity": "2022.3.62f1",
+    "project": "cyberLife",
+    "root": "Assets",
+    "criticalScripts": [
+        "Assets/Scripts/Combat/CombatPageController.cs",
+        "Assets/Scripts/Combat/CombatManager.cs",
+        "Assets/Scripts/Combat/CombatEventBridge.cs",
+        "Assets/Scripts/Combat/CombatResultRouter.cs",
+        "Assets/Scripts/Combat/CombatUIController.cs"
+    ],
+    "buildScenes": [
+        "Assets/Scenes/SampleScene.unity"
+    ],
+    "assets": [
+        {
+            "path": "Assets/Art",
+            "guid": "42fb3f711b3578b46951803fc2fdb9d5",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Art/VFX",
+            "guid": "a15b9d1a0dec0bc47b88729fbfcbc5eb",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Art/VFX/vignette_lose.png",
+            "guid": "63589d35923cc6e4b9b72078c1d5b9b1",
+            "type": "Texture2D",
+            "size": 186950,
+            "md5": "d09a0168bb94886d8b477c7033c3ec6b",
+            "deps": [
+                "Assets/Art/VFX/vignette_lose.png"
+            ]
+        },
+        {
+            "path": "Assets/Art/VFX/vignette_win.png",
+            "guid": "3ac946042792b1b4f82a33fc74527d16",
+            "type": "Texture2D",
+            "size": 175816,
+            "md5": "4c4d62b00a53fe3a0cf2ca052c59c1cc",
+            "deps": [
+                "Assets/Art/VFX/vignette_win.png"
+            ]
+        },
+        {
+            "path": "Assets/CombatWiringReport.txt",
+            "guid": "7d62ea46ec57e0840b22d3a4aad22001",
+            "type": "TextAsset",
+            "size": 2099,
+            "md5": "85bf8ffb10fc84dd684c3576c2347025",
+            "deps": []
+        },
+        {
+            "path": "Assets/mapevent",
+            "guid": "060f64d24fcfcc242bd603692702f8ea",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/mapevent/1.asset",
+            "guid": "06cb65f184769154bb7abc6cc219c981",
+            "type": "DolEventAsset",
+            "size": 2122,
+            "md5": "a8f0b4620cef2336f40b4aa49c6a6706",
+            "deps": [
+                "Assets/mapevent/test1.asset",
+                "Assets/picture/enemy1.png",
+                "Assets/Scripts/Combat/EnemyDefinition.cs",
+                "Assets/mapevent/body.asset",
+                "Assets/Scripts/Combat/BodyPreset.cs",
+                "Assets/mapevent/TestEnemy Definition.asset",
+                "Assets/mapevent/1.asset",
+                "Assets/Scripts/Combat/CombatEncounter.cs"
+            ]
+        },
+        {
+            "path": "Assets/mapevent/body.asset",
+            "guid": "49da379a803b4234cae84fc746237575",
+            "type": "BodyPreset",
+            "size": 612,
+            "md5": "9371bb0e6ddf831a594649ef511f84ee",
+            "deps": [
+                "Assets/mapevent/body.asset",
+                "Assets/Scripts/Combat/BodyPreset.cs"
+            ]
+        },
+        {
+            "path": "Assets/mapevent/map.asset",
+            "guid": "ae975c65e04cedf4cb075bc28375c919",
+            "type": "CaseDatabase",
+            "size": 530,
+            "md5": "47468850a41e0984516e00299faaa3e2",
+            "deps": [
+                "Assets/mapevent/map.asset",
+                "Assets/mapevent/test1.asset",
+                "Assets/picture/enemy1.png",
+                "Assets/Scripts/Combat/EnemyDefinition.cs",
+                "Assets/mapevent/body.asset",
+                "Assets/Scripts/Combat/BodyPreset.cs",
+                "Assets/mapevent/TestEnemy Definition.asset",
+                "Assets/Scripts/CaseDatabase.cs",
+                "Assets/mapevent/1.asset",
+                "Assets/Scripts/Combat/CombatEncounter.cs"
+            ]
+        },
+        {
+            "path": "Assets/mapevent/music.asset",
+            "guid": "1692e65b9215f7746b2142bfe4a4b899",
+            "type": "CaseVisuals",
+            "size": 631,
+            "md5": "3c299d238a0d62562a52df010980a563",
+            "deps": [
+                "Assets/Scripts/CaseVisuals.cs",
+                "Assets/mapevent/music.asset"
+            ]
+        },
+        {
+            "path": "Assets/mapevent/test1.asset",
+            "guid": "23505cf6326f49a4bbca97d72bbe6e98",
+            "type": "CombatEncounter",
+            "size": 659,
+            "md5": "b2b1b0bb77992ecceefe27143d25cad1",
+            "deps": [
+                "Assets/mapevent/test1.asset",
+                "Assets/picture/enemy1.png",
+                "Assets/Scripts/Combat/EnemyDefinition.cs",
+                "Assets/mapevent/body.asset",
+                "Assets/Scripts/Combat/BodyPreset.cs",
+                "Assets/mapevent/TestEnemy Definition.asset",
+                "Assets/Scripts/Combat/CombatEncounter.cs"
+            ]
+        },
+        {
+            "path": "Assets/mapevent/TestEnemy Definition.asset",
+            "guid": "792fa5e3ac0cfbb4c97d661310b58a2a",
+            "type": "EnemyDefinition",
+            "size": 638,
+            "md5": "de541469736474481bf480b888ecef7e",
+            "deps": [
+                "Assets/picture/enemy1.png",
+                "Assets/Scripts/Combat/EnemyDefinition.cs",
+                "Assets/mapevent/body.asset",
+                "Assets/Scripts/Combat/BodyPreset.cs",
+                "Assets/mapevent/TestEnemy Definition.asset"
+            ]
+        },
+        {
+            "path": "Assets/music",
+            "guid": "128cc11c64f489e4580395c39f3fd371",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/picture",
+            "guid": "ae3c1a16912bbaa4b8504238f3640854",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/picture/enemy1.png",
+            "guid": "56e8f47455e890e439904121429b9c8f",
+            "type": "Texture2D",
+            "size": 1530823,
+            "md5": "755d084472252bca9bc2208c8493cee5",
+            "deps": [
+                "Assets/picture/enemy1.png"
+            ]
+        },
+        {
+            "path": "Assets/Prefabs",
+            "guid": "aae684eb787c17d44ae9666e0abd3164",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Prefabs/Bar.prefab",
+            "guid": "7797b612c3b20b546b210d660a7bb4df",
+            "type": "GameObject",
+            "size": 14192,
+            "md5": "d51a74e2386de83c87803386a9cc383a",
+            "deps": [
+                "Assets/Scripts/StatBar.cs",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Slider.cs",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Image.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/Prefabs/Bar.prefab"
+            ]
+        },
+        {
+            "path": "Assets/Prefabs/buttonEven.prefab",
+            "guid": "bd81b3e5a328f8142bb5946e99d34e30",
+            "type": "GameObject",
+            "size": 8589,
+            "md5": "05acbf855c84a587ef6ddfed011a8f26",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/Prefabs/buttonEven.prefab",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Button.cs",
+                "Assets/Scripts/StartCountButton.cs",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Image.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/Prefabs/ChoiceButton.prefab",
+            "guid": "82ae1f1709942f847bf2f961e72a986f",
+            "type": "GameObject",
+            "size": 8693,
+            "md5": "a55e113b11e31a4db4bcdddf631cff95",
+            "deps": [
+                "Assets/Prefabs/ChoiceButton.prefab",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/LayoutElement.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/Scripts/ButtonController.cs",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Button.cs",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Image.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/Prefabs/Enemy.prefab",
+            "guid": "214751b5c66bf404586f01d84f4be3db",
+            "type": "GameObject",
+            "size": 2682,
+            "md5": "73e4c4f5a6d6536c8ce624e995b59e09",
+            "deps": [
+                "Assets/Scripts/Combat/Combatant.cs",
+                "Assets/Scripts/Combat/InventoryManager.cs",
+                "Assets/Scripts/Combat/Weapon/hand.asset",
+                "Assets/Prefabs/Enemy.prefab",
+                "Assets/Scripts/Combat/Armor/Nude.asset",
+                "Assets/Scripts/Combat/WeaponDef.cs",
+                "Assets/Scripts/Combat/EnemyTargetButton.cs",
+                "Assets/Scripts/Combat/ArmorDef.cs"
+            ]
+        },
+        {
+            "path": "Assets/Prefabs/Text (TMP).prefab",
+            "guid": "bc98c91b380fd5e49ac7a99692b303da",
+            "type": "GameObject",
+            "size": 3920,
+            "md5": "647def62028c8c2b5af11acd31c81427",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/Prefabs/Text (TMP).prefab",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/ProjectInventory.json",
+            "guid": "765426d393b1e744ba3ebc7d4942fe61",
+            "type": "TextAsset",
+            "size": 142450,
+            "md5": "23c87f4a57a65e591875340991f9079a",
+            "deps": []
+        },
+        {
+            "path": "Assets/ProjectInventory_Short.txt",
+            "guid": "82fbc7d960e77834e90ed757de7895fc",
+            "type": "TextAsset",
+            "size": 635,
+            "md5": "91bd37802954a67d6aa1d11048cdb7e8",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scenes",
+            "guid": "131a6b21c8605f84396be9f6751fb6e3",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scenes/SampleScene.unity",
+            "guid": "2cda990e2423bbf4892e6590ba056729",
+            "type": "SceneAsset",
+            "size": 357958,
+            "md5": "567b4b068568df91a4ae5f2cd13ffe70",
+            "deps": [
+                "Assets/Scripts/StatBar.cs",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Slider.cs",
+                "Assets/Scripts/HUDStats.cs",
+                "Assets/mapevent/map.asset",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/Scripts/Combat/EnemyHPBinder.cs",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/HorizontalLayoutGroup.cs",
+                "Assets/Scripts/Combat/HitGroupButton.cs",
+                "Assets/Scripts/Combat/CombatManager.cs",
+                "Assets/Scripts/ProloguePlayer.cs",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Assets/Scripts/Combat/EnemyDefinition.cs",
+                "Assets/Scripts/Combat/DeselectHotkey.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/mapevent/body.asset",
+                "Assets/Scripts/Combat/BodyPreset.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/Scripts/Combat/CombatUIController.cs",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Image.cs",
+                "Assets/Scripts/CaseDatabase.cs",
+                "Assets/Scripts/Combat/WeaponDef.cs",
+                "Assets/Scripts/Combat/ArmorDef.cs",
+                "Assets/Scenes/SampleScene.unity",
+                "Assets/Scripts/Combat/CombatEncounter.cs",
+                "Assets/Prefabs/ChoiceButton.prefab",
+                "Assets/Scripts/Combat/Combatant.cs",
+                "Assets/Scripts/Combat/InventoryManager.cs",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/LayoutElement.cs",
+                "Assets/Scripts/GameManagerStatProvider.cs",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/ContentSizeFitter.cs",
+                "Assets/Scripts/ButtonController.cs",
+                "Assets/Scripts/Combat/CombatResultRouter.cs",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/Scripts/SaveSlotButton.cs",
+                "Assets/Scripts/Combat/CombatPageController.cs",
+                "Assets/mapevent/test1.asset",
+                "Assets/Scripts/MenuManager.cs",
+                "Assets/picture/enemy1.png",
+                "Assets/Scripts/Combat/Weapon/hand.asset",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/CanvasScaler.cs",
+                "Assets/Scripts/Combat/HPBarBinder.cs",
+                "Assets/Scripts/Combat/CombatEventBridge.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/Prefabs/Text (TMP).prefab",
+                "Assets/mapevent/TestEnemy Definition.asset",
+                "Packages/com.unity.ugui/Runtime/UI/Core/GraphicRaycaster.cs",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Button.cs",
+                "Packages/com.unity.ugui/Runtime/EventSystem/InputModules/StandaloneInputModule.cs",
+                "Packages/com.unity.ugui/Runtime/EventSystem/EventSystem.cs",
+                "Assets/Scripts/GameManager.cs",
+                "Assets/Scripts/Combat/Armor/Nude.asset",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/mapevent/1.asset",
+                "Assets/Scripts/CaseVisuals.cs",
+                "Assets/mapevent/music.asset",
+                "Assets/Prefabs/Bar.prefab"
+            ]
+        },
+        {
+            "path": "Assets/Scripts",
+            "guid": "47668b2475e76e34683c7e4f9b4b2cec",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/AbilityStats.cs",
+            "guid": "e5ec335eab716b0499ff390e63d681d4",
+            "type": "MonoScript",
+            "size": 1809,
+            "md5": "c47707607c227acefc5cdd749684749d",
+            "deps": [
+                "Assets/Scripts/AbilityStats.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/AudioManager.cs",
+            "guid": "199c0b422a8256644986f9ae6c8a502f",
+            "type": "MonoScript",
+            "size": 2265,
+            "md5": "06cc3122cc78c317c83448275bc562c4",
+            "deps": [
+                "Assets/Scripts/AudioManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/ButtonController.cs",
+            "guid": "1078cb47ed8d1544bbe486713e77606b",
+            "type": "MonoScript",
+            "size": 361,
+            "md5": "b21ff479c8971e759842c5e6abec27d9",
+            "deps": [
+                "Assets/Scripts/ButtonController.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/CaseDatabase.cs",
+            "guid": "2092ba2005261294f93add19243a93fd",
+            "type": "MonoScript",
+            "size": 869,
+            "md5": "5a7b78d05f9fccb38297be0099f5a987",
+            "deps": [
+                "Assets/Scripts/CaseDatabase.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/CaseId.cs",
+            "guid": "e94e4625eca0f444fbf88473540b9168",
+            "type": "MonoScript",
+            "size": 291,
+            "md5": "70f2aeb8a5935f8ce694c16c6c1c9d9b",
+            "deps": [
+                "Assets/Scripts/CaseId.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/CaseVisuals.cs",
+            "guid": "a0a3f4aa472c11a4db270289f8c6a8a5",
+            "type": "MonoScript",
+            "size": 1199,
+            "md5": "cbd23d2b45d6be2efdcc9875430a6c13",
+            "deps": [
+                "Assets/Scripts/CaseVisuals.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat",
+            "guid": "bd1c4b5b24bdec147b652b2357731a84",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Combat/Armor",
+            "guid": "21e178c2dc72e514f9cd4b87ab2fa4f8",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Combat/Armor/Nude.asset",
+            "guid": "797db4d9f5d317648ab395ba610af1a0",
+            "type": "ArmorDef",
+            "size": 602,
+            "md5": "139a5eab98b182acbea9416f71b9e145",
+            "deps": [
+                "Assets/Scripts/Combat/Armor/Nude.asset",
+                "Assets/Scripts/Combat/ArmorDef.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/ArmorDef.cs",
+            "guid": "b3e12f587ab59ea428d1a44062ebd35e",
+            "type": "MonoScript",
+            "size": 1770,
+            "md5": "4345597a3c0c35957cf27bd8d8ccc13c",
+            "deps": [
+                "Assets/Scripts/Combat/ArmorDef.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/BasicHealth.cs",
+            "guid": "979c1ee2bb0e8ff4fa88ee3c0c5c151e",
+            "type": "MonoScript",
+            "size": 416,
+            "md5": "89c78196ee59639c31a6b170501ecdd1",
+            "deps": [
+                "Assets/Scripts/Combat/BasicHealth.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/BodyPartState.cs",
+            "guid": "9e18d0796d9ec3842a15e0c872c099b1",
+            "type": "MonoScript",
+            "size": 1674,
+            "md5": "c20510026a621ffa28aaf18604f85fab",
+            "deps": [
+                "Assets/Scripts/Combat/BodyPartState.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/BodyPreset.cs",
+            "guid": "7779f7f1f1b2ae443abb13ef9697981d",
+            "type": "MonoScript",
+            "size": 2389,
+            "md5": "873953bb6c0088a29220fa03974787e6",
+            "deps": [
+                "Assets/Scripts/Combat/BodyPreset.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/BodyTagDestroyedCondition.cs",
+            "guid": "7a9024f532b8e0c48894d512b8eec33a",
+            "type": "MonoScript",
+            "size": 1037,
+            "md5": "6106a2f262914870854d66942d44ecbf",
+            "deps": [
+                "Assets/Scripts/Combat/BodyTagDestroyedCondition.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/Combatant.cs",
+            "guid": "9b4107232d8f8584fa07298b7d4039f7",
+            "type": "MonoScript",
+            "size": 4426,
+            "md5": "95994432c624a4a0d1949623f0401341",
+            "deps": [
+                "Assets/Scripts/Combat/Combatant.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatantExtensions.cs",
+            "guid": "d3d32ae895b7062488fc88aa47f44b57",
+            "type": "MonoScript",
+            "size": 1892,
+            "md5": "0e03d63589c3bd9f2784598533c9d170",
+            "deps": [
+                "Assets/Scripts/Combat/CombatantExtensions.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatEncounter.cs",
+            "guid": "3c7d2f3730d6b86418d4b38e678fcc8e",
+            "type": "MonoScript",
+            "size": 304,
+            "md5": "f855dfd818770da4fde6176d6dc7d6a1",
+            "deps": [
+                "Assets/Scripts/Combat/CombatEncounter.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatEventBridge.cs",
+            "guid": "1fd4ceb04fe3b8749b2a1a0a0c68145a",
+            "type": "MonoScript",
+            "size": 778,
+            "md5": "f7ac4c50e9ac1f82268989d8a43c21ac",
+            "deps": [
+                "Assets/Scripts/Combat/CombatEventBridge.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatManager.cs",
+            "guid": "80ecc285f635c314ca894ae957710f95",
+            "type": "MonoScript",
+            "size": 9771,
+            "md5": "45ea91ac83e9869e238ad275eb04f330",
+            "deps": [
+                "Assets/Scripts/Combat/CombatManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatManager_InventoryHook.cs",
+            "guid": "df9d874429160564ab71b5c0a0d9df4a",
+            "type": "MonoScript",
+            "size": 569,
+            "md5": "470c125ac1af0d27abe789ac1f2b8fec",
+            "deps": [
+                "Assets/Scripts/Combat/CombatManager_InventoryHook.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatPageController.cs",
+            "guid": "e7f498e3a4f2f5c4486cf7b363e999dc",
+            "type": "MonoScript",
+            "size": 11919,
+            "md5": "d72aa3b8a0e0fb7c00d1bab38040ec63",
+            "deps": [
+                "Assets/Scripts/Combat/CombatPageController.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatResultRouter.cs",
+            "guid": "6cda3399864bdbf4790ac5ff1ced27ad",
+            "type": "MonoScript",
+            "size": 948,
+            "md5": "d7602c2be9479bbd2d2921d88b047809",
+            "deps": [
+                "Assets/Scripts/Combat/CombatResultRouter.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatSceneLoader.cs",
+            "guid": "73bf754329cd4a94cb53936fd0e4823c",
+            "type": "MonoScript",
+            "size": 1002,
+            "md5": "f2dbe02d1ae02744e8f5ace05d01b4e5",
+            "deps": [
+                "Assets/Scripts/Combat/CombatSceneLoader.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatSpecialCondition.cs",
+            "guid": "4e2fb527cc62b2c40bbf96ce942d7f3e",
+            "type": "MonoScript",
+            "size": 296,
+            "md5": "26c7294f1363d5f7edadfdabb2f80ad7",
+            "deps": [
+                "Assets/Scripts/Combat/CombatSpecialCondition.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatStarterButton.cs",
+            "guid": "675af721fdb850445a01a040a0597776",
+            "type": "MonoScript",
+            "size": 235,
+            "md5": "48ea4757b4f365b5204ddc7dd9a76e96",
+            "deps": [
+                "Assets/Scripts/Combat/CombatStarterButton.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatUIController.cs",
+            "guid": "f9d8cd85dcd51534f82c09dedf9d5291",
+            "type": "MonoScript",
+            "size": 7664,
+            "md5": "ff0d90658918ebffd66e31e48baf345a",
+            "deps": [
+                "Assets/Scripts/Combat/CombatUIController.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatUIController_HitStopPatch.txt",
+            "guid": "f4723ecf544ad9945ab708c2f6556154",
+            "type": "TextAsset",
+            "size": 277,
+            "md5": "a8c704aff840b5ce8b5903e6b0b393fe",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Combat/ConsumableDef.cs",
+            "guid": "df0e883da259a25488f4f92096117cae",
+            "type": "MonoScript",
+            "size": 643,
+            "md5": "5f201892f272ed543e4c55d0b4a5c2cc",
+            "deps": [
+                "Assets/Scripts/Combat/ConsumableDef.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/DeselectHotkey.cs",
+            "guid": "859a6874148cd1f45bfdf884e6f9812a",
+            "type": "MonoScript",
+            "size": 279,
+            "md5": "72ee8138b8480e58458d7fb0cc00bda2",
+            "deps": [
+                "Assets/Scripts/Combat/DeselectHotkey.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/Effects.cs",
+            "guid": "d2536fc55c669174eb3d6b163e441353",
+            "type": "MonoScript",
+            "size": 1595,
+            "md5": "04d9d29472df14eb97a6c46fd8963ab0",
+            "deps": [
+                "Assets/Scripts/Combat/Effects.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/EnemyDefinition.cs",
+            "guid": "8779a7213188ecd4687d285843ead25a",
+            "type": "MonoScript",
+            "size": 1107,
+            "md5": "3d41e232eae9f2ca588e64e53239ed2e",
+            "deps": [
+                "Assets/Scripts/Combat/EnemyDefinition.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/EnemyHPBinder.cs",
+            "guid": "aeecdb4bd25bcaa4aa7b9c83e3bee4db",
+            "type": "MonoScript",
+            "size": 1116,
+            "md5": "f0cb660cc08ec3f6c393440a2bd2b81f",
+            "deps": [
+                "Assets/Scripts/Combat/EnemyHPBinder.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/EnemyTargetButton.cs",
+            "guid": "4f266d6c0f2ac8942b00008b50ef60ec",
+            "type": "MonoScript",
+            "size": 1425,
+            "md5": "f7643a454123af3afd0f883fc7116b89",
+            "deps": [
+                "Assets/Scripts/Combat/EnemyTargetButton.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/Enums.cs",
+            "guid": "62fd3cd5e98162b4bb74ee99d6b862ed",
+            "type": "MonoScript",
+            "size": 708,
+            "md5": "37cbaede3a40c4c36cefab89c038cb63",
+            "deps": [
+                "Assets/Scripts/Combat/Enums.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/EventCombatBridge.cs",
+            "guid": "4d9ee46f64f0bff438a8455d09490fe9",
+            "type": "MonoScript",
+            "size": 1493,
+            "md5": "e0c67b0a3c12eb27e9a2fc5746f92c4d",
+            "deps": [
+                "Assets/Scripts/Combat/EventCombatBridge.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/HitGroupButton.cs",
+            "guid": "3c5766767255c1443a077b093b097e66",
+            "type": "MonoScript",
+            "size": 502,
+            "md5": "d7839e1100885d45cddce725d1970e59",
+            "deps": [
+                "Assets/Scripts/Combat/HitGroupButton.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/HPBarBinder.cs",
+            "guid": "3833177c42f2a694088d458a433a500a",
+            "type": "MonoScript",
+            "size": 1457,
+            "md5": "3481c924dcdc925b79c7a1259ae3d373",
+            "deps": [
+                "Assets/Scripts/Combat/HPBarBinder.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/InventoryManager.cs",
+            "guid": "987ca2daa2481684488389b7a3b04405",
+            "type": "MonoScript",
+            "size": 747,
+            "md5": "011052eb3bc8723f63c5079c16813a82",
+            "deps": [
+                "Assets/Scripts/Combat/InventoryManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/ItemDef.cs",
+            "guid": "c66d590e60ebed64baaa3124dc6b4153",
+            "type": "MonoScript",
+            "size": 351,
+            "md5": "b58f8a03c54aaabd54f519f9a76cca33",
+            "deps": [
+                "Assets/Scripts/Combat/ItemDef.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/ItemRegistry.cs",
+            "guid": "2187760a6455b514c9ecfe692a0bb663",
+            "type": "MonoScript",
+            "size": 828,
+            "md5": "d06054f05d6787ea6cf7da33484d3268",
+            "deps": [
+                "Assets/Scripts/Combat/ItemRegistry.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/TargetingPanel.cs",
+            "guid": "576cad4d2e5a59a4c8e48df730b1c3dc",
+            "type": "MonoScript",
+            "size": 989,
+            "md5": "1301362aa518c93ef7a0ff050302e284",
+            "deps": [
+                "Assets/Scripts/Combat/TargetingPanel.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/Weapon",
+            "guid": "3703525ce91895b498fb1bae79193439",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Combat/Weapon/hand.asset",
+            "guid": "b9c6be7f675fb074e96be2ad08105830",
+            "type": "WeaponDef",
+            "size": 592,
+            "md5": "e2d0323a9bcf27707612c5595dd0e402",
+            "deps": [
+                "Assets/Scripts/Combat/Weapon/hand.asset",
+                "Assets/Scripts/Combat/WeaponDef.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/WeaponDef.cs",
+            "guid": "b88b0b3a3ee068b41b35bcaff06cdcda",
+            "type": "MonoScript",
+            "size": 1609,
+            "md5": "65f91733601a73752af6069047b59fa4",
+            "deps": [
+                "Assets/Scripts/Combat/WeaponDef.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/DolEventAsset.cs",
+            "guid": "6495274c65bcf014fbb8cf7162f8fb40",
+            "type": "MonoScript",
+            "size": 6295,
+            "md5": "678b3b9cc28939d48a80e405f4b610da",
+            "deps": [
+                "Assets/Scripts/DolEventAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/EventFlagStorage.cs",
+            "guid": "9970347d794987147815fa19ee0cd3e6",
+            "type": "MonoScript",
+            "size": 3481,
+            "md5": "b7f231ef8c408fdc03fbdc952c268f16",
+            "deps": [
+                "Assets/Scripts/EventFlagStorage.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Events",
+            "guid": "dadd911621d7d6546be8e793844eec92",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/GameManager.cs",
+            "guid": "07f1fc21b71600e42b160c792f1971f6",
+            "type": "MonoScript",
+            "size": 16082,
+            "md5": "185bbaea481ade03ebdd3fec41a790cb",
+            "deps": [
+                "Assets/Scripts/GameManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/GameManagerStatProvider.cs",
+            "guid": "fcaba6e911821424d9c02b3075c9f26b",
+            "type": "MonoScript",
+            "size": 2697,
+            "md5": "1759a3d56fc948a512f82cf48b88ac42",
+            "deps": [
+                "Assets/Scripts/GameManagerStatProvider.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/HUDStats.cs",
+            "guid": "bc9f4347fb7f35a42b4bf0f43c70af32",
+            "type": "MonoScript",
+            "size": 1579,
+            "md5": "aa6b27f2239ee9e47e4bff32cb5e6c1f",
+            "deps": [
+                "Assets/Scripts/HUDStats.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/KG",
+            "guid": "de910a02e9ed9bd42989f7a5879f7cba",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/KG/DOLAutoAssign.cs",
+            "guid": "4115026f01af3774f9ad86b0ace544ff",
+            "type": "MonoScript",
+            "size": 1872,
+            "md5": "c5f9772695778eee9a76be07e26a8702",
+            "deps": [
+                "Assets/Scripts/KG/DOLAutoAssign.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/KG/DOLValidateSetup.cs",
+            "guid": "07dd04cf85b1cd049b7bad29a07b2a5a",
+            "type": "MonoScript",
+            "size": 2176,
+            "md5": "bb124074be8a4cf9aa661e504149cc4b",
+            "deps": [
+                "Assets/Scripts/KG/DOLValidateSetup.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/KG/Editor",
+            "guid": "7a6c5d6f097abc84f90ad87c99ae8d07",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/KG/Editor/CombatTools_KG.cs",
+            "guid": "da2f8178037ed0f47bff128665ccad62",
+            "type": "MonoScript",
+            "size": 9329,
+            "md5": "16ee920c3f8aeab99b86453c206770f5",
+            "deps": [
+                "Assets/Scripts/KG/Editor/CombatTools_KG.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/KG/Editor/KG.Editor.asmdef",
+            "guid": "71fd88e74301d8142917ab6f4a5cf6cd",
+            "type": "AssemblyDefinitionAsset",
+            "size": 305,
+            "md5": "c332ef598dd5b1a7420b1ba7b29b7d6b",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/KG/TMPFontReplacer.cs",
+            "guid": "96d8e12e7400a504b9d81c26a1fc773a",
+            "type": "MonoScript",
+            "size": 3641,
+            "md5": "9f56685502f6cf9e1d6bc5dde132ef9f",
+            "deps": [
+                "Assets/Scripts/KG/TMPFontReplacer.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/MenuManager.cs",
+            "guid": "060311740a789b44093629c69c301dd7",
+            "type": "MonoScript",
+            "size": 3551,
+            "md5": "acfe6db6effe33ddcc32f8557db80afb",
+            "deps": [
+                "Assets/Scripts/MenuManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/PlayerStats.cs",
+            "guid": "51aa1c9db4ef8114b9b15fe21a0010f9",
+            "type": "MonoScript",
+            "size": 4264,
+            "md5": "e77381156f8e28c302796118b22ad132",
+            "deps": [
+                "Assets/Scripts/PlayerStats.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/ProloguePlayer.cs",
+            "guid": "d801c5c660ce75742a84b021cf6a3191",
+            "type": "MonoScript",
+            "size": 5929,
+            "md5": "58768d4467cd3f913ed8e13ed1894629",
+            "deps": [
+                "Assets/Scripts/ProloguePlayer.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/SampleAssetsGenerator.cs",
+            "guid": "ec56a8fa942fdd84cab6e2e773532fab",
+            "type": "MonoScript",
+            "size": 9565,
+            "md5": "2b08aab241e18f73f283620d9aecdb2c",
+            "deps": [
+                "Assets/Scripts/SampleAssetsGenerator.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/SaveData.cs",
+            "guid": "3da0b9c8c9ae5fd45b8254c6bbd94d75",
+            "type": "MonoScript",
+            "size": 559,
+            "md5": "8e6c72cf3e4138d79699e60bf37814ce",
+            "deps": [
+                "Assets/Scripts/SaveData.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/SaveManager.cs",
+            "guid": "df2c167f1054898418d189eb042a8ca7",
+            "type": "MonoScript",
+            "size": 840,
+            "md5": "14ee819e150e29094ad0813628d8608d",
+            "deps": [
+                "Assets/Scripts/SaveManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/SaveSlotButton.cs",
+            "guid": "8266158720b9da742ab4e03e4a0eee59",
+            "type": "MonoScript",
+            "size": 800,
+            "md5": "a249b51038ca74bbcf56b2a9ad4982f0",
+            "deps": [
+                "Assets/Scripts/SaveSlotButton.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/SoundEffectManager.cs",
+            "guid": "373b41a928b14ea4bb3c5b2c9eb94100",
+            "type": "MonoScript",
+            "size": 3515,
+            "md5": "471d857501bcd39159b03b6a1eadec89",
+            "deps": [
+                "Assets/Scripts/SoundEffectManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/StartCountButton.cs",
+            "guid": "647d3eb0d9a7cf14492f29d4d4feb6c0",
+            "type": "MonoScript",
+            "size": 899,
+            "md5": "d2b2d3ea11e60ed5f22eac48034a7cff",
+            "deps": [
+                "Assets/Scripts/StartCountButton.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/StatBar.cs",
+            "guid": "8696a0a8f177c1a4b8f82dfb2848609b",
+            "type": "MonoScript",
+            "size": 2464,
+            "md5": "dfd302d1482251ab5865f67d259bf1f3",
+            "deps": [
+                "Assets/Scripts/StatBar.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/StatEventBus.cs",
+            "guid": "445a0894512c1b24e90db188c9576453",
+            "type": "MonoScript",
+            "size": 590,
+            "md5": "6c9cdbeb460f0989fef9137d4b6bd334",
+            "deps": [
+                "Assets/Scripts/StatEventBus.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/StatType.cs",
+            "guid": "3995fd481c62f264892ff01df2bab16c",
+            "type": "MonoScript",
+            "size": 250,
+            "md5": "5b871f4c825dd0432dace1e11b7f756c",
+            "deps": [
+                "Assets/Scripts/StatType.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/StoryData.cs",
+            "guid": "394c08887bec7c649803789f1a7cce2f",
+            "type": "MonoScript",
+            "size": 447,
+            "md5": "767df8e92349c8f5a990ce0e08626387",
+            "deps": [
+                "Assets/Scripts/StoryData.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/VFX",
+            "guid": "44f99173945feb3469e2ae05c39857a0",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/VFX/BattleFXController.cs",
+            "guid": "10149dfa0f943194a92f1d3ac54dba75",
+            "type": "MonoScript",
+            "size": 3193,
+            "md5": "6168db461dbb58d9843f610a269e2f94",
+            "deps": [
+                "Assets/Scripts/VFX/BattleFXController.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/VFX/HitFlash2D.cs",
+            "guid": "ed50976f01bc28b43a1a3265253a66ce",
+            "type": "MonoScript",
+            "size": 936,
+            "md5": "786bf662f0b3778e41cd37cbd90ed419",
+            "deps": [
+                "Assets/Scripts/VFX/HitFlash2D.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/VFX/HitStop.cs",
+            "guid": "5be8407783d294d46b57ae5f7cc1b387",
+            "type": "MonoScript",
+            "size": 1891,
+            "md5": "31a532fc95d6a2a59c259583d7ff165b",
+            "deps": [
+                "Assets/Scripts/VFX/HitStop.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/VFX/ScreenVignette.cs",
+            "guid": "ac33b0118c74d6f4e8a38f186ee9ab71",
+            "type": "MonoScript",
+            "size": 1300,
+            "md5": "0921afab057ec15d6fc86caae5beba1d",
+            "deps": [
+                "Assets/Scripts/VFX/ScreenVignette.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/VFX/USAGE.txt",
+            "guid": "d5396be62e8d5cb409224a6db03a2db0",
+            "type": "TextAsset",
+            "size": 597,
+            "md5": "1f14cf4ee18d9a949361d4de85286921",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro",
+            "guid": "f54d1bd14bd3ca042bd867b519fee8cc",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Documentation",
+            "guid": "8e7e8f5a82a3a134e91c54efd2274ea9",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf",
+            "guid": "1b8d251f9af63b746bf2f7ffe00ebb9b",
+            "type": "DefaultAsset",
+            "size": 694398,
+            "md5": "d5e461fcd15d946196ba95d7af5f22f7",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras",
+            "guid": "ce51c8e33b734b4db6086586558c53a3",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Fonts",
+            "guid": "b63e0053080646b9819789bf3bf9fa17",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton OFL.txt",
+            "guid": "73a79399807f4e8388c2cbb5494681ca",
+            "type": "TextAsset",
+            "size": 4487,
+            "md5": "200fb56875abe81caf68aaa500e1fca6",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf",
+            "guid": "997a43b767814dd0a7642ec9b78cba41",
+            "type": "Font",
+            "size": 42376,
+            "md5": "7a1e3c1b496e6eecfe680dae7fce2676",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers - OFL.txt",
+            "guid": "efe0bf4ac872451e91612d1ae593f480",
+            "type": "TextAsset",
+            "size": 4491,
+            "md5": "1ac0f88edfc7544c85a7549fe3a90e32",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers.ttf",
+            "guid": "5dd49b3eacc540408c98eee0de38e0f1",
+            "type": "Font",
+            "size": 39676,
+            "md5": "79c6d1b820702454d23048eee05335b3",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Electronic Highway Sign.TTF",
+            "guid": "8a2b9e2a607dd2143b58c44bc32410b4",
+            "type": "Font",
+            "size": 73060,
+            "md5": "a711fa8102b7282e2e93f924a25ce86b",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Electronic Highway Sign.TTF"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Oswald-Bold - OFL.txt",
+            "guid": "d2cf87a8a7a94aa8b80dff1c807c1178",
+            "type": "TextAsset",
+            "size": 4494,
+            "md5": "56a8c1c995a5b8de92bcaa75055e7cfb",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Oswald-Bold.ttf",
+            "guid": "c9f6d0e7bc8541498c9a4799ba184ede",
+            "type": "Font",
+            "size": 53056,
+            "md5": "8993e4d87124a3808ae68d2e52d27f87",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Oswald-Bold.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Roboto-Bold.ttf",
+            "guid": "4beb055f07aaff244873dec698d0363e",
+            "type": "Font",
+            "size": 170760,
+            "md5": "ee7b96fa85d8fdb8c126409326ac2d2b",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Roboto-Bold.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Materials",
+            "guid": "5808953df7a24274a851aa6dee52d30e",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat",
+            "guid": "e6b9b44320f4448d9d5e0ee634259966",
+            "type": "Material",
+            "size": 2464,
+            "md5": "05ebe46c3df9b8f61540ae0cb623a069",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Logo Scene.mat",
+            "guid": "c719e38f25a9480abd2480ab621a2949",
+            "type": "Material",
+            "size": 4694,
+            "md5": "21574f3d4209e424b8364368642a3695",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Surface Shader Scene.mat",
+            "guid": "aadd5a709a48466c887296bb5b1b8110",
+            "type": "Material",
+            "size": 3150,
+            "md5": "ccc58e8a34d7530a578c5b29f50d5dd3",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Small Crate_diffuse.mat",
+            "guid": "22262639920f43d6be32430e4e58350d",
+            "type": "Material",
+            "size": 2975,
+            "md5": "53ec2f5288e8acdb1aa1a05b8b591bef",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs",
+            "guid": "5bff2544887143f5807c7d5059d07f79",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab",
+            "guid": "b06f0e6c1dfa4356ac918da1bb32c603",
+            "type": "GameObject",
+            "size": 7401,
+            "md5": "7f92be8a200f2981d264f6e39bf6a750",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/ContentSizeFitter.cs",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Image.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/VerticalLayoutGroup.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 1.prefab",
+            "guid": "a6e39ced0ea046bcb636c3f0b2e2a745",
+            "type": "GameObject",
+            "size": 5272,
+            "md5": "fb8ee7b72fcb0bdfba3e33fff5beb5d8",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 1.prefab",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 2.prefab",
+            "guid": "fdad9d952ae84cafb74c63f2e694d042",
+            "type": "GameObject",
+            "size": 5268,
+            "md5": "d7301ab30eef70dbb34f634c94927989",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 2.prefab",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources",
+            "guid": "d6d3a169ad794942a21da6a552d62f6f",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets",
+            "guid": "7f422cd1388b01047a58cd07c7a23d9d",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Blue to Purple - Vertical.asset",
+            "guid": "479a66fa4b094512a62b0a8e553ad95a",
+            "type": "TMP_ColorGradient",
+            "size": 588,
+            "md5": "b33b5ea4a78ba0b2d3fd06aae2a672b9",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_ColorGradient.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Blue to Purple - Vertical.asset"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Dark to Light Green - Vertical.asset",
+            "guid": "4c86a3366cd840348ebe8dc438570ee4",
+            "type": "TMP_ColorGradient",
+            "size": 609,
+            "md5": "6d178ce494436498a5f6c10674cbd14d",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_ColorGradient.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Dark to Light Green - Vertical.asset"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Light to Dark Green - Vertical.asset",
+            "guid": "5cf8ae092ca54931b443bec5148f3c59",
+            "type": "TMP_ColorGradient",
+            "size": 585,
+            "md5": "98c8da6127d4fde2d5fc1eccdc730495",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_ColorGradient.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Light to Dark Green - Vertical.asset"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Yellow to Orange - Vertical.asset",
+            "guid": "69a525efa7e6472eab268f6ea605f06e",
+            "type": "TMP_ColorGradient",
+            "size": 544,
+            "md5": "da15330386eae640be1031e8e236ed28",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_ColorGradient.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Yellow to Orange - Vertical.asset"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials",
+            "guid": "4f1e85c79acf49968737939ce8b445c7",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Drop Shadow.mat",
+            "guid": "749b9069dc4742c5bfa5c74644049926",
+            "type": "Material",
+            "size": 2906,
+            "md5": "4349086fe8551d80c1b2d7043b2241fe",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Outline.mat",
+            "guid": "a00013af81304728b2be1f4309ee2433",
+            "type": "Material",
+            "size": 2888,
+            "md5": "2ed1fe6ced74854c48dc89c3b89a47cb",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Sunny Days.mat",
+            "guid": "6522f30e342599e4e9dd4cc2cc03c830",
+            "type": "Material",
+            "size": 3069,
+            "md5": "b92fe4a27e0906402933e7aee738e0be",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset",
+            "guid": "8a89fa14b10d46a99122fd4f73fca9a2",
+            "type": "TMP_FontAsset",
+            "size": 2105450,
+            "md5": "692f37e46c2565037c6a320151a599ab",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF - Drop Shadow.mat",
+            "guid": "f2dcf029949142e28b974630369c8b4e",
+            "type": "Material",
+            "size": 3081,
+            "md5": "ed486c0bf4a65c1a6018d7f3703e1ef9",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF - Outline.mat",
+            "guid": "f629c6e43dba4bf38cb74d8860150664",
+            "type": "Material",
+            "size": 3053,
+            "md5": "5d4f4acf8e4baf864775fc5d9408450e",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Glow.mat",
+            "guid": "d75b8f41e959450c84ac6e967084d3e1",
+            "type": "Material",
+            "size": 3213,
+            "md5": "479c0029ca2ff5b6bb9eee2f6acb867d",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Logo.mat",
+            "guid": "f4e195ac1e204eff960149d1cb34e18c",
+            "type": "Material",
+            "size": 3044,
+            "md5": "c502723a57b5626b07770a587d41e10e",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset",
+            "guid": "125cb55b44b24c4393181402bc6200e6",
+            "type": "TMP_FontAsset",
+            "size": 2105431,
+            "md5": "2af8a7ddbf57f5cb09c3fa8d0485bc18",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers.ttf",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Electronic Highway Sign SDF.asset",
+            "guid": "dc36b3fdc14f47ebb36fd484a67e268a",
+            "type": "TMP_FontAsset",
+            "size": 8026,
+            "md5": "d61bc89738f885fb433d4b398ba15d07",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Electronic Highway Sign SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Electronic Highway Sign.TTF"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Metalic Green.mat",
+            "guid": "8b29aaa3eec7468097ff07adfcf29ac9",
+            "type": "Material",
+            "size": 3255,
+            "md5": "58e0fd4d715dff9f50cdc635a62b317d",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Overlay.mat",
+            "guid": "9ad269c99dcf42b7aedefd83dd5a7b9d",
+            "type": "Material",
+            "size": 1849,
+            "md5": "e5b1d0d4d024e87fb3d7489e2ee83bab",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Soft Mask.mat",
+            "guid": "42df1c7856584b6b8db9a509b6b10074",
+            "type": "Material",
+            "size": 3347,
+            "md5": "fe2ecd0076b7aa314484c87a20580d18",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Oswald Bold SDF.asset",
+            "guid": "0161d805a3764c089bef00bfe00793f5",
+            "type": "TMP_FontAsset",
+            "size": 2105478,
+            "md5": "4fd9f80c376a9dc3d13e6ae3c7cc4c28",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Oswald-Bold.ttf",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Oswald Bold SDF.asset",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF - Drop Shadow.mat",
+            "guid": "b246c4190f4e46ec9352fe15a7b09ce0",
+            "type": "Material",
+            "size": 2909,
+            "md5": "a1c32b756235ae38db3c67dadba26929",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF - Surface.mat",
+            "guid": "e6b276ec991f467aa14ef1f3cc665993",
+            "type": "Material",
+            "size": 3011,
+            "md5": "9727c110a1cf98dd2e3f6ecef9a7daf0",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset",
+            "guid": "5302535af1044152a457ed104f1f4b91",
+            "type": "TMP_FontAsset",
+            "size": 2105489,
+            "md5": "95ed828df07acbd8e23ff897548ddee8",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Roboto-Bold.ttf",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets",
+            "guid": "3ac6db30e75b49b282a3564110579f27",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/Default Sprite Asset.asset",
+            "guid": "fbef3c704dce48f08a44612d6c856c8d",
+            "type": "TMP_SpriteAsset",
+            "size": 7862,
+            "md5": "e0da8e97d43dfe3960857e6922fc86d7",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Sprites/Default Sprites.png",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/Default Sprite Asset.asset",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SpriteAsset.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Sprite Asset Icon.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/DropCap Numbers.asset",
+            "guid": "14aa93acbb234d16aaef0e8b46814db6",
+            "type": "TMP_SpriteAsset",
+            "size": 9803,
+            "md5": "a64ff6d666fa004db9624e94c1d4adc2",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SpriteAsset.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/DropCap Numbers.asset",
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+                "Assets/TextMesh Pro/Examples & Extras/Sprites/DropCap Numbers.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Sprite Asset Icon.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes",
+            "guid": "db1090641b3241f6995b587eb21637bc",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/01-  Single Line TextMesh Pro.unity",
+            "guid": "2ac8cf212df6445e8aebbe3cb832e993",
+            "type": "SceneAsset",
+            "size": 10375,
+            "md5": "ed7aac4608d07e3238c15f02242ac3f3",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/01-  Single Line TextMesh Pro.unity",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/02 - Multi-line TextMesh Pro.unity",
+            "guid": "251716609f634449bfe8ce75c0ed78fe",
+            "type": "SceneAsset",
+            "size": 10445,
+            "md5": "9c99c473bed190ce8d1ca357c8c40cb7",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/02 - Multi-line TextMesh Pro.unity",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/03 - Line Justification.unity",
+            "guid": "21a509e1d3cd49978623fa564adb6f02",
+            "type": "SceneAsset",
+            "size": 24596,
+            "md5": "fd31f771ba2fe22cc8f0068099c7186a",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/03 - Line Justification.unity",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/04 - Word Wrapping.unity",
+            "guid": "8f7137eacd7042d5b17ef0efe5e744f5",
+            "type": "SceneAsset",
+            "size": 10389,
+            "md5": "ba98b7159eb65cb4dfc0478b45374077",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/04 - Word Wrapping.unity",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/05 - Style Tags.unity",
+            "guid": "70615243e2be4a81afaab9bf5d273d65",
+            "type": "SceneAsset",
+            "size": 28548,
+            "md5": "9a610e3696bc10176643a1bec8428733",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/05 - Style Tags.unity",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/06 - Extra Rich Text Examples.unity",
+            "guid": "39a1fa96ad2a449b908fca29d4297a74",
+            "type": "SceneAsset",
+            "size": 19196,
+            "md5": "934d6d954dda55ed13a4dcdabe6aed85",
+            "deps": [
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/06 - Extra Rich Text Examples.unity",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/07 - Superscript & Subscript Example.unity",
+            "guid": "03ec435d4b7140e9b2d87f79136d8374",
+            "type": "SceneAsset",
+            "size": 10533,
+            "md5": "1f67a70f5ae710af115fa54d7efd0ef3",
+            "deps": [
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/07 - Superscript & Subscript Example.unity",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/08 - Improved Text Alignment.unity",
+            "guid": "5fe2257128d9401fad0790f581dc8a6f",
+            "type": "SceneAsset",
+            "size": 15890,
+            "md5": "8652012355c25c41120ede4306474797",
+            "deps": [
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/08 - Improved Text Alignment.unity",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/09 - Margin Tag Example.unity",
+            "guid": "349f38d3606449708c7340d26740e1e2",
+            "type": "SceneAsset",
+            "size": 26630,
+            "md5": "7b46704f00e2a41c06a3c2671c7e21c0",
+            "deps": [
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/09 - Margin Tag Example.unity",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/10 - Bullets & Numbered List Example.unity",
+            "guid": "c3f814e1d12c45568daf3dd9a86a0e61",
+            "type": "SceneAsset",
+            "size": 19166,
+            "md5": "c3ef400b8b04bbc6ad2e2405a9f4195b",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SubMeshUI.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SpriteAsset.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/10 - Bullets & Numbered List Example.unity",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/DropCap Numbers.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Sprites/DropCap Numbers.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Sprite Asset Icon.psd",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/11 - The Style Tag.unity",
+            "guid": "84ed36ad77dd4956b2ffe3769f759879",
+            "type": "SceneAsset",
+            "size": 15327,
+            "md5": "de2fb1295bcc2393f7e75e80bfe7adb7",
+            "deps": [
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/11 - The Style Tag.unity",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/12 - Link Example.unity",
+            "guid": "9747140c28254be2adc582210dfb89b8",
+            "type": "SceneAsset",
+            "size": 22098,
+            "md5": "31e226aa64a09579612323ce94055b41",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/12 - Link Example.unity",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/ContentSizeFitter.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SubMeshUI.cs",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF - Drop Shadow.mat",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Image.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/VerticalLayoutGroup.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/12a - Text Interactions.unity",
+            "guid": "08572ab7713642c8a60789750f0bce5c",
+            "type": "SceneAsset",
+            "size": 24418,
+            "md5": "3fb7bc572ae704dac9f4b139c200f5be",
+            "deps": [
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SpriteAsset.cs",
+                "Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/12a - Text Interactions.unity",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.ugui/Runtime/UI/Core/GraphicRaycaster.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Packages/com.unity.ugui/Runtime/EventSystem/InputModules/StandaloneInputModule.cs",
+                "Packages/com.unity.ugui/Runtime/EventSystem/EventSystem.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventCheck.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventHandler.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Sprite Asset Icon.psd",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/13 - Soft Hyphenation.unity",
+            "guid": "875684baf40f4d008ce806d03e2a81b2",
+            "type": "SceneAsset",
+            "size": 13939,
+            "md5": "b8b6f14043828a5e1b54ff1a8d1d5dcd",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/13 - Soft Hyphenation.unity",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/14 - Multi Font & Sprites.unity",
+            "guid": "22a2fba786ad4c40ac0ba09f0b933100",
+            "type": "SceneAsset",
+            "size": 14912,
+            "md5": "1693da0bec82ad6d3679a9afb7e32eb2",
+            "deps": [
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SpriteAsset.cs",
+                "Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Drop Shadow.mat",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/14 - Multi Font & Sprites.unity",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Sprite Asset Icon.psd",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/15 - Inline Graphics & Sprites.unity",
+            "guid": "e76e6c0f81964cbda3fe0b7d26ed8060",
+            "type": "SceneAsset",
+            "size": 16827,
+            "md5": "cf3f412ad067762662657e3b933a3f37",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Sprites/Default Sprites.png",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/Default Sprite Asset.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/15 - Inline Graphics & Sprites.unity",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SubMeshUI.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SpriteAsset.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TeleType.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Drop Shadow.mat",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Sprite Asset Icon.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/16 - Linked text overflow mode example.unity",
+            "guid": "9442cda25baa4a0bb544c4d095b00caa",
+            "type": "SceneAsset",
+            "size": 30275,
+            "md5": "554584da17599060115c483ca3592424",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text Image 1.png",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/16 - Linked text overflow mode example.unity",
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text UI Screenshot.png",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/17 - Old Computer Terminal.unity",
+            "guid": "3e2e4d7b0bed4cf9ab827e9f32448f69",
+            "type": "SceneAsset",
+            "size": 19648,
+            "md5": "39cbd0a1dd65583a8335c5a896a8027c",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Electronic Highway Sign SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/17 - Old Computer Terminal.unity",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TextConsoleSimulator.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Electronic Highway Sign.TTF"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/18 - ScrollRect & Masking & Layout.unity",
+            "guid": "03f9d74cec8e4b94a29d2dfd177c821b",
+            "type": "SceneAsset",
+            "size": 276567,
+            "md5": "18f0a015bd29891e90c7e0182394ab32",
+            "deps": [
+                "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/18 - ScrollRect & Masking & Layout.unity",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SubMeshUI.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SpriteAsset.cs",
+                "Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers.ttf",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Sprite Asset Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_UiFrameRateCounter.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/19 - Masking Texture & Soft Mask.unity",
+            "guid": "9abcd5bd764646568a6ea70d00f9264c",
+            "type": "SceneAsset",
+            "size": 16596,
+            "md5": "0ba7b8e7b66850a7098726c1af25c257",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Soft Mask.mat",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Circle.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/19 - Masking Texture & Soft Mask.unity",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/20 - Input Field with Scrollbar.unity",
+            "guid": "337f92480dd24675aae9e79210fb1ad9",
+            "type": "SceneAsset",
+            "size": 62898,
+            "md5": "75d4009e57b278c0f2069e1b3337051c",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/20 - Input Field with Scrollbar.unity",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Input Field Icon.psd",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_InputField.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/ChatController.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/21 - Script Example.unity",
+            "guid": "50f52f9274434ecfb34dd87f0836f323",
+            "type": "SceneAsset",
+            "size": 6347,
+            "md5": "4e90c0867a3e4b95b1594c36b06d62ff",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/21 - Script Example.unity",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/SimpleScript.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/22 - Basic Scripting Example.unity",
+            "guid": "6250f98e58fe4abbaada5d84b7ca846d",
+            "type": "SceneAsset",
+            "size": 12075,
+            "md5": "6dd85c220bb81bc2210817d638790236",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_ExampleScript_01.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/22 - Basic Scripting Example.unity"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/23 - Animating Vertex Attributes.unity",
+            "guid": "54e994244b4b467e8583cf2da6dcc716",
+            "type": "SceneAsset",
+            "size": 14217,
+            "md5": "b0a6918aac50172ecefb78c3cae071ca",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/23 - Animating Vertex Attributes.unity",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexColorCycler.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexJitter.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Drop Shadow.mat",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/24 - Surface Shader Example.unity",
+            "guid": "8c4969fd8ba94a68b07cf11f3e7a5137",
+            "type": "SceneAsset",
+            "size": 70666,
+            "md5": "3c7efee2ad07a4223fefadcb09e33baa",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_diffuse.jpg",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_normal.jpg",
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Tiles 1 - diffuse.jpg",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Fruit Jelly (B&W).jpg",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshPro.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Roboto-Bold.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_FrameRateCounter.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Logo.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Surface Shader Scene.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Cement.jpg",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF - Surface.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/24 - Surface Shader Example.unity",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/ObjectSpin.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/25 - Sunny Days Example.unity",
+            "guid": "f9b4c22e15cff344ba9fc6542a58dd07",
+            "type": "SceneAsset",
+            "size": 16835,
+            "md5": "d9173844b7b1a499767bdb3e52fe0534",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/25 - Sunny Days Example.unity",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SubMeshUI.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Sunny Days.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Sunny Days - Seamless.jpg",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Fruit Jelly (B&W).jpg",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf",
+                "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/26 - Dropdown Placeholder Example.unity",
+            "guid": "0851605490a599b46b6ac5cb681d93ea",
+            "type": "SceneAsset",
+            "size": 97009,
+            "md5": "a99c64ebf8d7865f706da8e23b585032",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Dropdown Icon.psd",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/26 - Dropdown Placeholder Example.unity",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/DropdownSample.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_Dropdown.cs",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/Benchmark (Floating Text).unity",
+            "guid": "16177da2e3254cee91944756d5f8ddd3",
+            "type": "SceneAsset",
+            "size": 11380,
+            "md5": "9680277e49ff37a658f6091fce66dba4",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Tiles 1 - diffuse.jpg",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Scenes/Benchmark (Floating Text).unity",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_FrameRateCounter.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Surface Shader Scene.mat",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts",
+            "guid": "3979ce59e55144c89a2b3b3f8dcf7fd3",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs",
+            "guid": "f970ea55f9f84bf79b05dab180b8c125",
+            "type": "MonoScript",
+            "size": 4314,
+            "md5": "5409243af311548e7cc457f19ba398aa",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs",
+            "guid": "8ef7be1c625941f7ba8ed7cc71718c0d",
+            "type": "MonoScript",
+            "size": 4573,
+            "md5": "7204101af11cf8adf2b2e0d89b9873f1",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs",
+            "guid": "e8538afcddc14efbb5d9e94b7ae50197",
+            "type": "MonoScript",
+            "size": 3611,
+            "md5": "dc9858ef83f7d8641c0f772c4b1abff9",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark03.cs",
+            "guid": "a73109742c8d47ac822895a473300c29",
+            "type": "MonoScript",
+            "size": 3696,
+            "md5": "abc32bf494a52e957127e7322260e955",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark03.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark04.cs",
+            "guid": "dc20866c0d5e413ab7559440e15333ae",
+            "type": "MonoScript",
+            "size": 3094,
+            "md5": "fd4af4a7760642818740042aa06d4d51",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark04.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
+            "guid": "2d687537154440a3913a9a3c7977978c",
+            "type": "MonoScript",
+            "size": 10637,
+            "md5": "f75a6e32c750a259e29e00a15e279ca4",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ChatController.cs",
+            "guid": "53d91f98a2664f5cb9af11de72ac54ec",
+            "type": "MonoScript",
+            "size": 1332,
+            "md5": "8d813194e132cca1348ed8badc27680b",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/ChatController.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/DropdownSample.cs",
+            "guid": "ac1eb05af6d391b4eb0f4c070a99f1d0",
+            "type": "MonoScript",
+            "size": 507,
+            "md5": "9920ec8e71190b583a3dceb67888cb84",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/DropdownSample.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/EnvMapAnimator.cs",
+            "guid": "a4b6f99e8bc54541bbd149b014ff441c",
+            "type": "MonoScript",
+            "size": 1160,
+            "md5": "fcef4254a745eee0e41eb629c6817b70",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/EnvMapAnimator.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ObjectSpin.cs",
+            "guid": "4f19c7f94c794c5097d8bd11e39c750d",
+            "type": "MonoScript",
+            "size": 2133,
+            "md5": "d02b0d595d78ab85eb5c4e8f7147b382",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/ObjectSpin.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ShaderPropAnimator.cs",
+            "guid": "2787a46a4dc848c1b4b7b9307b614bfd",
+            "type": "MonoScript",
+            "size": 1353,
+            "md5": "4d1e11f7a0618119ff0af11d61b8dd39",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/ShaderPropAnimator.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SimpleScript.cs",
+            "guid": "9eff140b25d64601aabc6ba32245d099",
+            "type": "MonoScript",
+            "size": 1826,
+            "md5": "239f8fef7b114f559bdd23477ae5a281",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/SimpleScript.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SkewTextExample.cs",
+            "guid": "d412675cfb3441efa3bf8dcd9b7624dc",
+            "type": "MonoScript",
+            "size": 6837,
+            "md5": "41a8bb099456e8f65cf157d372c51367",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/SkewTextExample.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TeleType.cs",
+            "guid": "e32c266ee6204b21a427753cb0694c81",
+            "type": "MonoScript",
+            "size": 2820,
+            "md5": "076c7aea24e209f6e605e1f720632bcd",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TeleType.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextConsoleSimulator.cs",
+            "guid": "43bcd35a1c0c40ccb6d472893fe2093f",
+            "type": "MonoScript",
+            "size": 3782,
+            "md5": "43c70d35c96dec4945418facc6e2bf6b",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TextConsoleSimulator.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
+            "guid": "a4d4c76e63944cba8c7d00f56334b98c",
+            "type": "MonoScript",
+            "size": 9123,
+            "md5": "958d264b1434168d37480eb98f52cef2",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshSpawner.cs",
+            "guid": "76c11bbcfddf44e0ba17d6c2751c8d84",
+            "type": "MonoScript",
+            "size": 2780,
+            "md5": "4dfc5f357d8bc78820f6e7adabf5717d",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshSpawner.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_DigitValidator.cs",
+            "guid": "1a7eb92a01ed499a987bde9def05fbce",
+            "type": "MonoScript",
+            "size": 726,
+            "md5": "5a2b86de882f72d057d2cfe2b3229d56",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_DigitValidator.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_ExampleScript_01.cs",
+            "guid": "6f2c5b59b6874405865e2616e4ec276a",
+            "type": "MonoScript",
+            "size": 2122,
+            "md5": "008f5326fd7590437feb1a9d485edd97",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_ExampleScript_01.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_FrameRateCounter.cs",
+            "guid": "686ec78b56aa445795335fbadafcfaa4",
+            "type": "MonoScript",
+            "size": 5150,
+            "md5": "820a5e0ca1537c949c179b6f5619b725",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_FrameRateCounter.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_PhoneNumberValidator.cs",
+            "guid": "83680ab1a69f4102ac67d1459fe76e1f",
+            "type": "MonoScript",
+            "size": 3521,
+            "md5": "c9c3048db6974fca282f3d07b73062b3",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_PhoneNumberValidator.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventCheck.cs",
+            "guid": "d736ce056cf444ca96e424f4d9c42b76",
+            "type": "MonoScript",
+            "size": 2664,
+            "md5": "86a7ab221205918c2d04b114c9b893ac",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventCheck.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventHandler.cs",
+            "guid": "1312ae25639a4bae8e25ae223209cc50",
+            "type": "MonoScript",
+            "size": 9303,
+            "md5": "d940fc7aac9cd53dded097c26adbbb68",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventHandler.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
+            "guid": "21256c5b62f346f18640dad779911e20",
+            "type": "MonoScript",
+            "size": 30811,
+            "md5": "0afeb06cf860bad5e5d0ec56d74ae4be",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_A.cs",
+            "guid": "103e0a6a1d404693b9fb1a5173e0e979",
+            "type": "MonoScript",
+            "size": 6825,
+            "md5": "8a0520e7a3bba1c46bcca856f8b0c959",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_A.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
+            "guid": "a05dcd8be7ec4ccbb35c26219884aa37",
+            "type": "MonoScript",
+            "size": 24604,
+            "md5": "f0ffc43236b6da4c835e9f8cfe2b1717",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/ContentSizeFitter.cs",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TextMeshProUGUI.cs",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Image.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/VerticalLayoutGroup.cs",
+                "Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_UiFrameRateCounter.cs",
+            "guid": "24b0dc2d1d494adbbec1f4db26b4cf83",
+            "type": "MonoScript",
+            "size": 4881,
+            "md5": "271e4c8ad7fee8488704569bf60b039f",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_UiFrameRateCounter.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMPro_InstructionOverlay.cs",
+            "guid": "c3c1afeda5e545e0b19add5373896d2e",
+            "type": "MonoScript",
+            "size": 3329,
+            "md5": "abb2f9ef5b897ef8409d6c0f49fee98b",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/TMPro_InstructionOverlay.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexColorCycler.cs",
+            "guid": "91b8ba3d52e041fab2d0e0f169855539",
+            "type": "MonoScript",
+            "size": 3127,
+            "md5": "9e46ccee35f6b84d3e22f5de24342bb5",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexColorCycler.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexJitter.cs",
+            "guid": "2ed57967c52645d390a89dcf8f61ba73",
+            "type": "MonoScript",
+            "size": 7113,
+            "md5": "b955ec108ccb5ad67db91b5628912398",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexJitter.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeA.cs",
+            "guid": "f7cfa58e417a46ea8889989684c2522e",
+            "type": "MonoScript",
+            "size": 6846,
+            "md5": "49d28055f5bf1d114171fa261df58df5",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeA.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs",
+            "guid": "e4e0d9ccee5f4950be8979268c9014e0",
+            "type": "MonoScript",
+            "size": 8724,
+            "md5": "4aa7a6fbcc1655ec907fd4be812a9ce7",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs",
+            "guid": "52ec835d14bd486f900952b77698b7eb",
+            "type": "MonoScript",
+            "size": 8548,
+            "md5": "e20b888154c45f96232804f6e4c0cf23",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs",
+            "guid": "790744c462254b7ba8038e6ed28b3db2",
+            "type": "MonoScript",
+            "size": 5999,
+            "md5": "e4e83bc8456713a3c2849fbefb019d08",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Sprites",
+            "guid": "701e577af2ba48b689972d42efb95456",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Sprites/Default Sprites.png",
+            "guid": "a0fc465d6cf04254a2938578735e2383",
+            "type": "Texture2D",
+            "size": 178491,
+            "md5": "c0835872f1061e68f125c1b9a7329cf6",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Sprites/Default Sprites.png"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Sprites/DropCap Numbers.psd",
+            "guid": "fd09957580ac4326916010f1f260975b",
+            "type": "Texture2D",
+            "size": 482546,
+            "md5": "33569c49ea614f41df52a25c5527e49f",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Sprites/DropCap Numbers.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures",
+            "guid": "6e5c6d5e25574122a7a12dbdbbeed156",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Brushed Metal 3.jpg",
+            "guid": "f88677df267a41d6be1e7a6133e7d227",
+            "type": "Texture2D",
+            "size": 28175,
+            "md5": "e2a48914a497be9f8a941e653d217c42",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Brushed Metal 3.jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Cement.jpg",
+            "guid": "283f897e4925411ebbaa758b4cb13fc2",
+            "type": "Texture2D",
+            "size": 71537,
+            "md5": "1e0edd414d33833c3914723d2c854e10",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Cement.jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Tiles 1 - diffuse.jpg",
+            "guid": "85ac55597b97403c82fc6601a93cf241",
+            "type": "Texture2D",
+            "size": 155648,
+            "md5": "d8bf4cf68dac3a9d77bfe9350112ac42",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Tiles 1 - diffuse.jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Fruit Jelly (B&W).jpg",
+            "guid": "1cdc5b506b1a4a33a53c30669ced1f51",
+            "type": "Texture2D",
+            "size": 150089,
+            "md5": "08da843bb0c657ddc65837bedfad4282",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Fruit Jelly (B&W).jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Diagonal (Color).jpg",
+            "guid": "2ce5c55e85304b819a1826ecbc839aa5",
+            "type": "Texture2D",
+            "size": 11688,
+            "md5": "4d222a8923ee30482162bf5481148681",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Diagonal (Color).jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Horizontal (Color).jpg",
+            "guid": "6eb184de103d4b3f812b38561065192f",
+            "type": "Texture2D",
+            "size": 11341,
+            "md5": "f92384c0b129979d168d3ec298b0f03d",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Horizontal (Color).jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Vertical (Color).jpg",
+            "guid": "03d0538de6e24c0f819bfc9ce084dfa9",
+            "type": "Texture2D",
+            "size": 11336,
+            "md5": "fd5a4d4ca1c6293e163afc7dffc60592",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Vertical (Color).jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Mask Zig-n-Zag.psd",
+            "guid": "bb8dfcd263ad4eb383a33d74a720be6f",
+            "type": "Texture2D",
+            "size": 38488,
+            "md5": "2dedfa1f7f6b7e86daa3bf773aba1136",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Mask Zig-n-Zag.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_diffuse.jpg",
+            "guid": "602cb87b6a29443b8636370ea0751574",
+            "type": "Texture2D",
+            "size": 95326,
+            "md5": "1167f1636b1eb54636d36fb1f935fb4c",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_diffuse.jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_normal.jpg",
+            "guid": "8878a782f4334ecbbcf683b3ac780966",
+            "type": "Texture2D",
+            "size": 126976,
+            "md5": "6b51a76c9f9863a54ed1fe81939a18cf",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_normal.jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Sunny Days - Seamless.jpg",
+            "guid": "17c350171f7a3ca479f830547c66d187",
+            "type": "Texture2D",
+            "size": 273488,
+            "md5": "046760a79f9f81611d82e06551eb2d86",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Sunny Days - Seamless.jpg"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text Image 1.png",
+            "guid": "4ccf43d26c4748c792174516f4a8fcef",
+            "type": "Texture2D",
+            "size": 26169,
+            "md5": "b4077499505f2ab8d45966362a098f90",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text Image 1.png"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text UI Screenshot.png",
+            "guid": "c76d18757a194d618355f05f815cb0a1",
+            "type": "Texture2D",
+            "size": 49290,
+            "md5": "c433e8a4de4438d13693ed173b0d2dab",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text UI Screenshot.png"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Circle.psd",
+            "guid": "10c49fcd9c64421db7c0133e61e55f97",
+            "type": "Texture2D",
+            "size": 32696,
+            "md5": "1c1bd60aef882984b0962d0be95da011",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Circle.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Diagonal.psd",
+            "guid": "ed5290d8df18488780e2996b9b882f01",
+            "type": "Texture2D",
+            "size": 33064,
+            "md5": "2e4cc9ed4a6f744d76d6e49f993df8b8",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Diagonal.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Double.psd",
+            "guid": "7631f4eff8f74ed38eb3eb9db17134e1",
+            "type": "Texture2D",
+            "size": 33155,
+            "md5": "ab48e8f0aae4305f7815f79cb6a09353",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Double.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Quad.psd",
+            "guid": "2b5e9ae96c5644d8bae932f8b4ca68a2",
+            "type": "Texture2D",
+            "size": 34433,
+            "md5": "a92c66922e4c5b4c636322078e1d8e8d",
+            "deps": [
+                "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Quad.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Fonts",
+            "guid": "6ab70aee4d56447429c680537fbf93ed",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+            "guid": "3b83998b711ef29429681d3dd430f982",
+            "type": "TMP_FontAsset",
+            "size": 69278126,
+            "md5": "95cd213c550c11aa8567ba4ef8d0807c",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+            "guid": "231a6b9d253e68f4482305aaaf1f5c8c",
+            "type": "Font",
+            "size": 11575152,
+            "md5": "be401bb87e767253a64abdd37999a4bf",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt",
+            "guid": "6e59c59b81ab47f9b6ec5781fa725d2c",
+            "type": "TextAsset",
+            "size": 4469,
+            "md5": "a4b00b7892bfb2fc9398e7f292af5b3d",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf",
+            "guid": "e3265ab4bf004d28a9537516768c1c75",
+            "type": "Font",
+            "size": 350200,
+            "md5": "bbbd0bdbfba093dec2ee4ca8b62e61f9",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+            "guid": "20d497373c3b12849bb8623c2f1346c9",
+            "type": "TMP_FontAsset",
+            "size": 69320195,
+            "md5": "98bdb60177a1f134709beba97a5cb583",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+            "guid": "3ac6ac99e6371c641b007f0de563b0f4",
+            "type": "Font",
+            "size": 11937564,
+            "md5": "ccfa5a28e023a0225c543b9dd3a3c8c2",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources",
+            "guid": "243e06394e614e5d99fab26083b707fa",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/Fonts & Materials",
+            "guid": "731f1baa9d144a9897cb1d341c2092b8",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+            "guid": "e73a58f6e2794ae7b1b7e50b7fb811b0",
+            "type": "Material",
+            "size": 3140,
+            "md5": "f9ff83dab81f4c2fdc4ff189433b26fc",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+            "guid": "2e498d1c8094910479dc3e1b768306a4",
+            "type": "TMP_FontAsset",
+            "size": 536898,
+            "md5": "e70334c3272c52d64b4a5ac29b40c8b4",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat",
+            "guid": "79459efec17a4d00a321bdcc27bbc385",
+            "type": "Material",
+            "size": 3050,
+            "md5": "739222ea271c39d0f8f6754a3b8c0086",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+            "guid": "8f586378b4e144a9851e7b34d9b748ee",
+            "type": "TMP_FontAsset",
+            "size": 33725100,
+            "md5": "4fd9cafc7e2f274db5825793e8e71e40",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt",
+            "guid": "fade42e8bc714b018fac513c043d323b",
+            "type": "TextAsset",
+            "size": 269,
+            "md5": "345c77ed32179f5f982dcf8e2b1d92af",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt",
+            "guid": "d82c1b31c7e74239bff1220585707d2b",
+            "type": "TextAsset",
+            "size": 95,
+            "md5": "d52dd40acd32a62df3bc764b1e783ddf",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/Sprite Assets",
+            "guid": "512a49d95c0c4332bdd98131869c23c9",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset",
+            "guid": "c41005c129ba4d66911b75229fd70b45",
+            "type": "TMP_SpriteAsset",
+            "size": 13441,
+            "md5": "c4b32315c0179671267e11cc48e1f85d",
+            "deps": [
+                "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SpriteAsset.cs",
+                "Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset",
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Sprite Asset Icon.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/Style Sheets",
+            "guid": "4aecb92fff08436c8303b10eab8da368",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset",
+            "guid": "f952c082cb03451daed3ee968ac6c63e",
+            "type": "TMP_StyleSheet",
+            "size": 4953,
+            "md5": "5c87d4b6f296e98bfc4e1b68fca55ac6",
+            "deps": [
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_StyleSheet.cs",
+                "Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Resources/TMP Settings.asset",
+            "guid": "3f5b5dff67a942289a9defa416b206f3",
+            "type": "TMP_Settings",
+            "size": 1702,
+            "md5": "5683144521d742c4d9c4b1aa132be144",
+            "deps": [
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+                "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_Settings.cs",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_SpriteAsset.cs",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_StyleSheet.cs",
+                "Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+                "Assets/TextMesh Pro/Resources/TMP Settings.asset",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+                "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+                "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset",
+                "Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt",
+                "Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt",
+                "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Sprite Asset Icon.psd"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders",
+            "guid": "e9f693669af91aa45ad615fc681ed29f",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader",
+            "guid": "48bb5f55d8670e349b6e614913f9d910",
+            "type": "Shader",
+            "size": 3497,
+            "md5": "1f495e99bc677ac6a840b9aa28cf7877",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader",
+            "guid": "1e3b057af24249748ff873be7fafee47",
+            "type": "Shader",
+            "size": 3549,
+            "md5": "5110ea4ecfea826d2496b3df8de06b57",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader",
+            "guid": "128e987d567d4e2c824d754223b3f3b0",
+            "type": "Shader",
+            "size": 3499,
+            "md5": "b70392d32cb4194bf9aa62e65eeaf0a2",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader",
+            "guid": "dd89cf5b9246416f84610a006f916af7",
+            "type": "Shader",
+            "size": 10585,
+            "md5": "2d668be66e5caa1e0d0760ffe044a7c8",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader",
+            "guid": "14eb328de4b8eb245bb7cea29e4ac00b",
+            "type": "Shader",
+            "size": 12000,
+            "md5": "661a4fc02d8a92091b454bd5983b9c6f",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader",
+            "guid": "bc1ede39bf3643ee8e493720e4259791",
+            "type": "Shader",
+            "size": 7822,
+            "md5": "cdc58f1b3325c594e8a272c4e088596d",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader",
+            "guid": "a02a7d8c237544f1962732b55a9aebf1",
+            "type": "Shader",
+            "size": 7643,
+            "md5": "31ef80315c7900a25cf871c070adeadc",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader",
+            "guid": "c8d12adcee749c344b8117cf7c7eb912",
+            "type": "Shader",
+            "size": 3071,
+            "md5": "75384ce23193bf10427062b28d85a446",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+            "guid": "fe393ace9b354375a9cb14cdbbc28be4",
+            "type": "Shader",
+            "size": 7674,
+            "md5": "c1d2d4f27275b212be8715422d64536f",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader",
+            "guid": "85187c2149c549c5b33f0cdb02836b17",
+            "type": "Shader",
+            "size": 3524,
+            "md5": "f0f899c9c596ba474dd6b107a124434e",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader",
+            "guid": "f7ada0af4f174f0694ca6a487b8f543d",
+            "type": "Shader",
+            "size": 4355,
+            "md5": "14ce94afd631c9488428d5d77d6e9af3",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+            "guid": "68e6db2ebdc24f95958faec2be5558d6",
+            "type": "Shader",
+            "size": 10600,
+            "md5": "03dbcfbd13a766317c371bdec23132a9",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+            "guid": "cf81c85f95fe47e1a27f6ae460cf182c",
+            "type": "Shader",
+            "size": 2673,
+            "md5": "f12a41b0fa654483159417ac45ecb320",
+            "deps": [
+                "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader"
+            ]
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMPro.cginc",
+            "guid": "407bc68d299748449bbf7f48ee690f8d",
+            "type": "ShaderInclude",
+            "size": 2277,
+            "md5": "9c521b1514957ae9616b18d9ba3878f7",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc",
+            "guid": "c334973cef89a9840b0b0c507e0377ab",
+            "type": "ShaderInclude",
+            "size": 5311,
+            "md5": "2f6dc248df3e08a2e7804c25d46bd0e4",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc",
+            "guid": "3997e2241185407d80309a82f9148466",
+            "type": "ShaderInclude",
+            "size": 2843,
+            "md5": "35cc3f74a993b178f3d30fd7631878e7",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc",
+            "guid": "d930090c0cd643c7b55f19a38538c162",
+            "type": "ShaderInclude",
+            "size": 3563,
+            "md5": "ac8a29911a78b17497b77be3abff0fbd",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Sprites",
+            "guid": "d0603b6d5186471b96c778c3949c7ce2",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt",
+            "guid": "381dcb09d5029d14897e55f98031fca5",
+            "type": "TextAsset",
+            "size": 187,
+            "md5": "759264906d349d566518f06e38d06772",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Sprites/EmojiOne.json",
+            "guid": "8f05276190cf498a8153f6cbe761d4e6",
+            "type": "TextAsset",
+            "size": 4122,
+            "md5": "53408097aa38738c15b17ca34e13882a",
+            "deps": []
+        },
+        {
+            "path": "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+            "guid": "dffef66376be4fa480fb02b19edbe903",
+            "type": "Texture2D",
+            "size": 112319,
+            "md5": "abd61fb690e3df99b4cbd4f114afbd06",
+            "deps": [
+                "Assets/TextMesh Pro/Sprites/EmojiOne.png"
+            ]
+        }
+    ]
+}

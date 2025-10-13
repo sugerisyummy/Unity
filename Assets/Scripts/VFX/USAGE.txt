@@ -1,0 +1,6 @@
+// 使用方式：
+// 1) 在 Canvas 下建立 Image，尺寸拉滿，Source Image 指到 Assets/Art/VFX/vignette_*.png，掛上 ScreenVignette。
+// 2) 建立空物件 BattleFX（掛 BattleFXController），把 ScreenVignette 拉進去，配 sfx/bgm（可用你現有檔）。
+// 3) 在 CombatResultRouter 的 Win/Lose/Escape 事件，分別拖 BattleFXController 的 OnWin/OnLose/OnEscape。
+// 4) 受擊閃白：給敵人/玩家物件加 HitFlash2D。或在你的 CombatUIController 命中後呼叫：
+//    (tgt.GetComponent<HitFlash2D>() ?? tgt.gameObject.AddComponent<HitFlash2D>()).Flash();
