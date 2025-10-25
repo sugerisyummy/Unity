@@ -1,0 +1,15 @@
+{
+  "kg_editor_exists": true,
+  "kg_board_exists": true,
+  "kg_editor_paths": [
+    "Assets/KG/Editor/KG.Editor.asmdef"
+  ],
+  "kg_board_paths": [
+    "Assets/Scripts/Board/KG.Board.asmdef"
+  ],
+  "kg_editor_refs_board": true,
+  "kg_editor_editor_only": true,
+  "duplicate_asmdef_names": {},
+  "kg_editor_out_of_place": [],
+  "kg_board_out_of_place": []
+}

@@ -1,0 +1,15 @@
+﻿== Objects ==
+[Path] ControllerRoot → ControllerRoot
+[Path] CombatController → CombatController
+[Path] CombatPanel → Canvas/CombatPanel
+[Path] StoryPanel → Canvas/StoryPanel
+[Path] EnemiesRoot → Canvas/CombatPanel/EnemiesRoot
+
+== Field Mapping ==
+→ CombatPageController.combatPanel = CombatPanel (GameObject)
+→ CombatPageController.storyPanel = StoryPanel (GameObject)
+→ CombatPageController.enemiesRoot = EnemiesRoot (Transform)
+✗ Value Canvas/CombatPanel/UI/Hp_Enemys/Bar 未解析
+✗ Value Canvas/CombatPanel/UI/Hp_player/Bar 未解析
+
+== UnityEvents ==

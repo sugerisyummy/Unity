@@ -1,0 +1,11 @@
+{
+  "name": "KG.Editor",
+  "rootNamespace": "CyberLife",
+  "references": [
+    "KG.Board"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "autoReferenced": true
+}

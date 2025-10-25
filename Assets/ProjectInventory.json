@@ -1,5 +1,5 @@
 ﻿{
-    "time": "2025-10-13 04:51:04",
+    "time": "2025-10-20 09:15:15",
     "unity": "2022.3.62f1",
     "project": "cyberLife",
     "root": "Assets",
@@ -54,8 +54,118 @@
             "path": "Assets/CombatWiringReport.txt",
             "guid": "7d62ea46ec57e0840b22d3a4aad22001",
             "type": "TextAsset",
-            "size": 2099,
-            "md5": "85bf8ffb10fc84dd684c3576c2347025",
+            "size": 1925,
+            "md5": "19676dd32c7be4ffc664de90cd7bc8b4",
+            "deps": []
+        },
+        {
+            "path": "Assets/KG",
+            "guid": "c6ed61321f5bb90488ebca07957de3cf",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/KG/DOLAutoAssign.cs",
+            "guid": "4115026f01af3774f9ad86b0ace544ff",
+            "type": "MonoScript",
+            "size": 1872,
+            "md5": "c5f9772695778eee9a76be07e26a8702",
+            "deps": [
+                "Assets/KG/DOLAutoAssign.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/DOLValidateSetup.cs",
+            "guid": "07dd04cf85b1cd049b7bad29a07b2a5a",
+            "type": "MonoScript",
+            "size": 2176,
+            "md5": "bb124074be8a4cf9aa661e504149cc4b",
+            "deps": [
+                "Assets/KG/DOLValidateSetup.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/Editor",
+            "guid": "7a6c5d6f097abc84f90ad87c99ae8d07",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/KG/Editor/BoardMenu.cs",
+            "guid": "3e042029f04539e4da7a1abb3b099f43",
+            "type": "MonoScript",
+            "size": 2961,
+            "md5": "4e2e659323bd4feafd8d942c4ac508f2",
+            "deps": [
+                "Assets/KG/Editor/BoardMenu.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/Editor/CombatTools_KG.cs",
+            "guid": "da2f8178037ed0f47bff128665ccad62",
+            "type": "MonoScript",
+            "size": 10136,
+            "md5": "ba43e5dd704851f46355220e05d81c3a",
+            "deps": [
+                "Assets/KG/Editor/CombatTools_KG.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/Editor/KG.Editor.asmdef",
+            "guid": "71fd88e74301d8142917ab6f4a5cf6cd",
+            "type": "AssemblyDefinitionAsset",
+            "size": 329,
+            "md5": "8503ef19b39420cdf0c049972d715c4e",
+            "deps": []
+        },
+        {
+            "path": "Assets/KG/KGSetupProfile.json",
+            "guid": "b3ffa241b2199bf4b8b15a93265640b0",
+            "type": "TextAsset",
+            "size": 1648,
+            "md5": "7c24bcda002a9bc9810ccb2b63a9a100",
+            "deps": []
+        },
+        {
+            "path": "Assets/KG/KGSetupWizard.cs",
+            "guid": "9864e287919fa764f94c455e7d5ce541",
+            "type": "MonoScript",
+            "size": 11805,
+            "md5": "d487ba2c2991457c4f3d998195cd6c71",
+            "deps": [
+                "Assets/KG/KGSetupWizard.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/KGSetupWizard_Soft.cs",
+            "guid": "49d6435664a00144caded13f9a41c167",
+            "type": "MonoScript",
+            "size": 13616,
+            "md5": "5d019127752f947516eb191e965285e1",
+            "deps": [
+                "Assets/KG/KGSetupWizard_Soft.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/TMPFontReplacer.cs",
+            "guid": "96d8e12e7400a504b9d81c26a1fc773a",
+            "type": "MonoScript",
+            "size": 3641,
+            "md5": "9f56685502f6cf9e1d6bc5dde132ef9f",
+            "deps": [
+                "Assets/KG/TMPFontReplacer.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG_SetupReport.txt",
+            "guid": "14132a61025953c45afe553f26f89870",
+            "type": "TextAsset",
+            "size": 593,
+            "md5": "313d4be4148c85a586f221854f20a0d1",
             "deps": []
         },
         {
@@ -295,16 +405,16 @@
             "path": "Assets/ProjectInventory.json",
             "guid": "765426d393b1e744ba3ebc7d4942fe61",
             "type": "TextAsset",
-            "size": 142450,
-            "md5": "23c87f4a57a65e591875340991f9079a",
+            "size": 148205,
+            "md5": "c1fbe2104490f94650f16496ca8d4e1d",
             "deps": []
         },
         {
             "path": "Assets/ProjectInventory_Short.txt",
             "guid": "82fbc7d960e77834e90ed757de7895fc",
             "type": "TextAsset",
-            "size": 635,
-            "md5": "91bd37802954a67d6aa1d11048cdb7e8",
+            "size": 650,
+            "md5": "f145f3453f4f8e8b7b71965158c5f54c",
             "deps": []
         },
         {
@@ -408,6 +518,118 @@
             "md5": "06cc3122cc78c317c83448275bc562c4",
             "deps": [
                 "Assets/Scripts/AudioManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board",
+            "guid": "95711e2cdcd28714b9ee5291e745c789",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Board/BoardController.cs",
+            "guid": "4624b31e000dd2b4d817d09083b43221",
+            "type": "MonoScript",
+            "size": 2882,
+            "md5": "cd033bc47166e9efeb58310a6165daf4",
+            "deps": [
+                "Assets/Scripts/Board/BoardController.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board/BoardEventsBridge.cs",
+            "guid": "eb224741e47dcfa49a99862c8d6e4196",
+            "type": "MonoScript",
+            "size": 1162,
+            "md5": "7ad08b01bd9b92cb1a26fe4d448e0113",
+            "deps": [
+                "Assets/Scripts/Board/BoardEventsBridge.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board/DiceRoller.cs",
+            "guid": "deedbd857589fa44e87d708c2b17ee8b",
+            "type": "MonoScript",
+            "size": 368,
+            "md5": "5492d98b4bd0774afbcbc45544e81716",
+            "deps": [
+                "Assets/Scripts/Board/DiceRoller.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board/KG.Board.asmdef",
+            "guid": "80a294fa8ed92f24db0326df1998298f",
+            "type": "AssemblyDefinitionAsset",
+            "size": 326,
+            "md5": "1c4e2a30ce0f0534c160dffdb0af8a90",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Board/PawnController.cs",
+            "guid": "7b44be0cc6ad7524984c91e37796b26f",
+            "type": "MonoScript",
+            "size": 2293,
+            "md5": "6bb90060c74012ea8ea946266030c3f6",
+            "deps": [
+                "Assets/Scripts/Board/PawnController.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board/PlayerState.cs",
+            "guid": "e14b5185b5f579c4189bb3bbd34dd4f5",
+            "type": "MonoScript",
+            "size": 690,
+            "md5": "8fe5197350132fb0fa7e6954933018d4",
+            "deps": [
+                "Assets/Scripts/Board/PlayerState.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board/README_BoardKit.txt",
+            "guid": "cced6c755d6d2774ebdcd32075c52482",
+            "type": "TextAsset",
+            "size": 998,
+            "md5": "75d2e1d109964ab7af50fade89ac5f02",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Board/TileDefinition.cs",
+            "guid": "20f38e424ff03fb4b891f87626573765",
+            "type": "MonoScript",
+            "size": 536,
+            "md5": "6e6789f4bed6e3771c2daf5258a8503d",
+            "deps": [
+                "Assets/Scripts/Board/TileDefinition.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board/TurnManager.cs",
+            "guid": "5c944e69535b1894483417d7e99726f9",
+            "type": "MonoScript",
+            "size": 441,
+            "md5": "a0d41fa129542358629a8b2873949b9b",
+            "deps": [
+                "Assets/Scripts/Board/TurnManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Bridges",
+            "guid": "e621f968b07abb74ca90fdabf675de57",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Bridges/BoardCombatBridge.cs",
+            "guid": "d79140bd47a97544ca69a6837546faff",
+            "type": "MonoScript",
+            "size": 1838,
+            "md5": "5acccb27831a00870501c9c35d1a1bde",
+            "deps": [
+                "Assets/Scripts/Bridges/BoardCombatBridge.cs"
             ]
         },
         {
@@ -880,70 +1102,6 @@
             "md5": "aa6b27f2239ee9e47e4bff32cb5e6c1f",
             "deps": [
                 "Assets/Scripts/HUDStats.cs"
-            ]
-        },
-        {
-            "path": "Assets/Scripts/KG",
-            "guid": "de910a02e9ed9bd42989f7a5879f7cba",
-            "type": "DefaultAsset",
-            "size": 0,
-            "md5": "",
-            "deps": []
-        },
-        {
-            "path": "Assets/Scripts/KG/DOLAutoAssign.cs",
-            "guid": "4115026f01af3774f9ad86b0ace544ff",
-            "type": "MonoScript",
-            "size": 1872,
-            "md5": "c5f9772695778eee9a76be07e26a8702",
-            "deps": [
-                "Assets/Scripts/KG/DOLAutoAssign.cs"
-            ]
-        },
-        {
-            "path": "Assets/Scripts/KG/DOLValidateSetup.cs",
-            "guid": "07dd04cf85b1cd049b7bad29a07b2a5a",
-            "type": "MonoScript",
-            "size": 2176,
-            "md5": "bb124074be8a4cf9aa661e504149cc4b",
-            "deps": [
-                "Assets/Scripts/KG/DOLValidateSetup.cs"
-            ]
-        },
-        {
-            "path": "Assets/Scripts/KG/Editor",
-            "guid": "7a6c5d6f097abc84f90ad87c99ae8d07",
-            "type": "DefaultAsset",
-            "size": 0,
-            "md5": "",
-            "deps": []
-        },
-        {
-            "path": "Assets/Scripts/KG/Editor/CombatTools_KG.cs",
-            "guid": "da2f8178037ed0f47bff128665ccad62",
-            "type": "MonoScript",
-            "size": 9329,
-            "md5": "16ee920c3f8aeab99b86453c206770f5",
-            "deps": [
-                "Assets/Scripts/KG/Editor/CombatTools_KG.cs"
-            ]
-        },
-        {
-            "path": "Assets/Scripts/KG/Editor/KG.Editor.asmdef",
-            "guid": "71fd88e74301d8142917ab6f4a5cf6cd",
-            "type": "AssemblyDefinitionAsset",
-            "size": 305,
-            "md5": "c332ef598dd5b1a7420b1ba7b29b7d6b",
-            "deps": []
-        },
-        {
-            "path": "Assets/Scripts/KG/TMPFontReplacer.cs",
-            "guid": "96d8e12e7400a504b9d81c26a1fc773a",
-            "type": "MonoScript",
-            "size": 3641,
-            "md5": "9f56685502f6cf9e1d6bc5dde132ef9f",
-            "deps": [
-                "Assets/Scripts/KG/TMPFontReplacer.cs"
             ]
         },
         {

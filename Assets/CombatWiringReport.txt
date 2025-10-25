@@ -1,5 +1,6 @@
 ﻿# Combat Wiring Report
-Time: 2025-10-13 04:51:18 | Unity: 2022.3.62f1
+Time: 2025-10-20 07:12:10 | Unity: 2022.3.62f1
+Types: CombatManager, CombatEventBridge, CombatResultRouter, CombatPageController, CombatUIController
 
 == CombatEventBridge (1) ==
 - Canvas/CombatPanel/combat manager
@@ -15,7 +16,7 @@ Time: 2025-10-13 04:51:18 | Unity: 2022.3.62f1
 == CombatPageController (1) ==
 - ControllerRoot
     manager → combat manager @ Canvas/CombatPanel/combat manager
-    enemiesRoot → Enemys @ Canvas/CombatPanel/Enemys
+    enemiesRoot → EnemiesRoot @ Canvas/CombatPanel/EnemiesRoot
     ui → CombatUI @ Canvas/CombatPanel/UI/CombatUI
     storyPanel → StoryPanel @ Canvas/StoryPanel
     combatPanel → CombatPanel @ Canvas/CombatPanel

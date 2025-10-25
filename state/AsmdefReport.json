@@ -1,0 +1,22 @@
+{
+  "asmdefs": [
+    {
+      "name": "KG.Editor",
+      "path": "Assets/KG/Editor/KG.Editor.asmdef",
+      "includePlatforms": [
+        "Editor"
+      ],
+      "references": [
+        "KG.Board"
+      ],
+      "_error": null
+    },
+    {
+      "name": "KG.Board",
+      "path": "Assets/Scripts/Board/KG.Board.asmdef",
+      "includePlatforms": [],
+      "references": [],
+      "_error": null
+    }
+  ]
+}

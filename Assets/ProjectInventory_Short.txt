@@ -1,12 +1,13 @@
 ﻿# Project Inventory (short)
-Time: 2025-10-13 04:51:04 | Unity: 2022.3.62f1 | Project: cyberLife
-Assets count: 278
+Time: 2025-10-20 09:15:15 | Unity: 2022.3.62f1 | Project: cyberLife
+Assets count: 295
 
 - Build Scenes: Assets/Scenes/SampleScene.unity
 - Critical Scripts (exists): ✓ Assets/Scripts/Combat/CombatPageController.cs, ✓ Assets/Scripts/Combat/CombatManager.cs, ✓ Assets/Scripts/Combat/CombatEventBridge.cs, ✓ Assets/Scripts/Combat/CombatResultRouter.cs, ✓ Assets/Scripts/Combat/CombatUIController.cs
 
 Top-level folders under Assets:
   - Assets/Art
+  - Assets/KG
   - Assets/mapevent
   - Assets/music
   - Assets/picture

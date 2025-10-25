@@ -1,0 +1,61 @@
+{
+  "objects": {
+    "ControllerRoot": "ControllerRoot",
+    "CombatController": "CombatController",
+    "CombatPanel": "Canvas/CombatPanel",
+    "StoryPanel": "Canvas/StoryPanel",
+    "EnemiesRoot": "Canvas/CombatPanel/EnemiesRoot"
+  },
+  "ui": {
+    "EnemyBar": "$CombatPanel/UI/Hp_Enemys/Bar",
+    "PlayerBar": "$CombatPanel/UI/Hp_player/Bar"
+  },
+  "fieldMap": [
+    {
+      "host": "CombatEventBridge",
+      "field": "manager",
+      "typeHint": "CombatManager",
+      "value": "CombatController"
+    },
+    {
+      "host": "CombatEventBridge",
+      "field": "page",
+      "typeHint": "CombatPageController",
+      "value": "ControllerRoot"
+    },
+    {
+      "host": "CombatEventBridge",
+      "field": "router",
+      "typeHint": "CombatResultRouter",
+      "value": "CombatController"
+    },
+    {
+      "host": "CombatPageController",
+      "field": "manager",
+      "typeHint": "CombatManager",
+      "value": "CombatController"
+    },
+    {
+      "host": "CombatPageController",
+      "field": "combatPanel",
+      "typeHint": "GameObject",
+      "value": "CombatPanel"
+    },
+    {
+      "host": "CombatPageController",
+      "field": "storyPanel",
+      "typeHint": "GameObject",
+      "value": "StoryPanel"
+    },
+    {
+      "host": "CombatPageController",
+      "field": "enemiesRoot",
+      "typeHint": "GameObject",
+      "value": "EnemiesRoot"
+    },
+{ "host":"CombatUIController", "field":"enemyHpSlider",  "typeHint":"Slider", "value":"Canvas/CombatPanel/UI/Hp_Enemys/Bar" },
+{ "host":"CombatUIController", "field":"playerHpSlider", "typeHint":"Slider", "value":"Canvas/CombatPanel/UI/Hp_player/Bar" }
+
+  ],
+  "events": [] 
+}

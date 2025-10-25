@@ -1,0 +1,2764 @@
+{
+  "files": [
+    {
+      "path": "Assets/Art.meta",
+      "size": 172,
+      "md5": "d376b5681dff5e4aad20fd8f25f14cd4"
+    },
+    {
+      "path": "Assets/CombatWiringReport.txt",
+      "size": 1925,
+      "md5": "19676dd32c7be4ffc664de90cd7bc8b4"
+    },
+    {
+      "path": "Assets/CombatWiringReport.txt.meta",
+      "size": 158,
+      "md5": "d370c86f35e65fdd009b08d2286e040e"
+    },
+    {
+      "path": "Assets/KG.meta",
+      "size": 172,
+      "md5": "93800fa16f0efb3e7ffdf850397f7361"
+    },
+    {
+      "path": "Assets/KG_SetupReport.txt",
+      "size": 593,
+      "md5": "313d4be4148c85a586f221854f20a0d1"
+    },
+    {
+      "path": "Assets/KG_SetupReport.txt.meta",
+      "size": 158,
+      "md5": "aa7729d0a4e970e8c701ef03eedb81b8"
+    },
+    {
+      "path": "Assets/mapevent.meta",
+      "size": 180,
+      "md5": "1ef19bbbb4adb36d7c64e38e744deb69"
+    },
+    {
+      "path": "Assets/music.meta",
+      "size": 180,
+      "md5": "8d4c42d6c30af63e3d96160e3b8ae08e"
+    },
+    {
+      "path": "Assets/picture.meta",
+      "size": 172,
+      "md5": "542b14bd372fd585fb4a88cfa9615b37"
+    },
+    {
+      "path": "Assets/Prefabs.meta",
+      "size": 172,
+      "md5": "22f91671f0f8a632ca85c4bdc2e4ddad"
+    },
+    {
+      "path": "Assets/ProjectInventory.json",
+      "size": 142988,
+      "md5": "b8ffa28ea90400980d8a8838103b85a3"
+    },
+    {
+      "path": "Assets/ProjectInventory.json.meta",
+      "size": 158,
+      "md5": "5fbac8acc2e79bca7caf2d5353652fb5"
+    },
+    {
+      "path": "Assets/ProjectInventory_Short.txt",
+      "size": 635,
+      "md5": "ac7a70860c1b82098de14ce57a04423b"
+    },
+    {
+      "path": "Assets/ProjectInventory_Short.txt.meta",
+      "size": 158,
+      "md5": "bc71db329a4866ac38676df3962f4ef1"
+    },
+    {
+      "path": "Assets/Scenes.meta",
+      "size": 172,
+      "md5": "b0cb16baac3e6d61e651e2e24adeeb54"
+    },
+    {
+      "path": "Assets/Scripts.meta",
+      "size": 172,
+      "md5": "13f1160e6ef8a9957ad64f771dbf22ba"
+    },
+    {
+      "path": "Assets/TextMesh Pro.meta",
+      "size": 172,
+      "md5": "39b2dbddd83adcc11fb46c686eb404ef"
+    },
+    {
+      "path": "Assets/Art/VFX.meta",
+      "size": 172,
+      "md5": "a971e31cbf212c166ef443b213d3217c"
+    },
+    {
+      "path": "Assets/Art/VFX/vignette_lose.png",
+      "size": 186950,
+      "md5": "d09a0168bb94886d8b477c7033c3ec6b"
+    },
+    {
+      "path": "Assets/Art/VFX/vignette_lose.png.meta",
+      "size": 3336,
+      "md5": "918f58dae09477670bb7c433a40bead7"
+    },
+    {
+      "path": "Assets/Art/VFX/vignette_win.png",
+      "size": 175816,
+      "md5": "4c4d62b00a53fe3a0cf2ca052c59c1cc"
+    },
+    {
+      "path": "Assets/Art/VFX/vignette_win.png.meta",
+      "size": 3336,
+      "md5": "1dcefb7ea05f882a8e344f50d7437de2"
+    },
+    {
+      "path": "Assets/KG/DOLAutoAssign.cs",
+      "size": 1872,
+      "md5": "c5f9772695778eee9a76be07e26a8702"
+    },
+    {
+      "path": "Assets/KG/DOLAutoAssign.cs.meta",
+      "size": 243,
+      "md5": "624f798d485089c85001618a2bc72dcf"
+    },
+    {
+      "path": "Assets/KG/DOLValidateSetup.cs",
+      "size": 2176,
+      "md5": "bb124074be8a4cf9aa661e504149cc4b"
+    },
+    {
+      "path": "Assets/KG/DOLValidateSetup.cs.meta",
+      "size": 243,
+      "md5": "ba626e18fa08098f593d384557e70baf"
+    },
+    {
+      "path": "Assets/KG/Editor.meta",
+      "size": 172,
+      "md5": "5f9a39e159dc273d5f8c736b7b48c9d6"
+    },
+    {
+      "path": "Assets/KG/KGSetupProfile.json",
+      "size": 1648,
+      "md5": "7c24bcda002a9bc9810ccb2b63a9a100"
+    },
+    {
+      "path": "Assets/KG/KGSetupProfile.json.meta",
+      "size": 158,
+      "md5": "4946fb68f61a1674aefd7ea2e1df1664"
+    },
+    {
+      "path": "Assets/KG/KGSetupWizard.cs",
+      "size": 11805,
+      "md5": "d487ba2c2991457c4f3d998195cd6c71"
+    },
+    {
+      "path": "Assets/KG/KGSetupWizard.cs.meta",
+      "size": 243,
+      "md5": "f750423498da1cc8537138dbd64ef76c"
+    },
+    {
+      "path": "Assets/KG/KGSetupWizard_Soft.cs",
+      "size": 13616,
+      "md5": "5d019127752f947516eb191e965285e1"
+    },
+    {
+      "path": "Assets/KG/KGSetupWizard_Soft.cs.meta",
+      "size": 243,
+      "md5": "34557ebdfe89ccd19958443a277f2189"
+    },
+    {
+      "path": "Assets/KG/TMPFontReplacer.cs",
+      "size": 3641,
+      "md5": "9f56685502f6cf9e1d6bc5dde132ef9f"
+    },
+    {
+      "path": "Assets/KG/TMPFontReplacer.cs.meta",
+      "size": 254,
+      "md5": "e10d5c582c585c6f6fa84a3df7d58094"
+    },
+    {
+      "path": "Assets/KG/Editor/BoardMenu.cs",
+      "size": 2961,
+      "md5": "4e2e659323bd4feafd8d942c4ac508f2"
+    },
+    {
+      "path": "Assets/KG/Editor/BoardMenu.cs.meta",
+      "size": 243,
+      "md5": "57c4f62987b96106e98a0e79a517197d"
+    },
+    {
+      "path": "Assets/KG/Editor/CombatTools_KG.cs",
+      "size": 10136,
+      "md5": "ba43e5dd704851f46355220e05d81c3a"
+    },
+    {
+      "path": "Assets/KG/Editor/CombatTools_KG.cs.meta",
+      "size": 243,
+      "md5": "33bc6071202024629e67bf66ad333402"
+    },
+    {
+      "path": "Assets/KG/Editor/KG.Editor.asmdef",
+      "size": 329,
+      "md5": "8503ef19b39420cdf0c049972d715c4e"
+    },
+    {
+      "path": "Assets/KG/Editor/KG.Editor.asmdef.meta",
+      "size": 166,
+      "md5": "3ec7155e08e952e19557858a72c2e890"
+    },
+    {
+      "path": "Assets/mapevent/1.asset",
+      "size": 2122,
+      "md5": "a8f0b4620cef2336f40b4aa49c6a6706"
+    },
+    {
+      "path": "Assets/mapevent/1.asset.meta",
+      "size": 189,
+      "md5": "4085470da8de1074bc41664372665c0f"
+    },
+    {
+      "path": "Assets/mapevent/body.asset",
+      "size": 612,
+      "md5": "9371bb0e6ddf831a594649ef511f84ee"
+    },
+    {
+      "path": "Assets/mapevent/body.asset.meta",
+      "size": 189,
+      "md5": "30419402c22a35aa865c703cb94d2190"
+    },
+    {
+      "path": "Assets/mapevent/map.asset",
+      "size": 530,
+      "md5": "47468850a41e0984516e00299faaa3e2"
+    },
+    {
+      "path": "Assets/mapevent/map.asset.meta",
+      "size": 189,
+      "md5": "e54b16b16a54c5879fbd80dffe9f3d7e"
+    },
+    {
+      "path": "Assets/mapevent/music.asset",
+      "size": 631,
+      "md5": "3c299d238a0d62562a52df010980a563"
+    },
+    {
+      "path": "Assets/mapevent/music.asset.meta",
+      "size": 189,
+      "md5": "94de89c9c27eb94986217ba987470f24"
+    },
+    {
+      "path": "Assets/mapevent/test1.asset",
+      "size": 659,
+      "md5": "b2b1b0bb77992ecceefe27143d25cad1"
+    },
+    {
+      "path": "Assets/mapevent/test1.asset.meta",
+      "size": 189,
+      "md5": "43929892c1e84f7ce4faa5f0356d83ec"
+    },
+    {
+      "path": "Assets/mapevent/TestEnemy Definition.asset",
+      "size": 638,
+      "md5": "de541469736474481bf480b888ecef7e"
+    },
+    {
+      "path": "Assets/mapevent/TestEnemy Definition.asset.meta",
+      "size": 189,
+      "md5": "1916e48c846f622a8a4e35192e673de1"
+    },
+    {
+      "path": "Assets/picture/enemy1.png",
+      "size": 1530823,
+      "md5": "755d084472252bca9bc2208c8493cee5"
+    },
+    {
+      "path": "Assets/picture/enemy1.png.meta",
+      "size": 3336,
+      "md5": "3f55ba57f3e04ef02d175b5047a1e2f1"
+    },
+    {
+      "path": "Assets/Prefabs/Bar.prefab",
+      "size": 14192,
+      "md5": "d51a74e2386de83c87803386a9cc383a"
+    },
+    {
+      "path": "Assets/Prefabs/Bar.prefab.meta",
+      "size": 161,
+      "md5": "09809eb1d8fb3645766fe92782fdca2f"
+    },
+    {
+      "path": "Assets/Prefabs/buttonEven.prefab",
+      "size": 8589,
+      "md5": "05acbf855c84a587ef6ddfed011a8f26"
+    },
+    {
+      "path": "Assets/Prefabs/buttonEven.prefab.meta",
+      "size": 154,
+      "md5": "0d0e797c0d448a371c214880b27ff97d"
+    },
+    {
+      "path": "Assets/Prefabs/ChoiceButton.prefab",
+      "size": 8693,
+      "md5": "a55e113b11e31a4db4bcdddf631cff95"
+    },
+    {
+      "path": "Assets/Prefabs/ChoiceButton.prefab.meta",
+      "size": 154,
+      "md5": "666beddf154809813e64f5d2285be7ec"
+    },
+    {
+      "path": "Assets/Prefabs/Enemy.prefab",
+      "size": 2682,
+      "md5": "73e4c4f5a6d6536c8ce624e995b59e09"
+    },
+    {
+      "path": "Assets/Prefabs/Enemy.prefab.meta",
+      "size": 154,
+      "md5": "7f3d84a1610f0dbe499879e896dc6ec0"
+    },
+    {
+      "path": "Assets/Prefabs/Text (TMP).prefab",
+      "size": 3920,
+      "md5": "647def62028c8c2b5af11acd31c81427"
+    },
+    {
+      "path": "Assets/Prefabs/Text (TMP).prefab.meta",
+      "size": 154,
+      "md5": "497d99ee7014c3261e7dee5909ac7b43"
+    },
+    {
+      "path": "Assets/Scenes/SampleScene.unity",
+      "size": 357958,
+      "md5": "567b4b068568df91a4ae5f2cd13ffe70"
+    },
+    {
+      "path": "Assets/Scenes/SampleScene.unity.meta",
+      "size": 155,
+      "md5": "517c52e12908c533a98f25b46c36ce18"
+    },
+    {
+      "path": "Assets/Scripts/AbilityStats.cs",
+      "size": 1809,
+      "md5": "c47707607c227acefc5cdd749684749d"
+    },
+    {
+      "path": "Assets/Scripts/AbilityStats.cs.meta",
+      "size": 243,
+      "md5": "bed4b6ef6a9cb393d5fc352592f1d4bf"
+    },
+    {
+      "path": "Assets/Scripts/AudioManager.cs",
+      "size": 2265,
+      "md5": "06cc3122cc78c317c83448275bc562c4"
+    },
+    {
+      "path": "Assets/Scripts/AudioManager.cs.meta",
+      "size": 254,
+      "md5": "29e414057be5e44f81cda1850a96a2d3"
+    },
+    {
+      "path": "Assets/Scripts/Board.meta",
+      "size": 172,
+      "md5": "f322d5676611a12893d0d841bf0e7b67"
+    },
+    {
+      "path": "Assets/Scripts/Bridges.meta",
+      "size": 172,
+      "md5": "4fdfd83d2046d04b633573eb12c5c1ec"
+    },
+    {
+      "path": "Assets/Scripts/ButtonController.cs",
+      "size": 361,
+      "md5": "b21ff479c8971e759842c5e6abec27d9"
+    },
+    {
+      "path": "Assets/Scripts/ButtonController.cs.meta",
+      "size": 254,
+      "md5": "e6c2b52cf23db3809cef9c9f519ef960"
+    },
+    {
+      "path": "Assets/Scripts/CaseDatabase.cs",
+      "size": 869,
+      "md5": "5a7b78d05f9fccb38297be0099f5a987"
+    },
+    {
+      "path": "Assets/Scripts/CaseDatabase.cs.meta",
+      "size": 254,
+      "md5": "3688329f075264cfaf61fc261e3339bb"
+    },
+    {
+      "path": "Assets/Scripts/CaseId.cs",
+      "size": 291,
+      "md5": "70f2aeb8a5935f8ce694c16c6c1c9d9b"
+    },
+    {
+      "path": "Assets/Scripts/CaseId.cs.meta",
+      "size": 254,
+      "md5": "92997e081afa8aa944e1a250f1094c31"
+    },
+    {
+      "path": "Assets/Scripts/CaseVisuals.cs",
+      "size": 1199,
+      "md5": "cbd23d2b45d6be2efdcc9875430a6c13"
+    },
+    {
+      "path": "Assets/Scripts/CaseVisuals.cs.meta",
+      "size": 254,
+      "md5": "a30f7bc90e68c7329152a1b2d073f058"
+    },
+    {
+      "path": "Assets/Scripts/Combat.meta",
+      "size": 172,
+      "md5": "ea12afe2c146291531ba8cb76b19863b"
+    },
+    {
+      "path": "Assets/Scripts/DolEventAsset.cs",
+      "size": 6295,
+      "md5": "678b3b9cc28939d48a80e405f4b610da"
+    },
+    {
+      "path": "Assets/Scripts/DolEventAsset.cs.meta",
+      "size": 254,
+      "md5": "86aa91b1c28da7d4924082828657bae1"
+    },
+    {
+      "path": "Assets/Scripts/EventFlagStorage.cs",
+      "size": 3481,
+      "md5": "b7f231ef8c408fdc03fbdc952c268f16"
+    },
+    {
+      "path": "Assets/Scripts/EventFlagStorage.cs.meta",
+      "size": 254,
+      "md5": "a126de3bd2c37c1bb3e6fead553ab494"
+    },
+    {
+      "path": "Assets/Scripts/Events.meta",
+      "size": 172,
+      "md5": "6cba7ecc4d02bed689ca2be36066e693"
+    },
+    {
+      "path": "Assets/Scripts/GameManager.cs",
+      "size": 16082,
+      "md5": "185bbaea481ade03ebdd3fec41a790cb"
+    },
+    {
+      "path": "Assets/Scripts/GameManager.cs.meta",
+      "size": 243,
+      "md5": "2861a34319be86d8441e4982b9d55617"
+    },
+    {
+      "path": "Assets/Scripts/GameManagerStatProvider.cs",
+      "size": 2697,
+      "md5": "1759a3d56fc948a512f82cf48b88ac42"
+    },
+    {
+      "path": "Assets/Scripts/GameManagerStatProvider.cs.meta",
+      "size": 254,
+      "md5": "65782ca693fe5fab4b7014097e8b74da"
+    },
+    {
+      "path": "Assets/Scripts/HUDStats.cs",
+      "size": 1579,
+      "md5": "aa6b27f2239ee9e47e4bff32cb5e6c1f"
+    },
+    {
+      "path": "Assets/Scripts/HUDStats.cs.meta",
+      "size": 254,
+      "md5": "e99ab06a32d53eb4d2ea8f10a95751cf"
+    },
+    {
+      "path": "Assets/Scripts/MenuManager.cs",
+      "size": 3551,
+      "md5": "acfe6db6effe33ddcc32f8557db80afb"
+    },
+    {
+      "path": "Assets/Scripts/MenuManager.cs.meta",
+      "size": 254,
+      "md5": "d2c1527d25ea8d72c9b6ff22479ecf74"
+    },
+    {
+      "path": "Assets/Scripts/PlayerStats.cs",
+      "size": 4264,
+      "md5": "e77381156f8e28c302796118b22ad132"
+    },
+    {
+      "path": "Assets/Scripts/PlayerStats.cs.meta",
+      "size": 243,
+      "md5": "805e778c4944f809e531af813039dc2a"
+    },
+    {
+      "path": "Assets/Scripts/ProloguePlayer.cs",
+      "size": 5929,
+      "md5": "58768d4467cd3f913ed8e13ed1894629"
+    },
+    {
+      "path": "Assets/Scripts/ProloguePlayer.cs.meta",
+      "size": 254,
+      "md5": "173516aa829eddf47b356b55eda30efb"
+    },
+    {
+      "path": "Assets/Scripts/SampleAssetsGenerator.cs",
+      "size": 9565,
+      "md5": "2b08aab241e18f73f283620d9aecdb2c"
+    },
+    {
+      "path": "Assets/Scripts/SampleAssetsGenerator.cs.meta",
+      "size": 254,
+      "md5": "8923e951845469aff93d1d0c2f114d9b"
+    },
+    {
+      "path": "Assets/Scripts/SaveData.cs",
+      "size": 559,
+      "md5": "8e6c72cf3e4138d79699e60bf37814ce"
+    },
+    {
+      "path": "Assets/Scripts/SaveData.cs.meta",
+      "size": 254,
+      "md5": "7124abf7871b56987d3fb73bbbdeb638"
+    },
+    {
+      "path": "Assets/Scripts/SaveManager.cs",
+      "size": 840,
+      "md5": "14ee819e150e29094ad0813628d8608d"
+    },
+    {
+      "path": "Assets/Scripts/SaveManager.cs.meta",
+      "size": 254,
+      "md5": "eb4a59c4ec903a0b0dd0739170d7a35f"
+    },
+    {
+      "path": "Assets/Scripts/SaveSlotButton.cs",
+      "size": 800,
+      "md5": "a249b51038ca74bbcf56b2a9ad4982f0"
+    },
+    {
+      "path": "Assets/Scripts/SaveSlotButton.cs.meta",
+      "size": 254,
+      "md5": "7acd18c985429e8e7844b8c92cbf1318"
+    },
+    {
+      "path": "Assets/Scripts/SoundEffectManager.cs",
+      "size": 3515,
+      "md5": "471d857501bcd39159b03b6a1eadec89"
+    },
+    {
+      "path": "Assets/Scripts/SoundEffectManager.cs.meta",
+      "size": 243,
+      "md5": "291c2cdf817349e963b2ce4a0e6addca"
+    },
+    {
+      "path": "Assets/Scripts/StartCountButton.cs",
+      "size": 899,
+      "md5": "d2b2d3ea11e60ed5f22eac48034a7cff"
+    },
+    {
+      "path": "Assets/Scripts/StartCountButton.cs.meta",
+      "size": 243,
+      "md5": "d3bde1e9a3de4f20d012225138cbefe5"
+    },
+    {
+      "path": "Assets/Scripts/StatBar.cs",
+      "size": 2464,
+      "md5": "dfd302d1482251ab5865f67d259bf1f3"
+    },
+    {
+      "path": "Assets/Scripts/StatBar.cs.meta",
+      "size": 254,
+      "md5": "289ff0cebd8a22f69c999b994809a9c4"
+    },
+    {
+      "path": "Assets/Scripts/StatEventBus.cs",
+      "size": 590,
+      "md5": "6c9cdbeb460f0989fef9137d4b6bd334"
+    },
+    {
+      "path": "Assets/Scripts/StatEventBus.cs.meta",
+      "size": 254,
+      "md5": "974c0c9e6bc974d568fb5dc0a4a707a9"
+    },
+    {
+      "path": "Assets/Scripts/StatType.cs",
+      "size": 250,
+      "md5": "5b871f4c825dd0432dace1e11b7f756c"
+    },
+    {
+      "path": "Assets/Scripts/StatType.cs.meta",
+      "size": 254,
+      "md5": "27cefec3a427a943c3fdf0d2598cff96"
+    },
+    {
+      "path": "Assets/Scripts/StoryData.cs",
+      "size": 447,
+      "md5": "767df8e92349c8f5a990ce0e08626387"
+    },
+    {
+      "path": "Assets/Scripts/StoryData.cs.meta",
+      "size": 254,
+      "md5": "d2160daf051ab0111fbd710322953a2c"
+    },
+    {
+      "path": "Assets/Scripts/VFX.meta",
+      "size": 172,
+      "md5": "45f037e417b64ba5fce2858561e13abd"
+    },
+    {
+      "path": "Assets/Scripts/Board/BoardController.cs",
+      "size": 2882,
+      "md5": "cd033bc47166e9efeb58310a6165daf4"
+    },
+    {
+      "path": "Assets/Scripts/Board/BoardController.cs.meta",
+      "size": 243,
+      "md5": "99c92a546b01f4bef001e6e950a762ae"
+    },
+    {
+      "path": "Assets/Scripts/Board/BoardEventsBridge.cs",
+      "size": 1162,
+      "md5": "7ad08b01bd9b92cb1a26fe4d448e0113"
+    },
+    {
+      "path": "Assets/Scripts/Board/BoardEventsBridge.cs.meta",
+      "size": 243,
+      "md5": "3a990b6b35f35bed1b7026e18909d52b"
+    },
+    {
+      "path": "Assets/Scripts/Board/DiceRoller.cs",
+      "size": 368,
+      "md5": "5492d98b4bd0774afbcbc45544e81716"
+    },
+    {
+      "path": "Assets/Scripts/Board/DiceRoller.cs.meta",
+      "size": 243,
+      "md5": "4ee0e29b2147c6a2cc8ae14fec87eaa6"
+    },
+    {
+      "path": "Assets/Scripts/Board/KG.Board.asmdef",
+      "size": 326,
+      "md5": "1c4e2a30ce0f0534c160dffdb0af8a90"
+    },
+    {
+      "path": "Assets/Scripts/Board/KG.Board.asmdef.meta",
+      "size": 166,
+      "md5": "965618f3335381b2f7d0a016bc8d3161"
+    },
+    {
+      "path": "Assets/Scripts/Board/PawnController.cs",
+      "size": 2293,
+      "md5": "6bb90060c74012ea8ea946266030c3f6"
+    },
+    {
+      "path": "Assets/Scripts/Board/PawnController.cs.meta",
+      "size": 243,
+      "md5": "eb93bf74785ed9dfb0092555e529207f"
+    },
+    {
+      "path": "Assets/Scripts/Board/PlayerState.cs",
+      "size": 690,
+      "md5": "8fe5197350132fb0fa7e6954933018d4"
+    },
+    {
+      "path": "Assets/Scripts/Board/PlayerState.cs.meta",
+      "size": 243,
+      "md5": "d976eb425615ca028c29b2a20cd8d904"
+    },
+    {
+      "path": "Assets/Scripts/Board/README_BoardKit.txt",
+      "size": 998,
+      "md5": "75d2e1d109964ab7af50fade89ac5f02"
+    },
+    {
+      "path": "Assets/Scripts/Board/README_BoardKit.txt.meta",
+      "size": 158,
+      "md5": "8f56d6108e0073a96d8230cb4773db8e"
+    },
+    {
+      "path": "Assets/Scripts/Board/TileDefinition.cs",
+      "size": 536,
+      "md5": "6e6789f4bed6e3771c2daf5258a8503d"
+    },
+    {
+      "path": "Assets/Scripts/Board/TileDefinition.cs.meta",
+      "size": 243,
+      "md5": "0f7003e2a362c61ac780304ffb4cc257"
+    },
+    {
+      "path": "Assets/Scripts/Board/TurnManager.cs",
+      "size": 441,
+      "md5": "a0d41fa129542358629a8b2873949b9b"
+    },
+    {
+      "path": "Assets/Scripts/Board/TurnManager.cs.meta",
+      "size": 243,
+      "md5": "972e01bdf592a2dff37f8914c44298fd"
+    },
+    {
+      "path": "Assets/Scripts/Bridges/BoardCombatBridge.cs",
+      "size": 1838,
+      "md5": "5acccb27831a00870501c9c35d1a1bde"
+    },
+    {
+      "path": "Assets/Scripts/Bridges/BoardCombatBridge.cs.meta",
+      "size": 243,
+      "md5": "5c7b666b189d1089e1ee0976f2510315"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Armor.meta",
+      "size": 172,
+      "md5": "7cb2fee3627d50c64cd4c4949a966a8b"
+    },
+    {
+      "path": "Assets/Scripts/Combat/ArmorDef.cs",
+      "size": 1770,
+      "md5": "4345597a3c0c35957cf27bd8d8ccc13c"
+    },
+    {
+      "path": "Assets/Scripts/Combat/ArmorDef.cs.meta",
+      "size": 243,
+      "md5": "5d0b644fabf00bab781115e0e391bdc5"
+    },
+    {
+      "path": "Assets/Scripts/Combat/BasicHealth.cs",
+      "size": 416,
+      "md5": "89c78196ee59639c31a6b170501ecdd1"
+    },
+    {
+      "path": "Assets/Scripts/Combat/BasicHealth.cs.meta",
+      "size": 243,
+      "md5": "67ce8ea7cc7ff71d75cf7d7a96b3156d"
+    },
+    {
+      "path": "Assets/Scripts/Combat/BodyPartState.cs",
+      "size": 1674,
+      "md5": "c20510026a621ffa28aaf18604f85fab"
+    },
+    {
+      "path": "Assets/Scripts/Combat/BodyPartState.cs.meta",
+      "size": 243,
+      "md5": "dbe631133202b02c545ca9a155d47bb3"
+    },
+    {
+      "path": "Assets/Scripts/Combat/BodyPreset.cs",
+      "size": 2389,
+      "md5": "873953bb6c0088a29220fa03974787e6"
+    },
+    {
+      "path": "Assets/Scripts/Combat/BodyPreset.cs.meta",
+      "size": 243,
+      "md5": "3931e3520f8edc7c2bce6a41b6d7309e"
+    },
+    {
+      "path": "Assets/Scripts/Combat/BodyTagDestroyedCondition.cs",
+      "size": 1037,
+      "md5": "6106a2f262914870854d66942d44ecbf"
+    },
+    {
+      "path": "Assets/Scripts/Combat/BodyTagDestroyedCondition.cs.meta",
+      "size": 243,
+      "md5": "cf0d195c713d6d3a058ff2cf9d886a3b"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Combatant.cs",
+      "size": 4426,
+      "md5": "95994432c624a4a0d1949623f0401341"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Combatant.cs.meta",
+      "size": 243,
+      "md5": "bce8d1f86f5c03bad0f2cf09830bd063"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatantExtensions.cs",
+      "size": 1892,
+      "md5": "0e03d63589c3bd9f2784598533c9d170"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatantExtensions.cs.meta",
+      "size": 243,
+      "md5": "6cf5b1efe83706064440a01343afc960"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatEncounter.cs",
+      "size": 304,
+      "md5": "f855dfd818770da4fde6176d6dc7d6a1"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatEncounter.cs.meta",
+      "size": 243,
+      "md5": "556bf86ec863c21913d1cb237cb38dcc"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatEventBridge.cs",
+      "size": 778,
+      "md5": "f7ac4c50e9ac1f82268989d8a43c21ac"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatEventBridge.cs.meta",
+      "size": 243,
+      "md5": "b8f3236390c813b01bda4ad46a8f22ee"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatManager.cs",
+      "size": 9771,
+      "md5": "45ea91ac83e9869e238ad275eb04f330"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatManager.cs.meta",
+      "size": 243,
+      "md5": "c790c4b67afd3c9d9ace467a262ef303"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatManager_InventoryHook.cs",
+      "size": 569,
+      "md5": "470c125ac1af0d27abe789ac1f2b8fec"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatManager_InventoryHook.cs.meta",
+      "size": 243,
+      "md5": "b26930ae627d1105b12fdb3019fc4cf8"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatPageController.cs",
+      "size": 11919,
+      "md5": "d72aa3b8a0e0fb7c00d1bab38040ec63"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatPageController.cs.meta",
+      "size": 243,
+      "md5": "6efa39374faa3bd019a22cf57091a222"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatResultRouter.cs",
+      "size": 948,
+      "md5": "d7602c2be9479bbd2d2921d88b047809"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatResultRouter.cs.meta",
+      "size": 243,
+      "md5": "690a6fa3dba333a909c55c9836f432f9"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatSceneLoader.cs",
+      "size": 1002,
+      "md5": "f2dbe02d1ae02744e8f5ace05d01b4e5"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatSceneLoader.cs.meta",
+      "size": 243,
+      "md5": "8190f90b9ee9034607ae0c7eb576edee"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatSpecialCondition.cs",
+      "size": 296,
+      "md5": "26c7294f1363d5f7edadfdabb2f80ad7"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatSpecialCondition.cs.meta",
+      "size": 243,
+      "md5": "9e77ccedf2c5747723a02378241e016e"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatStarterButton.cs",
+      "size": 235,
+      "md5": "48ea4757b4f365b5204ddc7dd9a76e96"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatStarterButton.cs.meta",
+      "size": 243,
+      "md5": "1863b77db72c53cd1eb6f6d8f943d573"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatUIController.cs",
+      "size": 7664,
+      "md5": "ff0d90658918ebffd66e31e48baf345a"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatUIController.cs.meta",
+      "size": 243,
+      "md5": "ffe9be4f2ef5d9f71968056d8b175f54"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatUIController_HitStopPatch.txt",
+      "size": 277,
+      "md5": "a8c704aff840b5ce8b5903e6b0b393fe"
+    },
+    {
+      "path": "Assets/Scripts/Combat/CombatUIController_HitStopPatch.txt.meta",
+      "size": 158,
+      "md5": "0d21cb3b116c9eaee0e4256af08cffcd"
+    },
+    {
+      "path": "Assets/Scripts/Combat/ConsumableDef.cs",
+      "size": 643,
+      "md5": "5f201892f272ed543e4c55d0b4a5c2cc"
+    },
+    {
+      "path": "Assets/Scripts/Combat/ConsumableDef.cs.meta",
+      "size": 243,
+      "md5": "88fb7fa697f3aedd55cf52ee4204ad06"
+    },
+    {
+      "path": "Assets/Scripts/Combat/DeselectHotkey.cs",
+      "size": 279,
+      "md5": "72ee8138b8480e58458d7fb0cc00bda2"
+    },
+    {
+      "path": "Assets/Scripts/Combat/DeselectHotkey.cs.meta",
+      "size": 243,
+      "md5": "ce28e60917014d7dfa71e61c7f8a79ce"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Effects.cs",
+      "size": 1595,
+      "md5": "04d9d29472df14eb97a6c46fd8963ab0"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Effects.cs.meta",
+      "size": 243,
+      "md5": "0bbdc9c573fae44e942279e64c8269d4"
+    },
+    {
+      "path": "Assets/Scripts/Combat/EnemyDefinition.cs",
+      "size": 1107,
+      "md5": "3d41e232eae9f2ca588e64e53239ed2e"
+    },
+    {
+      "path": "Assets/Scripts/Combat/EnemyDefinition.cs.meta",
+      "size": 243,
+      "md5": "fea133fcf52ad064e6755dc930d93eb3"
+    },
+    {
+      "path": "Assets/Scripts/Combat/EnemyHPBinder.cs",
+      "size": 1116,
+      "md5": "f0cb660cc08ec3f6c393440a2bd2b81f"
+    },
+    {
+      "path": "Assets/Scripts/Combat/EnemyHPBinder.cs.meta",
+      "size": 243,
+      "md5": "2f8ddb50dec04c8efaa48296b9573a26"
+    },
+    {
+      "path": "Assets/Scripts/Combat/EnemyTargetButton.cs",
+      "size": 1425,
+      "md5": "f7643a454123af3afd0f883fc7116b89"
+    },
+    {
+      "path": "Assets/Scripts/Combat/EnemyTargetButton.cs.meta",
+      "size": 243,
+      "md5": "2e2573dfeb376c392422a4763fea36ba"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Enums.cs",
+      "size": 708,
+      "md5": "37cbaede3a40c4c36cefab89c038cb63"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Enums.cs.meta",
+      "size": 243,
+      "md5": "569b1cc8d0435144ee8a1c1c5ef52795"
+    },
+    {
+      "path": "Assets/Scripts/Combat/EventCombatBridge.cs",
+      "size": 1493,
+      "md5": "e0c67b0a3c12eb27e9a2fc5746f92c4d"
+    },
+    {
+      "path": "Assets/Scripts/Combat/EventCombatBridge.cs.meta",
+      "size": 243,
+      "md5": "1557a4435f7e64d3e4daee3fd1196d78"
+    },
+    {
+      "path": "Assets/Scripts/Combat/HitGroupButton.cs",
+      "size": 502,
+      "md5": "d7839e1100885d45cddce725d1970e59"
+    },
+    {
+      "path": "Assets/Scripts/Combat/HitGroupButton.cs.meta",
+      "size": 243,
+      "md5": "f66394599fa3e1dd766769d6404a634e"
+    },
+    {
+      "path": "Assets/Scripts/Combat/HPBarBinder.cs",
+      "size": 1457,
+      "md5": "3481c924dcdc925b79c7a1259ae3d373"
+    },
+    {
+      "path": "Assets/Scripts/Combat/HPBarBinder.cs.meta",
+      "size": 243,
+      "md5": "0a6e3800f6273c860054f9bd4184d211"
+    },
+    {
+      "path": "Assets/Scripts/Combat/InventoryManager.cs",
+      "size": 747,
+      "md5": "011052eb3bc8723f63c5079c16813a82"
+    },
+    {
+      "path": "Assets/Scripts/Combat/InventoryManager.cs.meta",
+      "size": 243,
+      "md5": "fad7994ec964ff26673b02e8f9776985"
+    },
+    {
+      "path": "Assets/Scripts/Combat/ItemDef.cs",
+      "size": 351,
+      "md5": "b58f8a03c54aaabd54f519f9a76cca33"
+    },
+    {
+      "path": "Assets/Scripts/Combat/ItemDef.cs.meta",
+      "size": 243,
+      "md5": "9ca45305882c4f13104b5b4b9dcd2e77"
+    },
+    {
+      "path": "Assets/Scripts/Combat/ItemRegistry.cs",
+      "size": 828,
+      "md5": "d06054f05d6787ea6cf7da33484d3268"
+    },
+    {
+      "path": "Assets/Scripts/Combat/ItemRegistry.cs.meta",
+      "size": 243,
+      "md5": "d5daf1159b4cfa595e33716922009328"
+    },
+    {
+      "path": "Assets/Scripts/Combat/TargetingPanel.cs",
+      "size": 989,
+      "md5": "1301362aa518c93ef7a0ff050302e284"
+    },
+    {
+      "path": "Assets/Scripts/Combat/TargetingPanel.cs.meta",
+      "size": 243,
+      "md5": "53db6f54f907c3cbcd3edd6d81152514"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Weapon.meta",
+      "size": 172,
+      "md5": "fdab77d400d29adab9ff61a516c337d8"
+    },
+    {
+      "path": "Assets/Scripts/Combat/WeaponDef.cs",
+      "size": 1609,
+      "md5": "65f91733601a73752af6069047b59fa4"
+    },
+    {
+      "path": "Assets/Scripts/Combat/WeaponDef.cs.meta",
+      "size": 243,
+      "md5": "7be551aec98f27960b29502e771fd835"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Armor/Nude.asset",
+      "size": 602,
+      "md5": "139a5eab98b182acbea9416f71b9e145"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Armor/Nude.asset.meta",
+      "size": 189,
+      "md5": "6e8df777dd4abc18ba13f8d8954afc50"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Weapon/hand.asset",
+      "size": 592,
+      "md5": "e2d0323a9bcf27707612c5595dd0e402"
+    },
+    {
+      "path": "Assets/Scripts/Combat/Weapon/hand.asset.meta",
+      "size": 189,
+      "md5": "03b1d0bec1df0039efd2e510a460d1c4"
+    },
+    {
+      "path": "Assets/Scripts/VFX/BattleFXController.cs",
+      "size": 3193,
+      "md5": "6168db461dbb58d9843f610a269e2f94"
+    },
+    {
+      "path": "Assets/Scripts/VFX/BattleFXController.cs.meta",
+      "size": 243,
+      "md5": "67f40bda3f6c1a1a098fa377fd58b9b3"
+    },
+    {
+      "path": "Assets/Scripts/VFX/HitFlash2D.cs",
+      "size": 936,
+      "md5": "786bf662f0b3778e41cd37cbd90ed419"
+    },
+    {
+      "path": "Assets/Scripts/VFX/HitFlash2D.cs.meta",
+      "size": 243,
+      "md5": "347645afc9e5885cca184beaed98357d"
+    },
+    {
+      "path": "Assets/Scripts/VFX/HitStop.cs",
+      "size": 1891,
+      "md5": "31a532fc95d6a2a59c259583d7ff165b"
+    },
+    {
+      "path": "Assets/Scripts/VFX/HitStop.cs.meta",
+      "size": 243,
+      "md5": "821684b3732455088f5dfd8db0e8d002"
+    },
+    {
+      "path": "Assets/Scripts/VFX/ScreenVignette.cs",
+      "size": 1300,
+      "md5": "0921afab057ec15d6fc86caae5beba1d"
+    },
+    {
+      "path": "Assets/Scripts/VFX/ScreenVignette.cs.meta",
+      "size": 243,
+      "md5": "08d869cd85db40acdda9a4003b05151e"
+    },
+    {
+      "path": "Assets/Scripts/VFX/USAGE.txt",
+      "size": 597,
+      "md5": "1f14cf4ee18d9a949361d4de85286921"
+    },
+    {
+      "path": "Assets/Scripts/VFX/USAGE.txt.meta",
+      "size": 158,
+      "md5": "003508608071af177a3d193e76e306b2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Documentation.meta",
+      "size": 172,
+      "md5": "3345663872a8db04ba2ace4e83b0be66"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras.meta",
+      "size": 172,
+      "md5": "520601ebda7706ccef5657bca7d8b594"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts.meta",
+      "size": 172,
+      "md5": "6cfa9fd700cd144d304b0a62c9fe921c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources.meta",
+      "size": 172,
+      "md5": "c014d55eb67e21f1b59543ec9adbc6b1"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders.meta",
+      "size": 172,
+      "md5": "0fc201fb9fbb4eeae1b074b855cb79b5"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Sprites.meta",
+      "size": 172,
+      "md5": "9cb8be77421a7704106c2e95b1f1bb58"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf",
+      "size": 694398,
+      "md5": "d5e461fcd15d946196ba95d7af5f22f7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf.meta",
+      "size": 155,
+      "md5": "eb5693e51eb3715f7206276d21aab2d3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts.meta",
+      "size": 172,
+      "md5": "6b0102de6e73c26a0d541e1d4e5c740a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Materials.meta",
+      "size": 191,
+      "md5": "84556980d3c062f06edc97116db965dd"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs.meta",
+      "size": 191,
+      "md5": "7a1c0832a92f6ad7e6d19be7032fb0fd"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources.meta",
+      "size": 191,
+      "md5": "03d591952c15e9729005682ec4e3e5c7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes.meta",
+      "size": 191,
+      "md5": "9e775d312ddbeb29323a257356b7ddb8"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts.meta",
+      "size": 191,
+      "md5": "c87588a26a5e5d7e3802164e80363251"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Sprites.meta",
+      "size": 191,
+      "md5": "54d7bdd65bee3be1b4f7a40c93c1e81c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures.meta",
+      "size": 191,
+      "md5": "70f1d7720bfb17911bb8be0847f1dd28"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton OFL.txt",
+      "size": 4487,
+      "md5": "200fb56875abe81caf68aaa500e1fca6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton OFL.txt.meta",
+      "size": 177,
+      "md5": "7a5e5a046aa54e6c13fa4249c0d52b32"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf",
+      "size": 42376,
+      "md5": "7a1e3c1b496e6eecfe680dae7fce2676"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Anton.ttf.meta",
+      "size": 414,
+      "md5": "94e4a87fafc12fa2f88af7f3abf88128"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers - OFL.txt",
+      "size": 4491,
+      "md5": "1ac0f88edfc7544c85a7549fe3a90e32"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers - OFL.txt.meta",
+      "size": 177,
+      "md5": "e1b7a25c1cc7fa28dd74fbcd15d91d3a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers.ttf",
+      "size": 39676,
+      "md5": "79c6d1b820702454d23048eee05335b3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Bangers.ttf.meta",
+      "size": 414,
+      "md5": "07d64dc60d9df87f979984ba9d852a40"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Electronic Highway Sign.TTF",
+      "size": 73060,
+      "md5": "a711fa8102b7282e2e93f924a25ce86b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Electronic Highway Sign.TTF.meta",
+      "size": 524,
+      "md5": "482d38ee8f8cd73cd7b43113c0c56eb6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Oswald-Bold - OFL.txt",
+      "size": 4494,
+      "md5": "56a8c1c995a5b8de92bcaa75055e7cfb"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Oswald-Bold - OFL.txt.meta",
+      "size": 177,
+      "md5": "4ff390f1923440c28b9dca58df5ae5f0"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Oswald-Bold.ttf",
+      "size": 53056,
+      "md5": "8993e4d87124a3808ae68d2e52d27f87"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Oswald-Bold.ttf.meta",
+      "size": 414,
+      "md5": "968eb7103673ef004838c0d4075c41df"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Roboto-Bold.ttf",
+      "size": 170760,
+      "md5": "ee7b96fa85d8fdb8c126409326ac2d2b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Fonts/Roboto-Bold.ttf.meta",
+      "size": 490,
+      "md5": "84b5abe094670653b8ceb9272848f05b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat",
+      "size": 2464,
+      "md5": "05ebe46c3df9b8f61540ae0cb623a069"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat.meta",
+      "size": 138,
+      "md5": "a8f6e6bc3178a528d846e08f271ffc65"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Logo Scene.mat",
+      "size": 4694,
+      "md5": "21574f3d4209e424b8364368642a3695"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Logo Scene.mat.meta",
+      "size": 138,
+      "md5": "5dcd92989f3f2a0705f2337e2be2a0bd"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Surface Shader Scene.mat",
+      "size": 3150,
+      "md5": "ccc58e8a34d7530a578c5b29f50d5dd3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Surface Shader Scene.mat.meta",
+      "size": 138,
+      "md5": "6fe4c9c31d330d380597671e4c19eb44"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Small Crate_diffuse.mat",
+      "size": 2975,
+      "md5": "53ec2f5288e8acdb1aa1a05b8b591bef"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Materials/Small Crate_diffuse.mat.meta",
+      "size": 179,
+      "md5": "5f568d8ef6df9f246a52b53aeeb8d104"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab",
+      "size": 7401,
+      "md5": "7f92be8a200f2981d264f6e39bf6a750"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab.meta",
+      "size": 181,
+      "md5": "c57efc14ba8c0a40569e44e54334e607"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 1.prefab",
+      "size": 5272,
+      "md5": "fb8ee7b72fcb0bdfba3e33fff5beb5d8"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 1.prefab.meta",
+      "size": 138,
+      "md5": "0e2e19d8c34b8871f2e498dd3dfafae0"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 2.prefab",
+      "size": 5268,
+      "md5": "d7301ab30eef70dbb34f634c94927989"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Prefabs/TextMeshPro - Prefab 2.prefab.meta",
+      "size": 138,
+      "md5": "75d08c5afd972bfb6f60ca900a580879"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets.meta",
+      "size": 172,
+      "md5": "7e1a0a32b70917b07ad07ab47be4578e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials.meta",
+      "size": 191,
+      "md5": "89b85139752e9d5276eb285b30906b13"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets.meta",
+      "size": 191,
+      "md5": "9a4fc0f88c5fe54bdcc1b1a77ea147f3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Blue to Purple - Vertical.asset",
+      "size": 588,
+      "md5": "b33b5ea4a78ba0b2d3fd06aae2a672b9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Blue to Purple - Vertical.asset.meta",
+      "size": 179,
+      "md5": "f118926552d63f2fc24e1906ce820f75"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Dark to Light Green - Vertical.asset",
+      "size": 609,
+      "md5": "6d178ce494436498a5f6c10674cbd14d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Dark to Light Green - Vertical.asset.meta",
+      "size": 179,
+      "md5": "41bb7e001852e446ac06b2db19cb9c32"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Light to Dark Green - Vertical.asset",
+      "size": 585,
+      "md5": "98c8da6127d4fde2d5fc1eccdc730495"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Light to Dark Green - Vertical.asset.meta",
+      "size": 179,
+      "md5": "c666e7f4a06cb3d87ffe3b966a5a771b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Yellow to Orange - Vertical.asset",
+      "size": 544,
+      "md5": "da15330386eae640be1031e8e236ed28"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Yellow to Orange - Vertical.asset.meta",
+      "size": 179,
+      "md5": "dee3e44b21a7c49be1172e5a3e729110"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Drop Shadow.mat",
+      "size": 2906,
+      "md5": "4349086fe8551d80c1b2d7043b2241fe"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Drop Shadow.mat.meta",
+      "size": 179,
+      "md5": "4cb17ed6f26174db2f8ab6dc68be8724"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Outline.mat",
+      "size": 2888,
+      "md5": "2ed1fe6ced74854c48dc89c3b89a47cb"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Outline.mat.meta",
+      "size": 179,
+      "md5": "8fa682076cff92112f52dae0f657625e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Sunny Days.mat",
+      "size": 3069,
+      "md5": "b92fe4a27e0906402933e7aee738e0be"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Sunny Days.mat.meta",
+      "size": 188,
+      "md5": "691402738264e6855b9f37b538c03b17"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset",
+      "size": 2105450,
+      "md5": "692f37e46c2565037c6a320151a599ab"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset.meta",
+      "size": 179,
+      "md5": "0d9481599c2cb80383423b62d6a96646"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF - Drop Shadow.mat",
+      "size": 3081,
+      "md5": "ed486c0bf4a65c1a6018d7f3703e1ef9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF - Drop Shadow.mat.meta",
+      "size": 181,
+      "md5": "0471a4d1fb82a3678f21974df60d112e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF - Outline.mat",
+      "size": 3053,
+      "md5": "5d4f4acf8e4baf864775fc5d9408450e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF - Outline.mat.meta",
+      "size": 181,
+      "md5": "33eb62e5e3f9837197e27519d1f349ba"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Glow.mat",
+      "size": 3213,
+      "md5": "479c0029ca2ff5b6bb9eee2f6acb867d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Glow.mat.meta",
+      "size": 181,
+      "md5": "0a593c82acb8b0ddce1af32c00e99162"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Logo.mat",
+      "size": 3044,
+      "md5": "c502723a57b5626b07770a587d41e10e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Logo.mat.meta",
+      "size": 138,
+      "md5": "fd98b8ea4e9aa05226bb726bfdd1be50"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset",
+      "size": 2105431,
+      "md5": "2af8a7ddbf57f5cb09c3fa8d0485bc18"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset.meta",
+      "size": 138,
+      "md5": "7623d200c3e5b974d97b68aedc23c0ef"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Electronic Highway Sign SDF.asset",
+      "size": 8026,
+      "md5": "d61bc89738f885fb433d4b398ba15d07"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Electronic Highway Sign SDF.asset.meta",
+      "size": 179,
+      "md5": "c96a850899943b40d55f8cac68ae9d73"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Metalic Green.mat",
+      "size": 3255,
+      "md5": "58e0fd4d715dff9f50cdc635a62b317d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Metalic Green.mat.meta",
+      "size": 179,
+      "md5": "e636c46ade4f3f99acba38461099a82d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Overlay.mat",
+      "size": 1849,
+      "md5": "e5b1d0d4d024e87fb3d7489e2ee83bab"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Overlay.mat.meta",
+      "size": 179,
+      "md5": "50f7e424ae7be74dc7098fb796b8ae8b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Soft Mask.mat",
+      "size": 3347,
+      "md5": "fe2ecd0076b7aa314484c87a20580d18"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/LiberationSans SDF - Soft Mask.mat.meta",
+      "size": 179,
+      "md5": "b441a24c58642455d453353bb90fd62f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Oswald Bold SDF.asset",
+      "size": 2105478,
+      "md5": "4fd9f80c376a9dc3d13e6ae3c7cc4c28"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Oswald Bold SDF.asset.meta",
+      "size": 179,
+      "md5": "fad448dafa4098ca664ac8868ad556ba"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF - Drop Shadow.mat",
+      "size": 2909,
+      "md5": "a1c32b756235ae38db3c67dadba26929"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF - Drop Shadow.mat.meta",
+      "size": 179,
+      "md5": "87594d84fb5ef48fdbb826e71ae08689"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF - Surface.mat",
+      "size": 3011,
+      "md5": "9727c110a1cf98dd2e3f6ecef9a7daf0"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF - Surface.mat.meta",
+      "size": 179,
+      "md5": "2622c680ced00fcf411f10186d031069"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset",
+      "size": 2105489,
+      "md5": "95ed828df07acbd8e23ff897548ddee8"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset.meta",
+      "size": 179,
+      "md5": "2595bb47e861184dc8950c4c9925f9d7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/Default Sprite Asset.asset",
+      "size": 7862,
+      "md5": "e0da8e97d43dfe3960857e6922fc86d7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/Default Sprite Asset.asset.meta",
+      "size": 179,
+      "md5": "6c9723f11b3fed48112a3127205aad0c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/DropCap Numbers.asset",
+      "size": 9803,
+      "md5": "a64ff6d666fa004db9624e94c1d4adc2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Resources/Sprite Assets/DropCap Numbers.asset.meta",
+      "size": 179,
+      "md5": "18335196829b8dbe0cc269c763dfea7c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/01-  Single Line TextMesh Pro.unity",
+      "size": 10375,
+      "md5": "ed7aac4608d07e3238c15f02242ac3f3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/01-  Single Line TextMesh Pro.unity.meta",
+      "size": 292,
+      "md5": "e2a8b13b5d5301794e4a2aa988f5b160"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/02 - Multi-line TextMesh Pro.unity",
+      "size": 10445,
+      "md5": "9c99c473bed190ce8d1ca357c8c40cb7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/02 - Multi-line TextMesh Pro.unity.meta",
+      "size": 292,
+      "md5": "4af04e9070d8a4c580de8a5cc56a5e31"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/03 - Line Justification.unity",
+      "size": 24596,
+      "md5": "fd31f771ba2fe22cc8f0068099c7186a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/03 - Line Justification.unity.meta",
+      "size": 292,
+      "md5": "9c7b68df32b4072b37e431f008b778fb"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/04 - Word Wrapping.unity",
+      "size": 10389,
+      "md5": "ba98b7159eb65cb4dfc0478b45374077"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/04 - Word Wrapping.unity.meta",
+      "size": 292,
+      "md5": "ca0ef46b71ef4273b92f41563f1375b1"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/05 - Style Tags.unity",
+      "size": 28548,
+      "md5": "9a610e3696bc10176643a1bec8428733"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/05 - Style Tags.unity.meta",
+      "size": 292,
+      "md5": "a22ada49ba90517f9d1a8bf02348b60f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/06 - Extra Rich Text Examples.unity",
+      "size": 19196,
+      "md5": "934d6d954dda55ed13a4dcdabe6aed85"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/06 - Extra Rich Text Examples.unity.meta",
+      "size": 133,
+      "md5": "9059912c492e53bd66aa1c9ace03ebed"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/07 - Superscript & Subscript Example.unity",
+      "size": 10533,
+      "md5": "1f67a70f5ae710af115fa54d7efd0ef3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/07 - Superscript & Subscript Example.unity.meta",
+      "size": 292,
+      "md5": "38349d4510559439f3ea0c25122d75be"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/08 - Improved Text Alignment.unity",
+      "size": 15890,
+      "md5": "8652012355c25c41120ede4306474797"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/08 - Improved Text Alignment.unity.meta",
+      "size": 133,
+      "md5": "26645c2968500bf4c24ffcfb5d0220d5"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/09 - Margin Tag Example.unity",
+      "size": 26630,
+      "md5": "7b46704f00e2a41c06a3c2671c7e21c0"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/09 - Margin Tag Example.unity.meta",
+      "size": 176,
+      "md5": "7a93dffad8b4db6125bd37b144cce078"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/10 - Bullets & Numbered List Example.unity",
+      "size": 19166,
+      "md5": "c3ef400b8b04bbc6ad2e2405a9f4195b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/10 - Bullets & Numbered List Example.unity.meta",
+      "size": 174,
+      "md5": "c7dfdcce096747dacef80ff7a362404d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/11 - The Style Tag.unity",
+      "size": 15327,
+      "md5": "de2fb1295bcc2393f7e75e80bfe7adb7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/11 - The Style Tag.unity.meta",
+      "size": 174,
+      "md5": "4740258b470bb6c41cf22d3b9295518b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/12 - Link Example.unity",
+      "size": 22098,
+      "md5": "31e226aa64a09579612323ce94055b41"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/12 - Link Example.unity.meta",
+      "size": 176,
+      "md5": "b101c65aafc49bbaba3c90e013bff33c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/12a - Text Interactions.unity",
+      "size": 24418,
+      "md5": "3fb7bc572ae704dac9f4b139c200f5be"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/12a - Text Interactions.unity.meta",
+      "size": 174,
+      "md5": "9ad0894463d51585320725df38859cb2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/13 - Soft Hyphenation.unity",
+      "size": 13939,
+      "md5": "b8b6f14043828a5e1b54ff1a8d1d5dcd"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/13 - Soft Hyphenation.unity.meta",
+      "size": 174,
+      "md5": "a74daa473c0fc5adbe04eef839b26048"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/14 - Multi Font & Sprites.unity",
+      "size": 14912,
+      "md5": "1693da0bec82ad6d3679a9afb7e32eb2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/14 - Multi Font & Sprites.unity.meta",
+      "size": 174,
+      "md5": "4d6a05650fa22997d2976602a96d6150"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/15 - Inline Graphics & Sprites.unity",
+      "size": 16827,
+      "md5": "cf3f412ad067762662657e3b933a3f37"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/15 - Inline Graphics & Sprites.unity.meta",
+      "size": 133,
+      "md5": "da45ae65e356e08a01e775a6b45dccfa"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/16 - Linked text overflow mode example.unity",
+      "size": 30275,
+      "md5": "554584da17599060115c483ca3592424"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/16 - Linked text overflow mode example.unity.meta",
+      "size": 174,
+      "md5": "404d56d638f185a70399cff782635823"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/17 - Old Computer Terminal.unity",
+      "size": 19648,
+      "md5": "39cbd0a1dd65583a8335c5a896a8027c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/17 - Old Computer Terminal.unity.meta",
+      "size": 176,
+      "md5": "2f18910691e9e8096827aa1c6f916020"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/18 - ScrollRect & Masking & Layout.unity",
+      "size": 276567,
+      "md5": "18f0a015bd29891e90c7e0182394ab32"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/18 - ScrollRect & Masking & Layout.unity.meta",
+      "size": 174,
+      "md5": "6ea1ddf8c7e4fca9d93f0c3b509373ae"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/19 - Masking Texture & Soft Mask.unity",
+      "size": 16596,
+      "md5": "0ba7b8e7b66850a7098726c1af25c257"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/19 - Masking Texture & Soft Mask.unity.meta",
+      "size": 174,
+      "md5": "fc71e24ce763491ae161c42b5393ddbe"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/20 - Input Field with Scrollbar.unity",
+      "size": 62898,
+      "md5": "75d4009e57b278c0f2069e1b3337051c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/20 - Input Field with Scrollbar.unity.meta",
+      "size": 174,
+      "md5": "92ceec0063793064abf4a2bd08de8142"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/21 - Script Example.unity",
+      "size": 6347,
+      "md5": "4e90c0867a3e4b95b1594c36b06d62ff"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/21 - Script Example.unity.meta",
+      "size": 292,
+      "md5": "5e558a19f72b465f6212a0091515e52b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/22 - Basic Scripting Example.unity",
+      "size": 12075,
+      "md5": "6dd85c220bb81bc2210817d638790236"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/22 - Basic Scripting Example.unity.meta",
+      "size": 174,
+      "md5": "88fa1d77e64ee3994dbd16e6482aa83b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/23 - Animating Vertex Attributes.unity",
+      "size": 14217,
+      "md5": "b0a6918aac50172ecefb78c3cae071ca"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/23 - Animating Vertex Attributes.unity.meta",
+      "size": 174,
+      "md5": "95fcec85dd130180d03f7b358f45356f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/24 - Surface Shader Example.unity",
+      "size": 70666,
+      "md5": "3c7efee2ad07a4223fefadcb09e33baa"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/24 - Surface Shader Example.unity.meta",
+      "size": 292,
+      "md5": "9acbdb1359ee7db79980f80f69178566"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/25 - Sunny Days Example.unity",
+      "size": 16835,
+      "md5": "d9173844b7b1a499767bdb3e52fe0534"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/25 - Sunny Days Example.unity.meta",
+      "size": 175,
+      "md5": "c8082a8a3531a2308a9b45555d43f9bc"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/26 - Dropdown Placeholder Example.unity",
+      "size": 97009,
+      "md5": "a99c64ebf8d7865f706da8e23b585032"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/26 - Dropdown Placeholder Example.unity.meta",
+      "size": 155,
+      "md5": "692f7222a96d343bc997aed7e791c0a6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/Benchmark (Floating Text).unity",
+      "size": 11380,
+      "md5": "9680277e49ff37a658f6091fce66dba4"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scenes/Benchmark (Floating Text).unity.meta",
+      "size": 292,
+      "md5": "3e739873e6f16ef815d86b9d07f2060c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs",
+      "size": 4314,
+      "md5": "5409243af311548e7cc457f19ba398aa"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs.meta",
+      "size": 221,
+      "md5": "07d2cb8f4730b9a75e994655c87fd5bc"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs",
+      "size": 4573,
+      "md5": "7204101af11cf8adf2b2e0d89b9873f1"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs.meta",
+      "size": 221,
+      "md5": "712a52d42454bc5b76dd576b37792c49"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs",
+      "size": 3611,
+      "md5": "dc9858ef83f7d8641c0f772c4b1abff9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs.meta",
+      "size": 247,
+      "md5": "0b833078642f9a29f43f99757581397b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark03.cs",
+      "size": 3696,
+      "md5": "abc32bf494a52e957127e7322260e955"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark03.cs.meta",
+      "size": 247,
+      "md5": "9656991a8c432255d65d4f8e48479b8b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark04.cs",
+      "size": 3094,
+      "md5": "fd4af4a7760642818740042aa06d4d51"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark04.cs.meta",
+      "size": 247,
+      "md5": "f49328a1155317c38dfb3b6482f3359b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs",
+      "size": 10637,
+      "md5": "f75a6e32c750a259e29e00a15e279ca4"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/CameraController.cs.meta",
+      "size": 221,
+      "md5": "2b55314cdfdac1ec1dc330c09fb6abd6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ChatController.cs",
+      "size": 1332,
+      "md5": "8d813194e132cca1348ed8badc27680b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ChatController.cs.meta",
+      "size": 262,
+      "md5": "b3896d6ba103667ffa7ad7f9753ea70a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/DropdownSample.cs",
+      "size": 507,
+      "md5": "9920ec8e71190b583a3dceb67888cb84"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/DropdownSample.cs.meta",
+      "size": 243,
+      "md5": "7df432676a7b9e2d122cf547d8b60a01"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/EnvMapAnimator.cs",
+      "size": 1160,
+      "md5": "fcef4254a745eee0e41eb629c6817b70"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/EnvMapAnimator.cs.meta",
+      "size": 262,
+      "md5": "3f262b13b940fed89c9f418d76bccfa1"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ObjectSpin.cs",
+      "size": 2133,
+      "md5": "d02b0d595d78ab85eb5c4e8f7147b382"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ObjectSpin.cs.meta",
+      "size": 221,
+      "md5": "a7d3694058d35c3d45f99a3223a34b4c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ShaderPropAnimator.cs",
+      "size": 1353,
+      "md5": "4d1e11f7a0618119ff0af11d61b8dd39"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/ShaderPropAnimator.cs.meta",
+      "size": 221,
+      "md5": "d3c52b16f49a157fd8cbfe7af08f3dae"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SimpleScript.cs",
+      "size": 1826,
+      "md5": "239f8fef7b114f559bdd23477ae5a281"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SimpleScript.cs.meta",
+      "size": 221,
+      "md5": "de53f25c1bf2aeca5de6694faf9e1e77"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SkewTextExample.cs",
+      "size": 6837,
+      "md5": "41a8bb099456e8f65cf157d372c51367"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/SkewTextExample.cs.meta",
+      "size": 262,
+      "md5": "6d4d34d3e664f1192bc0ad91a5309beb"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TeleType.cs",
+      "size": 2820,
+      "md5": "076c7aea24e209f6e605e1f720632bcd"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TeleType.cs.meta",
+      "size": 221,
+      "md5": "f98985b5f0af12c39b71a26d256b3382"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextConsoleSimulator.cs",
+      "size": 3782,
+      "md5": "43c70d35c96dec4945418facc6e2bf6b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextConsoleSimulator.cs.meta",
+      "size": 264,
+      "md5": "c7c3f851a55f30e6bd171d7e594df6cb"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs",
+      "size": 9123,
+      "md5": "958d264b1434168d37480eb98f52cef2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshProFloatingText.cs.meta",
+      "size": 247,
+      "md5": "3ff4e93cc4cef8cdc835249efa8b3b7c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshSpawner.cs",
+      "size": 2780,
+      "md5": "4dfc5f357d8bc78820f6e7adabf5717d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TextMeshSpawner.cs.meta",
+      "size": 247,
+      "md5": "a58b966f316f00677ded8106deefe99a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMPro_InstructionOverlay.cs",
+      "size": 3329,
+      "md5": "abb2f9ef5b897ef8409d6c0f49fee98b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMPro_InstructionOverlay.cs.meta",
+      "size": 221,
+      "md5": "5e7e3db7e024a8c4c765f863c000e75d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_DigitValidator.cs",
+      "size": 726,
+      "md5": "5a2b86de882f72d057d2cfe2b3229d56"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_DigitValidator.cs.meta",
+      "size": 262,
+      "md5": "b9f44b4493566dba99a4902fa30a0eb6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_ExampleScript_01.cs",
+      "size": 2122,
+      "md5": "008f5326fd7590437feb1a9d485edd97"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_ExampleScript_01.cs.meta",
+      "size": 262,
+      "md5": "031ffaff798491434e9a0684a34fd6d9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_FrameRateCounter.cs",
+      "size": 5150,
+      "md5": "820a5e0ca1537c949c179b6f5619b725"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_FrameRateCounter.cs.meta",
+      "size": 221,
+      "md5": "7d0c7a46a7f53cbe917d3c728d71c7b3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_PhoneNumberValidator.cs",
+      "size": 3521,
+      "md5": "c9c3048db6974fca282f3d07b73062b3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_PhoneNumberValidator.cs.meta",
+      "size": 262,
+      "md5": "03b252ddc1baff78b1233ff3bd3b6b45"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventCheck.cs",
+      "size": 2664,
+      "md5": "86a7ab221205918c2d04b114c9b893ac"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventCheck.cs.meta",
+      "size": 262,
+      "md5": "d0a670f3d3fa6d918925c6d1e8a9228d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventHandler.cs",
+      "size": 9303,
+      "md5": "d940fc7aac9cd53dded097c26adbbb68"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextEventHandler.cs.meta",
+      "size": 262,
+      "md5": "7c1eefa57f9d78bff2cd131a389cda1f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs",
+      "size": 30811,
+      "md5": "0afeb06cf860bad5e5d0ec56d74ae4be"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextInfoDebugTool.cs.meta",
+      "size": 264,
+      "md5": "e8c8ca0ee6d9ec2656bfb4ead7916573"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_A.cs",
+      "size": 6825,
+      "md5": "8a0520e7a3bba1c46bcca856f8b0c959"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_A.cs.meta",
+      "size": 262,
+      "md5": "843d4e8d807b25b9b66821d26b192e16"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs",
+      "size": 24604,
+      "md5": "f0ffc43236b6da4c835e9f8cfe2b1717"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_TextSelector_B.cs.meta",
+      "size": 360,
+      "md5": "cb82e9af3394f9ad5febcc84a63e57f2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_UiFrameRateCounter.cs",
+      "size": 4881,
+      "md5": "271e4c8ad7fee8488704569bf60b039f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/TMP_UiFrameRateCounter.cs.meta",
+      "size": 262,
+      "md5": "632d2c70f6f3567b28b5cc4e12ea7334"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexColorCycler.cs",
+      "size": 3127,
+      "md5": "9e46ccee35f6b84d3e22f5de24342bb5"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexColorCycler.cs.meta",
+      "size": 262,
+      "md5": "d42e9c33201211eb8f4ab211d82914c4"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexJitter.cs",
+      "size": 7113,
+      "md5": "b955ec108ccb5ad67db91b5628912398"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexJitter.cs.meta",
+      "size": 262,
+      "md5": "e7a4d691d45e42f2d3096cc3164dc290"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeA.cs",
+      "size": 6846,
+      "md5": "49d28055f5bf1d114171fa261df58df5"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeA.cs.meta",
+      "size": 262,
+      "md5": "61c307d42355c93ffda7c60377100fe7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs",
+      "size": 8724,
+      "md5": "4aa7a6fbcc1655ec907fd4be812a9ce7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs.meta",
+      "size": 262,
+      "md5": "05c126b459dfb2dd4b02773b2df1eba3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs",
+      "size": 8548,
+      "md5": "e20b888154c45f96232804f6e4c0cf23"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs.meta",
+      "size": 262,
+      "md5": "1ef13778bbb31d637ffcde304c298dcc"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs",
+      "size": 5999,
+      "md5": "e4e83bc8456713a3c2849fbefb019d08"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs.meta",
+      "size": 262,
+      "md5": "d3cb87010364cf92a82dba24424d661b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Sprites/Default Sprites.png",
+      "size": 178491,
+      "md5": "c0835872f1061e68f125c1b9a7329cf6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Sprites/Default Sprites.png.meta",
+      "size": 10304,
+      "md5": "227413bc1d7dbfebf39c2ba8647c53e9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Sprites/DropCap Numbers.psd",
+      "size": 482546,
+      "md5": "33569c49ea614f41df52a25c5527e49f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Sprites/DropCap Numbers.psd.meta",
+      "size": 3433,
+      "md5": "ebb8b5904436842a10167d0dd87b26e8"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Brushed Metal 3.jpg",
+      "size": 28175,
+      "md5": "e2a48914a497be9f8a941e653d217c42"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Brushed Metal 3.jpg.meta",
+      "size": 1121,
+      "md5": "ba221b8135f01c1bdcf1e51530007434"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Cement.jpg",
+      "size": 71537,
+      "md5": "1e0edd414d33833c3914723d2c854e10"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Cement.jpg.meta",
+      "size": 1121,
+      "md5": "33c8953691cc8ddf7ed4f5e066e55e6d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Tiles 1 - diffuse.jpg",
+      "size": 155648,
+      "md5": "d8bf4cf68dac3a9d77bfe9350112ac42"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Floor Tiles 1 - diffuse.jpg.meta",
+      "size": 1121,
+      "md5": "a77d8f119a809b9446a8ec6952df0bc9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Fruit Jelly (B&W).jpg",
+      "size": 150089,
+      "md5": "08da843bb0c657ddc65837bedfad4282"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Fruit Jelly (B&W).jpg.meta",
+      "size": 1121,
+      "md5": "4aa2a5e5d9aaae33c1c41cdb4e917572"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Diagonal (Color).jpg",
+      "size": 11688,
+      "md5": "4d222a8923ee30482162bf5481148681"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Diagonal (Color).jpg.meta",
+      "size": 1207,
+      "md5": "a3f0e33d38afd90d4193969666198894"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Horizontal (Color).jpg",
+      "size": 11341,
+      "md5": "f92384c0b129979d168d3ec298b0f03d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Horizontal (Color).jpg.meta",
+      "size": 1121,
+      "md5": "51c48e35ecbe7277ec218a94c2c68bf3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Vertical (Color).jpg",
+      "size": 11336,
+      "md5": "fd5a4d4ca1c6293e163afc7dffc60592"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Gradient Vertical (Color).jpg.meta",
+      "size": 1121,
+      "md5": "c1cbd881ecc03ca159bb2fed9f7101c7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Mask Zig-n-Zag.psd",
+      "size": 38488,
+      "md5": "2dedfa1f7f6b7e86daa3bf773aba1136"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Mask Zig-n-Zag.psd.meta",
+      "size": 1184,
+      "md5": "273661ca777683382fa69d4767136815"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_diffuse.jpg",
+      "size": 95326,
+      "md5": "1167f1636b1eb54636d36fb1f935fb4c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_diffuse.jpg.meta",
+      "size": 3063,
+      "md5": "3e2e11511c9d0e99b9e62abf18cca8a3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_normal.jpg",
+      "size": 126976,
+      "md5": "6b51a76c9f9863a54ed1fe81939a18cf"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Small Crate_normal.jpg.meta",
+      "size": 3063,
+      "md5": "0bc70db9527e139c11777d19aac6ee0a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Sunny Days - Seamless.jpg",
+      "size": 273488,
+      "md5": "046760a79f9f81611d82e06551eb2d86"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Sunny Days - Seamless.jpg.meta",
+      "size": 3064,
+      "md5": "12c9459e4b7840f0efefd684995f5338"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text Image 1.png",
+      "size": 26169,
+      "md5": "b4077499505f2ab8d45966362a098f90"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text Image 1.png.meta",
+      "size": 1261,
+      "md5": "b4038d75e964c31ea87b2e3925c56c84"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text UI Screenshot.png",
+      "size": 49290,
+      "md5": "c433e8a4de4438d13693ed173b0d2dab"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Text Overflow - Linked Text UI Screenshot.png.meta",
+      "size": 1260,
+      "md5": "25dc82892173fbea37317130fe4cc0cb"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Circle.psd",
+      "size": 32696,
+      "md5": "1c1bd60aef882984b0962d0be95da011"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Circle.psd.meta",
+      "size": 1258,
+      "md5": "2533d7c4ea427ac75c7aa39d1e424b58"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Diagonal.psd",
+      "size": 33064,
+      "md5": "2e4cc9ed4a6f744d76d6e49f993df8b8"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Diagonal.psd.meta",
+      "size": 1228,
+      "md5": "aca8ebb8f0261b5d603e1141a8a32994"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Double.psd",
+      "size": 33155,
+      "md5": "ab48e8f0aae4305f7815f79cb6a09353"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Double.psd.meta",
+      "size": 1228,
+      "md5": "bec92f0512e5abdb4fc8e4d5c4e0e283"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Quad.psd",
+      "size": 34433,
+      "md5": "a92c66922e4c5b4c636322078e1d8e8d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Examples & Extras/Textures/Wipe Pattern - Radial Quad.psd.meta",
+      "size": 1257,
+      "md5": "f9bf091adf7339f3e06f717df2f7ba07"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
+      "size": 69278126,
+      "md5": "6696aae84e0b0afb5d3382a9510ffb66"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset.meta",
+      "size": 189,
+      "md5": "ca35068608148f8b79a759551a27d417"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+      "size": 11575152,
+      "md5": "be401bb87e767253a64abdd37999a4bf"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf.meta",
+      "size": 483,
+      "md5": "e043bb2698f0d207e8b01ee887b5d873"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt",
+      "size": 4469,
+      "md5": "a4b00b7892bfb2fc9398e7f292af5b3d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt.meta",
+      "size": 177,
+      "md5": "f3ee254c19e2fb8f995b3e7bbc858d99"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf",
+      "size": 350200,
+      "md5": "bbbd0bdbfba093dec2ee4ca8b62e61f9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf.meta",
+      "size": 414,
+      "md5": "248870e455a5e55ac6e1839203ceeea8"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
+      "size": 69320195,
+      "md5": "14822e6b6cc08cdf942435d60d5936be"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset.meta",
+      "size": 189,
+      "md5": "e70af46d821927364e1633cd13ea1723"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf",
+      "size": 11937564,
+      "md5": "ccfa5a28e023a0225c543b9dd3a3c8c2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght.ttf.meta",
+      "size": 477,
+      "md5": "f460357bcba5fc68dbe82dbc516ff3cc"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials.meta",
+      "size": 191,
+      "md5": "1f3a2c68c47abef803019547b5868dc3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt",
+      "size": 269,
+      "md5": "345c77ed32179f5f982dcf8e2b1d92af"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt.meta",
+      "size": 179,
+      "md5": "7cf48c33c6361d3d0a107905577db419"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt",
+      "size": 95,
+      "md5": "d52dd40acd32a62df3bc764b1e783ddf"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt.meta",
+      "size": 179,
+      "md5": "05d5ce4aca06f1d67d4a6b7f8185a2f2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Sprite Assets.meta",
+      "size": 191,
+      "md5": "114516badd5ba150126b27e95f9e1d57"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Style Sheets.meta",
+      "size": 191,
+      "md5": "671eb111ecdd6423172ab26fdf8b77bf"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/TMP Settings.asset",
+      "size": 1702,
+      "md5": "5683144521d742c4d9c4b1aa132be144"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/TMP Settings.asset.meta",
+      "size": 179,
+      "md5": "ab41e3025e335dfa834df3f7cbdc3ef0"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat",
+      "size": 3140,
+      "md5": "f9ff83dab81f4c2fdc4ff189433b26fc"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat.meta",
+      "size": 179,
+      "md5": "dc01394082dd2207e040d7c615544d5c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+      "size": 536898,
+      "md5": "e70334c3272c52d64b4a5ac29b40c8b4"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset.meta",
+      "size": 179,
+      "md5": "b88c7aadb26331a76f8fe2175b621005"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat",
+      "size": 3050,
+      "md5": "739222ea271c39d0f8f6754a3b8c0086"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat.meta",
+      "size": 179,
+      "md5": "ac53bc8b8d3cee2e61adc6c137bebb7c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+      "size": 33725100,
+      "md5": "a93abfb8d1db19bc76f75600391d19e2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset.meta",
+      "size": 179,
+      "md5": "3152d2ce4e4028974dec62b3f987e6d9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset",
+      "size": 13441,
+      "md5": "c4b32315c0179671267e11cc48e1f85d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset.meta",
+      "size": 179,
+      "md5": "7350799f33495a41a26fc3b3e911756c"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset",
+      "size": 4953,
+      "md5": "5c87d4b6f296e98bfc4e1b68fca55ac6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset.meta",
+      "size": 181,
+      "md5": "3051b4d4c6c4e2c49281d8fe9df1e434"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMPro.cginc",
+      "size": 2277,
+      "md5": "9c521b1514957ae9616b18d9ba3878f7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMPro.cginc.meta",
+      "size": 204,
+      "md5": "f9fac7f9a55b7dac45782c5916de0be5"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc",
+      "size": 5311,
+      "md5": "2f6dc248df3e08a2e7804c25d46bd0e4"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc.meta",
+      "size": 204,
+      "md5": "4fa4e1e1f5d8c7213c6ceef4afdbd972"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc",
+      "size": 2843,
+      "md5": "35cc3f74a993b178f3d30fd7631878e7"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc.meta",
+      "size": 204,
+      "md5": "52f931c030550f27d414da6834f8de61"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc",
+      "size": 3563,
+      "md5": "ac8a29911a78b17497b77be3abff0fbd"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc.meta",
+      "size": 204,
+      "md5": "128e4e65303f4d03cf71cf1808d6f2f3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader",
+      "size": 3497,
+      "md5": "1f495e99bc677ac6a840b9aa28cf7877"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader.meta",
+      "size": 204,
+      "md5": "72c2c96a2b50cdb835c0d2066ffc99af"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader",
+      "size": 3549,
+      "md5": "5110ea4ecfea826d2496b3df8de06b57"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader.meta",
+      "size": 204,
+      "md5": "f6c488a530f1b12309300940c05ebfcf"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader",
+      "size": 3499,
+      "md5": "b70392d32cb4194bf9aa62e65eeaf0a2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader.meta",
+      "size": 204,
+      "md5": "7c8326ccd2be734378b7ff6cfa1059a2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader",
+      "size": 10585,
+      "md5": "2d668be66e5caa1e0d0760ffe044a7c8"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader.meta",
+      "size": 204,
+      "md5": "44bb29f827472e06ca447c7f34ad7e82"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader",
+      "size": 12000,
+      "md5": "661a4fc02d8a92091b454bd5983b9c6f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader.meta",
+      "size": 204,
+      "md5": "fbbe82a6e899ef86f79373b31dae30bb"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader",
+      "size": 7822,
+      "md5": "cdc58f1b3325c594e8a272c4e088596d"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader.meta",
+      "size": 204,
+      "md5": "6a1926e2efa40d173d3616530e381a8b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader",
+      "size": 7643,
+      "md5": "31ef80315c7900a25cf871c070adeadc"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader.meta",
+      "size": 204,
+      "md5": "da9ae362d2991350c3a10ef8f03af184"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader",
+      "size": 3071,
+      "md5": "75384ce23193bf10427062b28d85a446"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader.meta",
+      "size": 204,
+      "md5": "bd1d243613e19171ebb4c314f70134fc"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+      "size": 7674,
+      "md5": "c1d2d4f27275b212be8715422d64536f"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader.meta",
+      "size": 204,
+      "md5": "4820c4f2bc200bc227eb538e86fcf6f2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader",
+      "size": 3524,
+      "md5": "f0f899c9c596ba474dd6b107a124434e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader.meta",
+      "size": 204,
+      "md5": "a7b3938dbba414f935df4b9d7994bcf2"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader",
+      "size": 4355,
+      "md5": "14ce94afd631c9488428d5d77d6e9af3"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader.meta",
+      "size": 204,
+      "md5": "7e9a2958bcffc625de074cb2de087b22"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+      "size": 10600,
+      "md5": "03dbcfbd13a766317c371bdec23132a9"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_SDF.shader.meta",
+      "size": 204,
+      "md5": "da934b1234a1eee3a3475f555e57b667"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+      "size": 2673,
+      "md5": "f12a41b0fa654483159417ac45ecb320"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Shaders/TMP_Sprite.shader.meta",
+      "size": 204,
+      "md5": "3656bc196e6c22534bd0d47d8306bd3b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt",
+      "size": 187,
+      "md5": "759264906d349d566518f06e38d06772"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt.meta",
+      "size": 158,
+      "md5": "9048e3f7b1fe89e415b0da87161c6a8e"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Sprites/EmojiOne.json",
+      "size": 4122,
+      "md5": "53408097aa38738c15b17ca34e13882a"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Sprites/EmojiOne.json.meta",
+      "size": 177,
+      "md5": "a496148706a2822eea03016b0cc7d84b"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+      "size": 112319,
+      "md5": "abd61fb690e3df99b4cbd4f114afbd06"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Sprites/EmojiOne.png.meta",
+      "size": 9784,
+      "md5": "4b27abe8ba4dc203792663d67d365d1e"
+    }
+  ]
+}

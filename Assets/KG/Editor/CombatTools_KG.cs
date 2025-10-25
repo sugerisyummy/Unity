@@ -1,10 +1,9 @@
 // Assets/Scripts/KG/Editor/CombatTools_KG.cs
-// 兩個工具（放在 KG 區域，但只在 Editor 編譯）：
+// 工具：
 //  1) KG/Combat/Dump Wiring → 輸出戰鬥配線 Assets/CombatWiringReport.txt
 //  2) KG/Project/Dump Inventory → 輸出清單 Assets/ProjectInventory.json / _Short.txt
+//  3) 型別清單可由 Assets/KG/WiringTypes.txt 覆寫（每行一個 Type 名，例如 CombatManager）
 //
-// 注意：請移除舊的同名/相近腳本以避免重複定義。
-
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
@@ -21,21 +20,47 @@ namespace CyberLife.KGTools
 {
     public static class CombatTools_KG
     {
-        // 想看的核心腳本名稱（用 Name 避免命名空間差異）
-        static readonly HashSet<string> kTypes = new HashSet<string>(new []{
+        // 預設想看的型別（可被外部文字檔覆蓋）
+        static readonly string[] kDefaultTypes = new []{
             "CombatManager",
             "CombatEventBridge",
             "CombatResultRouter",
             "CombatPageController",
             "CombatUIController",
-        });
+        };
+
+        static HashSet<string> LoadTypeNames()
+        {
+            var set = new HashSet<string>(kDefaultTypes);
+            var path = "Assets/KG/WiringTypes.txt";
+            try
+            {
+                if (File.Exists(path))
+                {
+                    foreach (var line in File.ReadAllLines(path, Encoding.UTF8))
+                    {
+                        var t = line.Trim();
+                        if (string.IsNullOrEmpty(t) || t.StartsWith("#")) continue;
+                        set.Add(t);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[KG] LoadTypeNames failed: {e.Message}");
+            }
+            return set;
+        }
 
         [MenuItem("KG/Combat/Dump Wiring")]
         public static void DumpWiring()
         {
+            var kTypes = LoadTypeNames();
+
             var sb = new StringBuilder();
             sb.AppendLine("# Combat Wiring Report");
             sb.AppendLine("Time: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " | Unity: " + Application.unityVersion);
+            sb.AppendLine("Types: " + string.Join(", ", kTypes));
             sb.AppendLine();
 
             var comps = Resources.FindObjectsOfTypeAll<MonoBehaviour>()

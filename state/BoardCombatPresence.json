@@ -1,0 +1,12 @@
+{
+  "present": [
+    "Assets/Scripts/Combat/CombatPageController.cs",
+    "Assets/Scripts/Combat/CombatManager.cs",
+    "Assets/Scripts/Combat/CombatEventBridge.cs",
+    "Assets/Scripts/Combat/CombatResultRouter.cs",
+    "Assets/Scripts/Combat/CombatUIController.cs",
+    "Assets/Scripts/Board/BoardController.cs",
+    "Assets/Scripts/Board/PawnController.cs"
+  ],
+  "missing": []
+}
