@@ -1,71 +1,111 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
+using System.Collections;
 
-namespace CyberLife.Board
+namespace Game.Board
 {
+    [RequireComponent(typeof(RectTransform))]
     public class PawnController : MonoBehaviour
     {
-        public BoardController board;
+        public RectTransform board;
         public RectTransform pawn;
-        public int index;
-        public float stepDuration = 0.15f;
-        public AnimationCurve moveCurve = AnimationCurve.EaseInOut(0,0,1,1);
+        public int currentIndex = 0;
+        public float moveTimePerTile = 0.15f;
+        public bool IsMoving;
 
-        [Header("Events")] public UnityEvent<int> onLanded;
+        RectTransform pawnRect => pawn ? pawn : (pawn = GetComponent<RectTransform>());
 
-        bool moving;
-        public bool IsMoving => moving;
+        void OnEnable(){ SnapToCurrentIndex(); IsMoving = false; }
 
-        void Start()
+        public void Roll() => RollAndMove();
+
+        public void RollAndMove(){ int steps = Random.Range(1,7); MoveSteps(steps); }
+
+        public void MoveSteps(int steps)
         {
-            if (!board) board = FindObjectOfType<BoardController>();
-            if (board && (board.tiles == null || board.tiles.Count == 0)) board.Generate();
-            PlaceAt(index);
+            if (board == null || pawnRect == null) { Debug.LogWarning("[PawnController] Missing refs."); return; }
+            if (!isActiveAndEnabled || !gameObject.activeInHierarchy) return;
+            if (IsMoving) return;
+            StopAllCoroutines();
+            StartCoroutine(CoMove(steps));
         }
 
-        void Update(){ if (Input.GetKeyDown(KeyCode.R)) RollAndMove(); }
-
-        public void RollAndMove()
+        public void SnapToCurrentIndex()
         {
-            if (moving || board == null || board.Perimeter <= 0) return;
-            int steps = Random.Range(1, 7);
-            StartCoroutine(MoveSteps(steps));
+            if (board == null || pawnRect == null) return;
+            var target = GetTileByIndex(currentIndex);
+            if (!target) return;
+            pawnRect.anchoredPosition = TileToPawnLocal(target);
         }
 
-        public void PlaceAt(int i)
+        IEnumerator CoMove(int steps)
         {
-            if (!pawn || !board || board.Perimeter <= 0) return;
-            index = BoardController.Mod(i, board.Perimeter);
-            pawn.anchoredPosition = board.GetTilePosition(index);
-        }
-
-        IEnumerator MoveSteps(int steps)
-        {
-            moving = true;
-            for (int s = 0; s < steps; s++)
+            if (!isActiveAndEnabled || !gameObject.activeInHierarchy) yield break;
+            IsMoving = true;
+            int dir = steps >= 0 ? 1 : -1;
+            steps = Mathf.Abs(steps);
+            for (int i=0;i<steps;i++)
             {
-                int next = BoardController.Mod(index + 1, board.Perimeter);
-                yield return TweenTo(board.GetTilePosition(next));
-                index = next;
+                currentIndex = WrapIndex(currentIndex + dir);
+                var target = GetTileByIndex(currentIndex);
+                if (!target) break;
+                Vector2 p = TileToPawnLocal(target);
+                yield return StartCoroutine(CoLerpTo(p, moveTimePerTile));
             }
-            moving = false;
-            onLanded?.Invoke(index);
+            IsMoving = false;
         }
 
-        IEnumerator TweenTo(Vector2 target)
+        IEnumerator CoLerpTo(Vector2 target, float time)
         {
-            if (!pawn) yield break;
-            var start = pawn.anchoredPosition;
+            Vector2 from = pawnRect.anchoredPosition;
             float t = 0f;
             while (t < 1f)
             {
-                t += Time.deltaTime / Mathf.Max(0.01f, stepDuration);
-                float k = moveCurve.Evaluate(Mathf.Clamp01(t));
-                pawn.anchoredPosition = Vector2.LerpUnclamped(start, target, k);
+                if (!isActiveAndEnabled || !gameObject.activeInHierarchy) yield break;
+                t += Time.deltaTime / Mathf.Max(0.0001f, time);
+                pawnRect.anchoredPosition = Vector2.Lerp(from, target, Mathf.SmoothStep(0f,1f,t));
                 yield return null;
             }
-            pawn.anchoredPosition = target;
+            pawnRect.anchoredPosition = target;
         }
+
+        int WrapIndex(int idx)
+        {
+            int count = board ? board.childCount : 0;
+            if (count <= 0) return 0;
+            if (idx < 0) idx = (idx % count + count) % count;
+            return idx % count;
+        }
+
+        RectTransform GetTileByIndex(int index)
+        {
+            if (!board) return null;
+            string[] names = new[] { $"Tile_{index}", $"Tile {index}", $"Tile{index}" };
+            foreach (var n in names)
+            {
+                var t = board.Find(n) as RectTransform;
+                if (t) return t;
+            }
+            if (index >= 0 && index < board.childCount) return board.GetChild(index) as RectTransform;
+            if (index - 1 >= 0 && index - 1 < board.childCount) return board.GetChild(index - 1) as RectTransform;
+            return null;
+        }
+
+        Vector2 TileToPawnLocal(RectTransform tile)
+        {
+            var pawnsRoot = pawnRect.parent as RectTransform;
+            if (!pawnsRoot || !tile) return pawnRect.anchoredPosition;
+            var canvas = pawnsRoot.GetComponentInParent<Canvas>();
+            Camera cam = (canvas && canvas.renderMode != RenderMode.ScreenSpaceOverlay) ? canvas.worldCamera : null;
+            Vector3 world = tile.TransformPoint(tile.rect.center);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                pawnsRoot,
+                RectTransformUtility.WorldToScreenPoint(cam, world),
+                cam,
+                out var local
+            );
+            return local;
+        }
+
+        void OnDisable(){ IsMoving = false; StopAllCoroutines(); }
     }
 }

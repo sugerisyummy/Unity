@@ -1,4 +1,4 @@
-// KG Editor: BoardMenu 修正版（RectTransform 對齊 + PawnController 掛在 Pawn 上）
+// KG Editor: BoardMenuFixed（全新類名 & 選單，繞開舊檔衝突）
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
@@ -6,10 +6,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using CyberLife.Board;
 
-public static class BoardMenu
+public static class BoardMenuFixed
 {
-    [MenuItem("KG/Board/Create Basic Board (UI)")]
-    public static void CreateBasicBoard()
+    [MenuItem("KG/Board/Create Basic Board (UI) [Fixed]")]
+    public static void CreateBasicBoardFixed()
     {
         // Canvas + EventSystem
         var canvas = Object.FindObjectOfType<Canvas>();
@@ -25,13 +25,12 @@ public static class BoardMenu
         if (!Object.FindObjectOfType<EventSystem>())
             new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
 
-        // BoardPanel
+        // BoardPanel + roots
         var panel = new GameObject("BoardPanel", typeof(RectTransform));
         var prt = panel.GetComponent<RectTransform>();
         prt.SetParent(canvas.transform, false);
         prt.anchorMin = Vector2.zero; prt.anchorMax = Vector2.one; prt.offsetMin = prt.offsetMax = Vector2.zero;
 
-        // Roots
         var tiles = new GameObject("Tiles", typeof(RectTransform)).GetComponent<RectTransform>();
         tiles.SetParent(prt, false);
         var pawns = new GameObject("Pawns", typeof(RectTransform)).GetComponent<RectTransform>();
@@ -40,25 +39,25 @@ public static class BoardMenu
         ui.SetParent(prt, false);
 
         // BoardController
-        var board = panel.AddComponent<BoardController>();
-        board.tilesRoot = tiles;
-        board.pawnsRoot = pawns;
-        board.Generate();
+        var bc = panel.AddComponent<BoardController>();
+        bc.tilesRoot = tiles;
+        bc.pawnsRoot = pawns;
+        bc.Generate();
 
-        // Pawn（Image）
+        // Pawn
         var pawnGO = new GameObject("Pawn", typeof(RectTransform), typeof(Image));
         var pawnRT = pawnGO.GetComponent<RectTransform>();
         pawnRT.SetParent(pawns, false);
-        pawnRT.sizeDelta = new Vector2(board.tileSize * .7f, board.tileSize * .7f);
+        pawnRT.sizeDelta = new Vector2(bc.tileSize * .7f, bc.tileSize * .7f);
+        pawnRT.anchoredPosition = bc.GetTilePosition(0);
         pawnGO.GetComponent<Image>().color = new Color(.95f, .6f, .1f, 1f);
-        pawnRT.anchoredPosition = board.GetTilePosition(0);
 
-        // PawnController 掛在 Pawn 上；board/pawn 指向 RectTransform（避免 CS0029）
+        // PawnController（RectTransform 對應）
         var pawnCtrl = pawnGO.AddComponent<CyberLife.Board.PawnController>();
-        pawnCtrl.board = tiles;           // ← RectTransform
-        pawnCtrl.pawn  = pawnRT;          // ← RectTransform
+        pawnCtrl.board = tiles;     // RectTransform
+        pawnCtrl.pawn  = pawnRT;    // RectTransform
 
-        // Roll 按鈕（直接呼叫 pawnCtrl.RollAndMove() 無參數 overload）
+        // Roll 按鈕
         var btnGO = new GameObject("Roll", typeof(RectTransform), typeof(Image), typeof(Button));
         var btnRT = btnGO.GetComponent<RectTransform>();
         btnRT.SetParent(ui, false);
@@ -70,7 +69,7 @@ public static class BoardMenu
         btnGO.GetComponent<Button>().onClick.AddListener(pawnCtrl.RollAndMove);
 
         Selection.activeGameObject = panel;
-        Debug.Log("Basic Board created: Canvas/BoardPanel");
+        Debug.Log("[KG] Basic Board (Fixed) 建立完成。");
     }
 }
 #endif

@@ -2639,11 +2639,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3129252799327680862, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_Name
@@ -4644,6 +4644,7 @@ GameObject:
   - component: {fileID: 812443936}
   - component: {fileID: 812443938}
   - component: {fileID: 812443937}
+  - component: {fileID: 812443939}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -4667,8 +4668,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -301, y: -301}
-  m_SizeDelta: {x: 56, y: 56}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0.000015259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &812443937
 MonoBehaviour:
@@ -4708,6 +4709,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812443935}
   m_CullTransparentMesh: 1
+--- !u!114 &812443939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812443935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb860be681abfb4baa882d9b163685f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilesRoot: {fileID: 812443936}
+  sizeRatio: 0.8
+  autoOnResize: 1
+  autoOnUpdate: 0
 --- !u!1 &817985541
 GameObject:
   m_ObjectHideFlags: 0
@@ -4793,11 +4810,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3129252799327680862, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_Name
@@ -5579,6 +5596,7 @@ GameObject:
   - component: {fileID: 1029634733}
   - component: {fileID: 1029634736}
   - component: {fileID: 1029634735}
+  - component: {fileID: 1029634737}
   - component: {fileID: 1029634734}
   m_Layer: 0
   m_Name: Roll
@@ -5649,7 +5667,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1029634735}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1029634737}
+        m_TargetAssemblyTypeName: Game.UI.RollButtonBinder, Assembly-CSharp
+        m_MethodName: OnClickRoll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1029634735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5688,6 +5718,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029634732}
   m_CullTransparentMesh: 1
+--- !u!114 &1029634737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029634732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff9bd8ca6bc5ce4085e778f154b47a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1081277542
 GameObject:
   m_ObjectHideFlags: 0
@@ -6502,11 +6544,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2473820658539677587, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3129252799327680862, guid: 7797b612c3b20b546b210d660a7bb4df, type: 3}
       propertyPath: m_Name
@@ -6786,10 +6828,10 @@ RectTransform:
   - {fileID: 1029634733}
   m_Father: {fileID: 1725701059}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1279952147 stripped
 MonoBehaviour:
@@ -8508,6 +8550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1496918905}
+  - component: {fileID: 1496918906}
   m_Layer: 0
   m_Name: Tiles
   m_TagString: Untagged
@@ -8557,11 +8600,31 @@ RectTransform:
   - {fileID: 2031872816}
   m_Father: {fileID: 1725701059}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1496918906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496918904}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb3f7d259e0c8f4789d08b9f9dd8e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  padding: 0.02
+  keepSquare: 1
+  autoOnAwake: 0
+  autoOnResize: 0
+  centerToParent: 1
+  resetScaleBeforeFit: 1
+  freezeAfterFit: 0
+  bakeOnAwake: 0
 --- !u!1001 &1497968161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9785,7 +9848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1725701057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9821,34 +9884,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b44be0cc6ad7524984c91e37796b26f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  board: {fileID: 1725701060}
-  pawn: {fileID: 812443936}
-  index: 0
-  stepDuration: 0.15
-  moveCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  tilesRoot: {fileID: 0}
+  pawnRect: {fileID: 0}
+  moveTimePerTile: 0.12
+  currentIndex: 0
   onLanded:
     m_PersistentCalls:
       m_Calls: []
@@ -9889,7 +9928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilesRoot: {fileID: 1496918905}
   pawnsRoot: {fileID: 1870279151}
-  uiRoot: {fileID: 0}
+  uiRoot: {fileID: 1277521202}
   side: 8
   tileSize: 80
   gap: 6
@@ -10521,10 +10560,10 @@ RectTransform:
   - {fileID: 812443936}
   m_Father: {fileID: 1725701059}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -193, y: -194}
+  m_SizeDelta: {x: -752.0169, y: -404.4712}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1886745149
 PrefabInstance:
@@ -11623,7 +11662,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2067641064}
-  - component: {fileID: 2067641063}
   m_Layer: 0
   m_Name: Bridges
   m_TagString: Untagged
@@ -11631,30 +11669,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2067641063
-MonoBehaviour:
+--- !u!224 &2067641064
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067641062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d79140bd47a97544ca69a6837546faff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  board: {fileID: 1725701057}
-  combatPage: {fileID: 1697323780}
-  combatBridge: {fileID: 1273787314}
-  enemiesPerLevel: 2
---- !u!4 &2067641064
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067641062}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -11662,6 +11683,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2074088498
 PrefabInstance:
   m_ObjectHideFlags: 0

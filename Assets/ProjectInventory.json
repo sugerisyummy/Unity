@@ -1,5 +1,5 @@
 ﻿{
-    "time": "2025-10-20 09:15:15",
+    "time": "2025-11-04 03:52:06",
     "unity": "2022.3.62f1",
     "project": "cyberLife",
     "root": "Assets",
@@ -51,11 +51,21 @@
             ]
         },
         {
+            "path": "Assets/BoardAutoFitPerimeter.cs",
+            "guid": "cbb3f7d259e0c8f4789d08b9f9dd8e17",
+            "type": "MonoScript",
+            "size": 3803,
+            "md5": "964e73c575994908588edde24401300f",
+            "deps": [
+                "Assets/BoardAutoFitPerimeter.cs"
+            ]
+        },
+        {
             "path": "Assets/CombatWiringReport.txt",
             "guid": "7d62ea46ec57e0840b22d3a4aad22001",
             "type": "TextAsset",
             "size": 1925,
-            "md5": "19676dd32c7be4ffc664de90cd7bc8b4",
+            "md5": "1eb5263c4f26f14515bf0b56d1348b5a",
             "deps": []
         },
         {
@@ -65,6 +75,16 @@
             "size": 0,
             "md5": "",
             "deps": []
+        },
+        {
+            "path": "Assets/KG/CombatLayoutQuickFix.cs",
+            "guid": "990f4228ac8862045a46840088b00111",
+            "type": "MonoScript",
+            "size": 1468,
+            "md5": "1811f1710162d248c65fab3ea1e4f1cc",
+            "deps": [
+                "Assets/KG/CombatLayoutQuickFix.cs"
+            ]
         },
         {
             "path": "Assets/KG/DOLAutoAssign.cs",
@@ -88,20 +108,60 @@
         },
         {
             "path": "Assets/KG/Editor",
-            "guid": "7a6c5d6f097abc84f90ad87c99ae8d07",
+            "guid": "ccb75ebde888349459cee8ec9296cf48",
             "type": "DefaultAsset",
             "size": 0,
             "md5": "",
             "deps": []
         },
         {
-            "path": "Assets/KG/Editor/BoardMenu.cs",
-            "guid": "3e042029f04539e4da7a1abb3b099f43",
+            "path": "Assets/KG/Editor/BoardAutoWire.cs",
+            "guid": "06cf86558c5e4254799c2924645a3806",
             "type": "MonoScript",
-            "size": 2961,
-            "md5": "4e2e659323bd4feafd8d942c4ac508f2",
+            "size": 1078,
+            "md5": "62641c1b997f222a4e7fd7012508c9f4",
+            "deps": [
+                "Assets/KG/Editor/BoardAutoWire.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/Editor/BoardLayoutFix.cs",
+            "guid": "aafff807c69a25c46b1430441cc21c9c",
+            "type": "MonoScript",
+            "size": 3455,
+            "md5": "af236f9b484f719b8b21febbd0f4ef14",
+            "deps": [
+                "Assets/KG/Editor/BoardLayoutFix.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/Editor/BoardLayoutFix_Safe.cs",
+            "guid": "31916b436e7ee80498510d61176c0ac7",
+            "type": "MonoScript",
+            "size": 3662,
+            "md5": "5c581149804fa616b659419446ddfe62",
+            "deps": [
+                "Assets/KG/Editor/BoardLayoutFix_Safe.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/Editor/BoardMenu.cs",
+            "guid": "a75a3f3c74ddd8940a90f20d4ae32667",
+            "type": "MonoScript",
+            "size": 3441,
+            "md5": "f041612b09f9964110f4c9a11d80f466",
             "deps": [
                 "Assets/KG/Editor/BoardMenu.cs"
+            ]
+        },
+        {
+            "path": "Assets/KG/Editor/BoardMenuFixed.cs",
+            "guid": "35c5d3bb7391bcb4c94cc3a5467e04a5",
+            "type": "MonoScript",
+            "size": 3281,
+            "md5": "b651c774213ece93142abe3bb474847a",
+            "deps": [
+                "Assets/KG/Editor/BoardMenuFixed.cs"
             ]
         },
         {
@@ -118,9 +178,19 @@
             "path": "Assets/KG/Editor/KG.Editor.asmdef",
             "guid": "71fd88e74301d8142917ab6f4a5cf6cd",
             "type": "AssemblyDefinitionAsset",
-            "size": 329,
-            "md5": "8503ef19b39420cdf0c049972d715c4e",
+            "size": 163,
+            "md5": "a47638f637af94d4973982ccac0e65a8",
             "deps": []
+        },
+        {
+            "path": "Assets/KG/Editor/UIQuickSizer.cs",
+            "guid": "2bd918ec14ba22041a38ed4b8bdb41c4",
+            "type": "MonoScript",
+            "size": 5691,
+            "md5": "55d42ce6d24810780617b250c4d77d8b",
+            "deps": [
+                "Assets/KG/Editor/UIQuickSizer.cs"
+            ]
         },
         {
             "path": "Assets/KG/KGSetupProfile.json",
@@ -405,8 +475,8 @@
             "path": "Assets/ProjectInventory.json",
             "guid": "765426d393b1e744ba3ebc7d4942fe61",
             "type": "TextAsset",
-            "size": 148205,
-            "md5": "c1fbe2104490f94650f16496ca8d4e1d",
+            "size": 155544,
+            "md5": "93d1b9207f4956ce29d02fab4f78c501",
             "deps": []
         },
         {
@@ -414,7 +484,7 @@
             "guid": "82fbc7d960e77834e90ed757de7895fc",
             "type": "TextAsset",
             "size": 650,
-            "md5": "f145f3453f4f8e8b7b71965158c5f54c",
+            "md5": "878ab37471b54fd19feb28015a0039fb",
             "deps": []
         },
         {
@@ -429,19 +499,22 @@
             "path": "Assets/Scenes/SampleScene.unity",
             "guid": "2cda990e2423bbf4892e6590ba056729",
             "type": "SceneAsset",
-            "size": 357958,
-            "md5": "567b4b068568df91a4ae5f2cd13ffe70",
+            "size": 433570,
+            "md5": "1fb3a7622e74d1dd5fbcad16098a908b",
             "deps": [
                 "Assets/Scripts/StatBar.cs",
                 "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB SDF.asset",
                 "Packages/com.unity.ugui/Runtime/UI/Core/Slider.cs",
                 "Assets/Scripts/HUDStats.cs",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/GridLayoutGroup.cs",
                 "Assets/mapevent/map.asset",
                 "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
                 "Assets/Scripts/Combat/EnemyHPBinder.cs",
                 "Packages/com.unity.ugui/Runtime/UI/Core/Layout/HorizontalLayoutGroup.cs",
                 "Assets/Scripts/Combat/HitGroupButton.cs",
                 "Assets/Scripts/Combat/CombatManager.cs",
+                "Assets/Scripts/Board/BoardEventsBridge.cs",
+                "Assets/BoardAutoFitPerimeter.cs",
                 "Assets/Scripts/ProloguePlayer.cs",
                 "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
                 "Assets/Scripts/Combat/EnemyDefinition.cs",
@@ -458,17 +531,20 @@
                 "Assets/Scripts/Combat/ArmorDef.cs",
                 "Assets/Scenes/SampleScene.unity",
                 "Assets/Scripts/Combat/CombatEncounter.cs",
+                "Assets/Scripts/Board/TurnManager.cs",
                 "Assets/Prefabs/ChoiceButton.prefab",
+                "Assets/Scripts/Board/PawnController.cs",
                 "Assets/Scripts/Combat/Combatant.cs",
                 "Assets/Scripts/Combat/InventoryManager.cs",
-                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/LayoutElement.cs",
+                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
                 "Assets/Scripts/GameManagerStatProvider.cs",
                 "Packages/com.unity.ugui/Runtime/UI/Core/Layout/ContentSizeFitter.cs",
                 "Assets/Scripts/ButtonController.cs",
-                "Assets/Scripts/Combat/CombatResultRouter.cs",
-                "Assets/TextMesh Pro/Fonts/GenJyuuGothicXPB.ttf",
+                "Assets/Scripts/Board/PawnAutoSizeToTile.cs",
+                "Packages/com.unity.ugui/Runtime/UI/Core/Layout/LayoutElement.cs",
                 "Assets/Scripts/SaveSlotButton.cs",
                 "Assets/Scripts/Combat/CombatPageController.cs",
+                "Assets/Scripts/Combat/CombatResultRouter.cs",
                 "Assets/mapevent/test1.asset",
                 "Assets/Scripts/MenuManager.cs",
                 "Assets/picture/enemy1.png",
@@ -486,8 +562,10 @@
                 "Assets/Scripts/GameManager.cs",
                 "Assets/Scripts/Combat/Armor/Nude.asset",
                 "Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_FontAsset.cs",
+                "Assets/Scripts/Board/BoardController.cs",
                 "Assets/mapevent/1.asset",
                 "Assets/Scripts/CaseVisuals.cs",
+                "Assets/Scripts/UI/RollButtonBinder.cs",
                 "Assets/mapevent/music.asset",
                 "Assets/Prefabs/Bar.prefab"
             ]
@@ -532,8 +610,8 @@
             "path": "Assets/Scripts/Board/BoardController.cs",
             "guid": "4624b31e000dd2b4d817d09083b43221",
             "type": "MonoScript",
-            "size": 2882,
-            "md5": "cd033bc47166e9efeb58310a6165daf4",
+            "size": 6057,
+            "md5": "aaba80a828ba1ee152066df234fcc926",
             "deps": [
                 "Assets/Scripts/Board/BoardController.cs"
             ]
@@ -542,36 +620,76 @@
             "path": "Assets/Scripts/Board/BoardEventsBridge.cs",
             "guid": "eb224741e47dcfa49a99862c8d6e4196",
             "type": "MonoScript",
-            "size": 1162,
-            "md5": "7ad08b01bd9b92cb1a26fe4d448e0113",
+            "size": 1783,
+            "md5": "de2666316e226fcbd01cf34d1f8bac05",
             "deps": [
                 "Assets/Scripts/Board/BoardEventsBridge.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board/BoardTripletAutoStretch.cs",
+            "guid": "dd4b8446dc3e2f14aa1095618899de2a",
+            "type": "MonoScript",
+            "size": 1525,
+            "md5": "4e3835de34d9c4435a4d7fa8bfe3ab40",
+            "deps": [
+                "Assets/Scripts/Board/BoardTripletAutoStretch.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board/BoardZoomToFit.cs",
+            "guid": "3d4fb1829171c984eab367a8c4c3ebc4",
+            "type": "MonoScript",
+            "size": 4559,
+            "md5": "f1242b705d3ee7a618f819bf76443e13",
+            "deps": [
+                "Assets/Scripts/Board/BoardZoomToFit.cs"
             ]
         },
         {
             "path": "Assets/Scripts/Board/DiceRoller.cs",
             "guid": "deedbd857589fa44e87d708c2b17ee8b",
             "type": "MonoScript",
-            "size": 368,
-            "md5": "5492d98b4bd0774afbcbc45544e81716",
+            "size": 266,
+            "md5": "5f9fa181724d59a2fa63ce07cb86f7b0",
             "deps": [
                 "Assets/Scripts/Board/DiceRoller.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Board/EventService.cs",
+            "guid": "7660bdfff4ab7e849a4ec366a86b72ae",
+            "type": "MonoScript",
+            "size": 1843,
+            "md5": "dd934e081986a66f63ba2a490753cb2a",
+            "deps": [
+                "Assets/Scripts/Board/EventService.cs"
             ]
         },
         {
             "path": "Assets/Scripts/Board/KG.Board.asmdef",
             "guid": "80a294fa8ed92f24db0326df1998298f",
             "type": "AssemblyDefinitionAsset",
-            "size": 326,
-            "md5": "1c4e2a30ce0f0534c160dffdb0af8a90",
+            "size": 128,
+            "md5": "c9f8b72a4745cbe87b1a0494f5c6f18a",
             "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Board/PawnAutoSizeToTile.cs",
+            "guid": "0bb860be681abfb4baa882d9b163685f",
+            "type": "MonoScript",
+            "size": 4166,
+            "md5": "936f76e8b63357a99dc3a0f9864464d6",
+            "deps": [
+                "Assets/Scripts/Board/PawnAutoSizeToTile.cs"
+            ]
         },
         {
             "path": "Assets/Scripts/Board/PawnController.cs",
             "guid": "7b44be0cc6ad7524984c91e37796b26f",
             "type": "MonoScript",
-            "size": 2293,
-            "md5": "6bb90060c74012ea8ea946266030c3f6",
+            "size": 4756,
+            "md5": "be4c1ce945e33c3fefc9eceeb9f5604c",
             "deps": [
                 "Assets/Scripts/Board/PawnController.cs"
             ]
@@ -580,8 +698,8 @@
             "path": "Assets/Scripts/Board/PlayerState.cs",
             "guid": "e14b5185b5f579c4189bb3bbd34dd4f5",
             "type": "MonoScript",
-            "size": 690,
-            "md5": "8fe5197350132fb0fa7e6954933018d4",
+            "size": 991,
+            "md5": "ac3169f3e0ad771acb2ec80e99983ce3",
             "deps": [
                 "Assets/Scripts/Board/PlayerState.cs"
             ]
@@ -595,11 +713,21 @@
             "deps": []
         },
         {
+            "path": "Assets/Scripts/Board/RectAutoStretch.cs",
+            "guid": "a945dbdddd570f44c93dd425e7af9a67",
+            "type": "MonoScript",
+            "size": 751,
+            "md5": "b428544fa7e17208eecb1a7f59aabc00",
+            "deps": [
+                "Assets/Scripts/Board/RectAutoStretch.cs"
+            ]
+        },
+        {
             "path": "Assets/Scripts/Board/TileDefinition.cs",
             "guid": "20f38e424ff03fb4b891f87626573765",
             "type": "MonoScript",
-            "size": 536,
-            "md5": "6e6789f4bed6e3771c2daf5258a8503d",
+            "size": 390,
+            "md5": "2fdea8c122fa1e8472b112fb53c28c7c",
             "deps": [
                 "Assets/Scripts/Board/TileDefinition.cs"
             ]
@@ -608,8 +736,8 @@
             "path": "Assets/Scripts/Board/TurnManager.cs",
             "guid": "5c944e69535b1894483417d7e99726f9",
             "type": "MonoScript",
-            "size": 441,
-            "md5": "a0d41fa129542358629a8b2873949b9b",
+            "size": 269,
+            "md5": "85905a7c590f072490597335bb7e38e5",
             "deps": [
                 "Assets/Scripts/Board/TurnManager.cs"
             ]
@@ -623,13 +751,13 @@
             "deps": []
         },
         {
-            "path": "Assets/Scripts/Bridges/BoardCombatBridge.cs",
-            "guid": "d79140bd47a97544ca69a6837546faff",
+            "path": "Assets/Scripts/Bridges/MenuBridge.cs",
+            "guid": "950798776eba3f942b909b25404b5888",
             "type": "MonoScript",
-            "size": 1838,
-            "md5": "5acccb27831a00870501c9c35d1a1bde",
+            "size": 1957,
+            "md5": "a3be6bdc371d3e291e14bdd74c0d1f56",
             "deps": [
-                "Assets/Scripts/Bridges/BoardCombatBridge.cs"
+                "Assets/Scripts/Bridges/MenuBridge.cs"
             ]
         },
         {
@@ -817,6 +945,16 @@
             "md5": "d72aa3b8a0e0fb7c00d1bab38040ec63",
             "deps": [
                 "Assets/Scripts/Combat/CombatPageController.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/Combat/CombatResultHook.cs",
+            "guid": "0dc1acd75e56ad548a1a741e07ec82dc",
+            "type": "MonoScript",
+            "size": 1618,
+            "md5": "fb5e53489b2f93a790781e249b2508a6",
+            "deps": [
+                "Assets/Scripts/Combat/CombatResultHook.cs"
             ]
         },
         {
@@ -1105,13 +1243,49 @@
             ]
         },
         {
+            "path": "Assets/Scripts/KG",
+            "guid": "60721b0a75a0a0d4faa5bfb8d979c7ee",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Legacy",
+            "guid": "c2496d17c64154d4dbd9afb731f13c57",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/Legacy/MenuManagerStub.cs",
+            "guid": "c83fb318f3e369349830dd96c4beb446",
+            "type": "MonoScript",
+            "size": 709,
+            "md5": "6fb2dbe49be469af5cbee32d51e85842",
+            "deps": [
+                "Assets/Scripts/Legacy/MenuManagerStub.cs"
+            ]
+        },
+        {
             "path": "Assets/Scripts/MenuManager.cs",
             "guid": "060311740a789b44093629c69c301dd7",
             "type": "MonoScript",
-            "size": 3551,
-            "md5": "acfe6db6effe33ddcc32f8557db80afb",
+            "size": 4068,
+            "md5": "48f17e42a6f7b0f4885aaab2ca57b53b",
             "deps": [
                 "Assets/Scripts/MenuManager.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/PageSwitcher.cs",
+            "guid": "72eda027378fc9440a07644fd3c5c41f",
+            "type": "MonoScript",
+            "size": 1568,
+            "md5": "d99d2203648e953a75665e5fa57b0fa4",
+            "deps": [
+                "Assets/Scripts/PageSwitcher.cs"
             ]
         },
         {
@@ -1232,6 +1406,44 @@
             "md5": "767df8e92349c8f5a990ce0e08626387",
             "deps": [
                 "Assets/Scripts/StoryData.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/UI",
+            "guid": "7b5a2ee84af6a394a87a1599771145c2",
+            "type": "DefaultAsset",
+            "size": 0,
+            "md5": "",
+            "deps": []
+        },
+        {
+            "path": "Assets/Scripts/UI/BoardEventRouter.cs",
+            "guid": "d87eca700764cf44fa9d5c663925d581",
+            "type": "MonoScript",
+            "size": 2738,
+            "md5": "3b1ceaae30ce0ab706de7ce19b30fd64",
+            "deps": [
+                "Assets/Scripts/UI/BoardEventRouter.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/UI/RollButtonBinder.cs",
+            "guid": "9ff9bd8ca6bc5ce4085e778f154b47a4",
+            "type": "MonoScript",
+            "size": 2073,
+            "md5": "8ba62c7dd5c5e6ae756da24443f77772",
+            "deps": [
+                "Assets/Scripts/UI/RollButtonBinder.cs"
+            ]
+        },
+        {
+            "path": "Assets/Scripts/UICameraPageBinder.cs",
+            "guid": "5485f24a6f70b374d861e2ec850061a9",
+            "type": "MonoScript",
+            "size": 3235,
+            "md5": "6fe7fa90d48828520564236d92962d8f",
+            "deps": [
+                "Assets/Scripts/UICameraPageBinder.cs"
             ]
         },
         {
