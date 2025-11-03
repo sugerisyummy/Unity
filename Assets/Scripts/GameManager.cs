@@ -167,11 +167,15 @@ public class GameManager : MonoBehaviour
         currentCase = id;
         runningEvent = null; runningStage = -1;
 
+        CaseVisuals.Entry visualsEntry = null;
         if (caseVisuals && caseVisuals.TryGet(currentCase, out var entry))
         {
             if (backgroundImage) backgroundImage.sprite = entry.background;
-            if (AudioManager.Instance) AudioManager.Instance.PlayBGM(entry.bgm, 1f);
+            visualsEntry = entry;
         }
+
+        var audioManager = GameAudioManager.Instance;
+        if (audioManager) audioManager.ApplyCaseAudio(visualsEntry);
 
         UpdateAllStatUI();
         RollAndStartEvent();

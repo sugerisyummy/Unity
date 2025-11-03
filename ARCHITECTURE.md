@@ -9,7 +9,7 @@
 - 劇情事件：`CaseDatabase` + `DolEventAsset` + `EventFlagStorage`（一次性 / 冷卻 / 旗標 / 權重抽取）。
 - 數值：`PlayerStats`（HP/Money/Sanity…）+ `AbilityStats`（Str/Agi/Int/Cha/Stealth/Tech）。
 - HUD：`HUDStats` + `StatEventBus` + `StatBar` + `GameManagerStatProvider`。
-- 音訊：`AudioManager`、`SoundEffectManager`、`CaseVisuals`（背景/BGM/環境音）。
+- 音訊：`GameAudioManager`、`CaseVisuals`（背景/BGM/環境音、環境循環）。
 - 存讀：`SaveData`、`SaveManager`、`SaveSlotButton`（摘要含 Case/時間）。
 - 戰鬥：**不使用敵人 Prefab**；由 `CombatPageController` 依 `EnemyDefinition` 動態生成 UI + 元件；
   `CombatUIController` 管「選目標才顯示部位鈕」，`CombatManager` 負責結算。命名空間統一 `CyberLife.Combat`。
@@ -50,7 +50,7 @@
 ```
 Assets/Scripts
 ├─ AbilityStats.cs
-├─ AudioManager.cs
+├─ GameAudioManager.cs
 ├─ ButtonController.cs
 ├─ CaseDatabase.cs
 ├─ CaseId.cs
@@ -66,7 +66,6 @@ Assets/Scripts
 ├─ SaveData.cs
 ├─ SaveManager.cs
 ├─ SaveSlotButton.cs
-├─ SoundEffectManager.cs
 ├─ StatBar.cs
 ├─ StatEventBus.cs
 ├─ StatType.cs

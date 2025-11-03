@@ -1,5 +1,5 @@
 // HitStop.cs — 全域抽幀（時間暫停/慢動作）
-// 放在任何場景常駐物件上即可（例如 AudioManager 同級）。
+// 放在任何場景常駐物件上即可（例如 GameAudioManager 同級）。
 using UnityEngine;
 using System.Collections;
 
