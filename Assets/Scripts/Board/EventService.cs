@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace CyberLife.Board
+namespace Game.Board
 {
     [System.Serializable]
+    [MovedFrom(true, sourceNamespace: "CyberLife.Board")]
     public class EventCard
     {
         public string id;
@@ -16,6 +18,7 @@ namespace CyberLife.Board
     }
 
     // 簡單事件池：你可在 Inspector 編輯/調整權重
+    [MovedFrom(true, sourceNamespace: "CyberLife.Board")]
     public class EventService : MonoBehaviour
     {
         public EventCard[] deck = new EventCard[]

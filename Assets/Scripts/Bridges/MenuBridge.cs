@@ -1,8 +1,10 @@
 using UnityEngine;
-using CyberLife.Board;
+using Game.Board;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace CyberLife.UI
+namespace Game.UI
 {
+    [MovedFrom(true, sourceNamespace: "CyberLife.UI")]
     public class MenuBridge : MonoBehaviour
     {
         [Header("Panels")]

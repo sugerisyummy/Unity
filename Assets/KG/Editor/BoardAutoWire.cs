@@ -2,7 +2,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using CyberLife.Board;
+using Game.Board;
 
 namespace KG.EditorTools
 {

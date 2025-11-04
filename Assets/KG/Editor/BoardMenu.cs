@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using CyberLife.Board;
+using Game.Board;
 
 public static class BoardMenu
 {
@@ -54,7 +54,7 @@ public static class BoardMenu
         pawnRT.anchoredPosition = board.GetTilePosition(0);
 
         // PawnController 掛在 Pawn 上；board/pawn 指向 RectTransform（避免 CS0029）
-        var pawnCtrl = pawnGO.AddComponent<CyberLife.Board.PawnController>();
+        var pawnCtrl = pawnGO.AddComponent<Game.Board.PawnController>();
         pawnCtrl.board = tiles;           // ← RectTransform
         pawnCtrl.pawn  = pawnRT;          // ← RectTransform
 

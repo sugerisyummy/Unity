@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace CyberLife.Board
+namespace Game.Board
 {
+    [MovedFrom(true, sourceNamespace: "CyberLife.Board")]
     public class PlayerState : MonoBehaviour
     {
         [Header("Runtime")]
