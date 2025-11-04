@@ -1,5 +1,3 @@
-// v2.1 安定版：等待一幀後再 Fit；僅改 Tiles 容器 localScale 與 anchoredPosition
-// 避免與其他腳本搶寫；解析度改變/切頁回來會自動重算
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,61 +8,81 @@ namespace Game.Board
     [RequireComponent(typeof(RectTransform))]
     public sealed class BoardAutoFitPerimeter : MonoBehaviour
     {
-        [SerializeField] private RectTransform tiles;          // 若留空，預設為自身
-        [SerializeField] [Min(0)] private float padding = 24f; // 邊距（px）
-        [SerializeField] private bool applyEveryFrame = false; // 除非你要動畫，通常 false 就好
+        [SerializeField] private RectTransform tiles;
+        [SerializeField] [Min(0f)] private float padding = 24f;
+        [SerializeField] private bool applyEveryFrame = false;
 
-        RectTransform rt, parent;
+        private RectTransform _tilesRect;
+        private RectTransform _parentRect;
 
-        void Awake()
+        private void Awake()
         {
-            rt = tiles ? tiles : (RectTransform)transform;
-            parent = rt.parent as RectTransform;
+            _tilesRect = tiles ? tiles : (RectTransform)transform;
+            _parentRect = _tilesRect.parent as RectTransform;
         }
 
-        void OnEnable() => StartCoroutine(ApplyNextFrame());
-        IEnumerator ApplyNextFrame() { yield return null; Fit(); }
-
-        void OnRectTransformDimensionsChange()
+        private void OnEnable()
         {
-            if (!isActiveAndEnabled) return;
+            StartCoroutine(FitNextFrame());
+        }
+
+        private IEnumerator FitNextFrame()
+        {
+            yield return null;
             Fit();
         }
 
-        void Update()
+        private void OnRectTransformDimensionsChange()
         {
-            if (applyEveryFrame) Fit();
-        }
-
-        void Fit()
-        {
-            if (rt == null || parent == null) return;
-
-            // 確保父佈局已完成（避免拿到 0 尺寸）
-            LayoutRebuilder.ForceRebuildLayoutImmediate(parent);
-
-            var pRect = parent.rect;
-            var availW = Mathf.Max(0f, pRect.width  - padding * 2f);
-            var availH = Mathf.Max(0f, pRect.height - padding * 2f);
-
-            var raw = rt.rect;
-            if (raw.width <= 0f || raw.height <= 0f)
+            if (!isActiveAndEnabled)
             {
-                LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
-                raw = rt.rect;
-                if (raw.width <= 0f || raw.height <= 0f) return;
+                return;
             }
 
-            var s = Mathf.Min(availW / raw.width, availH / raw.height);
-            s = Mathf.Clamp(s, 0.01f, 100f);
+            Fit();
+        }
 
-            // 鎖定中心與置中；不強改錨點（避免與你的場景設定衝突）
-            rt.pivot = new Vector2(0.5f, 0.5f);
-            rt.anchoredPosition = Vector2.zero;
+        private void Update()
+        {
+            if (applyEveryFrame)
+            {
+                Fit();
+            }
+        }
 
-            var cur = rt.localScale;
-            if (Mathf.Abs(cur.x - s) > 0.001f || Mathf.Abs(cur.y - s) > 0.001f)
-                rt.localScale = new Vector3(s, s, 1f);
+        private void Fit()
+        {
+            if (_tilesRect == null || _parentRect == null)
+            {
+                return;
+            }
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_parentRect);
+
+            var parentRect = _parentRect.rect;
+            var availableWidth = Mathf.Max(0f, parentRect.width - padding * 2f);
+            var availableHeight = Mathf.Max(0f, parentRect.height - padding * 2f);
+
+            var contentRect = _tilesRect.rect;
+            if (contentRect.width <= 0f || contentRect.height <= 0f)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(_tilesRect);
+                contentRect = _tilesRect.rect;
+
+                if (contentRect.width <= 0f || contentRect.height <= 0f)
+                {
+                    return;
+                }
+            }
+
+            var scale = Mathf.Min(availableWidth / contentRect.width, availableHeight / contentRect.height);
+            scale = Mathf.Clamp(scale, 0.01f, 100f);
+
+            var current = _tilesRect.localScale;
+            if (Mathf.Abs(current.x - scale) > 0.001f || Mathf.Abs(current.y - scale) > 0.001f)
+            {
+                _tilesRect.localScale = new Vector3(scale, scale, 1f);
+            }
         }
     }
 }
