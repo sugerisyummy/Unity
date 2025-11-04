@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 namespace Game.Board
@@ -11,10 +12,15 @@ namespace Game.Board
         public int currentIndex = 0;
         public float moveTimePerTile = 0.15f;
         public bool IsMoving;
+        public UnityEvent<int> onLanded = new UnityEvent<int>();
 
         RectTransform pawnRect => pawn ? pawn : (pawn = GetComponent<RectTransform>());
 
-        void OnEnable(){ SnapToCurrentIndex(); IsMoving = false; }
+        void OnEnable()
+        {
+            SnapToCurrentIndex(notify: Application.isPlaying);
+            IsMoving = false;
+        }
 
         public void Roll() => RollAndMove();
 
@@ -29,12 +35,16 @@ namespace Game.Board
             StartCoroutine(CoMove(steps));
         }
 
-        public void SnapToCurrentIndex()
+        public void SnapToCurrentIndex(bool notify = false)
         {
             if (board == null || pawnRect == null) return;
             var target = GetTileByIndex(currentIndex);
             if (!target) return;
             pawnRect.anchoredPosition = TileToPawnLocal(target);
+            if (notify)
+            {
+                NotifyLanded();
+            }
         }
 
         IEnumerator CoMove(int steps)
@@ -52,6 +62,7 @@ namespace Game.Board
                 yield return StartCoroutine(CoLerpTo(p, moveTimePerTile));
             }
             IsMoving = false;
+            NotifyLanded();
         }
 
         IEnumerator CoLerpTo(Vector2 target, float time)
@@ -107,5 +118,10 @@ namespace Game.Board
         }
 
         void OnDisable(){ IsMoving = false; StopAllCoroutines(); }
+
+        void NotifyLanded()
+        {
+            onLanded?.Invoke(currentIndex);
+        }
     }
 }
