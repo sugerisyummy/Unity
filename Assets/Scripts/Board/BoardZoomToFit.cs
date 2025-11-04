@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace CyberLife.Board
+namespace Game.Board
 {
     /// <summary>
     /// 讓棋盤(Tiles)等比縮放到 BoardPanel 內，Pawns/UI 跟著同倍率縮放與置中。
     /// 不入侵你的 BoardController，只做「量外框 → 等比縮放 → 置中」。
     /// </summary>
+    [MovedFrom(true, sourceNamespace: "CyberLife.Board")]
     [ExecuteAlways, DisallowMultipleComponent]
     public class BoardZoomToFit : MonoBehaviour
     {
@@ -28,6 +30,14 @@ namespace CyberLife.Board
             if (!tilesRoot)  tilesRoot  = (RectTransform)transform.Find("Tiles");
             if (!pawnsRoot)  pawnsRoot  = (RectTransform)transform.Find("Pawns");
             if (!uiRoot)     uiRoot     = (RectTransform)transform.Find("UI");
+        }
+
+        void Awake()
+        {
+            if (Application.isPlaying)
+            {
+                enabled = false;
+            }
         }
 
         void OnEnable()

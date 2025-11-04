@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using CyberLife.Board;
+using Game.Board;
 
 public static class BoardMenuFixed
 {
@@ -53,7 +53,7 @@ public static class BoardMenuFixed
         pawnGO.GetComponent<Image>().color = new Color(.95f, .6f, .1f, 1f);
 
         // PawnController（RectTransform 對應）
-        var pawnCtrl = pawnGO.AddComponent<CyberLife.Board.PawnController>();
+        var pawnCtrl = pawnGO.AddComponent<Game.Board.PawnController>();
         pawnCtrl.board = tiles;     // RectTransform
         pawnCtrl.pawn  = pawnRT;    // RectTransform
 

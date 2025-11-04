@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using CyberLife.Board;   // ← 新增，拿 BoardController
+using Game.Board;   // ← 新增，拿 BoardController
 
 public class MenuManager : MonoBehaviour
 {

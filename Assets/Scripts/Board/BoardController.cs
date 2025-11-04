@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace CyberLife.Board
+namespace Game.Board
 {
+    [MovedFrom(true, sourceNamespace: "CyberLife.Board")]
     public class BoardController : MonoBehaviour
     {
         [Header("Roots")]
