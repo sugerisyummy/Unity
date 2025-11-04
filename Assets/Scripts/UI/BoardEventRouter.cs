@@ -15,9 +15,10 @@ namespace Game.UI
         public GameObject boardPanel;   // 建議指到 Canvas/BoardPanel
         public GameObject eventPanel;   // 建議指到 Canvas/StoryPanel
         public GameObject combatPanel;  // 建議指到 Canvas/CombatPanel
+
         public void OpenBoard()  => ShowBoard();
-public void OpenEvent()  => ShowEvent();
-public void OpenCombat() => ShowCombat();
+        public void OpenEvent()  => ShowEvent();
+        public void OpenCombat() => ShowCombat();
 
         void Awake()
         {
