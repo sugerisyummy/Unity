@@ -1,71 +1,38 @@
 using UnityEngine;
-using UnityEngine.Events;
-using PawnController = Game.Board.PawnController;
 
 namespace Game.Board
 {
-    /// <summary>
-    /// 橋接棋盤移動結果到 UI/事件系統。提供強制事件頁模式。
-    /// </summary>
+    // Bridge：從棋盤落地 → 決定走事件或戰鬥 → 呼叫 UI 路由
     public sealed class BoardEventsBridge : MonoBehaviour
     {
-        [Header("Refs")]
-        [SerializeField] private BoardController board;
-        [SerializeField] private PawnController pawn;
+        [Header("Router (Game.UI.BoardEventRouter)")]
+        [SerializeField] private Game.UI.BoardEventRouter router;
 
-        [Header("Events")]
-        public UnityEvent<string> onRequestEvent;
-        public UnityEvent<int> onRequestCombat;
+        [Header("Simple Rules")]
+        [Tooltip("每隔幾格觸發戰鬥；0 表示永不自動戰鬥")]
+        [SerializeField] private int combatEveryN = 5;
+        [Tooltip("從第幾格開始計數（含）；可為 0")]
+        [SerializeField] private int combatStartIndex = 0;
 
-        [Header("Force Special Event")]
-        public bool forceSpecialEveryLanding = true;
-        [Tooltip("落地後要顯示的事件頁(例如 Canvas/StoryPanel 或你自己的事件頁)")]
-        public GameObject specialEventPage;
-        [Tooltip("棋盤面板(例如 Canvas/BoardPanel)。會在顯示事件頁時關閉，避免疊在一起。")]
-        public GameObject boardPanelToHide;
-
-        private void OnEnable()
+        // 由 PawnController 在落地時呼叫
+        public void OnPawnLanded(int index)
         {
-            if (pawn)
+            if (router == null) return;
+
+            if (combatEveryN > 0 && (index - combatStartIndex) >= 0 &&
+                ((index - combatStartIndex) % combatEveryN) == 0)
             {
-                pawn.onLanded.AddListener(HandleLanded);
-            }
-        }
-
-        private void OnDisable()
-        {
-            if (pawn)
-            {
-                pawn.onLanded.RemoveListener(HandleLanded);
-            }
-        }
-
-        private void HandleLanded(int tileIndex)
-        {
-            if (forceSpecialEveryLanding)
-            {
-                if (boardPanelToHide)
-                {
-                    boardPanelToHide.SetActive(false);
-                }
-
-                if (specialEventPage)
-                {
-                    specialEventPage.SetActive(true);
-                }
-
-                onRequestEvent?.Invoke("SPECIAL_FORCED");
-                return;
-            }
-
-            if (board && board.Perimeter > 0 && (tileIndex + 1) % 5 == 0)
-            {
-                onRequestCombat?.Invoke(1);
+                router.ShowCombat();
             }
             else
             {
-                onRequestEvent?.Invoke($"TILE_{tileIndex}");
+                router.ShowEvent();
             }
         }
+
+        // UI 按鈕可直接綁這些
+        public void ShowBoard()  => router?.ShowBoard();
+        public void ShowEvent()  => router?.ShowEvent();
+        public void ShowCombat() => router?.ShowCombat();
     }
 }

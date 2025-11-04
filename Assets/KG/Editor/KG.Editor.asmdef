@@ -1,11 +1,13 @@
 {
   "name": "KG.Editor",
-  "rootNamespace": "CyberLife",
-  "references": [
-    "KG.Board"
-  ],
-  "includePlatforms": [
-    "Editor"
-  ],
-  "autoReferenced": true
+  "references": [],
+  "includePlatforms": ["Editor"],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }
