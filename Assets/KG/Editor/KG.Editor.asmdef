@@ -1,9 +1,7 @@
 {
   "name": "KG.Editor",
   "includePlatforms": ["Editor"],
-  "references": [
-    "Assembly-CSharp"
-  ],
+  "references": [],
   "allowUnsafeCode": false,
   "overrideReferences": false,
   "precompiledReferences": [],
