@@ -53,12 +53,12 @@ public static class BoardMenu
         pawnGO.GetComponent<Image>().color = new Color(.95f, .6f, .1f, 1f);
         pawnRT.anchoredPosition = board.GetTilePosition(0);
 
-        // PawnController 掛在 Pawn 上；board/pawn 指向 RectTransform（避免 CS0029）
+        // PawnController 掛在 Pawn 上；指向 Tiles / 自身 RectTransform
         var pawnCtrl = pawnGO.AddComponent<Game.Board.PawnController>();
-        pawnCtrl.board = tiles;           // ← RectTransform
-        pawnCtrl.pawn  = pawnRT;          // ← RectTransform
+        pawnCtrl.tilesRoot = tiles;
+        pawnCtrl.pawn = pawnRT;
 
-        // Roll 按鈕（直接呼叫 pawnCtrl.RollAndMove() 無參數 overload）
+        // Roll 按鈕 + 文字 + Dice UI + Binder
         var btnGO = new GameObject("Roll", typeof(RectTransform), typeof(Image), typeof(Button));
         var btnRT = btnGO.GetComponent<RectTransform>();
         btnRT.SetParent(ui, false);
@@ -67,7 +67,28 @@ public static class BoardMenu
         btnRT.sizeDelta = new Vector2(140, 42);
         btnRT.anchoredPosition = new Vector2(0, 20);
         btnGO.GetComponent<Image>().color = new Color(.2f, .5f, .9f, 1f);
-        btnGO.GetComponent<Button>().onClick.AddListener(pawnCtrl.RollAndMove);
+
+        // Label（顯示骰子結果）
+        var labelGO = new GameObject("Label", typeof(RectTransform), typeof(Text));
+        var labelRT = labelGO.GetComponent<RectTransform>();
+        labelRT.SetParent(btnRT, false);
+        labelRT.anchorMin = labelRT.anchorMax = new Vector2(.5f, .5f);
+        labelRT.pivot = new Vector2(.5f, .5f);
+        labelRT.sizeDelta = Vector2.zero;
+        var text = labelGO.GetComponent<Text>();
+        text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        text.text = "Roll";
+        text.alignment = TextAnchor.MiddleCenter;
+        text.color = Color.white;
+
+        // DiceRoller UI + Binder
+        var diceUI = btnGO.AddComponent<Game.UI.DiceRollerUI>();
+        diceUI.pawnController = pawnCtrl;
+        diceUI.autoMovePawn = true;
+
+        var binder = btnGO.AddComponent<Game.UI.RollButtonBinder>();
+        binder.enableHotkey = true;
+        binder.hotkey = KeyCode.R;
 
         Selection.activeGameObject = panel;
         Debug.Log("Basic Board created: Canvas/BoardPanel");

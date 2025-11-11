@@ -20,7 +20,11 @@ namespace Game.Board
                 return;
             }
 
-            playerPawn.RollAndMove();
+            int steps = dice.Roll();
+            if (steps > 0)
+            {
+                playerPawn.MoveSteps(steps);
+            }
         }
     }
 }
