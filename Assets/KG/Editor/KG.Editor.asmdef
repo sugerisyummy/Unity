@@ -1,0 +1,11 @@
+{
+  "name": "KG.Editor",
+  "includePlatforms": ["Editor"],
+  "references": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "noEngineReferences": false
+}
