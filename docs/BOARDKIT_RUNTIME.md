@@ -3,30 +3,30 @@
 ## 元件對應表
 | 區塊 | 指派腳本 / 職責 |
 |------|-----------------|
-| **BoardPanel/Tiles** | `BoardAutoFitPerimeter`：偵測父層大小，僅調整 Tiles 容器的 `localScale`，確保棋盤不會超框。 |
-| **BoardPanel/Pawns** | `PawnController`：根據棋盤索引定位棋子與移動。 |
-| **BoardPanel/UI** | 無自動縮放腳本：維持既有版面，必要時手動調整。 |
+| **BoardPanel/Tiles** | 25 個 Tile 依走格順序排列，無自動縮放腳本。 |
+| **BoardPanel/Pawns** | `PawnController`：根據棋盤索引定位棋子並逐格移動。 |
+| **BoardPanel/UI** | `DiceRollerUI` 顯示骰子數字、`RollButtonBinder` 綁定按鈕與熱鍵。 |
 
 ## 安裝與設定步驟
 1. **掛載腳本**
-   - 在 `BoardPanel/Tiles`（或棋盤根節點）上掛 `BoardAutoFitPerimeter`，`Tiles` 欄位指向實際要縮放的容器。
-   - `BoardPanel/Pawns` 下的每個棋子掛 `PawnController`，並設定 `board`、`pawn` 參考。
-   - `RollButtonBinder` 掛在 Roll 按鈕物件上，配合 `TurnManager` 或 `PawnController`。
-2. **錨點與 Offset 建議**
-   - `BoardPanel` 仍以 Canvas 中心對齊：錨點 `0.5, 0.5`、Pivot `0.5, 0.5`、`offset` 為 `0`。
-   - `Tiles`、`Pawns`、`UI` 子節點維持中心錨點，讓 `BoardAutoFitPerimeter` 專注在縮放。
+   - 將 `PawnController` 掛在棋子物件上，設定 `tilesRoot` 指向 `BoardPanel/Tiles`、`pawn` 指向自身 RectTransform。
+   - 將 `DiceRollerUI` 掛在骰子文字或容器上，必要時手動指派 `label` 與 `pawnController`。
+   - 將 `RollButtonBinder` 掛在中心 `Roll` 按鈕上，可與 `DiceRollerUI` 同物件使用。
+2. **棋盤配置**
+   - `Tiles` 子物件依實際走格順序排列，共 25 格。
+   - `PawnController` 的 `startIndex` 與 `currentIndex` 可對應起始格，啟用時會自動貼齊。
 3. **常見錯誤排查**
-   - **同時修改 RectTransform**：避免再掛 `RectAutoStretch`、`BoardTripletAutoStretch`、`BoardLayoutFix` 等舊腳本，會與 `BoardAutoFitPerimeter` 搶寫尺寸。
-   - **未啟用面板時啟動協程**：請確保棋盤物件在 `OnEnable` 後再初始化；若需要延遲，可呼叫 `Fit()` 或重新啟用物件讓腳本重算。
+   - 確認 `DiceRollerUI` 的 `minValue` 小於或等於 `maxValue`，避免擲骰範圍錯誤。
+   - 若骰子文字未更新，手動指派 `label` 或確認場景中含有 Text/TMP 元件。
+   - 若棋子未移動，確認 `tilesRoot` 參照與 `PawnController` 是否處於啟用狀態。
 
 ## 驗證步驟
 1. 在編輯器進入 Play Mode。
-2. 確認棋盤自動縮放後不會超出外框。
-3. 切換至其他頁籤再返回，棋盤仍保持正確比例。
-4. 按下 `R` 或 UI 上的 `Roll` 按鈕，可成功觸發擲骰與棋子移動。
+2. 啟用 BoardPanel 後按下 `R` 或中間 `Roll` 按鈕，骰子數字會在約 1 秒內快速跳動後定格。
+3. 擲骰結束時，棋子會依結果前進對應格數，落點與 Tiles 順序一致。
+4. 調整 `DiceRollerUI` 的 `minValue`、`maxValue` 可驗證擲骰上下限生效。
 
 ## 變更清單
-- 新版 `BoardAutoFitPerimeter` 僅縮放 Tiles 容器並在啟用後一幀重新計算，支援解析度變化。
-- `RollButtonBinder` 統一保留於 `Assets/Scripts/UI/RollButtonBinder.cs`。
-- 移除舊版 `RectAutoStretch`、`BoardTripletAutoStretch`、Scene-wide `BoardLayoutFix` 的執行腳本，避免與新版縮放流程重疊。
-- `TurnManager`、`BoardEventsBridge` 明確引用 `Game.Board.PawnController`，避免編譯錯誤。
+- 移除 `BoardAutoFitPerimeter`、`BoardTripletAutoStretch`、`PawnAutoSizeToTile` 等自動縮放腳本與依賴。
+- 新增 `DiceRollerUI` 協同 `RollButtonBinder` 提供擲骰展示與熱鍵綁定。
+- `PawnController` 支援協程逐格前進並在啟用時自動貼齊棋盤格。 

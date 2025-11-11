@@ -1,111 +1,109 @@
+// Namespace: Game.Board
 using UnityEngine;
 using System.Collections;
 
 namespace Game.Board
 {
-    [RequireComponent(typeof(RectTransform))]
+    [DisallowMultipleComponent]
     public class PawnController : MonoBehaviour
     {
-        public RectTransform board;
-        public RectTransform pawn;
-        public int currentIndex = 0;
-        public float moveTimePerTile = 0.15f;
-        public bool IsMoving;
+        [Header("參照 (手動即可)")]
+        public RectTransform tilesRoot;   // BoardPanel/Tiles
+        public RectTransform pawn;        // BoardPanel/Pawns/Pawn
 
-        RectTransform pawnRect => pawn ? pawn : (pawn = GetComponent<RectTransform>());
+        [Header("索引 (0-based；0=第一格)")]
+        public int startIndex = 0;
+        [SerializeField] int currentIndex = 0;
 
-        void OnEnable(){ SnapToCurrentIndex(); IsMoving = false; }
+        [Header("移動參數")]
+        public float perTileDuration = 0.15f;
+        public AnimationCurve curve = AnimationCurve.EaseInOut(0,0,1,1);
 
-        public void Roll() => RollAndMove();
-
-        public void RollAndMove(){ int steps = Random.Range(1,7); MoveSteps(steps); }
-
-        public void MoveSteps(int steps)
-        {
-            if (board == null || pawnRect == null) { Debug.LogWarning("[PawnController] Missing refs."); return; }
-            if (!isActiveAndEnabled || !gameObject.activeInHierarchy) return;
-            if (IsMoving) return;
-            StopAllCoroutines();
-            StartCoroutine(CoMove(steps));
+        public bool IsMoving { get; private set; }
+        void Reset(){ AutoFill(); }
+        void Awake(){ AutoFill(); }
+        void OnEnable(){
+            int max = MaxIndex;
+            int clampedStart = Mathf.Clamp(startIndex, 0, max);
+            int clampedCurrent = Mathf.Clamp(currentIndex, 0, max);
+            currentIndex = (clampedCurrent == 0 && clampedStart != 0) ? clampedStart : clampedCurrent;
+            SnapToCurrentIndex();
         }
 
-        public void SnapToCurrentIndex()
-        {
-            if (board == null || pawnRect == null) return;
-            var target = GetTileByIndex(currentIndex);
-            if (!target) return;
-            pawnRect.anchoredPosition = TileToPawnLocal(target);
+        void AutoFill(){
+            if (!tilesRoot){ var t = GameObject.Find("Tiles"); if (t) tilesRoot = t.transform as RectTransform; }
+            if (!pawn){ var p = GameObject.Find("Pawn"); if (p) pawn = p.transform as RectTransform; }
         }
 
-        IEnumerator CoMove(int steps)
-        {
+        int MaxIndex => (tilesRoot ? tilesRoot.childCount - 1 : 0);
+        RectTransform GetTile(int i){ if (!tilesRoot || tilesRoot.childCount==0) return null; i=Mathf.Clamp(i,0,MaxIndex); return tilesRoot.GetChild(i) as RectTransform; }
+
+        Vector2 TileToPawnLocal(RectTransform tile){
+            if (!tile || !pawn) return Vector2.zero;
+            var parent = pawn.parent as RectTransform;
+            var world = tile.TransformPoint(tile.rect.center);
+            return (Vector2)parent.InverseTransformPoint(world);
+        }
+
+        public void SnapToCurrentIndex(){
+            var tile = GetTile(currentIndex); if (!tile || !pawn) return;
+            pawn.anchoredPosition = TileToPawnLocal(tile);
+        }
+
+        public void MoveToIndex(int index){
+            int clamped = Mathf.Clamp(index, 0, MaxIndex);
+            int steps = clamped - currentIndex;
+            if (steps != 0) StartCoroutine(CoMoveSteps(steps));
+        }
+
+        public void MoveSteps(int steps){
+            if (steps <= 0) return;
+            StartCoroutine(CoMoveSteps(steps));
+        }
+
+        // Legacy entry point for existing hooks (e.g. TurnManager / editor tools)
+        public void RollAndMove(){
+            var uiRoller = FindObjectOfType<Game.UI.DiceRollerUI>();
+            if (uiRoller && !uiRoller.IsRolling){
+                uiRoller.Roll();
+                return;
+            }
+
+            var legacyDice = FindObjectOfType<DiceRoller>();
+            if (!legacyDice) return;
+
+            int steps = legacyDice.Roll();
+            if (steps > 0) MoveSteps(steps);
+        }
+
+        IEnumerator CoMoveSteps(int steps){
             if (!isActiveAndEnabled || !gameObject.activeInHierarchy) yield break;
+            if (IsMoving) yield break;
             IsMoving = true;
-            int dir = steps >= 0 ? 1 : -1;
-            steps = Mathf.Abs(steps);
-            for (int i=0;i<steps;i++)
-            {
-                currentIndex = WrapIndex(currentIndex + dir);
-                var target = GetTileByIndex(currentIndex);
-                if (!target) break;
-                Vector2 p = TileToPawnLocal(target);
-                yield return StartCoroutine(CoLerpTo(p, moveTimePerTile));
+
+            int target = Mathf.Clamp(currentIndex + steps, 0, MaxIndex);
+            while (currentIndex < target){
+                int next = currentIndex + 1;
+                var from = GetTile(currentIndex);
+                var to   = GetTile(next);
+                if (!from || !to) break;
+
+                Vector2 a = TileToPawnLocal(from);
+                Vector2 b = TileToPawnLocal(to);
+                float t = 0f;
+                while (t < 1f){
+                    t += Time.deltaTime / Mathf.Max(0.01f, perTileDuration);
+                    float k = curve.Evaluate(Mathf.Clamp01(t));
+                    pawn.anchoredPosition = Vector2.LerpUnclamped(a, b, k);
+                    yield return null;
+                }
+                pawn.anchoredPosition = b;
+                currentIndex = next;
             }
             IsMoving = false;
         }
 
-        IEnumerator CoLerpTo(Vector2 target, float time)
-        {
-            Vector2 from = pawnRect.anchoredPosition;
-            float t = 0f;
-            while (t < 1f)
-            {
-                if (!isActiveAndEnabled || !gameObject.activeInHierarchy) yield break;
-                t += Time.deltaTime / Mathf.Max(0.0001f, time);
-                pawnRect.anchoredPosition = Vector2.Lerp(from, target, Mathf.SmoothStep(0f,1f,t));
-                yield return null;
-            }
-            pawnRect.anchoredPosition = target;
-        }
-
-        int WrapIndex(int idx)
-        {
-            int count = board ? board.childCount : 0;
-            if (count <= 0) return 0;
-            if (idx < 0) idx = (idx % count + count) % count;
-            return idx % count;
-        }
-
-        RectTransform GetTileByIndex(int index)
-        {
-            if (!board) return null;
-            string[] names = new[] { $"Tile_{index}", $"Tile {index}", $"Tile{index}" };
-            foreach (var n in names)
-            {
-                var t = board.Find(n) as RectTransform;
-                if (t) return t;
-            }
-            if (index >= 0 && index < board.childCount) return board.GetChild(index) as RectTransform;
-            if (index - 1 >= 0 && index - 1 < board.childCount) return board.GetChild(index - 1) as RectTransform;
-            return null;
-        }
-
-        Vector2 TileToPawnLocal(RectTransform tile)
-        {
-            var pawnsRoot = pawnRect.parent as RectTransform;
-            if (!pawnsRoot || !tile) return pawnRect.anchoredPosition;
-            var canvas = pawnsRoot.GetComponentInParent<Canvas>();
-            Camera cam = (canvas && canvas.renderMode != RenderMode.ScreenSpaceOverlay) ? canvas.worldCamera : null;
-            Vector3 world = tile.TransformPoint(tile.rect.center);
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                pawnsRoot,
-                RectTransformUtility.WorldToScreenPoint(cam, world),
-                cam,
-                out var local
-            );
-            return local;
-        }
-
-        void OnDisable(){ IsMoving = false; StopAllCoroutines(); }
+        public int GetCurrentIndex()=>currentIndex;
+        public int GetMaxIndex()=>MaxIndex;
     }
 }
