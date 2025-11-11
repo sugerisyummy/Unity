@@ -23,7 +23,7 @@ sequenceDiagram
 
     Player->>UI: 點擊 / 按下 R 擲骰
     UI->>Turn: RollAndMove()
-    Turn->>Pawn: RollAndMove()
+    Turn->>Pawn: MoveSteps(result)
     Pawn-->>Bridge: OnPawnLanded(index)
     Bridge->>UI: ShowEvent()/ShowCombat()
     UI->>Player: 切換面板
@@ -34,17 +34,16 @@ sequenceDiagram
 ## 模組責任
 | 模組 | 職責 | 關鍵檔案 |
 | --- | --- | --- |
-| Game.Board | 棋盤生成、棋子移動、自動縮放與事件判斷 | `Assets/Scripts/Board/BoardController.cs`、`Assets/Scripts/Board/PawnController.cs`、`Assets/Scripts/Board/BoardAutoFitPerimeter.cs`、`Assets/Scripts/Board/BoardEventsBridge.cs`、`Assets/Scripts/Board/PawnAutoSizeToTile.cs` |
-| Game.UI | 介面切換、擲骰按鈕綁定、Board/Combat/Event 面板顯示 | `Assets/Scripts/UI/BoardEventRouter.cs`、`Assets/Scripts/UI/RollButtonBinder.cs`、`Assets/Scripts/Bridges/MenuBridge.cs` |
+| Game.Board | 棋盤生成、棋子移動與事件判斷 | `Assets/Scripts/Board/BoardController.cs`、`Assets/Scripts/Board/PawnController.cs`、`Assets/Scripts/Board/BoardEventsBridge.cs`、`Assets/Scripts/Board/TurnManager.cs`、`Assets/Scripts/Board/PlayerState.cs` |
+| Game.UI | 介面切換、擲骰顯示與按鈕綁定 | `Assets/Scripts/UI/BoardEventRouter.cs`、`Assets/Scripts/UI/RollButtonBinder.cs`、`Assets/Scripts/UI/DiceRollerUI.cs`、`Assets/Scripts/Bridges/MenuBridge.cs` |
 
 ## 差異與建議
-- 移除 `Assets/KG/Editor/KG.Editor.asmdef`：改回預設 Editor 組件以直接參考 Runtime 類別。
-- `Assets/Scripts/UI/BoardEventRouter.cs` 改為單純顯示切換，所有事件/戰鬥路徑統一指向此 Router。
-- 將 `Assets/BoardAutoFitPerimeter.cs` 移至 `Assets/Scripts/Board/BoardAutoFitPerimeter.cs` 並強化為僅縮放 Tiles + 置中，避免與其他 RectTransform 調整腳本互撞。
-- `Game.Board.BoardZoomToFit` 在 Play 模式會自動停用，避免與新的 Tiles 縮放流程重複；若需編輯器工具可於 Edit Mode 使用。
+- 移除舊版自動縮放腳本 (`BoardAutoFitPerimeter`、`BoardTripletAutoStretch`、`PawnAutoSizeToTile`) 以避免 RectTransform 競態。
+- `PawnController` 單純依 Tiles 走格順序逐格推進，`DiceRollerUI` 提供擲骰展示與結果回呼。
+- `RollButtonBinder` 維持熱鍵與按鈕共用邏輯，若無骰子 UI 也會 fallback 直接推棋。
 
 ## 驗證步驟
-1. Unity 進入 Play：確認 Console 無編譯錯誤、棋盤保持在面板內且四周邊距均勻。
-2. 在 Board → Event → Combat → Board 的切換流程中，Tiles 與 Pawn 不會位移或縮放錯亂。
-3. 按下 R 或點擊擲骰按鈕可驅動 `TurnManager.RollAndMove()`，棋子會依序走步並落點顯示事件或戰鬥。
-4. 將視窗尺寸調整或切換頁面回到棋盤，Tiles 會重新 Fit 並保持置中。
+1. Unity 進入 Play，確認 Console 無編譯錯誤。
+2. 啟用 BoardPanel 後按下 `R` 或點擊擲骰按鈕，骰子數字應連續變化約 1 秒並定格。
+3. 擲骰完成時棋子沿 Tiles 順序逐格前進至結果格並觸發對應事件/戰鬥。
+4. 調整 `DiceRollerUI` 的 `minValue`、`maxValue`，確認結果區間會跟著變化。
