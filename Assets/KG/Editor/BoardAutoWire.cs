@@ -16,7 +16,7 @@ namespace KG.EditorTools
             foreach (var pc in Object.FindObjectsOfType<PawnController>(true))
             {
                 Undo.RecordObject(pc, "Auto Wire PawnController");
-                if (pc.board == null) pc.board = tiles;
+                if (pc.tilesRoot == null) pc.tilesRoot = tiles;
                 if (pc.pawn  == null) pc.pawn  = pc.GetComponent<RectTransform>();
                 EditorUtility.SetDirty(pc);
                 wired++;
