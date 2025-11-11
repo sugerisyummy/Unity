@@ -1,4 +1,4 @@
-﻿{
+{
     "time": "2025-11-04 03:52:06",
     "unity": "2022.3.62f1",
     "project": "cyberLife",
@@ -48,16 +48,6 @@
             "md5": "4c4d62b00a53fe3a0cf2ca052c59c1cc",
             "deps": [
                 "Assets/Art/VFX/vignette_win.png"
-            ]
-        },
-        {
-            "path": "Assets/BoardAutoFitPerimeter.cs",
-            "guid": "cbb3f7d259e0c8f4789d08b9f9dd8e17",
-            "type": "MonoScript",
-            "size": 3803,
-            "md5": "964e73c575994908588edde24401300f",
-            "deps": [
-                "Assets/BoardAutoFitPerimeter.cs"
             ]
         },
         {
@@ -514,7 +504,6 @@
                 "Assets/Scripts/Combat/HitGroupButton.cs",
                 "Assets/Scripts/Combat/CombatManager.cs",
                 "Assets/Scripts/Board/BoardEventsBridge.cs",
-                "Assets/BoardAutoFitPerimeter.cs",
                 "Assets/Scripts/ProloguePlayer.cs",
                 "Assets/TextMesh Pro/Fonts/NotoSansTC-VariableFont_wght SDF.asset",
                 "Assets/Scripts/Combat/EnemyDefinition.cs",
@@ -540,7 +529,6 @@
                 "Assets/Scripts/GameManagerStatProvider.cs",
                 "Packages/com.unity.ugui/Runtime/UI/Core/Layout/ContentSizeFitter.cs",
                 "Assets/Scripts/ButtonController.cs",
-                "Assets/Scripts/Board/PawnAutoSizeToTile.cs",
                 "Packages/com.unity.ugui/Runtime/UI/Core/Layout/LayoutElement.cs",
                 "Assets/Scripts/SaveSlotButton.cs",
                 "Assets/Scripts/Combat/CombatPageController.cs",
@@ -627,16 +615,6 @@
             ]
         },
         {
-            "path": "Assets/Scripts/Board/BoardTripletAutoStretch.cs",
-            "guid": "dd4b8446dc3e2f14aa1095618899de2a",
-            "type": "MonoScript",
-            "size": 1525,
-            "md5": "4e3835de34d9c4435a4d7fa8bfe3ab40",
-            "deps": [
-                "Assets/Scripts/Board/BoardTripletAutoStretch.cs"
-            ]
-        },
-        {
             "path": "Assets/Scripts/Board/BoardZoomToFit.cs",
             "guid": "3d4fb1829171c984eab367a8c4c3ebc4",
             "type": "MonoScript",
@@ -675,16 +653,6 @@
             "deps": []
         },
         {
-            "path": "Assets/Scripts/Board/PawnAutoSizeToTile.cs",
-            "guid": "0bb860be681abfb4baa882d9b163685f",
-            "type": "MonoScript",
-            "size": 4166,
-            "md5": "936f76e8b63357a99dc3a0f9864464d6",
-            "deps": [
-                "Assets/Scripts/Board/PawnAutoSizeToTile.cs"
-            ]
-        },
-        {
             "path": "Assets/Scripts/Board/PawnController.cs",
             "guid": "7b44be0cc6ad7524984c91e37796b26f",
             "type": "MonoScript",
@@ -711,16 +679,6 @@
             "size": 998,
             "md5": "75d2e1d109964ab7af50fade89ac5f02",
             "deps": []
-        },
-        {
-            "path": "Assets/Scripts/Board/RectAutoStretch.cs",
-            "guid": "a945dbdddd570f44c93dd425e7af9a67",
-            "type": "MonoScript",
-            "size": 751,
-            "md5": "b428544fa7e17208eecb1a7f59aabc00",
-            "deps": [
-                "Assets/Scripts/Board/RectAutoStretch.cs"
-            ]
         },
         {
             "path": "Assets/Scripts/Board/TileDefinition.cs",
