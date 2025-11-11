@@ -1,5 +1,6 @@
 // Namespace: Game.Board
 using UnityEngine;
+using UnityEngine.Serialization;
 using System.Collections;
 
 namespace Game.Board
@@ -8,6 +9,7 @@ namespace Game.Board
     public class PawnController : MonoBehaviour
     {
         [Header("參照 (手動即可)")]
+        [FormerlySerializedAs("board")]
         public RectTransform tilesRoot;   // BoardPanel/Tiles
         public RectTransform pawn;        // BoardPanel/Pawns/Pawn
 
