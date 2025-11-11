@@ -61,21 +61,6 @@ namespace Game.Board
             StartCoroutine(CoMoveSteps(steps));
         }
 
-        // Legacy entry point for existing hooks (e.g. TurnManager / editor tools)
-        public void RollAndMove(){
-            var uiRoller = FindObjectOfType<Game.UI.DiceRollerUI>();
-            if (uiRoller && !uiRoller.IsRolling){
-                uiRoller.Roll();
-                return;
-            }
-
-            var legacyDice = FindObjectOfType<DiceRoller>();
-            if (!legacyDice) return;
-
-            int steps = legacyDice.Roll();
-            if (steps > 0) MoveSteps(steps);
-        }
-
         IEnumerator CoMoveSteps(int steps){
             if (!isActiveAndEnabled || !gameObject.activeInHierarchy) yield break;
             if (IsMoving) yield break;
