@@ -1,6 +1,7 @@
+// Namespace: Game.UI
+// 把按鈕與 R 熱鍵綁到 DiceRollerUI.Roll()；找不到骰子就用後備隨機值直接推棋。
 using UnityEngine;
 using UnityEngine.UI;
-using System.Reflection;
 
 namespace Game.UI
 {
@@ -9,51 +10,42 @@ namespace Game.UI
     {
         public KeyCode hotkey = KeyCode.R;
         public bool enableHotkey = true;
+        public int fallbackMin = 1;
+        public int fallbackMax = 6;
 
-        Button btn;
-        Object target;
-        MethodInfo method;
-        static readonly string[] METHOD_NAMES = { "Roll", "RequestRoll", "RollOnce", "OnRollButtonPressed" };
+        Button _btn;
+        DiceRollerUI _dice;
+        Game.Board.PawnController _pawn;
 
-        void Awake()
-        {
-            btn = GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(TriggerRoll);
-            FindTarget();
+        void Awake(){
+            _btn = GetComponent<Button>();
+            TryBindTargets();
+            _btn.onClick.RemoveAllListeners();
+            _btn.onClick.AddListener(CallRoll);
         }
 
-        void Update(){ if (enableHotkey && Input.GetKeyDown(hotkey)) TriggerRoll(); }
+        void OnEnable(){ TryBindTargets(); }
 
-        void FindTarget()
-        {
-            (target, method) = FindControllerAndMethod("TurnManager")
-                               ?? FindControllerAndMethod("PawnController")
-                               ?? (null, null);
-        }
-
-        static (Object, MethodInfo)? FindControllerAndMethod(string shortTypeName)
-        {
-            foreach (var mb in GameObject.FindObjectsOfType<MonoBehaviour>(true))
-            {
-                var t = mb.GetType();
-                if (t.Name == shortTypeName || (t.FullName != null && t.FullName.EndsWith("." + shortTypeName)))
-                {
-                    foreach (var n in METHOD_NAMES)
-                    {
-                        var m = t.GetMethod(n, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                        if (m != null && m.GetParameters().Length == 0)
-                            return (mb, m);
-                    }
-                }
+        void TryBindTargets(){
+            if (!_dice){
+                _dice = GetComponent<DiceRollerUI>();
+                if (!_dice) _dice = FindObjectOfType<DiceRollerUI>(true);
             }
-            return null;
+            if (!_pawn) _pawn = FindObjectOfType<Game.Board.PawnController>(true);
         }
 
-        public void TriggerRoll()
-        {
-            if (target != null && method != null) { method.Invoke(target, null); return; }
-            Debug.LogWarning("RollButtonBinder：找不到 TurnManager/PawnController 的擲骰方法（Roll/RequestRoll/RollOnce/OnRollButtonPressed）。");
+        void Update(){
+            if (!enableHotkey) return;
+            if (!isActiveAndEnabled || !gameObject.activeInHierarchy) return;
+            if (Input.GetKeyDown(hotkey)) CallRoll();
+        }
+
+        void CallRoll(){
+            if (_dice && !_dice.IsRolling){ _dice.Roll(); return; }
+            if (_pawn){
+                int v = Random.Range(fallbackMin, fallbackMax + 1);
+                _pawn.MoveSteps(v);
+            }
         }
     }
 }
