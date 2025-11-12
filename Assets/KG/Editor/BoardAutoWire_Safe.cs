@@ -70,8 +70,10 @@ public static class BoardAutoWire_Safe {
       if (ev.GetPersistentTarget(i) == pc && ev.GetPersistentMethodName(i)=="MoveSteps"){ alreadyLinked = true; break; }
     }
     if (!alreadyLinked){
-      UnityAction<int> act = pc.MoveSteps;
-      UnityEventTools.AddIntPersistentListener(ev, act);
+UnityAction<int> act = pc.MoveSteps;
+UnityEventTools.AddPersistentListener<int>(ev, act);
+EditorUtility.SetDirty(dice);
+
       EditorUtility.SetDirty(dice);
     }
 

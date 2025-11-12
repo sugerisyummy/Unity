@@ -26,9 +26,7 @@ namespace Game.Board
         [Range(0.00f, 0.50f)] public float gapRatio = 0.12f;     // gap 相對 tileSize 的比例
 
         [Header("Pawn & UI Sizing")]
-        public bool autoSizePawn = true;
         [Range(0.3f, 1.0f)] public float pawnSizeRatio = 0.7f;   // pawn = tileSize * ratio
-        public bool autoPlaceRoll = true;
         [Range(0.6f, 3.0f)] public float rollWidthInTiles = 2.0f; // RollButton 寬 = tileSize * N
         [Range(0.3f, 1.5f)] public float rollHeightInTiles = 0.6f;
 
@@ -68,8 +66,6 @@ namespace Game.Board
             for (int y = side - 2; y >= 1; y--) CreateTile(idx++, Pos(0, y));
 
             // 調整 pawn 與 UI
-            if (autoSizePawn) ResizeAllPawns();
-            if (autoPlaceRoll) ResizeAndPlaceRoll();
         }
 
         Vector2 Pos(int gx, int gy)
