@@ -20,13 +20,12 @@ namespace Game.Board
         public Color tileColor = new Color(0.15f, 0.15f, 0.15f, 0.9f);
         public Color tileAltColor = new Color(0.22f, 0.22f, 0.22f, 0.9f);
 
-        [Header("Auto-Fit")]
-        public bool autoFit = true;
+        [Header("Fit Settings")]
         [Range(0f, 200f)] public float fitMargin = 24f;          // 內縮邊界
         [Range(0.3f, 1.2f)] public float fitCoverage = 0.92f;    // 佔最短邊比例（調大會放大棋盤）
-        [Range(0.00f, 0.50f)] public float gapRatio = 0.12f;     // gap 相對 tileSize 的比例（autoFit 時使用）
+        [Range(0.00f, 0.50f)] public float gapRatio = 0.12f;     // gap 相對 tileSize 的比例
 
-        [Header("Auto-Size pawn & UI")]
+        [Header("Pawn & UI Sizing")]
         public bool autoSizePawn = true;
         [Range(0.3f, 1.0f)] public float pawnSizeRatio = 0.7f;   // pawn = tileSize * ratio
         public bool autoPlaceRoll = true;
@@ -50,8 +49,6 @@ namespace Game.Board
                 var p = tilesRoot.parent;
                 if (p) { var t = p.Find("UI"); if (t) uiRoot = t as RectTransform; }
             }
-
-            if (autoFit) FitToPanel();
 
             // 清除舊 tiles
             for (int i = tilesRoot.childCount - 1; i >= 0; i--)
@@ -120,7 +117,7 @@ namespace Game.Board
 
             // 以「整體寬度 = side * tileSize + (side-1) * gap」為基準解 tileSize
             float localGap = Mathf.Max(0f, gap);
-            if (autoFit)
+            if (gapRatio > 0f)
             {
                 // 以比例推 gap
                 localGap = gapRatio * Mathf.Max(8f, shortest / side);
@@ -130,7 +127,8 @@ namespace Game.Board
             gap = localGap;
         }
 
-        void ResizeAllPawns()
+        [ContextMenu("Resize All Pawns")]
+        public void ResizeAllPawns()
         {
             if (!pawnsRoot) return;
             float s = Mathf.Max(8f, tileSize * pawnSizeRatio);
@@ -142,7 +140,8 @@ namespace Game.Board
             }
         }
 
-        void ResizeAndPlaceRoll()
+        [ContextMenu("Resize And Place Roll")]
+        public void ResizeAndPlaceRoll()
         {
             if (!uiRoot) return;
             var t = uiRoot.Find("Roll") as RectTransform;

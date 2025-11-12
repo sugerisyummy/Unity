@@ -9936,13 +9936,10 @@ MonoBehaviour:
   gap: 6
   tileColor: {r: 0.15, g: 0.15, b: 0.15, a: 0.9}
   tileAltColor: {r: 0.22, g: 0.22, b: 0.22, a: 0.9}
-  autoFit: 1
   fitMargin: 24
   fitCoverage: 0.92
   gapRatio: 0.12
-  autoSizePawn: 1
   pawnSizeRatio: 0.7
-  autoPlaceRoll: 1
   rollWidthInTiles: 2
   rollHeightInTiles: 0.6
   tiles:
